@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Centos,DNF,Linux,">
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="以梦为马，明日天涯。。。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小站 大梦">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="简介DNF(Dandified Yum)是新一代的RPM软件包管理器。DNF包管理器克服了YUM包管理器的一些瓶颈，提升了包括用户体验，内存占用，依赖分析，运行速度等多方面的内容。 安装DNFDNF并未默认安装在RHEL或CentOS7系统中，但可以在使用YUM的同时使用DNF。  安装epel-release依赖：yum install epel-release 或者 yum install e">
+<meta name="keywords" content="Centos,DNF,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DNF-包管理器">
+<meta property="og:url" content="http://yoursite.com/2020/12/06/DNF-包管理器/index.html">
 <meta property="og:site_name" content="小站 大梦">
-<meta property="og:description" content="以梦为马，明日天涯。。。">
+<meta property="og:description" content="简介DNF(Dandified Yum)是新一代的RPM软件包管理器。DNF包管理器克服了YUM包管理器的一些瓶颈，提升了包括用户体验，内存占用，依赖分析，运行速度等多方面的内容。 安装DNFDNF并未默认安装在RHEL或CentOS7系统中，但可以在使用YUM的同时使用DNF。  安装epel-release依赖：yum install epel-release 或者 yum install e">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-12-06T14:29:12.678Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小站 大梦">
-<meta name="twitter:description" content="以梦为马，明日天涯。。。">
+<meta name="twitter:title" content="DNF-包管理器">
+<meta name="twitter:description" content="简介DNF(Dandified Yum)是新一代的RPM软件包管理器。DNF包管理器克服了YUM包管理器的一些瓶颈，提升了包括用户体验，内存占用，依赖分析，运行速度等多方面的内容。 安装DNFDNF并未默认安装在RHEL或CentOS7系统中，但可以在使用YUM的同时使用DNF。  安装epel-release依赖：yum install epel-release 或者 yum install e">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2020/12/06/DNF-包管理器/">
 
 
 
 
 
-  <title>小站 大梦</title>
+  <title>DNF-包管理器 | 小站 大梦</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,9 +280,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -311,9 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/12/06/DNF-包管理器/" itemprop="url">DNF-包管理器</a></h1>
+          <h1 class="post-title" itemprop="name headline">DNF-包管理器</h1>
         
 
         <div class="post-meta">
@@ -385,21 +384,17 @@
       
 
       
-        
-          
-          简介DNF(Dandified Yum)是新一代的RPM软件包管理器。DNF包管理器克服了YUM包管理器的一些瓶颈，提升了包括用户体验，内存占用，依赖分析，运行速度等多方面的内容。
-安装DNFDNF并未默认安装在RHEL或CentOS7系统中，但可以在使用YUM的同时使用DNF。
-
-安装epel-r
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/12/06/DNF-包管理器/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>DNF(Dandified Yum)是新一代的RPM软件包管理器。<br>DNF包管理器克服了YUM包管理器的一些瓶颈，提升了包括用户体验，内存占用，依赖分析，运行速度等多方面的内容。</p>
+<h3 id="安装DNF"><a href="#安装DNF" class="headerlink" title="安装DNF"></a>安装DNF</h3><p>DNF并未默认安装在RHEL或CentOS7系统中，但可以在使用YUM的同时使用DNF。</p>
+<ol>
+<li>安装epel-release依赖：<code>yum install epel-release</code> 或者 <code>yum install epel-release -y</code></li>
+<li>安装DNF包：<code>yum install dnf</code> 或者 <code>yum install dnf -y</code></li>
+</ol>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>/etc/dnf/dnf.conf</p>
+<h3 id="代理设置"><a href="#代理设置" class="headerlink" title="代理设置"></a>代理设置</h3><p>Add the following settings in [main] section of /etc/dnf/dnf.conf, and save the file.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxy=http://&lt;ip address&gt;:&lt;port&gt;</span><br><span class="line">proxy_username=&lt;username&gt;</span><br><span class="line">proxy_password=&lt;password&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="DNF命令"><a href="#DNF命令" class="headerlink" title="DNF命令"></a>DNF命令</h3><p>与YUM基本保持一致，少数用法有区别。<br><a href="http://man.linuxde.net/dnf" target="_blank" rel="noopener">常用dnf命令</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### 版本</span></span><br><span class="line">dnf –version  <span class="comment"># 查看DNF包管理器版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 帮助</span></span><br><span class="line">dnf <span class="built_in">help</span>  <span class="comment"># 查看所有的DNF命令及其用途</span></span><br><span class="line">dnf <span class="built_in">help</span> &lt;<span class="built_in">command</span>&gt;  <span class="comment"># 获取命令的使用帮助</span></span><br><span class="line">dnf <span class="built_in">history</span>  <span class="comment"># 查看 DNF 命令的执行历史</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 信息查看</span></span><br><span class="line">dnf repolist  <span class="comment"># 查看系统中可用的DNF软件库</span></span><br><span class="line">dnf search &lt;package&gt;  <span class="comment"># 搜索软件库中的RPM包</span></span><br><span class="line"></span><br><span class="line">dnf list installed  <span class="comment"># 列出所有安装的RPM包</span></span><br><span class="line">dnf list available  <span class="comment"># 列出所有可安装的RPM包</span></span><br><span class="line">dnf info &lt;package&gt;  <span class="comment"># 查看软件包详情</span></span><br><span class="line"></span><br><span class="line">dnf provides &lt;file&gt;  <span class="comment"># 查找某一文件的提供者</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 软件包操作</span></span><br><span class="line">dnf install &lt;package&gt;  <span class="comment"># 安装软件包及其所需的所有依赖</span></span><br><span class="line">dnf update &lt;package&gt;  <span class="comment"># 升级软件包</span></span><br><span class="line">dnf remove &lt;package&gt;  <span class="comment"># 删除软件包</span></span><br><span class="line">dnf reinstall &lt;package&gt;  <span class="comment"># 重新安装特定软件包</span></span><br><span class="line">dnf distro-sync  <span class="comment"># 更新软件包到最新的稳定发行版</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 系统软件包</span></span><br><span class="line">dnf check-update  <span class="comment"># 检查系统所有软件包的更新</span></span><br><span class="line">dnf update  <span class="comment"># 升级所有系统软件包</span></span><br><span class="line">dnf clean all  <span class="comment"># 删除缓存的无用软件包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 组</span></span><br><span class="line">dnf grouplist</span><br><span class="line">dnf groupinstall <span class="string">'xxx'</span></span><br><span class="line">dnf groupupdate <span class="string">'xxx'</span></span><br><span class="line">dnf groupremove</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -414,141 +409,40 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/24/开博/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhang yongfei">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/tx.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小站 大梦">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/24/开博/" itemprop="url">开博</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-24T10:39:25+08:00">
-                2019-03-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Centos/" rel="tag"># Centos</a>
           
-            
+            <a href="/tags/DNF/" rel="tag"># DNF</a>
           
-
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          记录生活感悟人生
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/24/开博/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/24/开博/" rel="next" title="开博">
+                <i class="fa fa-chevron-left"></i> 开博
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -558,10 +452,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -569,6 +464,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -589,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -686,6 +594,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装DNF"><span class="nav-number">2.</span> <span class="nav-text">安装DNF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理设置"><span class="nav-number">4.</span> <span class="nav-text">代理设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNF命令"><span class="nav-number">5.</span> <span class="nav-text">DNF命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -826,6 +750,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
