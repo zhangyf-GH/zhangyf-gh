@@ -24,8 +24,27 @@
       </tags>
   </entry>
   <entry>
+    <title>ceshi</title>
+    <url>/2020/12/10/ceshi/</url>
+    <content><![CDATA[<ul>
+<li>安装图片插件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在_config.yml配置文件中，修改为 post_asset_folder: true</p>
+</li>
+<li><p>然后新建一篇文章 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new post ceshi</span><br></pre></td></tr></table></figure>
+<p>这个时候会出现一个ceshi.md和 ceshi的文件夹</p>
+</li>
+</ul>
+<p><img src="/.site//backup\zhangyf\hexo\zyfblog\source\_posts\ceshi\jg.png" alt="jg"></p>
+<p><img src="/.site//test.png" alt="test"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>开博</title>
-    <url>/2019/03/24/%E5%BC%80%E5%8D%9A/</url>
+    <url>/2019/03/24/z%E5%BC%80%E5%8D%9A/</url>
     <content><![CDATA[<p>记录生活<br>感悟人生</p>
 ]]></content>
   </entry>
