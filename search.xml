@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>LF will be replaced by CRLF</title>
-    <url>/2020/12/10/LF-will-be-replaced-by-CRLF/</url>
-    <content><![CDATA[<p>本文主要写了在 Hexo 博客中 出现 LF will be replaced by CRLF 的原因以及它的解决方式。</p>
-<h5 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h5><ol>
-<li>windows中的换行符为 CRLF，而在Linux下的换行符为LF，所以在执行add时出现提示 </li>
-<li>CRLF和LF是两种不同的换行格式，git工作区默认为CRLF来作为换行符，<br> 所以当我们项目文件里有用的地方使用LF作为换行符，这个时候我们再继续git add<br> 或者git commit的时候就会弹出警告，当最终push到远程仓库的时候git会统一格式全部转化为用CRLF作为换行符 </li>
-</ol>
-<h5 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h5><ol>
-<li>这个只是一个警告，我们直接忽略就好。</li>
-<li>在hexo目下的.deploy_git目录下打开git bash 执行git config –global core.autocrlf false //禁用自动转换 </li>
-</ol>
-]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DNF-包管理器</title>
     <url>/2020/12/06/DNF-%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/</url>
     <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>DNF(Dandified Yum)是新一代的RPM软件包管理器。<br>DNF包管理器克服了YUM包管理器的一些瓶颈，提升了包括用户体验，内存占用，依赖分析，运行速度等多方面的内容。</p>
@@ -41,6 +21,26 @@
         <tag>Centos</tag>
         <tag>DNF</tag>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LF will be replaced by CRLF</title>
+    <url>/2020/12/10/LF-will-be-replaced-by-CRLF/</url>
+    <content><![CDATA[<p>本文主要写了在 Hexo 博客中 出现 LF will be replaced by CRLF 的原因以及它的解决方式。</p>
+<h5 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h5><ol>
+<li>windows中的换行符为 CRLF，而在Linux下的换行符为LF，所以在执行add时出现提示 </li>
+<li>CRLF和LF是两种不同的换行格式，git工作区默认为CRLF来作为换行符，<br> 所以当我们项目文件里有用的地方使用LF作为换行符，这个时候我们再继续git add<br> 或者git commit的时候就会弹出警告，当最终push到远程仓库的时候git会统一格式全部转化为用CRLF作为换行符 </li>
+</ol>
+<h5 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h5><ol>
+<li>这个只是一个警告，我们直接忽略就好。</li>
+<li>在hexo目下的.deploy_git目录下打开git bash 执行git config –global core.autocrlf false //禁用自动转换 </li>
+</ol>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
