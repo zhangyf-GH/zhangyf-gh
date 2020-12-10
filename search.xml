@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ceshi</title>
-    <url>/2020/12/10/ceshi/</url>
-    <content><![CDATA[<ul>
-<li>安装图片插件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在_config.yml配置文件中，修改为 post_asset_folder: true</p>
-</li>
-<li><p>然后新建一篇文章 </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new post ceshi</span><br></pre></td></tr></table></figure>
-<p>这个时候会出现一个ceshi.md和 ceshi的文件夹</p>
-</li>
-</ul>
-<p><img src="/.site//backup\zhangyf\hexo\zyfblog\source\_posts\ceshi\jg.png" alt="jg"></p>
-<p><img src="/.site//test.png" alt="test"></p>
-]]></content>
-  </entry>
-  <entry>
     <title>DNF-包管理器</title>
     <url>/2020/12/06/DNF-%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/</url>
     <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>DNF(Dandified Yum)是新一代的RPM软件包管理器。<br>DNF包管理器克服了YUM包管理器的一些瓶颈，提升了包括用户体验，内存占用，依赖分析，运行速度等多方面的内容。</p>
@@ -41,6 +22,25 @@
         <tag>DNF</tag>
         <tag>Linux</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>ceshi</title>
+    <url>/2020/12/10/ceshi/</url>
+    <content><![CDATA[<ul>
+<li>安装图片插件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在_config.yml配置文件中，修改为 post_asset_folder: true</p>
+</li>
+<li><p>然后新建一篇文章 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new post ceshi</span><br></pre></td></tr></table></figure>
+<p>这个时候会出现一个ceshi.md和 ceshi的文件夹</p>
+</li>
+</ul>
+<p><img src="/.site//jg.png" alt="jg"></p>
+<p><img src="/.site//test.png" alt="test"></p>
+]]></content>
   </entry>
   <entry>
     <title>开博</title>
