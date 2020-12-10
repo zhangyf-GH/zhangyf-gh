@@ -24,28 +24,52 @@
       </tags>
   </entry>
   <entry>
-    <title>ceshi</title>
-    <url>/2020/12/10/ceshi/</url>
-    <content><![CDATA[<ul>
-<li>安装图片插件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>在_config.yml配置文件中，修改为 post_asset_folder: true</p>
-</li>
-<li><p>然后新建一篇文章 </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new post ceshi</span><br></pre></td></tr></table></figure>
-<p>这个时候会出现一个ceshi.md和 ceshi的文件夹</p>
-</li>
-</ul>
-<p><img src="/2020/12/10/ceshi/jg.jpg" alt="jg"></p>
-<p><img src="/2020/12/10/ceshi/test.png" alt="test"></p>
+    <title>开博</title>
+    <url>/2019/03/24/%E5%BC%80%E5%8D%9A/</url>
+    <content><![CDATA[<p>记录生活<br>感悟人生</p>
 ]]></content>
   </entry>
   <entry>
-    <title>开博</title>
-    <url>/2019/03/24/z%E5%BC%80%E5%8D%9A/</url>
-    <content><![CDATA[<p>记录生活<br>感悟人生</p>
+    <title>hexo本地图片不显示</title>
+    <url>/2020/12/10/hexo%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA/</url>
+    <content><![CDATA[<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
+<li><p>修改文件<code>_config.yml</code> 里的<code>post_asset_folder:</code>这个选项设置为<code>true</code></p>
+</li>
+<li><p>修改之后，再使用<code>hexo new post &quot;hexo本地图片不显示&quot;</code>时，目录的样子是</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo本地图片不显示</span><br><span class="line">├── 01.jpg</span><br><span class="line">├── 02.jpg</span><br><span class="line">└── 03.jpg</span><br><span class="line">...</span><br><span class="line">hexo本地图片不显示.md</span><br></pre></td></tr></table></figure>
+<h3 id="安装插件hexo-asset-image"><a href="#安装插件hexo-asset-image" class="headerlink" title="安装插件hexo-asset-image"></a>安装插件hexo-asset-image</h3><ul>
+<li>GitHub地址 <a href="https://github.com/xcodebuild/hexo-asset-image" target="_blank" rel="noopener">hexo-asset-image</a></li>
+<li>npm安装 (需要提前安装Node.js)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/10/hexo本地图片不显示/1.png" alt="图片描述"><br><strong>注意</strong> 不要使用<code>npm install hexo-asset-image --save</code>这个命令安装,<strong>版本号不对</strong><br><img src="/2020/12/10/hexo本地图片不显示/2.png" alt="图片描述"></p>
+<h3 id="版本差异"><a href="#版本差异" class="headerlink" title="版本差异"></a>版本差异</h3><h4 id="0-0-5版本"><a href="#0-0-5版本" class="headerlink" title="0.0.5版本"></a>0.0.5版本</h4><p><img src="/2020/12/10/hexo本地图片不显示/3.png" alt="图片描述"></p>
+<h4 id="1-0-0版本"><a href="#1-0-0版本" class="headerlink" title="1.0.0版本"></a>1.0.0版本</h4><p><img src="/2020/12/10/hexo本地图片不显示/4.png" alt="图片描述"></p>
+<h3 id="在md中书写格式（相对路径）"><a href="#在md中书写格式（相对路径）" class="headerlink" title="在md中书写格式（相对路径）"></a>在md中书写格式（相对路径）</h3><p>在md使用如下形式引用图片</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">01</span>](<span class="link">hexo本地图片不显示/01.jpg</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong> 这里要使用<code>&quot;/&quot;</code></p>
+<h3 id="md文件名称和图片存放文件夹名称不同时"><a href="#md文件名称和图片存放文件夹名称不同时" class="headerlink" title="md文件名称和图片存放文件夹名称不同时"></a>md文件名称和图片存放文件夹名称不同时</h3><p><strong>注意</strong> <code>重命名md文件之后记得重命名文件夹，当md文件的名称与文件夹名称不同时，映射关系以md文件名称为主。会导致src图片路径找不到</code></p>
+<p><img src="/2020/12/10/hexo本地图片不显示/5.png" alt="图片描述"></p>
+<ul>
+<li><code>文件和文件夹以url中的名称保持一致</code></li>
+</ul>
+<p><strong>总结</strong></p>
+<ul>
+<li>检查<code>_config.yml</code> 文件的<code>post_asset_folder:</code>选项是否为<code>true</code></li>
+<li>检查创建文件之后的目录结构</li>
+<li>检查<code>hexo-asset-image</code>插件的版本</li>
+<li>检查路径引用图片的路径使用<code>/</code></li>
+<li>检查md文件的文件名称和图片存放文件夹名称是否相同</li>
+</ul>
+<p>转载于：<a href="https://blog.csdn.net/Strong997/article/details/97767929" target="_blank" rel="noopener">https://blog.csdn.net/Strong997/article/details/97767929</a></p>
 ]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
 </search>
