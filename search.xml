@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>开博</title>
+    <url>/zyfblog/2019/03/24/%E5%BC%80%E5%8D%9A/</url>
+    <content><![CDATA[<p>记录生活<br>感悟人生</p>
+]]></content>
+  </entry>
+  <entry>
     <title>DNF-包管理器</title>
     <url>/zyfblog/2020/12/06/DNF-%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/</url>
     <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>DNF(Dandified Yum)是新一代的RPM软件包管理器。<br>DNF包管理器克服了YUM包管理器的一些瓶颈，提升了包括用户体验，内存占用，依赖分析，运行速度等多方面的内容。</p>
@@ -22,11 +28,5 @@
         <tag>DNF</tag>
         <tag>Linux</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>开博</title>
-    <url>/zyfblog/2019/03/24/%E5%BC%80%E5%8D%9A/</url>
-    <content><![CDATA[<p>记录生活<br>感悟人生</p>
-]]></content>
   </entry>
 </search>
