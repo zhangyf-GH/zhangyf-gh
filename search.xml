@@ -84,33 +84,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo中插入图片新姿式-hexo-easy-images</title>
-    <url>/2021/03/24/Hexo%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%96%B0%E5%A7%BF%E5%BC%8F-hexo-easy-images/</url>
-    <content><![CDATA[<p>Hexo 博客插件，post 中随意引用本地图片、远程图片，插件将自动处理图片 copy 与 download及引用路径，本地预览与线上都能完美显示图片。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm i hexo-easy-images -s</span><br></pre></td></tr></table></figure>
-<h3 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h3><p>以下配置非必需，在 <code>your-hexo-project/_config.yml</code> 添加。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Easy images</span><br><span class="line">easy_images:</span><br><span class="line">  init: false # 默认 false；改为 true，将处理过去所有 post，通常装插件后第一次运行时使用。</span><br><span class="line">  cdn_prefix: http://yourcdn.com # 默认 null; 图片前缀，在生成 html 文件时为 image 添加前缀</span><br><span class="line">  max_width: 800 # 默认 null；设置图片最大宽度</span><br><span class="line">  max_height: 800 # 默认 null；设置图片最大高度</span><br></pre></td></tr></table></figure>
-<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>在书写 post 时，再也不用为插入图片问题担心了。只要你定义图片路径正确，无论是本地、在线、绝对路径、相对路径，统统不用担心。</p>
-<p>本插件自动将 post 中使用到图片，copy 到 source/images/your_post_id 文件夹下，并将 post文件内图片引用路径改为本地相对路径，保证本地 Markdown 编辑器正确显示。</p>
-<p>同时在生成 html 文件时，会将 html 中图片路径改为绝对路径。故，无论本地线上，图片都无需担心。</p>
-<p>例如：post 内容如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 本地图片（绝对路径）</span><br><span class="line">![test](/Users/zhangwenbo/Coding/hexo/public/img/2014-03-11.jpg)</span><br><span class="line">![](~/Coding/hexo/public/img/2014-03-30-2.jpg)</span><br><span class="line"></span><br><span class="line">## 本地图片（相对路径）</span><br><span class="line">![](./2014-03-30.jpg)</span><br><span class="line">![](../images/000.jpg)</span><br><span class="line"></span><br><span class="line">## 在线图片</span><br><span class="line">![小猫](https://images.unsplash.com/photo-1534201569625-ed4662d8be97?ixlib=rb-0.3.5&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;s=1ff48aebbb7e08c289f8f738b5592f47&amp;auto=format&amp;fit=crop&amp;w=400&amp;q=60)</span><br><span class="line"></span><br><span class="line">## CDN 图片</span><br><span class="line">![艺](http://7xqmgi.com1.z0.glb.clouddn.com/img/2014-03-11.jpg)</span><br><span class="line"></span><br><span class="line">无论哪种方式都能完美显示！</span><br></pre></td></tr></table></figure>
-<p>运行 <code>hexo g</code> 后，所有图片被 copy 或 download 到 <code>source/images/hello-world-2</code> 下，且 post 内容变为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 本地图片（绝对路径）</span><br><span class="line">![test](../images/hello-world-2/2014-03-11.jpg)</span><br><span class="line">![](../images/hello-world-2/2014-03-30-2.jpg)</span><br><span class="line"></span><br><span class="line">## 本地图片（相对路径）</span><br><span class="line">![](../images/hello-world-2/2014-03-30.jpg)</span><br><span class="line">![](../images/hello-world-2/000.jpg)</span><br><span class="line"></span><br><span class="line">## 在线图片</span><br><span class="line">![小猫](../images/hello-world-2/ol-1534652801825.jpg)</span><br><span class="line"></span><br><span class="line">## CDN 图片</span><br><span class="line">![艺](../images/hello-world-2/ol-1534652801828.jpg)</span><br><span class="line"></span><br><span class="line">无论哪种方式都能完美显示！</span><br></pre></td></tr></table></figure>
-<p>生成的 html 文件为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;h2 id=&quot;本地图片（绝对路径）&quot;&gt;&lt;a href=&quot;#本地图片（绝对路径）&quot; class=&quot;headerlink&quot; title=&quot;本地图片（绝对路径）&quot;&gt;&lt;/a&gt;本地图片（绝对路径）&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;&lt;img src=&quot;/images/hello-world-2/2014-03-11-s.jpg&quot; alt=&quot;test&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/hello-world-2/2014-03-30-2-s.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;h2 id=&quot;本地图片（相对路径）&quot;&gt;&lt;a href=&quot;#本地图片（相对路径）&quot; class=&quot;headerlink&quot; title=&quot;本地图片（相对路径）&quot;&gt;&lt;/a&gt;本地图片（相对路径）&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;&lt;img src=&quot;/images/hello-world-2/2014-03-30-s.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;/images/hello-world-2/000-s.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;h2 id=&quot;在线图片&quot;&gt;&lt;a href=&quot;#在线图片&quot; class=&quot;headerlink&quot; title=&quot;在线图片&quot;&gt;&lt;/a&gt;在线图片&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;&lt;img src=&quot;/images/hello-world-2/ol-1534652801825-s.jpg&quot; alt=&quot;小猫&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;h2 id=&quot;CDN-图片&quot;&gt;&lt;a href=&quot;#CDN-图片&quot; class=&quot;headerlink&quot; title=&quot;CDN 图片&quot;&gt;&lt;/a&gt;CDN 图片&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;&lt;img src=&quot;/images/hello-world-2/ol-1534652801828-s.jpg&quot; alt=&quot;艺&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;无论哪种方式都能完美显示！&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<p>如此，在本地还是线上地图片，都完美显示。</p>
-<p>另可自定义生成压缩版（后缀为 <code>imgname-s.jpg</code>）图片。也可配置 <code>cnd_prefix</code> 则生成 html 图片路径将为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;h2 id=&quot;CDN-图片&quot;&gt;&lt;a href=&quot;#CDN-图片&quot; class=&quot;headerlink&quot; title=&quot;CDN 图片&quot;&gt;&lt;/a&gt;CDN 图片&lt;/h2&gt;</span><br><span class="line">&lt;p&gt;&lt;img src=&quot;http://yourcdn.com/images/hello-world-2/ol-1534652801828-s.jpg&quot; alt=&quot;艺&quot;&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LF will be replaced by CRLF</title>
     <url>/2020/12/10/LF-will-be-replaced-by-CRLF/</url>
     <content><![CDATA[<p>本文主要写了在 Hexo 博客中 出现 LF will be replaced by CRLF 的原因以及它的解决方式。</p>
@@ -128,6 +101,49 @@
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo本地图片不显示</title>
+    <url>/2020/12/10/hexo%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA/</url>
+    <content><![CDATA[<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
+<li><p>修改文件<code>_config.yml</code> 里的<code>post_asset_folder:</code>这个选项设置为<code>true</code></p>
+</li>
+<li><p>修改之后，再使用<code>hexo new post &quot;hexo本地图片不显示&quot;</code>时，目录的样子是</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo本地图片不显示</span><br><span class="line">├── 01.jpg</span><br><span class="line">├── 02.jpg</span><br><span class="line">└── 03.jpg</span><br><span class="line">...</span><br><span class="line">hexo本地图片不显示.md</span><br></pre></td></tr></table></figure>
+<h3 id="安装插件hexo-asset-image"><a href="#安装插件hexo-asset-image" class="headerlink" title="安装插件hexo-asset-image"></a>安装插件hexo-asset-image</h3><ul>
+<li>GitHub地址 <a href="https://github.com/xcodebuild/hexo-asset-image" target="_blank" rel="noopener">hexo-asset-image</a></li>
+<li>npm安装 (需要提前安装Node.js)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/10/hexo本地图片不显示/1.png" alt="图片描述"><br><strong>注意</strong> 不要使用<code>npm install hexo-asset-image --save</code>这个命令安装,<strong>版本号不对</strong><br><img src="/2020/12/10/hexo本地图片不显示/2.png" alt="图片描述"></p>
+<h3 id="版本差异"><a href="#版本差异" class="headerlink" title="版本差异"></a>版本差异</h3><h4 id="0-0-5版本"><a href="#0-0-5版本" class="headerlink" title="0.0.5版本"></a>0.0.5版本</h4><p><img src="/2020/12/10/hexo本地图片不显示/3.png" alt="图片描述"></p>
+<h4 id="1-0-0版本"><a href="#1-0-0版本" class="headerlink" title="1.0.0版本"></a>1.0.0版本</h4><p><img src="/2020/12/10/hexo本地图片不显示/4.png" alt="图片描述"></p>
+<h3 id="在md中书写格式（相对路径）"><a href="#在md中书写格式（相对路径）" class="headerlink" title="在md中书写格式（相对路径）"></a>在md中书写格式（相对路径）</h3><p>在md使用如下形式引用图片</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">01</span>](<span class="link">hexo本地图片不显示/01.jpg</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong> 这里要使用<code>&quot;/&quot;</code></p>
+<h3 id="md文件名称和图片存放文件夹名称不同时"><a href="#md文件名称和图片存放文件夹名称不同时" class="headerlink" title="md文件名称和图片存放文件夹名称不同时"></a>md文件名称和图片存放文件夹名称不同时</h3><p><strong>注意</strong> <code>重命名md文件之后记得重命名文件夹，当md文件的名称与文件夹名称不同时，映射关系以md文件名称为主。会导致src图片路径找不到</code></p>
+<p><img src="/2020/12/10/hexo本地图片不显示/5.png" alt="图片描述"></p>
+<ul>
+<li><code>文件和文件夹以url中的名称保持一致</code></li>
+</ul>
+<p><strong>总结</strong></p>
+<ul>
+<li>检查<code>_config.yml</code> 文件的<code>post_asset_folder:</code>选项是否为<code>true</code></li>
+<li>检查创建文件之后的目录结构</li>
+<li>检查<code>hexo-asset-image</code>插件的版本</li>
+<li>检查路径引用图片的路径使用<code>/</code></li>
+<li>检查md文件的文件名称和图片存放文件夹名称是否相同</li>
+</ul>
+<p>转载于：<a href="https://blog.csdn.net/Strong997/article/details/97767929" target="_blank" rel="noopener">https://blog.csdn.net/Strong997/article/details/97767929</a></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -184,49 +200,6 @@
       </categories>
       <tags>
         <tag>network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo本地图片不显示</title>
-    <url>/2020/12/10/hexo%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA/</url>
-    <content><![CDATA[<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
-<li><p>修改文件<code>_config.yml</code> 里的<code>post_asset_folder:</code>这个选项设置为<code>true</code></p>
-</li>
-<li><p>修改之后，再使用<code>hexo new post &quot;hexo本地图片不显示&quot;</code>时，目录的样子是</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo本地图片不显示</span><br><span class="line">├── 01.jpg</span><br><span class="line">├── 02.jpg</span><br><span class="line">└── 03.jpg</span><br><span class="line">...</span><br><span class="line">hexo本地图片不显示.md</span><br></pre></td></tr></table></figure>
-<h3 id="安装插件hexo-asset-image"><a href="#安装插件hexo-asset-image" class="headerlink" title="安装插件hexo-asset-image"></a>安装插件hexo-asset-image</h3><ul>
-<li>GitHub地址 <a href="https://github.com/xcodebuild/hexo-asset-image" target="_blank" rel="noopener">hexo-asset-image</a></li>
-<li>npm安装 (需要提前安装Node.js)</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/12/10/hexo本地图片不显示/1.png" alt="图片描述"><br><strong>注意</strong> 不要使用<code>npm install hexo-asset-image --save</code>这个命令安装,<strong>版本号不对</strong><br><img src="/2020/12/10/hexo本地图片不显示/2.png" alt="图片描述"></p>
-<h3 id="版本差异"><a href="#版本差异" class="headerlink" title="版本差异"></a>版本差异</h3><h4 id="0-0-5版本"><a href="#0-0-5版本" class="headerlink" title="0.0.5版本"></a>0.0.5版本</h4><p><img src="/2020/12/10/hexo本地图片不显示/3.png" alt="图片描述"></p>
-<h4 id="1-0-0版本"><a href="#1-0-0版本" class="headerlink" title="1.0.0版本"></a>1.0.0版本</h4><p><img src="/2020/12/10/hexo本地图片不显示/4.png" alt="图片描述"></p>
-<h3 id="在md中书写格式（相对路径）"><a href="#在md中书写格式（相对路径）" class="headerlink" title="在md中书写格式（相对路径）"></a>在md中书写格式（相对路径）</h3><p>在md使用如下形式引用图片</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">01</span>](<span class="link">hexo本地图片不显示/01.jpg</span>)</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong> 这里要使用<code>&quot;/&quot;</code></p>
-<h3 id="md文件名称和图片存放文件夹名称不同时"><a href="#md文件名称和图片存放文件夹名称不同时" class="headerlink" title="md文件名称和图片存放文件夹名称不同时"></a>md文件名称和图片存放文件夹名称不同时</h3><p><strong>注意</strong> <code>重命名md文件之后记得重命名文件夹，当md文件的名称与文件夹名称不同时，映射关系以md文件名称为主。会导致src图片路径找不到</code></p>
-<p><img src="/2020/12/10/hexo本地图片不显示/5.png" alt="图片描述"></p>
-<ul>
-<li><code>文件和文件夹以url中的名称保持一致</code></li>
-</ul>
-<p><strong>总结</strong></p>
-<ul>
-<li>检查<code>_config.yml</code> 文件的<code>post_asset_folder:</code>选项是否为<code>true</code></li>
-<li>检查创建文件之后的目录结构</li>
-<li>检查<code>hexo-asset-image</code>插件的版本</li>
-<li>检查路径引用图片的路径使用<code>/</code></li>
-<li>检查md文件的文件名称和图片存放文件夹名称是否相同</li>
-</ul>
-<p>转载于：<a href="https://blog.csdn.net/Strong997/article/details/97767929" target="_blank" rel="noopener">https://blog.csdn.net/Strong997/article/details/97767929</a></p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
