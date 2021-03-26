@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="小站 大梦">
 <meta property="og:description" content="​        在Linux中部署git服务器时，window客户端 执行ssh-keygen在目录C:\Users\zhangyf \.ssh 生成 id_rsa和id_rsa.pub。 将id_rsa.pub内容上传到Linux的/home/git/.ssh/authorized_keys 时， service sshd restart 命令重启了SSH服务，  在windows 打开cmd">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-03-25T13:54:34.712Z">
+<meta property="og:updated_time" content="2021-03-26T14:37:19.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="authorized_keys不生效解决办法">
 <meta name="twitter:description" content="​        在Linux中部署git服务器时，window客户端 执行ssh-keygen在目录C:\Users\zhangyf \.ssh 生成 id_rsa和id_rsa.pub。 将id_rsa.pub内容上传到Linux的/home/git/.ssh/authorized_keys 时， service sshd restart 命令重启了SSH服务，  在windows 打开cmd">
@@ -389,8 +389,7 @@
 <p>在windows 打开cmd执行ssh git@VPSIP  -p 28094 需要输入密码。</p>
 <p>解决方案：</p>
 <p>linux 目录结构为 /home/git/.ssh/authorized_keys  用户和组都为git</p>
-<p>/home/git 目录权限755即drwxr-xr-x  </p>
-<p>/home/git目录 必须是 755权限 即drwxr-xr-x  </p>
+<p>/home/git目录必须是 755权限 即drwxr-xr-x  </p>
 <p>/home/git/.ssh目录必须是700权限(也就是drwx——)</p>
 <p>/home/git/.ssh/authorized_keys 文件必须是600权限(也就是-rw——-)或者644  jian</p>
 <p>缺一不可</p>
