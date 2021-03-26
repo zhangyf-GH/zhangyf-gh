@@ -169,7 +169,7 @@
 <p>linux 目录结构为 /home/git/.ssh/authorized_keys  用户和组都为git</p>
 <p>/home/git目录必须是 755权限 即drwxr-xr-x  </p>
 <p>/home/git/.ssh目录必须是700权限(也就是drwx——)</p>
-<p>/home/git/.ssh/authorized_keys 文件必须是600权限(也就是-rw——-)或者644  jian</p>
+<p>/home/git/.ssh/authorized_keys 文件必须是600权限(也就是-rw——-)或者644</p>
 <p>缺一不可</p>
 ]]></content>
       <categories>
