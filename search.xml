@@ -101,6 +101,79 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo+GitPages搭建博客</title>
+    <url>/2021/03/30/Hexo-GitPages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><p>假设：邮箱：<a href="mailto:aaa@163.com" target="_blank" rel="noopener">aaa@163.com</a>  </p>
+<p>​            名字: aaa</p>
+<p>1.到官网下载git安装包后安装</p>
+<p>2.在Windows系统安装git后，配置SSH key </p>
+<p>用git bash执行如下命令： windows中在C:\Users\zhangyf.ssh目录</p>
+<p><code>$ cd ~/. ssh #检查本机已存在的ssh密钥</code></p>
+<p>如果提示：No such file or directory 说明你是第一次使用git。</p>
+<p><code>ssh-keygen -t rsa -C &quot;aaa@163.com&quot;</code></p>
+<p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到.ssh\id_rsa.pub文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：</p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image002.png" alt="img"></p>
+<p>将刚复制的内容粘贴到key那里，title随便填，保存。</p>
+<p>3.测试是否成功</p>
+<p>$ ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> # 注意邮箱地址不用改</p>
+<p>如果提示Are you sure you want to continue connecting (yes/no)?，输入yes，然后会看到：</p>
+<p>Hi liuxianan! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+<p>看到这个信息说明SSH已配置成功！</p>
+<p>此时你还需要配置：</p>
+<p><code>git config --global user.email &quot;aaa@163.com&quot;</code></p>
+<p><code>git config --global user.name &quot;aaa&quot;</code></p>
+<h2 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h2><p>在node.js官网下载安装包安装即可</p>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>首先在本地磁盘中建立一个Hexo文件夹用于存储本地文件(做本地文件保存以及测试使用)</p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image004.jpg" alt="img"></p>
+<p>然后在文件夹中右击打开git命令框(我第一次直接在桌面右击，所以命令行无效果)</p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image006.jpg" alt="img"></p>
+<p>在git命令框中安装hexo命令行工具 ，执行 <code>npm install -g hexo-cli</code> </p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image008.jpg" alt="img"></p>
+<p> 初始化 ，执行<code>hexo init zyfblog</code> 加上zyfblog，则全部文件都在zyfblog下</p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image010.jpg" alt="img"></p>
+<p>执行<code>cd zyfblog</code> 进入zyfblog目录</p>
+<p>启动服务，依次执行</p>
+<p><code>(npm install --&gt;hexo server)</code></p>
+<p>浏览器输入<a href="http://localhost:4000,按理来说应该会出现本地访问页面" target="_blank" rel="noopener">http://localhost:4000,按理来说应该会出现本地访问页面</a></p>
+<h2 id="部署到GItPages"><a href="#部署到GItPages" class="headerlink" title="部署到GItPages"></a>部署到GItPages</h2><h3 id="在github上面创建项目"><a href="#在github上面创建项目" class="headerlink" title="在github上面创建项目"></a>在github上面创建项目</h3><p>假设:Owner为: zhangyfzone </p>
+<p>​         <strong>Repository name必须为: zhangyfzone.github.io</strong></p>
+<p>​         申请的域名：minmax.site</p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/image-20210330094423950.png" alt="image-20210330094423950"></p>
+<h3 id="DNS设置"><a href="#DNS设置" class="headerlink" title="DNS设置"></a>DNS设置</h3><p>如果没有域名，则只能通过GitPages默认链接访问<a href="https://zhangyfzone.github.io/" target="_blank" rel="noopener">https://zhangyfzone.github.io/</a></p>
+<p>如果有域名，可将域名解析到zhangyfzone.github.io，这样比较简洁。</p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image016.png" alt="img"></p>
+<h3 id="hexo-CNAME设置"><a href="#hexo-CNAME设置" class="headerlink" title="hexo CNAME设置"></a>hexo CNAME设置</h3><p> Hexo目录下的source中建一个CNAME命名的文件夹(切记没有后缀)</p>
+<p>创建方式：右键新建txt文本-&gt;输入你购买的域名minmax.site&gt;保存关闭</p>
+<p>然后快捷键F2或者右键该文本重命名-&gt;将.txt后缀去掉-&gt;会提示文件不可用继续确定即可</p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image018.jpg" alt="img"></p>
+<p>内容如下所示</p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image019.png" alt="img"></p>
+<h3 id="github上绑定域名"><a href="#github上绑定域名" class="headerlink" title="github上绑定域名"></a>github上绑定域名</h3><p>在设置中的custom domain填入域名minmax.site 保存</p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image021.png" alt="img"></p>
+<h3 id="修改-config-yml"><a href="#修改-config-yml" class="headerlink" title="修改_config.yml"></a>修改_config.yml</h3><p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image023.jpg" alt="img"></p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image024.png" alt="img"></p>
+<p>配置github项目连接(</p>
+<p>deploy: </p>
+<p>type: git </p>
+<p>repos: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:zhangyfzone/zhangyfzone.github.io.git</p>
+<p>branch: master):</p>
+<p><img src="/2021/03/30/Hexo-GitPages搭建博客/clip_image026.jpg" alt="img"></p>
+<h3 id="使用git发布"><a href="#使用git发布" class="headerlink" title="使用git发布"></a>使用git发布</h3><p>执行 <code>npm install hexo-deployer-git --save</code></p>
+<p>基本的流程到这里快要结束了</p>
+<p>信件一篇博文  <code>hexo new post &#39;第一篇博文&#39;</code>  可在source/post文件夹下面看到，可以编辑内容。</p>
+<p>最后执行:<code>(hexo clean --&gt;hexo generate --&gt;hexo deploy)</code></p>
+<p>你就可以通过域名看到你的博客了</p>
+<p>记住，每次修改配置信息或者其他必须要执行上面的步骤，才可以使得配置信息生效。</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LF will be replaced by CRLF</title>
     <url>/2020/12/10/LF-will-be-replaced-by-CRLF/</url>
     <content><![CDATA[<p>本文主要写了在 Hexo 博客中 出现 LF will be replaced by CRLF 的原因以及它的解决方式。</p>
@@ -193,8 +266,8 @@
         <category>hexo</category>
       </categories>
       <tags>
-        <tag>git</tag>
         <tag>hexo</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
