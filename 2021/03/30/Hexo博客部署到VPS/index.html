@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="小站 大梦">
 <meta property="og:description" content="准备工作网上流传的武功秘籍分为两种：  将 Hexo 项目上传到 VPS 上面后执行 hexo server，之后配置 Nginx 反向代理，让域名指向 http://localhost:4000。 将 Hexo 在本地通过 hexo generate 生成静态文件，在通过 hexo deploy 部署到 VPS 上面，使用 Nginx 直接做 Web 服务器。  相比第二种方式，第一种每次写博客">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-03-30T02:56:55.324Z">
+<meta property="og:updated_time" content="2021-03-30T02:59:36.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客部署到VPS">
 <meta name="twitter:description" content="准备工作网上流传的武功秘籍分为两种：  将 Hexo 项目上传到 VPS 上面后执行 hexo server，之后配置 Nginx 反向代理，让域名指向 http://localhost:4000。 将 Hexo 在本地通过 hexo generate 生成静态文件，在通过 hexo deploy 部署到 VPS 上面，使用 Nginx 直接做 Web 服务器。  相比第二种方式，第一种每次写博客">
@@ -401,8 +401,8 @@
 </ol>
 <p>本文服务器环境为CentOS 7.6</p>
 <p>之前本地已经搭建好Hexo博客，之前是提交到Github进行更新</p>
-<h2 id="本地配置"><a href="#本地配置" class="headerlink" title="本地配置"></a>本地配置</h2><p>查看C:\Users\用户名/.ssh 下是否存在私钥文件<code>id_rsa</code>和公钥文件<code>id_rsa.pub</code></p>
-<p>如果没有，则需要通过<code>ssh-keygen -t rsa -C &quot;zhangyfzone@gmail.com&quot;</code> 生成</p>
+<h2 id="本地配置"><a href="#本地配置" class="headerlink" title="本地配置"></a>本地配置</h2><p>查看C:\Users\用户名\.ssh 下是否存在私钥文件<code>id_rsa</code>和公钥文件<code>id_rsa.pub</code></p>
+<p>如果没有，则需要通过<code>ssh-keygen -t rsa -C &quot;你的邮箱&quot;</code> 生成</p>
 <h2 id="VPS端配置"><a href="#VPS端配置" class="headerlink" title="VPS端配置"></a>VPS端配置</h2><h3 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h3><p>ssh连接到VPS后，执行如下指令进行Git的安装</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum update &amp;&amp; upgrade -y</span><br><span class="line">yum install epel-release</span><br><span class="line">yum install git-core</span><br></pre></td></tr></table></figure>
 <h3 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx -y</span><br><span class="line">service nginx start  #启动nginx</span><br></pre></td></tr></table></figure>
