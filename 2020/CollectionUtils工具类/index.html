@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这篇讲的CollectionUtils工具类是在apache下的, 而不是springframework下的CollectionUtils。 个人觉得CollectionUtils在真实项目中,可以使你的代码更加简洁和安全。 所以需要倒入相关jar包,目前从maven找到最新jar包如下: 12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.apache.c">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CollectionUtils工具类">
+<meta property="og:url" content="http://minmax.site/2020/CollectionUtils工具类/index.html">
+<meta property="og:site_name" content="小站 大梦">
+<meta property="og:description" content="这篇讲的CollectionUtils工具类是在apache下的, 而不是springframework下的CollectionUtils。 个人觉得CollectionUtils在真实项目中,可以使你的代码更加简洁和安全。 所以需要倒入相关jar包,目前从maven找到最新jar包如下: 12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.apache.c">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-12-23T02:59:55.946Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CollectionUtils工具类">
+<meta name="twitter:description" content="这篇讲的CollectionUtils工具类是在apache下的, 而不是springframework下的CollectionUtils。 个人觉得CollectionUtils在真实项目中,可以使你的代码更加简洁和安全。 所以需要倒入相关jar包,目前从maven找到最新jar包如下: 12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.apache.c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://minmax.site/2020/CollectionUtils工具类/">
+
+
+
+
+
+  <title>CollectionUtils工具类 | 小站 大梦</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小站 大梦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Write The Code Change The World</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://minmax.site/2020/CollectionUtils工具类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang yongfei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/tx.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小站 大梦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CollectionUtils工具类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-23T10:32:12+08:00">
+                2020-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这篇讲的CollectionUtils工具类是在<code>apache下</code>的, 而不是springframework下的CollectionUtils。</p>
+<p>个人觉得CollectionUtils在真实项目中,可以使你的代码更加简洁和安全。</p>
+<p>所以需要倒入相关jar包,目前从maven找到最新jar包如下:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-collections4<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="API常用方法"><a href="#API常用方法" class="headerlink" title="API常用方法"></a>API常用方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1、除非元素为null，否则向集合添加元素</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.addIgnoreNull(personList,<span class="keyword">null</span>);</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 2、将两个已排序的集合a和b合并为一个已排序的列表，以便保留元素的自然顺序</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.collate(Iterable&lt;? extends O&gt; a, Iterable&lt;? extends O&gt; b)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 3、将两个已排序的集合a和b合并到一个已排序的列表中，以便保留根据Comparator c的元素顺序。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.collate(Iterable&lt;? extends O&gt; a, Iterable&lt;? extends O&gt; b, Comparator&lt;? <span class="keyword">super</span> O&gt; c)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 4、返回该个集合中是否含有至少有一个元素</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.containsAny(Collection&lt;?&gt; coll1, T... coll2)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 5、如果参数是null，则返回不可变的空集合，否则返回参数本身。（很实用 ,最终返回List EMPTY_LIST = new EmptyList&lt;&gt;()）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.emptyIfNull(Collection&lt;T&gt; collection)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 6、空安全检查指定的集合是否为空</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.isEmpty(Collection&lt;?&gt; coll)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 7、 空安全检查指定的集合是否为空。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.isNotEmpty(Collection&lt;?&gt; coll)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 8、反转给定数组的顺序。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.reverseArray(Object[] array);</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 9、差集</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.subtract(Iterable&lt;? extends O&gt; a, Iterable&lt;? extends O&gt; b)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 10、并集</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.union(Iterable&lt;? extends O&gt; a, Iterable&lt;? extends O&gt; b)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 11、交集</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.intersection(Collection a, Collection b)</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *12、 交集的补集（析取）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">CollectionUtils.disjunction(Collection a, Collection b)</span><br></pre></td></tr></table></figure>
+<h2 id="非对象集合交、并、差处理"><a href="#非对象集合交、并、差处理" class="headerlink" title="非对象集合交、并、差处理"></a>非对象集合交、并、差处理</h2><p>对于集合取交集、并集的处理其实有很多种方式,这里就介绍3种</p>
+<ul>
+<li>第一种 是CollectionUtils工具类</li>
+<li>第二种 是List自带方法</li>
+<li>第三种 是JDK1.8 stream 新特性</li>
+</ul>
+<h3 id="CollectionUtils工具类"><a href="#CollectionUtils工具类" class="headerlink" title="CollectionUtils工具类"></a>CollectionUtils工具类</h3><p>下面对于基本数据(包扩String)类型中的集合进行demo示例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       String[] arrayA = <span class="keyword">new</span> String[] &#123; <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>&#125;;</span><br><span class="line">       String[] arrayB = <span class="keyword">new</span> String[] &#123; <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>, <span class="string">"6"</span> &#125;;</span><br><span class="line">       List&lt;String&gt; listA = Arrays.asList(arrayA);</span><br><span class="line">       List&lt;String&gt; listB = Arrays.asList(arrayB);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//1、并集 union</span></span><br><span class="line">       System.out.println(CollectionUtils.union(listA, listB));</span><br><span class="line">       <span class="comment">//输出: [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//2、交集 intersection</span></span><br><span class="line">       System.out.println(CollectionUtils.intersection(listA, listB));</span><br><span class="line">       <span class="comment">//输出:[3, 4]</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//3、交集的补集（析取）disjunction</span></span><br><span class="line">       System.out.println(CollectionUtils.disjunction(listA, listB));</span><br><span class="line">       <span class="comment">//输出:[1, 2, 5, 6]</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//4、差集（扣除）</span></span><br><span class="line">       System.out.println(CollectionUtils.subtract(listA, listB));</span><br><span class="line">       <span class="comment">//输出:[1, 2]</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="List自带方法"><a href="#List自带方法" class="headerlink" title="List自带方法"></a>List自带方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String[] arrayA = <span class="keyword">new</span> String[] &#123; <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>&#125;;</span><br><span class="line">    String[] arrayB = <span class="keyword">new</span> String[] &#123; <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>, <span class="string">"6"</span> &#125;;</span><br><span class="line">    List&lt;String&gt; listA = Arrays.asList(arrayA);</span><br><span class="line">    List&lt;String&gt; listB = Arrays.asList(arrayB);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//1、交集</span></span><br><span class="line">    List&lt;String&gt;  jiaoList = <span class="keyword">new</span> ArrayList&lt;&gt;(listA);</span><br><span class="line">    jiaoList.retainAll(listB);</span><br><span class="line">    System.out.println(jiaoList);</span><br><span class="line">    <span class="comment">//输出:[3, 4]</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">//2、差集</span></span><br><span class="line">    List&lt;String&gt;  chaList = <span class="keyword">new</span> ArrayList&lt;&gt;(listA);</span><br><span class="line">    chaList.removeAll(listB);</span><br><span class="line">    System.out.println(chaList);</span><br><span class="line">    <span class="comment">//输出:[1, 2]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//3、并集 (先做差集再做添加所有）</span></span><br><span class="line">    List&lt;String&gt;  bingList = <span class="keyword">new</span> ArrayList&lt;&gt;(listA);</span><br><span class="line">    bingList.removeAll(listB); <span class="comment">// bingList为 [1, 2]</span></span><br><span class="line">    bingList.addAll(listB);  <span class="comment">//添加[3,4,5,6]</span></span><br><span class="line">    System.out.println(bingList);</span><br><span class="line">    <span class="comment">//输出:[1, 2, 3, 4, 5, 6]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>注意</code> : <strong>intersection和retainAll的差别</strong></p>
+<p>要注意的是它们的返回类型是不一样的,<code>intersection</code>返回的是一个新的List集合，而<code>retainAll</code>返回是Bollean类型那就说明retainAll方法是对原有集合进行处理再返回原有集合,会改变原有集合中的内容。</p>
+<p><code>个人观点</code>：1、从性能角度来考虑的话,List自带会高点,因为它不用再创建新的集合。2、需要注意的是：因为retainAll因为会改变原有集合,所以该集合需要多次使用就不适合用retainAll。</p>
+<p><code>注意</code>: Arrays.asList将数组转集合不能进行add和remove操作。</p>
+<p><code>原因</code>：调用Arrays.asList()生产的List的add、remove方法时报异常，这是由<strong>Arrays.asList() 返回的市Arrays的内部类ArrayList， 而不是java.util.ArrayList</strong>。Arrays的内部类ArrayList和java.util.ArrayList都是继承AbstractList，remove、add等方法AbstractList中是默认throw UnsupportedOperationException而且不作任何操作。java.util.ArrayList重新了这些方法而Arrays的内部类ArrayList没有重新，所以会抛出异常。</p>
+<p>所以正确做法如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String[] array = &#123;<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>&#125;;</span><br><span class="line">List&lt;String&gt; list = Arrays.asList(array);</span><br><span class="line">List arrList = <span class="keyword">new</span> ArrayList(list);</span><br><span class="line">arrList.add(<span class="string">"6"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="JDK1-8-stream-新特性"><a href="#JDK1-8-stream-新特性" class="headerlink" title="JDK1.8 stream 新特性"></a>JDK1.8 stream 新特性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String[] arrayA = <span class="keyword">new</span> String[] &#123; <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>&#125;;</span><br><span class="line">    String[] arrayB = <span class="keyword">new</span> String[] &#123; <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>, <span class="string">"6"</span> &#125;;</span><br><span class="line">    List&lt;String&gt; listA = Arrays.asList(arrayA);</span><br><span class="line">    List&lt;String&gt; listB = Arrays.asList(arrayB);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 交集</span></span><br><span class="line">    List&lt;String&gt; intersection = listA.stream().filter(item -&gt; listB.contains(item)).collect(toList());</span><br><span class="line">    System.out.println(intersection);</span><br><span class="line">    <span class="comment">//输出:[3, 4]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 差集 (list1 - list2)</span></span><br><span class="line">    List&lt;String&gt; reduceList = listA.stream().filter(item -&gt; !listB.contains(item)).collect(toList());</span><br><span class="line">    System.out.println(reduceList);</span><br><span class="line">    <span class="comment">//输出:[1, 2]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 并集 （新建集合:1、是因为不影响原始集合。2、Arrays.asList不能add和remove操作。</span></span><br><span class="line">    List&lt;String&gt; listAll = listA.parallelStream().collect(toList());</span><br><span class="line">    List&lt;String&gt; listAll2 = listB.parallelStream().collect(toList());</span><br><span class="line">    listAll.addAll(listAll2);</span><br><span class="line">    System.out.println(listAll);</span><br><span class="line">    <span class="comment">//输出:[1, 2, 3, 4, 3, 4, 5, 6]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 去重并集 </span></span><br><span class="line">    List&lt;String&gt; list =<span class="keyword">new</span> ArrayList&lt;&gt;(listA);</span><br><span class="line">    list.addAll(listB);</span><br><span class="line">    List&lt;String&gt; listAllDistinct = list.stream().distinct().collect(toList());</span><br><span class="line">    System.out.println(listAllDistinct);</span><br><span class="line">    <span class="comment">//输出:[1, 2, 3, 4, 5, 6]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>总结</code> ： 这三种我还是<code>最喜欢第一种方式</code>，因为第二种还需要确定该集合是否被多次调用。第三种可读性不高。</p>
+<h2 id="对象集合交、并、差处理"><a href="#对象集合交、并、差处理" class="headerlink" title="对象集合交、并、差处理"></a>对象集合交、并、差处理</h2><p>因为对象的equels比较是比较两个对象的内存地址，所以除非是同一对象，否则equel返回永远是false。</p>
+<p>但我们实际开发中 在我们的业务系统中判断对象时有时候需要的不是一种严格意义上的相等，而是一种业务上的对象相等。在这种情况下，原生的equals方法就不能满足我们的需求了，所以这个时候我们需要重写equals方法。</p>
+<p><code>说明</code> :String为什么可以使用equels方法为什么只要字符串相等就为true,那是因为String类重写了equal和hashCode方法，比较的是值。</p>
+<h3 id="Person对象"><a href="#Person对象" class="headerlink" title="Person对象"></a>Person对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 为什么重写equals方法一定要重写hashCode方法下面也会讲</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String result = name + age;</span><br><span class="line">        <span class="keyword">return</span> result.hashCode();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重写 equals 方法 根据name和age都相同那么对象就默认相同</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        Person u = (Person) obj;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.getName().equals(u.getName()) &amp;&amp; (<span class="keyword">this</span>.age.equals(u.getAge()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重写 toString 方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", age="</span> + age +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>这里根据name和age都相同那么就默认相同对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    List&lt;Person&gt; personList = Lists.newArrayList();</span><br><span class="line">    Person person1 = <span class="keyword">new</span> Person(<span class="string">"小小"</span>,<span class="number">3</span>);</span><br><span class="line">    Person person2 = <span class="keyword">new</span> Person(<span class="string">"中中"</span>,<span class="number">4</span>);</span><br><span class="line">    personList.add(person1);</span><br><span class="line">    personList.add(person2);</span><br><span class="line"></span><br><span class="line">    List&lt;Person&gt; person1List = Lists.newArrayList();</span><br><span class="line">    Person person3 = <span class="keyword">new</span> Person(<span class="string">"中中"</span>,<span class="number">4</span>);</span><br><span class="line">    Person person4 = <span class="keyword">new</span> Person(<span class="string">"大大"</span>,<span class="number">5</span>);</span><br><span class="line">    person1List.add(person3);</span><br><span class="line">    person1List.add(person4);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 1、差集</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(CollectionUtils.subtract(personList, person1List));</span><br><span class="line">    <span class="comment">//输出:[Person&#123;name='小小', age=3&#125;]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 2、并集</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(CollectionUtils.union(personList, person1List));</span><br><span class="line">    <span class="comment">//输出:[Person&#123;name='小小', age=3&#125;, Person&#123;name='中中', age=4&#125;, Person&#123;name='大大', age=5&#125;]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3、交集</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(CollectionUtils.intersection(personList, person1List));</span><br><span class="line">    <span class="comment">//输出:[Person&#123;name='中中', age=4&#125;]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 4、交集的补集（析取）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    System.out.println(CollectionUtils.disjunction(personList, person1List));</span><br><span class="line">    <span class="comment">//输出:[Person&#123;name='小小', age=3&#125;, Person&#123;name='大大', age=5&#125;]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其它两种方式就不在测了，因为都一样。</p>
+<h2 id="为什么重写equels方法一定要重写hashCode方法"><a href="#为什么重写equels方法一定要重写hashCode方法" class="headerlink" title="为什么重写equels方法一定要重写hashCode方法"></a>为什么重写equels方法一定要重写hashCode方法</h2><h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p>其实上面的Person类我可以只重写equels方法而不写hashCode方法,一样能达到上面的效果。但为什么还是建议写上呢？官方的说法是:<code>对象的equals方法被重写，那么对象的hashCode()也尽量重写</code>。</p>
+<p>重写equals()方法就必须重写hashCode()方法的原因，从源头Object类讲起就更好理解了。</p>
+<p>先来看Object关于hashCode()和equals()的源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public native int hashCode();</span><br><span class="line">      </span><br><span class="line">public boolean equals(Object obj) &#123;</span><br><span class="line">         return (this == obj);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>光从代码中我们可以知道，<code>hashCode()方法是一个本地native方法</code>，返回的是对象引用中存储的对象的内存地址。而equals方法是利用==来比较的也是对象的内存地址。从上边我们可以看出，hashCode方法和equals方法是一致的。还有最关键的一点，我们来看Object类中关于hashCode()方法的注释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.在 Java 应用程序执行期间，在对同一对象多次调用 hashCode 方法时，必须一致地返回相同的整数，前提是将对象进行 equals 比较时所用的信息没有被修改。    </span><br><span class="line">2.如果根据 equals(Object) 方法，两个对象是相等的，那么对这两个对象中的每个对象调用 hashCode 方法都必须生成相同的整数结果。    </span><br><span class="line">3.如果根据 equals(java.lang.Object) 方法，两个对象不相等，那么对这两个对象中的任一对象上调用 hashCode 方法不 要求一定生成不同的整数结果。</span><br><span class="line">   但是，程序员应该意识到，为不相等的对象生成不同整数结果可以提高哈希表的性能。</span><br></pre></td></tr></table></figure>
+<p><code>整理</code> : hashCode()和equals()保持一致，如果equals方法返回true，那么两个对象的hasCode()返回值必须一样。如果equals方法返回false，hashcode可以不一样，但是这样不利于哈希表的性能，一般我们也不要这样做。</p>
+<p>假设两个对象，重写了其equals方法，其相等条件是某属性相等，就返回true。如果不重写hashcode方法，其返回的依然是两个对象的内存地址值，必然不相等。这就出现了equals方法相等，但是hashcode不相等的情况。这不符合hashcode的规则。</p>
+<h3 id="HashSet和Map集合类型"><a href="#HashSet和Map集合类型" class="headerlink" title="HashSet和Map集合类型"></a>HashSet和Map集合类型</h3><p>重写equals()方法就必须重写hashCode()方法主要是针对HashSet和Map集合类型,而对于List集合倒没什么影响。</p>
+<p><code>原因</code>： 在向HashSet集合中存入一个元素时，HashSet会调用该对象（存入对象）的hashCode()方法来得到该对象的hashCode()值，然后<code>根据该hashCode值决定该对象在HashSet中存储的位置</code>。简单的说：<code>HashSet集合判断两个元素相等的标准是：两个对象通过equals()方法比较相等，并且两个对象的HashCode()方法返回值也相等</code>。如果两个元素通过equals()方法比较返回true，但是它们的hashCode()方法返回值不同，HashSet会把它们存储在不同的位置，依然可以添加成功。</p>
+<p><code>这就是问题所在</code>：就是如果你只重写equals()方法，而不重写hashCode(),如果equals()为true,而它们的hashCode()方法返回值肯定不一样，因为它们都不是同一对象所以内存地址肯定不一样，所以它还是添加成功了，那么其实你写的equals()方法根本没啥软用。</p>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p><strong>1、People类</strong></p>
+<p>重写equals方法,但并没有hashCode方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(String name, Integer age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重写 equals 方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        People u = (People) obj;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.getName().equals(u.getName()) &amp;&amp; (<span class="keyword">this</span>.age.equals(u.getAge()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重写 toString 方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"People&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", age="</span> + age +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2、实现类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    HashSet&lt;People&gt; hashSet = Sets.newHashSet();</span><br><span class="line">    People people1 = <span class="keyword">new</span> People(<span class="string">"小小"</span>,<span class="number">3</span>);</span><br><span class="line">    People people2 = <span class="keyword">new</span> People(<span class="string">"中中"</span>,<span class="number">4</span>);</span><br><span class="line">    People people3 = <span class="keyword">new</span> People(<span class="string">"中中"</span>,<span class="number">4</span>);</span><br><span class="line">    People people4 = <span class="keyword">new</span> People(<span class="string">"大大"</span>,<span class="number">5</span>);</span><br><span class="line">    hashSet.add(people1);</span><br><span class="line">    hashSet.add(people2);</span><br><span class="line">    hashSet.add(people3);</span><br><span class="line">    hashSet.add(people4);</span><br><span class="line"></span><br><span class="line">    System.out.println(hashSet);</span><br><span class="line">    <span class="comment">//输出:[People&#123;name='小小', age=3&#125;, People&#123;name='中中', age=4&#125;, People&#123;name='大大', age=5&#125;, People&#123;name='中中', age=4&#125;]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>很明显,我重写了equals方法,那么people2和people3的equals应该相同，所以不能放入HashSet,但它们的hashCode()方法返回不同，所以导致同样能放入HashSet。</p>
+<p><code>重点</code>：对于Set集合必须要同时重写这两个方法，要不然Set的特性就被破坏了。</p>
+<p>转载自：<a href="https://www.cnblogs.com/qdhxhz/p/10787130.html" target="_blank" rel="noopener">https://www.cnblogs.com/qdhxhz/p/10787130.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/LF-will-be-replaced-by-CRLF/" rel="next" title="LF will be replaced by CRLF">
+                <i class="fa fa-chevron-left"></i> LF will be replaced by CRLF
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/加密算法/" rel="prev" title="加密算法">
+                加密算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/tx.jpg" alt="zhang yongfei">
+            
+              <p class="site-author-name" itemprop="name">zhang yongfei</p>
+              <p class="site-description motion-element" itemprop="description">以梦为马，明日天涯。。。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhangyfzone" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhangyfzone@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="Baidu" target="_blank">Baidu</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#API常用方法"><span class="nav-number">1.</span> <span class="nav-text">API常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非对象集合交、并、差处理"><span class="nav-number">2.</span> <span class="nav-text">非对象集合交、并、差处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CollectionUtils工具类"><span class="nav-number">2.1.</span> <span class="nav-text">CollectionUtils工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List自带方法"><span class="nav-number">2.2.</span> <span class="nav-text">List自带方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK1-8-stream-新特性"><span class="nav-number">2.3.</span> <span class="nav-text">JDK1.8 stream 新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象集合交、并、差处理"><span class="nav-number">3.</span> <span class="nav-text">对象集合交、并、差处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Person对象"><span class="nav-number">3.1.</span> <span class="nav-text">Person对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">3.2.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么重写equels方法一定要重写hashCode方法"><span class="nav-number">4.</span> <span class="nav-text">为什么重写equels方法一定要重写hashCode方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-number">4.1.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashSet和Map集合类型"><span class="nav-number">4.2.</span> <span class="nav-text">HashSet和Map集合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码示例"><span class="nav-number">4.3.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhang yongfei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
