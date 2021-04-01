@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="network,内网穿透,">
 
 
 
@@ -79,16 +79,25 @@
 
 
 
-<meta name="description" content="以梦为马，明日天涯。。。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小站 大梦">
-<meta property="og:url" content="http://minmax.site/tags/DNF/index.html">
+<meta name="description" content="网络地址映射在有中心化服务器的网络中，客户端，服务器，网关构成网络拓扑图。如下图1所示：由于后续出现的名词概念很多，先约法三章，在这里统一一下称呼：所有的终端机器成为客户端，不同客户端使用大写字母区分（A,B,C,…）；客户端上面运行的应用程序统一称为客户程序，不同的应用程序使用不数字区分（1,2,3,…）。作为服务器的物理机称为服务器，而服务器上运行的程序称为服务程序，后文中每一个拓扑组件都只有">
+<meta name="keywords" content="network,内网穿透">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NAT类型和穿透性">
+<meta property="og:url" content="http://minmax.site/2021/NAT类型和穿透性/index.html">
 <meta property="og:site_name" content="小站 大梦">
-<meta property="og:description" content="以梦为马，明日天涯。。。">
+<meta property="og:description" content="网络地址映射在有中心化服务器的网络中，客户端，服务器，网关构成网络拓扑图。如下图1所示：由于后续出现的名词概念很多，先约法三章，在这里统一一下称呼：所有的终端机器成为客户端，不同客户端使用大写字母区分（A,B,C,…）；客户端上面运行的应用程序统一称为客户程序，不同的应用程序使用不数字区分（1,2,3,…）。作为服务器的物理机称为服务器，而服务器上运行的程序称为服务程序，后文中每一个拓扑组件都只有">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://minmax.site/2021/NAT类型和穿透性/clip_image002.jpg">
+<meta property="og:image" content="http://minmax.site/2021/NAT类型和穿透性/clip_image004.jpg">
+<meta property="og:image" content="http://minmax.site/2021/NAT类型和穿透性/clip_image006.png">
+<meta property="og:image" content="http://minmax.site/2021/NAT类型和穿透性/clip_image008.jpg">
+<meta property="og:image" content="http://minmax.site/2021/NAT类型和穿透性/clip_image010.png">
+<meta property="og:image" content="http://minmax.site/2021/NAT类型和穿透性/image-20210401162435764.png">
+<meta property="og:updated_time" content="2021-04-01T14:00:31.623Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小站 大梦">
-<meta name="twitter:description" content="以梦为马，明日天涯。。。">
+<meta name="twitter:title" content="NAT类型和穿透性">
+<meta name="twitter:description" content="网络地址映射在有中心化服务器的网络中，客户端，服务器，网关构成网络拓扑图。如下图1所示：由于后续出现的名词概念很多，先约法三章，在这里统一一下称呼：所有的终端机器成为客户端，不同客户端使用大写字母区分（A,B,C,…）；客户端上面运行的应用程序统一称为客户程序，不同的应用程序使用不数字区分（1,2,3,…）。作为服务器的物理机称为服务器，而服务器上运行的程序称为服务程序，后文中每一个拓扑组件都只有">
+<meta name="twitter:image" content="http://minmax.site/2021/NAT类型和穿透性/clip_image002.jpg">
 
 
 
@@ -118,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://minmax.site/tags/DNF/">
+  <link rel="canonical" href="http://minmax.site/2021/NAT类型和穿透性/">
 
 
 
 
 
-  <title>标签: DNF | 小站 大梦</title>
+  <title>NAT类型和穿透性 | 小站 大梦</title>
   
 
 
@@ -143,7 +152,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,52 +288,199 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>DNF<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://minmax.site/2021/NAT类型和穿透性/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang yongfei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/tx.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小站 大梦">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/DNF-包管理器/" itemprop="url">
-              
-                <span itemprop="name">DNF-包管理器</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">NAT类型和穿透性</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-12-06T21:26:24+08:00" content="2020-12-06">
-          12-06
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-01T21:55:49+08:00">
+                2021-04-01
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/network/" itemprop="url" rel="index">
+                    <span itemprop="name">network</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/network/理论/" itemprop="url" rel="index">
+                    <span itemprop="name">理论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="网络地址映射"><a href="#网络地址映射" class="headerlink" title="网络地址映射"></a>网络地址映射</h2><p>在有中心化服务器的网络中，客户端，服务器，网关构成网络拓扑图。如下图1所示：由于后续出现的名词概念很多，先约法三章，在这里统一一下称呼：所有的终端机器成为客户端，不同客户端使用大写字母区分（A,B,C,…）；客户端上面运行的应用程序统一称为客户程序，不同的应用程序使用不数字区分（1,2,3,…）。作为服务器的物理机称为服务器，而服务器上运行的程序称为服务程序，后文中每一个拓扑组件都只有一个IP地址。为客户端提供公网IP服务的组件称为网关。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image002.jpg" alt="img" style="zoom:67%;"></p>
+<p>图1 中心化服务器的网络拓扑图</p>
+<p>从网关映射到客户端中的网络结构，这里需要引入一个NAT的概念。什么NAT呢？中文名叫网络地址转换，习惯称为网络地址映射。为什么需要网络地址映射呢？：需要说到IPV4网络地址已经用完，全部使用IPV6又会造成很多只支持IPV4的终端设备无法正常使用，所以网络地址映射应运而生，忍辱负重。才会有我们现在所谓的网络穿透的出现。到底怎么映射的？如图2网络地址映射所示。客户程序使用192.168.0.234:7890发送数据，通过网关的网络地址映射在公网被转换为112.93.116.102:6834，被互联网上的大家所认知。此时在公网上使用客户程序的ip与端口被112.93.116.102:6834代替。在这里大家应该明白了NAT是何许物种了。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image004.jpg" alt="img" style="zoom: 67%;"><br>​图2 网络地址映射</p>
+<p>为了保持新手福音，业界良心的态度。什么是穿透？因为NAT是客户程序发起的，网络为了保持通讯新建的一个临时牌照，随时可能被收回，而且重新发起后的牌照不一样。从而外界及时知道了这个临时牌照也没有用。所以需要通过穿透在网关上面打个洞，来为外界进行服务。那NAT与穿透有什么关系呢？正因为有了NAT才需要穿透，如果是IPV6每个客户端一个IP地址，那就不需要直接可以找到客户端了。</p>
+<h2 id="NAT种类"><a href="#NAT种类" class="headerlink" title="NAT种类"></a>NAT种类</h2><p>  由于网关的安全性要求不一致，就出现四种不同的NAT方式。分别进行阐述：</p>
+<p>第一种<strong>完全锥形NAT</strong>，英文名叫<strong>Full Cone NAT</strong>。如图3完全锥形NAT所示，客户程序(192.168.0.234:7890)与服务器A(13.44.178.98:9800)通信，通过网关的地址转换产生的临时牌照的公网地址（112.93.116.102:6834），服务器B（157.78.13.156:23456）发送数据到公网地址（112.93.116.102:6834），如果客户程序(192.168.0.234:7890)能够收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为完全锥形NAT；</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image006.png" alt="img" style="zoom:67%;"><br>​图3 完全锥形NAT</p>
+<p>第二种<strong>限制锥形NAT</strong>，英文名叫<strong>RestrictedCone NAT</strong>。在图3 完全锥形NAT中，如果客户程序(192.168.0.234:7890)不能收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为限制型锥形NAT。</p>
+<p>第三种<strong>端口限制锥形NAT</strong>，英文名叫<strong>Port RestrictedCone NAT</strong>。客户程序(192.168.0.234:7890)发送数据给服务程序（13.44.178.98:9800）,网关通过网络地址转换产生的地址（112.93.116.102:6834）,同样的服务器内的另一个服务程序（13.44.178.178:9801）发送数据给网关（112.93.116.102:6834）地址，如果客户程序(192.168.0.234:7890)能够收到，则为限制锥形NAT，如果客户程序(192.168.0.234:7890)不能收到，则为端口限制锥形NAT。</p>
+<p>  对于所有的锥型NAT，客户程序（192.168.0.234:7890）对外发送的数据时，网关地址转换的地址都是一样的为（112.93.116.102:6834）,那为什么在图4 限制型锥形NAT中，客户程序不能收到服务程序B（13.44.178.98:9801）的数据呢？因为在网关中没有发生过客户程序（192.168.0.234:7890）给服务程序B（13.44.178.98:9801），故服务程序（13.44.178.98:9801）直接发送给网关（112.93.116.102:6834），则被网关所丢弃。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image008.jpg" alt="img" style="zoom:67%;"></p>
+<p>图4 限制型锥形NAT</p>
+<p>第四种<strong>对称NAT</strong>，英文，名叫<strong>Symmetric NAT</strong>。如图5对称NAT所示，客户程序（192.168.0.234:7890）发送数据给两个不同服务器（13.44.178.98:9800）和（157.78.13.156:23456）时，网关会进行不同的网络地址映射产生（112.93.116.102:6834）和（112.93.116.102:6835）。这是对于整个NAT网络发送数据出去的过程，而接收数据与端口限制锥形NAT一致。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image010.png" alt="img" style="zoom:67%;"><br>             图5 对称NAT</p>
+<h2 id="不同NAT组合的穿透性"><a href="#不同NAT组合的穿透性" class="headerlink" title="不同NAT组合的穿透性"></a><strong>不同NAT组合的穿透性</strong></h2><p>这里说的穿透指在没有经过第三方数据中转的情况下，两者直接建立点对点的连接，可直接进行数据交换，相当于两者在一个虚拟的局域网中。</p>
+<p><img src="/2021/NAT类型和穿透性/image-20210401162435764.png" alt="image-20210401162435764"></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/network/" rel="tag"># network</a>
+          
+            <a href="/tags/内网穿透/" rel="tag"># 内网穿透</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/NAT号段/" rel="next" title="NAT号段">
+                <i class="fa fa-chevron-left"></i> NAT号段
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -332,6 +488,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -352,8 +512,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -445,6 +614,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络地址映射"><span class="nav-number">1.</span> <span class="nav-text">网络地址映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT种类"><span class="nav-number">2.</span> <span class="nav-text">NAT种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同NAT组合的穿透性"><span class="nav-number">3.</span> <span class="nav-text">不同NAT组合的穿透性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -585,6 +770,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AC86U创建虚拟内存U盘读写速度不够</title>
+    <url>/2021/AC86U%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98U%E7%9B%98%E8%AF%BB%E5%86%99%E9%80%9F%E5%BA%A6%E4%B8%8D%E5%A4%9F/</url>
+    <content><![CDATA[<h4 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h4><p><code>AC86U</code> 升级固件后挂载虚拟内存总是提示读写速度不够，新固件的读取速度要求 <code>20M/s</code>，写入速度要求 <code>30M/s</code><br><img src="/2021/AC86U创建虚拟内存U盘读写速度不够/20210106091033.png" alt="img"></p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>修改参数限制</p>
+<p><code>ssh</code> 登录到路由器，执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 修改写入速度限制，30替换为10</span><br><span class="line">sed -i &apos;s/^W_LIMIT=30/W_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br><span class="line"></span><br><span class="line"># 修改读取速度限制，20替换为10</span><br><span class="line">sed -i &apos;s/^R_LIMIT=20/R_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br></pre></td></tr></table></figure>
+<p>以上参数可以根据自己的实际情况进行调整</p>
+<p>完成后重新进入管理界面挂载虚拟内存即可</p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>路由器</category>
+      </categories>
+      <tags>
+        <tag>network</tag>
+        <tag>路由器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CollectionUtils工具类</title>
     <url>/2020/CollectionUtils%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
     <content><![CDATA[<p>这篇讲的CollectionUtils工具类是在<code>apache下</code>的, 而不是springframework下的CollectionUtils。</p>
@@ -58,25 +77,6 @@
       </categories>
       <tags>
         <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AC86U创建虚拟内存U盘读写速度不够</title>
-    <url>/2021/AC86U%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98U%E7%9B%98%E8%AF%BB%E5%86%99%E9%80%9F%E5%BA%A6%E4%B8%8D%E5%A4%9F/</url>
-    <content><![CDATA[<h4 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h4><p><code>AC86U</code> 升级固件后挂载虚拟内存总是提示读写速度不够，新固件的读取速度要求 <code>20M/s</code>，写入速度要求 <code>30M/s</code><br><img src="/2021/AC86U创建虚拟内存U盘读写速度不够/20210106091033.png" alt="img"></p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>修改参数限制</p>
-<p><code>ssh</code> 登录到路由器，执行如下命令</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 修改写入速度限制，30替换为10</span><br><span class="line">sed -i &apos;s/^W_LIMIT=30/W_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br><span class="line"></span><br><span class="line"># 修改读取速度限制，20替换为10</span><br><span class="line">sed -i &apos;s/^R_LIMIT=20/R_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br></pre></td></tr></table></figure>
-<p>以上参数可以根据自己的实际情况进行调整</p>
-<p>完成后重新进入管理界面挂载虚拟内存即可</p>
-]]></content>
-      <categories>
-        <category>network</category>
-        <category>路由器</category>
-      </categories>
-      <tags>
-        <tag>network</tag>
-        <tag>路由器</tag>
       </tags>
   </entry>
   <entry>
@@ -181,104 +181,76 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo博客部署到VPS</title>
-    <url>/2021/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0VPS/</url>
-    <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>网上流传的武功秘籍分为两种：</p>
-<ul>
-<li>将 Hexo 项目上传到 VPS 上面后执行 <code>hexo server</code>，之后配置 Nginx 反向代理，让域名指向 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000</a>。</li>
-<li>将 Hexo 在本地通过 <code>hexo generate</code> 生成静态文件，在通过 <code>hexo deploy</code> 部署到 VPS 上面，使用 Nginx 直接做 Web 服务器。</li>
-</ul>
-<p>相比第二种方式，第一种每次写博客与更新博客时候的操作会很繁琐。所以我们使用第二种方式进行部署，这样既可以将静态文件 deploy 到 VPS 上，也可以上传到 Github 上用作备份，操作性和安全性上都要胜于前者。</p>
-<p>而对于第二种方式而言，常用的又有 <code>git hook</code> 和 <code>rsync</code> 两种自动部署解决方案。</p>
-<p>本文主要介绍 <code>git hook</code> 部署过程，过程为：</p>
-<p>我们在本地编辑文本，然后使用 Git 远程部署到 VPS 的 Git 仓库。<code>hexo d</code> 命令实际上只 deploy 了本地的 public 文件夹，Git Hooks 实际上就是当 Git 仓库收到最新的 push 时，将 Git 仓库接受到的内容复制到 VPS 上的网站目录内。相当于完成了手动将 public 文件夹复制到 VPS 的网站根目录里。</p>
-<p>在vps上搭建hexo博客需要下面这些工具：</p>
-<ol>
-<li>Nginx: 用于博客展示</li>
-<li>SSH：用于Git 推送</li>
-<li>Git: 用于将生成的静态文件推送到vps上</li>
-</ol>
-<p>本文服务器环境为CentOS 7.6</p>
-<p>之前本地已经搭建好Hexo博客，之前是提交到Github进行更新</p>
-<h2 id="本地配置"><a href="#本地配置" class="headerlink" title="本地配置"></a>本地配置</h2><p>查看C:\Users\用户名\.ssh 下是否存在私钥文件<code>id_rsa</code>和公钥文件<code>id_rsa.pub</code></p>
-<p>如果没有，则需要通过<code>ssh-keygen -t rsa -C &quot;你的邮箱&quot;</code> 生成</p>
-<h2 id="VPS端配置"><a href="#VPS端配置" class="headerlink" title="VPS端配置"></a>VPS端配置</h2><h3 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h3><p>ssh连接到VPS后，执行如下指令进行Git的安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum update &amp;&amp; upgrade -y</span><br><span class="line">yum install epel-release</span><br><span class="line">yum install git-core</span><br></pre></td></tr></table></figure>
-<h3 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum install nginx -y</span><br><span class="line">service nginx start  #启动nginx</span><br></pre></td></tr></table></figure>
-<p>如果开启了防火墙，还要在防火墙上开启响应端口，操作如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-service=http</span><br><span class="line">firewall-cmd --permanent --zone=public --add-service=https</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"></span><br><span class="line">启动： systemctl start firewalld</span><br><span class="line">关闭： systemctl stop firewalld</span><br><span class="line">查看状态： systemctl status firewalld </span><br><span class="line">开机禁用 ： systemctl disable firewalld</span><br><span class="line">开机启用 ： systemctl enable firewalld</span><br></pre></td></tr></table></figure>
-<p>安装完Nginx后，最好设置Nginx为开机自启动，操作如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl enable nginx</span><br></pre></td></tr></table></figure>
-<h3 id="Git相关配置"><a href="#Git相关配置" class="headerlink" title="Git相关配置"></a>Git相关配置</h3><ol>
-<li>新建git用户，在终端输入如下指令以新建账户，专门用于提交git</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su root</span><br><span class="line">adduser git #创建新用户，名为git</span><br></pre></td></tr></table></figure>
-<p>接下来修改git账户的权限</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod 740 /etc/sudoers</span><br><span class="line">vi /etc/sudoers</span><br></pre></td></tr></table></figure>
-<p>在<code>root ALL=(ALL) ALL</code>下面新建一段字符：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git ALL=(ALL) install</span><br></pre></td></tr></table></figure>
-<p>接着保存退出，并执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod 440 /etc/sudoers</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建git仓库</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su git                 # 操作转到git用户</span><br><span class="line">cd                     # 定位到Home目录</span><br><span class="line">mkdir .ssh &amp;&amp; cd .ssh  # 创建.ssh文件夹并进入</span><br><span class="line">vi authorized_keys     # 创建密钥文件</span><br></pre></td></tr></table></figure>
-<p>此时，将本地<code>id_rsa.pub</code>文件内的内容粘贴到新建的<code>authorized_keys</code>文件中。接下来执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd</span><br><span class="line">mkdir hexo.git &amp;&amp; cd hexo.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
-<p>此时，在本地终端中输入<code>ssh git@VPS_ip</code>查看收否能连接，如果提示要密码，则需要在VPS内设置一下git用户的密码，操作如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">passwd git</span><br></pre></td></tr></table></figure>
-<p>接着设置git用户的密码，并在本地终端中重新连接，输入密码，应该就可以连接了。</p>
-<p>如果部署时还是需要密码，则是authorized_keys 文件权限设置有问题，请查看博客里的另一篇文章 <a href="http://www.minmax.site/2021/03/25/authorized-keys不生效解决办法/" target="_blank" rel="noopener">authorized_keys不生效解决办法</a></p>
-<ol start="3">
-<li>接下来要创建网站的目录，并赋予权限</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su root</span><br><span class="line">cd /var/www</span><br><span class="line">mkdir hexo</span><br><span class="line">chown git:git -R /var/www/hexo</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>配置Git Hooks</li>
-</ol>
-<p>【注意】这一步在git用户下执行</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su git</span><br><span class="line">cd /home/git/hexo.git/hooks</span><br><span class="line">vi post-receive</span><br></pre></td></tr></table></figure>
-<p>输入如下内容后保存</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">GIT_REPO=/home/git/hexo.git       #git仓库路径</span><br><span class="line">TMP_GIT_CLONE=/tmp/hexo</span><br><span class="line">PUBLIC_WWW=/var/www/hexo          #hexo网站目录</span><br><span class="line">rm -rf $&#123;TMP_GIT_CLONE&#125;</span><br><span class="line">git clone $GIT_REPO $TMP_GIT_CLONE</span><br><span class="line">rm -rf $&#123;PUBLIC_WWW&#125;/*</span><br><span class="line">cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125;</span><br></pre></td></tr></table></figure>
-<p>接着赋予权限</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
-<h3 id="Nginx相关配置"><a href="#Nginx相关配置" class="headerlink" title="Nginx相关配置"></a>Nginx相关配置</h3><p>【注意】本操作在root用户下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su root</span><br><span class="line">vim /etc/nginx/conf.d/hexo.conf</span><br></pre></td></tr></table></figure>
-<p>插入如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen  80 ;</span><br><span class="line">    root /var/www/hexo; //这里可以改成你的网站目录地址，我将网站放在/var/www/hexo</span><br><span class="line">    server_name example.com www.example.com;   //这里输入你的域名或IP地址</span><br><span class="line">    access_log  /var/log/nginx/hexo_access.log;</span><br><span class="line">    error_log   /var/log/nginx/hexo_error.log;</span><br><span class="line">    location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ &#123;</span><br><span class="line">            root /var/www/hexo;</span><br><span class="line">            access_log   off;</span><br><span class="line">            expires      1d;</span><br><span class="line">    &#125;</span><br><span class="line">    location ~* ^.+\.(css|js|txt|xml|swf|wav)$ &#123;</span><br><span class="line">        root /var/www/hexo;</span><br><span class="line">        access_log   off;</span><br><span class="line">        expires      10m;</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;</span><br><span class="line">        root /var/www/hexo;      //这里可以改成你的网站目录地址，我将网站放在/var/www/hexo</span><br><span class="line">        if (-f $request_filename) &#123;</span><br><span class="line">            rewrite ^/(.*)$  /$1 break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>重启Nginx</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">service nginx restart</span><br></pre></td></tr></table></figure>
-<h2 id="本地Hexo配置修改"><a href="#本地Hexo配置修改" class="headerlink" title="本地Hexo配置修改"></a>本地Hexo配置修改</h2><p>在本地<code>hexo</code>博客文件下，编辑配置文件<code>\_config.yml</code>，修改<code>deploy</code>选项，可同时发布到github和vps</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  - type: git</span><br><span class="line">    repo: git@github.com:zhangyfzone/zhangyfzone.github.io.git  #gitHub上用作备份</span><br><span class="line">    branch: master</span><br><span class="line">  - type: git</span><br><span class="line">    repo: ssh://git@VPSIP:端口号/~/hexo.git   #部署到VPS上</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
-<p>保存修改后，便可以使用<code>hexo g</code>,<code>hexo d</code>等指令进行博客更新了。</p>
-<h2 id="gitHub配置更改"><a href="#gitHub配置更改" class="headerlink" title="gitHub配置更改"></a>gitHub配置更改</h2><p>如果之前部署到github上时设置了域名，则再setting里把custom domain 之前设置的域名清除。</p>
+    <title>NAT号段</title>
+    <url>/2021/NAT%E5%8F%B7%E6%AE%B5/</url>
+    <content><![CDATA[<p>我们现在常使用的IP地址是IPv4地址，由32位二进制数组成，每隔8位二进制数字用小数点分隔，可得四组二进制数，将每组二进制数转为十进制数，就是我们平常看到的IP地址。Internet上的每一台主机或者路由器都至少有一个IP地址。IP地址的长度是32位，总数为2的32次方，大约43亿个。</p>
+<p>NAT（Network Address Translation），中文名唤作网络地址转换，诞生于IP地址匮乏的时代。</p>
+<p>NAT的基本思想是ISP（Internet服务提供商）为每个家庭或者公司分配一个IP地址，这个IP地址用作Internet流量的传输，也就是大家常说的<strong>外网</strong>IP地址或者<strong>公网</strong>IP地址。在客户网络的内部，每台计算机有唯一一个IP地址，即<strong>内网</strong>IP地址，这些地址主要用于路由内部流量。当一个数据包离开客户网络发送至其他ISP时，需要进行<strong>地址转换</strong>，把唯一的内网IP地址转换成外网的IP地址。</p>
+<p>这种地址转化使用IP地址的三个范围，这些地址已被声明私有化，任何内网中的设备可以任意使用这些地址，但是在这三个范围内的IP地址不允许出现在Internet（外网）上，这三个保留的地址范围是：</p>
+<p>10.0.0.0~10.255.255.255/8</p>
+<p><strong>100.64.0.0 ~100.127.255.255/10</strong>  <strong>用于在电信级NAT环境中服务提供商与其用户通信</strong> </p>
+<p>172.16.0.0~172.31.255.255/12</p>
+<p>192.168.0.0~192.168.255.255/16</p>
+<p>他们分别可以容纳16777216、1048576、65536台主机。一般家里用无线路由器，就用到了网络地址转换技术，我们连上wifi后分配的IP地址一般是以172或192为开头。学校或者大企业里面的网络可能会用到10开头的地址范围。</p>
+<p>NAT将内网外网划分好之后，是如何使内网的设备访问外网的呢？</p>
+<p>如下图，当计算机<strong>A</strong>在内网（假设IP为10.0.0.1）想去访问一个Internet上的网站<strong>S</strong>（假设IP地址为54.223.189.245）时，<strong>A</strong>的数据包需要先经过一个<strong>NAT盒子</strong>(NAT box)，这个盒子先将<strong>A</strong>的IP源地址转换成外网的真实IP地址（假设IP为121.0.0.2），然后将转换后的数据包发送至Internet。</p>
+<p><img src="/2021/NAT号段/clip_image001.png" alt="clip_image001"></p>
+<p>于是问题来了，当网站<strong>S</strong>收到这个数据包后，会处理请求，并发送响应的数据包，然而这个数据包的目标地址是121.0.0.2（外网IP），数据包如何返回内网中的<strong>A</strong>呢？</p>
+<p>这里要先介绍一下<strong>源端口</strong>（Source Port）和<strong>目标端口</strong>（Destination Port）的概念。当一个进程希望与另一个进程建立TCP连接时，它把自己绑定到一个本机尚未被占用的TCP端口上，这个端口称为<strong>源端口</strong>，该TCP连接中所有入境的数据包都要被发送至这个端口。同时进程还需要提供一个<strong>目标端口</strong>，指明数据包到达远程主机后送至哪一个端口处理。每一个出境的TCP数据包都包括一个源端口和目标端口。</p>
+<p>举例来说，如下图，网站服务器<strong>S</strong>（IP地址为54.223.189.245）的HTTP服务运行在80端口上，公网上的计算机<strong>D</strong>（IP地址为121.141.56.23）想去访问网站<strong>S</strong>，于是把自己绑定到本机的33121端口上，并发送请求的数据包，这个数据包中就包含了计算机<strong>D</strong>的源端口33121和目标端口80。网站<strong>S</strong>收到请求后，发送响应的数据包，这个数据包中包含了服务器<strong>S</strong>的源端口80和目标端口3312。</p>
+<p> <img src="/2021/NAT号段/20161103125031128.png" alt="20161103125031128"></p>
+<p>上面的例子是外网中的一台计算机访问一个网站。在内网中计算机发送的数据包同样存在着源端口和目标端口。NAT盒子做的事情就是对出入境数据包的端口进行修改。</p>
+<p>回到最初举的例子，假设内网计算机<strong>A</strong>（IP地址为10.0.0.1）发送的请求包的源端口是45421，目标端口是80，请求访问网站服务器<strong>S</strong>（IP地址为54.223.189.245）。</p>
+<p>当这个出境数据包经过NAT盒子时，其源地址被修改成公网的真实IP（121.0.0.2），源端口被修改一个索引值（假设为50002），这个索引值指向NAT盒子的地址转化表中的某一项，这一表项保存了计算机<strong>A</strong>的内网源地址和源端口。最后NAT盒子将重新生成的数据包发送出去。</p>
+<p>当网站S响应的入境数据包到达NAT盒子时，数据包经过处理，目的地址由公网IP（121.0.0.2）还原为计算机A的内网IP（10.0.0.1），目标端口由索引值（50002）还原为计算机A的源端口（45421）。还原后数据包可以正常的在内网路由。</p>
+<p>这个过程基本如下图所示。</p>
+<p><img src="/2021/NAT号段/clip_image003.png" alt="clip_image003"></p>
+<p>如此一来，NAT解决了数据包在内网公网之间的地址和端口的转换问题，暂时缓解了IP地址的短缺，但是它却有着不少的缺点。</p>
+<p>NAT违背了IP的结构模型（每个IP地址唯一标识世界上的一台机器），采用NAT后可能有无数台主机使用10.0.0.1这个IP地址。NAT还打破了Internet的端-端的连接模型。内网中的主机可以通过NAT与一台公网上的服务建立连接，但是反过来却不行，公网上的主机无法与某一内网中的主机建立连接。举个简单的例子来说，你在内网某台计算机上搭建了一个网站，在外网是无法访问的。而且使用NAT后，Internet变得如电路交换网络一样脆弱。NAT盒子为每个经过它的连接维护必要的信息（即映射关系），若NAT盒子崩溃，并且所有映射表被摧毁，所有TCP连接将被摧毁。</p>
+<p>目前的IP地址匮乏，归根结底是IPv4设计者的锅，NAT只是权宜之策。既然NAT这么复杂，有人要问了，在IPv6普及后，NAT是否就会被取缔了呢？答案是不会的。因为NAT已被广泛使用，尤其是家庭和小型企业的网络，即使IPv6普及了，NAT在短时间内也很难被取代。</p>
+<p> <strong>IPv4保留地址</strong><br><img src="/2021/NAT号段/Snipaste_2021-04-01_15-28-01.png" alt="Snipaste_2021-04-01_15-28-01"></p>
+<p><strong>IPv6保留地址</strong><br><img src="/2021/NAT号段/Snipaste_2021-04-01_15-28-14.png" alt="Snipaste_2021-04-01_15-28-14"></p>
+<p>参考：</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E4%BF%9D%E7%95%99IP%E5%9C%B0%E5%9D%80" target="_blank" rel="noopener">保留的IP地址</a></p>
 ]]></content>
       <categories>
-        <category>hexo</category>
+        <category>network</category>
+        <category>理论</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
-        <tag>vps</tag>
+        <tag>network</tag>
+        <tag>内网穿透</tag>
       </tags>
   </entry>
   <entry>
-    <title>LF will be replaced by CRLF</title>
-    <url>/2020/LF-will-be-replaced-by-CRLF/</url>
-    <content><![CDATA[<p>本文主要写了在 Hexo 博客中 出现 LF will be replaced by CRLF 的原因以及它的解决方式。</p>
-<h5 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h5><ol>
-<li>windows中的换行符为 CRLF，而在Linux下的换行符为LF，所以在执行add时出现提示 </li>
-<li>CRLF和LF是两种不同的换行格式，git工作区默认为CRLF来作为换行符，<br> 所以当我们项目文件里有用的地方使用LF作为换行符，这个时候我们再继续git add<br> 或者git commit的时候就会弹出警告，当最终push到远程仓库的时候git会统一格式全部转化为用CRLF作为换行符 </li>
-</ol>
-<h5 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h5><ol>
-<li>这个只是一个警告，我们直接忽略就好。</li>
-<li>在hexo目下的.deploy_git目录下打开git bash 执行git config –global core.autocrlf false //禁用自动转换 </li>
-</ol>
+    <title>NAT类型和穿透性</title>
+    <url>/2021/NAT%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%A9%BF%E9%80%8F%E6%80%A7/</url>
+    <content><![CDATA[<h2 id="网络地址映射"><a href="#网络地址映射" class="headerlink" title="网络地址映射"></a>网络地址映射</h2><p>在有中心化服务器的网络中，客户端，服务器，网关构成网络拓扑图。如下图1所示：由于后续出现的名词概念很多，先约法三章，在这里统一一下称呼：所有的终端机器成为客户端，不同客户端使用大写字母区分（A,B,C,…）；客户端上面运行的应用程序统一称为客户程序，不同的应用程序使用不数字区分（1,2,3,…）。作为服务器的物理机称为服务器，而服务器上运行的程序称为服务程序，后文中每一个拓扑组件都只有一个IP地址。为客户端提供公网IP服务的组件称为网关。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image002.jpg" alt="img" style="zoom:67%;"></p>
+<p>图1 中心化服务器的网络拓扑图</p>
+<p>从网关映射到客户端中的网络结构，这里需要引入一个NAT的概念。什么NAT呢？中文名叫网络地址转换，习惯称为网络地址映射。为什么需要网络地址映射呢？：需要说到IPV4网络地址已经用完，全部使用IPV6又会造成很多只支持IPV4的终端设备无法正常使用，所以网络地址映射应运而生，忍辱负重。才会有我们现在所谓的网络穿透的出现。到底怎么映射的？如图2网络地址映射所示。客户程序使用192.168.0.234:7890发送数据，通过网关的网络地址映射在公网被转换为112.93.116.102:6834，被互联网上的大家所认知。此时在公网上使用客户程序的ip与端口被112.93.116.102:6834代替。在这里大家应该明白了NAT是何许物种了。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image004.jpg" alt="img" style="zoom: 67%;"><br>​图2 网络地址映射</p>
+<p>为了保持新手福音，业界良心的态度。什么是穿透？因为NAT是客户程序发起的，网络为了保持通讯新建的一个临时牌照，随时可能被收回，而且重新发起后的牌照不一样。从而外界及时知道了这个临时牌照也没有用。所以需要通过穿透在网关上面打个洞，来为外界进行服务。那NAT与穿透有什么关系呢？正因为有了NAT才需要穿透，如果是IPV6每个客户端一个IP地址，那就不需要直接可以找到客户端了。</p>
+<h2 id="NAT种类"><a href="#NAT种类" class="headerlink" title="NAT种类"></a>NAT种类</h2><p>  由于网关的安全性要求不一致，就出现四种不同的NAT方式。分别进行阐述：</p>
+<p>第一种<strong>完全锥形NAT</strong>，英文名叫<strong>Full Cone NAT</strong>。如图3完全锥形NAT所示，客户程序(192.168.0.234:7890)与服务器A(13.44.178.98:9800)通信，通过网关的地址转换产生的临时牌照的公网地址（112.93.116.102:6834），服务器B（157.78.13.156:23456）发送数据到公网地址（112.93.116.102:6834），如果客户程序(192.168.0.234:7890)能够收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为完全锥形NAT；</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image006.png" alt="img" style="zoom:67%;"><br>​图3 完全锥形NAT</p>
+<p>第二种<strong>限制锥形NAT</strong>，英文名叫<strong>RestrictedCone NAT</strong>。在图3 完全锥形NAT中，如果客户程序(192.168.0.234:7890)不能收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为限制型锥形NAT。</p>
+<p>第三种<strong>端口限制锥形NAT</strong>，英文名叫<strong>Port RestrictedCone NAT</strong>。客户程序(192.168.0.234:7890)发送数据给服务程序（13.44.178.98:9800）,网关通过网络地址转换产生的地址（112.93.116.102:6834）,同样的服务器内的另一个服务程序（13.44.178.178:9801）发送数据给网关（112.93.116.102:6834）地址，如果客户程序(192.168.0.234:7890)能够收到，则为限制锥形NAT，如果客户程序(192.168.0.234:7890)不能收到，则为端口限制锥形NAT。</p>
+<p>  对于所有的锥型NAT，客户程序（192.168.0.234:7890）对外发送的数据时，网关地址转换的地址都是一样的为（112.93.116.102:6834）,那为什么在图4 限制型锥形NAT中，客户程序不能收到服务程序B（13.44.178.98:9801）的数据呢？因为在网关中没有发生过客户程序（192.168.0.234:7890）给服务程序B（13.44.178.98:9801），故服务程序（13.44.178.98:9801）直接发送给网关（112.93.116.102:6834），则被网关所丢弃。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image008.jpg" alt="img" style="zoom:67%;"></p>
+<p>图4 限制型锥形NAT</p>
+<p>第四种<strong>对称NAT</strong>，英文，名叫<strong>Symmetric NAT</strong>。如图5对称NAT所示，客户程序（192.168.0.234:7890）发送数据给两个不同服务器（13.44.178.98:9800）和（157.78.13.156:23456）时，网关会进行不同的网络地址映射产生（112.93.116.102:6834）和（112.93.116.102:6835）。这是对于整个NAT网络发送数据出去的过程，而接收数据与端口限制锥形NAT一致。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image010.png" alt="img" style="zoom:67%;"><br>             图5 对称NAT</p>
+<h2 id="不同NAT组合的穿透性"><a href="#不同NAT组合的穿透性" class="headerlink" title="不同NAT组合的穿透性"></a><strong>不同NAT组合的穿透性</strong></h2><p>这里说的穿透指在没有经过第三方数据中转的情况下，两者直接建立点对点的连接，可直接进行数据交换，相当于两者在一个虚拟的局域网中。</p>
+<p><img src="/2021/NAT类型和穿透性/image-20210401162435764.png" alt="image-20210401162435764"></p>
 ]]></content>
       <categories>
-        <category>git</category>
+        <category>network</category>
+        <category>理论</category>
       </categories>
       <tags>
-        <tag>git</tag>
+        <tag>network</tag>
+        <tag>内网穿透</tag>
       </tags>
   </entry>
   <entry>
@@ -361,6 +333,26 @@
       </tags>
   </entry>
   <entry>
+    <title>LF will be replaced by CRLF</title>
+    <url>/2020/LF-will-be-replaced-by-CRLF/</url>
+    <content><![CDATA[<p>本文主要写了在 Hexo 博客中 出现 LF will be replaced by CRLF 的原因以及它的解决方式。</p>
+<h5 id="出现的原因"><a href="#出现的原因" class="headerlink" title="出现的原因"></a>出现的原因</h5><ol>
+<li>windows中的换行符为 CRLF，而在Linux下的换行符为LF，所以在执行add时出现提示 </li>
+<li>CRLF和LF是两种不同的换行格式，git工作区默认为CRLF来作为换行符，<br> 所以当我们项目文件里有用的地方使用LF作为换行符，这个时候我们再继续git add<br> 或者git commit的时候就会弹出警告，当最终push到远程仓库的时候git会统一格式全部转化为用CRLF作为换行符 </li>
+</ol>
+<h5 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h5><ol>
+<li>这个只是一个警告，我们直接忽略就好。</li>
+<li>在hexo目下的.deploy_git目录下打开git bash 执行git config –global core.autocrlf false //禁用自动转换 </li>
+</ol>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo本地图片不显示</title>
     <url>/2020/hexo%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8D%E6%98%BE%E7%A4%BA/</url>
     <content><![CDATA[<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
@@ -401,144 +393,6 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java泛型</title>
-    <url>/2021/java%E6%B3%9B%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>泛型在java中有很重要的地位，在面向对象编程及各种设计模式中有非常广泛的应用。</p>
-<p>什么是泛型？为什么要使用泛型？</p>
-<blockquote>
-<p><strong>泛型，即“参数化类型”。一提到参数，最熟悉的就是定义方法时有形参，然后调用此方法时传递实参。那么参数化类型怎么理解呢？顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。</strong></p>
-<p><strong>泛型的本质是为了参数化类型（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）</strong>。也就是说在泛型使用过程中，操作的数据类型被指定为一个参数，这种参数类型可以用在类、接口和方法中，分别被称为泛型类、泛型接口、泛型方法。</p>
-</blockquote>
-<h1 id="一个栗子"><a href="#一个栗子" class="headerlink" title="一个栗子"></a>一个栗子</h1><p>一个被举了无数次的例子：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List arrayList = <span class="keyword">new</span> ArrayList();</span><br><span class="line">arrayList.add(<span class="string">"aaaa"</span>);</span><br><span class="line">arrayList.add(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; arrayList.size();i++)&#123;</span><br><span class="line">    String item = (String)arrayList.get(i);</span><br><span class="line">    Log.d(<span class="string">"泛型测试"</span>,<span class="string">"item = "</span> + item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>毫无疑问，程序的运行结果会以崩溃结束：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String1</span><br></pre></td></tr></table></figure>
-<p>ArrayList可以存放任意类型，例子中添加了一个String类型，添加了一个Integer类型，再使用时都以String的方式使用，因此程序崩溃了。为了解决类似这样的问题（在编译阶段就可以解决），泛型应运而生。</p>
-<p>我们将第一行声明初始化list的代码更改一下，编译器会在编译阶段就能够帮我们发现类似这样的问题。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">...</span><br><span class="line"><span class="comment">//arrayList.add(100); 在编译阶段，编译器就会报错123</span></span><br></pre></td></tr></table></figure>
-<h1 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h1><p>泛型只在编译阶段有效。看下面的代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; stringArrayList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">List&lt;Integer&gt; integerArrayList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line"></span><br><span class="line">Class classStringArrayList = stringArrayList.getClass();</span><br><span class="line">Class classIntegerArrayList = integerArrayList.getClass();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(classStringArrayList.equals(classIntegerArrayList))&#123;</span><br><span class="line">    Log.d(<span class="string">"泛型测试"</span>,<span class="string">"类型相同"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：<code>D/泛型测试: 类型相同</code>。</p>
-<p>通过上面的例子可以证明，在编译之后程序会采取去泛型化的措施。也就是说Java中的泛型，只在编译阶段有效。在编译过程中，正确检验泛型结果后，会将泛型的相关信息擦出，并且在对象进入和离开方法的边界处添加类型检查和类型转换的方法。也就是说，泛型信息不会进入到运行时阶段。</p>
-<p><strong>对此总结成一句话：泛型类型在逻辑上看以看成是多个不同的类型，实际上都是相同的基本类型。</strong></p>
-<h1 id="泛型的使用"><a href="#泛型的使用" class="headerlink" title="泛型的使用"></a>泛型的使用</h1><p>泛型有三种使用方式，分别为：泛型类、泛型接口、泛型方法</p>
-<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><p>泛型类型用于类的定义中，被称为泛型类。通过泛型可以完成对一组类的操作对外开放相同的接口。最典型的就是各种容器类，如：List、Set、Map。</p>
-<p>泛型类的最基本写法（这么看可能会有点晕，会在下面的例子中详解）：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类名称 &lt;泛型标识：可以随便写任意标识号，标识指定的泛型的类型&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">private</span> 泛型标识 <span class="comment">/*（成员变量类型）*/</span> <span class="keyword">var</span>; </span><br><span class="line">  .....</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一个最普通的泛型类：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型</span></span><br><span class="line"><span class="comment">//在实例化泛型类时，必须指定T的具体类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Generic</span>&lt;<span class="title">T</span>&gt;</span>&#123; </span><br><span class="line">    <span class="comment">//key这个成员变量的类型为T,T的类型由外部指定  </span></span><br><span class="line">    <span class="keyword">private</span> T key;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Generic</span><span class="params">(T key)</span> </span>&#123; <span class="comment">//泛型构造方法形参key的类型也为T，T的类型由外部指定</span></span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getKey</span><span class="params">()</span></span>&#123; <span class="comment">//泛型方法getKey的返回值类型为T，T的类型由外部指定</span></span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//泛型的类型参数只能是类类型（包括自定义类），不能是简单类型</span></span><br><span class="line"><span class="comment">//传入的实参类型需与泛型的类型参数类型相同，即为Integer.</span></span><br><span class="line">Generic&lt;Integer&gt; genericInteger = <span class="keyword">new</span> Generic&lt;Integer&gt;(<span class="number">123456</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//传入的实参类型需与泛型的类型参数类型相同，即为String.</span></span><br><span class="line">Generic&lt;String&gt; genericString = <span class="keyword">new</span> Generic&lt;String&gt;(<span class="string">"key_vlaue"</span>);</span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + genericInteger.getKey());</span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + genericString.getKey());<span class="number">12345678</span></span><br><span class="line"><span class="number">12</span>-<span class="number">27</span> <span class="number">09</span>:<span class="number">20</span>:<span class="number">04.432</span> <span class="number">13063</span>-<span class="number">13063</span>/? D/泛型测试: key is <span class="number">123456</span></span><br><span class="line"><span class="number">12</span>-<span class="number">27</span> <span class="number">09</span>:<span class="number">20</span>:<span class="number">04.432</span> <span class="number">13063</span>-<span class="number">13063</span>/? D/泛型测试: key is key_vlaue12</span><br></pre></td></tr></table></figure>
-<p>定义的泛型类，就一定要传入泛型类型实参么？并不是这样，在使用泛型的时候如果传入泛型实参，则会根据传入的泛型实参做相应的限制，此时泛型才会起到本应起到的限制作用。如果不传入泛型类型实参的话，在泛型类中使用泛型的方法或成员变量定义的类型可以为任何的类型。</p>
-<p>看一个例子：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Generic generic = <span class="keyword">new</span> Generic(<span class="string">"111111"</span>);</span><br><span class="line">Generic generic1 = <span class="keyword">new</span> Generic(<span class="number">4444</span>);</span><br><span class="line">Generic generic2 = <span class="keyword">new</span> Generic(<span class="number">55.55</span>);</span><br><span class="line">Generic generic3 = <span class="keyword">new</span> Generic(<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + generic.getKey());</span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + generic1.getKey());</span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + generic2.getKey());</span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + generic3.getKey());</span><br><span class="line">D/泛型测试: key is <span class="number">111111</span></span><br><span class="line">D/泛型测试: key is <span class="number">4444</span></span><br><span class="line">D/泛型测试: key is <span class="number">55.55</span></span><br><span class="line">D/泛型测试: key is false1234</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：</p>
-<ul>
-<li><ol>
-<li>泛型的类型参数只能是类类型，不能是简单类型。</li>
-</ol>
-</li>
-<li><ol>
-<li><p>不能对确切的泛型类型使用instanceof操作。如下面的操作是非法的，编译时会出错。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;      <span class="keyword">if</span>(ex_num <span class="keyword">instanceof</span> Generic&lt;Number&gt;)&#123;   </span><br><span class="line">&gt;      &#125; <span class="number">12</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ul>
-</blockquote>
-<h2 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h2><p>泛型接口与泛型类的定义及使用基本相同。泛型接口常被用在各种类的生产器中，可以看一个例子：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义一个泛型接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Generator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当实现泛型接口的类，未传入泛型实参时：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 未传入泛型实参时，与泛型类的定义相同，在声明类的时候，需将泛型的声明也一起加到类中</span></span><br><span class="line"><span class="comment"> * 即：class FruitGenerator&lt;T&gt; implements Generator&lt;T&gt;&#123;</span></span><br><span class="line"><span class="comment"> * 如果不声明泛型，如：class FruitGenerator implements Generator&lt;T&gt;，编译器会报错："Unknown class"</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FruitGenerator</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Generator</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当实现泛型接口的类，传入泛型实参时：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 传入泛型实参时：</span></span><br><span class="line"><span class="comment"> * 定义一个生产器实现这个接口,虽然我们只创建了一个泛型接口Generator&lt;T&gt;</span></span><br><span class="line"><span class="comment"> * 但是我们可以为T传入无数个实参，形成无数种类型的Generator接口。</span></span><br><span class="line"><span class="comment"> * 在实现类实现泛型接口时，如已将泛型类型传入实参类型，则所有使用泛型的地方都要替换成传入的实参类型</span></span><br><span class="line"><span class="comment"> * 即：Generator&lt;T&gt;，public T next();中的的T都要替换成传入的String类型。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FruitGenerator</span> <span class="keyword">implements</span> <span class="title">Generator</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String[] fruits = <span class="keyword">new</span> String[]&#123;<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Pear"</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Random rand = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">return</span> fruits[rand.nextInt(<span class="number">3</span>)];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><p>在java中,泛型类的定义非常简单，但是泛型方法就比较复杂了。</p>
-<blockquote>
-<p>尤其是我们见到的大多数泛型类中的成员方法也都使用了泛型，有的甚至泛型类中也包含着泛型方法，这样在初学者中非常容易将泛型方法理解错了。</p>
-</blockquote>
-<p><strong>泛型类，是在实例化类的时候指明泛型的具体类型；泛型方法，是在调用方法的时候指明泛型的具体类型</strong> 。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 泛型方法的基本介绍</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> tClass 传入的泛型实参</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> T 返回值为T类型</span></span><br><span class="line"><span class="comment"> * 说明：</span></span><br><span class="line"><span class="comment"> *     1）public 与 返回值中间&lt;T&gt;非常重要，可以理解为声明此方法为泛型方法。</span></span><br><span class="line"><span class="comment"> *     2）只有声明了&lt;T&gt;的方法才是泛型方法，泛型类中的使用了泛型的成员方法并不是泛型方法。</span></span><br><span class="line"><span class="comment"> *     3）&lt;T&gt;表明该方法将使用泛型类型T，此时才可以在方法中使用泛型类型T。</span></span><br><span class="line"><span class="comment"> *     4）与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">genericMethod</span><span class="params">(Class&lt;T&gt; tClass)</span><span class="keyword">throws</span> InstantiationException ,</span></span><br><span class="line"><span class="function">  IllegalAccessException</span>&#123;</span><br><span class="line">        T instance = tClass.newInstance();</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br><span class="line">Object obj = genericMethod(Class.forName(<span class="string">"com.test.test"</span>));<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="泛型方法的基本用法"><a href="#泛型方法的基本用法" class="headerlink" title="泛型方法的基本用法"></a>泛型方法的基本用法</h3><p>光看上面的例子有的同学可能依然会非常迷糊，我们再通过一个例子，把我泛型方法再总结一下。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericTest</span> </span>&#123;</span><br><span class="line">   <span class="comment">//这个类是个泛型类，在上面已经介绍过</span></span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Generic</span>&lt;<span class="title">T</span>&gt;</span>&#123;     </span><br><span class="line">        <span class="keyword">private</span> T key;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Generic</span><span class="params">(T key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.key = key;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//我想说的其实是这个，虽然在方法中使用了泛型，但是这并不是一个泛型方法。</span></span><br><span class="line">        <span class="comment">//这只是类中一个普通的成员方法，只不过他的返回值是在声明泛型类已经声明过的泛型。</span></span><br><span class="line">        <span class="comment">//所以在这个方法中才可以继续使用 T 这个泛型。</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> T <span class="title">getKey</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> key;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 这个方法显然是有问题的，在编译器会给我们提示这样的错误信息"cannot reslove symbol E"</span></span><br><span class="line"><span class="comment">         * 因为在类的声明中并未声明泛型E，所以在使用E做形参和返回值类型时，编译器会无法识别。</span></span><br><span class="line"><span class="comment">        public E setKey(E key)&#123;</span></span><br><span class="line"><span class="comment">             this.key = keu</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 这才是一个真正的泛型方法。</span></span><br><span class="line"><span class="comment">     * 首先在public与返回值之间的&lt;T&gt;必不可少，这表明这是一个泛型方法，并且声明了一个泛型T</span></span><br><span class="line"><span class="comment">     * 这个T可以出现在这个泛型方法的任意位置.</span></span><br><span class="line"><span class="comment">     * 泛型的数量也可以为任意多个 </span></span><br><span class="line"><span class="comment">     *    如：public &lt;T,K&gt; K showKeyName(Generic&lt;T&gt; container)&#123;</span></span><br><span class="line"><span class="comment">     *        ...</span></span><br><span class="line"><span class="comment">     *        &#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">showKeyName</span><span class="params">(Generic&lt;T&gt; container)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"container key :"</span> + container.getKey());</span><br><span class="line">        <span class="comment">//当然这个例子举的不太合适，只是为了说明泛型方法的特性。</span></span><br><span class="line">        T test = container.getKey();</span><br><span class="line">        <span class="keyword">return</span> test;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这也不是一个泛型方法，这就是一个普通的方法，只是使用了Generic&lt;Number&gt;这个泛型类做形参而已。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showKeyValue1</span><span class="params">(Generic&lt;Number&gt; obj)</span></span>&#123;</span><br><span class="line">        Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key value is "</span> + obj.getKey());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这也不是一个泛型方法，这也是一个普通的方法，只不过使用了泛型通配符?</span></span><br><span class="line">    <span class="comment">//同时这也印证了泛型通配符章节所描述的，?是一种类型实参，可以看做为Number等所有类的父类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showKeyValue2</span><span class="params">(Generic&lt;?&gt; obj)</span></span>&#123;</span><br><span class="line">        Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key value is "</span> + obj.getKey());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 这个方法是有问题的，编译器会为我们提示错误信息："UnKnown class 'E' "</span></span><br><span class="line"><span class="comment">     * 虽然我们声明了&lt;T&gt;,也表明了这是一个可以处理泛型的类型的泛型方法。</span></span><br><span class="line"><span class="comment">     * 但是只声明了泛型类型T，并未声明泛型类型E，因此编译器并不知道该如何处理E这个类型。</span></span><br><span class="line"><span class="comment">    public &lt;T&gt; T showKeyName(Generic&lt;E&gt; container)&#123;</span></span><br><span class="line"><span class="comment">        ...</span></span><br><span class="line"><span class="comment">    &#125;  </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 这个方法也是有问题的，编译器会为我们提示错误信息："UnKnown class 'T' "</span></span><br><span class="line"><span class="comment">     * 对于编译器来说T这个类型并未项目中声明过，因此编译也不知道该如何编译这个类。</span></span><br><span class="line"><span class="comment">     * 所以这也不是一个正确的泛型方法声明。</span></span><br><span class="line"><span class="comment">    public void showkey(T genericObj)&#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="类中的泛型方法"><a href="#类中的泛型方法" class="headerlink" title="类中的泛型方法"></a>类中的泛型方法</h3><p>当然这并不是泛型方法的全部，泛型方法可以出现杂任何地方和任何场景中使用。但是有一种情况是非常特殊的，当泛型方法出现在泛型类中时，我们再通过一个例子看一下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericFruit</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Fruit</span></span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"fruit"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">extends</span> <span class="title">Fruit</span></span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"apple"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Person"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">GenerateTest</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show_1</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">            System.out.println(t.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//在泛型类中声明了一个泛型方法，使用泛型E，这种泛型E可以为任意类型。可以类型与T相同，也可以不同。</span></span><br><span class="line">        <span class="comment">//由于泛型方法在声明的时候会声明泛型&lt;E&gt;，因此即使在泛型类中并未声明泛型，编译器也能够正确识别泛型方法中识别的泛型。</span></span><br><span class="line">        <span class="keyword">public</span> &lt;E&gt; <span class="function"><span class="keyword">void</span> <span class="title">show_3</span><span class="params">(E t)</span></span>&#123;</span><br><span class="line">            System.out.println(t.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//在泛型类中声明了一个泛型方法，使用泛型T，注意这个T是一种全新的类型，可以与泛型类中声明的T不是同一种类型。</span></span><br><span class="line">        <span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">show_2</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">            System.out.println(t.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Apple apple = <span class="keyword">new</span> Apple();</span><br><span class="line">        Person person = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line">        GenerateTest&lt;Fruit&gt; generateTest = <span class="keyword">new</span> GenerateTest&lt;Fruit&gt;();</span><br><span class="line">        <span class="comment">//apple是Fruit的子类，所以这里可以</span></span><br><span class="line">        generateTest.show_1(apple);</span><br><span class="line">        <span class="comment">//编译器会报错，因为泛型类型实参指定的是Fruit，而传入的实参类是Person</span></span><br><span class="line">        <span class="comment">//generateTest.show_1(person);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//使用这两个方法都可以成功</span></span><br><span class="line">        generateTest.show_2(apple);</span><br><span class="line">        generateTest.show_2(person);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//使用这两个方法也都可以成功</span></span><br><span class="line">        generateTest.show_3(apple);</span><br><span class="line">        generateTest.show_3(person);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="泛型方法与可变参数"><a href="#泛型方法与可变参数" class="headerlink" title="泛型方法与可变参数"></a>泛型方法与可变参数</h3><p>再看一个泛型方法和可变参数的例子：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">printMsg</span><span class="params">( T... args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(T t : args)&#123;</span><br><span class="line">        Log.d(<span class="string">"泛型测试"</span>,<span class="string">"t is "</span> + t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">printMsg(<span class="string">"111"</span>,<span class="number">222</span>,<span class="string">"aaaa"</span>,<span class="string">"2323.4"</span>,<span class="number">55.55</span>);<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="静态方法与泛型"><a href="#静态方法与泛型" class="headerlink" title="静态方法与泛型"></a>静态方法与泛型</h3><p>静态方法有一种情况需要注意一下，那就是在类中的静态方法使用泛型：<strong>静态方法无法访问类上定义的泛型；如果静态方法操作的引用数据类型不确定的时候，必须要将泛型定义在方法上。</strong></p>
-<p>即：<strong>如果静态方法要使用泛型的话，必须将静态方法也定义成泛型方法</strong> 。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticGenerator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    ....</span><br><span class="line">    ....</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果在类中定义使用泛型的静态方法，需要添加额外的泛型声明（将这个方法定义成泛型方法）</span></span><br><span class="line"><span class="comment">     * 即使静态方法要使用泛型类中已经声明过的泛型也不可以。</span></span><br><span class="line"><span class="comment">     * 如：public static void show(T t)&#123;..&#125;,此时编译器会提示错误信息：</span></span><br><span class="line"><span class="comment">          "StaticGenerator cannot be refrenced from static context"</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="泛型方法总结"><a href="#泛型方法总结" class="headerlink" title="泛型方法总结"></a>泛型方法总结</h3><p>泛型方法能使方法独立于类而产生变化，以下是一个基本的指导原则：</p>
-<blockquote>
-<p>无论何时，如果你能做到，你就该尽量使用泛型方法。也就是说，如果使用泛型方法将整个类泛型化，那么就应该使用泛型方法。另外对于一个static的方法而已，无法访问泛型类型的参数。所以如果static方法要使用泛型能力，就必须使其成为泛型方法</p>
-</blockquote>
-<h2 id="泛型中通配符"><a href="#泛型中通配符" class="headerlink" title="泛型中通配符"></a>泛型中通配符</h2><p>我们在定义泛型类，泛型方法，泛型接口的时候经常会碰见很多不同的通配符，比如 T，E，K，V 等等，这些通配符又都是什么意思呢？</p>
-<p>本质上这些个都是通配符，没啥区别，只不过是编码时的一种约定俗成的东西。比如上述代码中的 T ，我们可以换成 A-Z 之间的任何一个 字母都可以，并不会影响程序的正常运行，但是如果换成其他的字母代替 T ，在可读性上可能会弱一些。通常情况下，T，E，K，V，？是这样约定的：</p>
-<ul>
-<li>？表示不确定的 java 类型</li>
-<li>T (type) 表示具体的一个java类型</li>
-<li>K V (key value) 分别代表java键值中的Key Value</li>
-<li>E (element) 代表Element</li>
-</ul>
-<h3 id="？无界通配符"><a href="#？无界通配符" class="headerlink" title="？无界通配符"></a>？无界通配符</h3><p>先从一个小例子看起，我有一个父类 Animal 和几个子类，如狗、猫等，现在我需要一个动物的列表，我的第一个想法是像这样的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">List&lt;Animal&gt; listAnimals</span><br></pre></td></tr></table></figure>
-<p>但是老板的想法确实这样的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">List&lt;? extends Animal&gt; listAnimals</span><br></pre></td></tr></table></figure>
-<p>为什么要使用通配符而不是简单的泛型呢？通配符其实在声明局部变量时是没有什么意义的，但是当你为一个方法声明一个参数时，它是非常重要的。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countLegs</span> <span class="params">(List&lt;? extends Animal &gt; animals )</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> retVal = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> ( Animal animal : animals )</span><br><span class="line">    &#123;</span><br><span class="line">        retVal += animal.countLegs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> retVal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countLegs1</span> <span class="params">(List&lt; Animal &gt; animals )</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> retVal = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> ( Animal animal : animals )</span><br><span class="line">    &#123;</span><br><span class="line">        retVal += animal.countLegs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> retVal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Dog&gt; dogs = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     <span class="comment">// 不会报错</span></span><br><span class="line">    countLegs( dogs );</span><br><span class="line">    <span class="comment">// 报错</span></span><br><span class="line">    countLegs1(dogs);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当调用 countLegs1 时，就会报错。所以，对于不确定或者不关心实际要操作的类型，可以使用无限制通配符（尖括号里一个问号，即 <code>&lt;?&gt;</code>），表示可以持有任何类型。像 countLegs 方法中，限定了上届，但是不关心具体类型是什么，所以对于传入的 Animal 的所有子类都可以支持，并且不会报错。而 countLegs1 就不行。</p>
-<h3 id="上界通配符-lt-extends-E-gt"><a href="#上界通配符-lt-extends-E-gt" class="headerlink" title="上界通配符 &lt; ? extends E&gt;"></a>上界通配符 &lt; ? extends E&gt;</h3><blockquote>
-<p>上界：用 extends 关键字声明，表示参数化的类型可能是所指定的类型，或者是此类型的子类。</p>
-</blockquote>
-<p>在类型参数中使用 extends 表示这个泛型中的参数必须是 E 或者 E 的子类，这样有两个好处：</p>
-<ul>
-<li>如果传入的类型不是 E 或者 E 的子类，编译不成功</li>
-<li>泛型中可以使用 E 的方法，要不然还得强转成 E 才能使用</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private &lt;K extends A, E extends B&gt; E test(K arg1, E arg2)&#123;</span><br><span class="line">    E result = arg2;</span><br><span class="line">    arg2.compareTo(arg1);</span><br><span class="line">    //.....</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>类型参数列表中如果有多个类型参数上限，用逗号分开</p>
-<h3 id="下界通配符-lt-super-E-gt"><a href="#下界通配符-lt-super-E-gt" class="headerlink" title="下界通配符 &lt; ? super E&gt;"></a>下界通配符 &lt; ? super E&gt;</h3><blockquote>
-<p>下界: 用 super 进行声明，表示参数化的类型可能是所指定的类型，或者是此类型的父类型，直至 Object</p>
-</blockquote>
-<p>在类型参数中使用 super 表示这个泛型中的参数必须是 E 或者 E 的父类。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private &lt;T&gt; void test(List&lt;? super T&gt; dst, List&lt;T&gt; src)&#123;</span><br><span class="line">    for (T t : src) &#123;</span><br><span class="line">        dst.add(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    List&lt;Dog&gt; dogs = new ArrayList&lt;&gt;();</span><br><span class="line">    List&lt;Animal&gt; animals = new ArrayList&lt;&gt;();</span><br><span class="line">    new Test3().test(animals,dogs);</span><br><span class="line">&#125;</span><br><span class="line">// Dog 是 Animal 的子类</span><br><span class="line">class Dog extends Animal &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>dst 类型 “大于等于” src 的类型，这里的“大于等于”是指 dst 表示的范围比 src 要大，因此装得下 dst 的容器也就能装 src 。</p>
-<h3 id="？和-T-的区别"><a href="#？和-T-的区别" class="headerlink" title="？和 T 的区别"></a>？和 T 的区别</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//指定集合元素只能是T类型</span><br><span class="line">List&lt;T&gt; list =new ArrayList&lt;T&gt;();</span><br><span class="line"></span><br><span class="line">//集合元素可以是任意类型，这种没有意义，一般是方法中，只是为了说明用法</span><br><span class="line">List&lt;?&gt; list =new ArrayList&lt;?&gt;();</span><br></pre></td></tr></table></figure>
-<p>？和 T 都表示不确定的类型，区别在于我们可以对 T 进行操作，但是对 ？不行，比如如下这种 ：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 可以</span><br><span class="line">T t = operate();</span><br><span class="line"></span><br><span class="line">// 不可以</span><br><span class="line">?car = operate();</span><br></pre></td></tr></table></figure>
-<p>简单总结下：</p>
-<blockquote>
-<p>T 是一个 确定的 类型，通常用于泛型类和泛型方法的定义，？是一个 不确定 的类型，通常用于泛型方法的调用代码和形参，不能用于定义类和泛型方法。</p>
-</blockquote>
-<h4 id="区别1：通过-T-来-确保-泛型参数的一致性"><a href="#区别1：通过-T-来-确保-泛型参数的一致性" class="headerlink" title="区别1：通过 T 来 确保 泛型参数的一致性"></a>区别1：通过 T 来 确保 泛型参数的一致性</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 通过 T 来 确保 泛型参数的一致性</span><br><span class="line">public &lt;T extends Number&gt; void</span><br><span class="line">test(List&lt;T&gt; dest, List&lt;T&gt; src)</span><br><span class="line"></span><br><span class="line">//通配符是 不确定的，所以这个方法不能保证两个 List 具有相同的元素类型</span><br><span class="line">public void</span><br><span class="line">test(List&lt;? extends Number&gt; dest, List&lt;? extends Number&gt; src)</span><br></pre></td></tr></table></figure>
-<p>像下面的代码中，约定的 T 是 Number 的子类才可以，但是申明时是用的 String ，所以就会飘红报错。</p>
-<p>不能保证两个 List 具有相同的元素类型的情况</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GlmapperGeneric&lt;String&gt; glmapperGeneric = new GlmapperGeneric&lt;&gt;();</span><br><span class="line">List&lt;String&gt; dest = new ArrayList&lt;&gt;();</span><br><span class="line">List&lt;Number&gt; src = new ArrayList&lt;&gt;();</span><br><span class="line">glmapperGeneric.testNon(dest,src);</span><br></pre></td></tr></table></figure>
-<p>上面的代码在编译器并不会报错，但是当进入到 testNon 方法内部操作时（比如赋值），对于 dest 和 src 而言，就还是需要进行类型转换。</p>
-<h4 id="区别2：类型参数可以多重限定而通配符不行"><a href="#区别2：类型参数可以多重限定而通配符不行" class="headerlink" title="区别2：类型参数可以多重限定而通配符不行"></a>区别2：类型参数可以多重限定而通配符不行</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiLimit</span> <span class="keyword">implements</span> <span class="title">MultiLimitInterfaceA</span>,<span class="title">MultiLimitInterfaceB</span></span>&#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	* 使用 &amp; 符号设定多重边界</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span>&lt;T extends MultiLimitInterfaceA &amp; MultiLimitInterfaceB&gt; <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MultiLimitInterfaceA</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MulitLimitInterfaceB</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>使用 &amp; 符号设定多重边界（Multi Bounds)，指定泛型类型 T 必须是 MultiLimitInterfaceA 和 MultiLimitInterfaceB 的共有子类型，此时变量 t 就具有了所有限定的方法和属性。对于通配符来说，因为它不是一个确定的类型，所以不能进行多重限定。</p>
-<h4 id="区别3：通配符可以使用超类限定而类型参数不行"><a href="#区别3：通配符可以使用超类限定而类型参数不行" class="headerlink" title="区别3：通配符可以使用超类限定而类型参数不行"></a>区别3：通配符可以使用超类限定而类型参数不行</h4><p>类型参数 T 只具有 一种 类型限定方式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">T extends A</span><br></pre></td></tr></table></figure>
-<p>但是通配符 ? 可以进行 两种限定：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">? extends A</span><br><span class="line">? super A</span><br></pre></td></tr></table></figure>
-<h2 id="Class-lt-T-gt-和-Class-lt-gt-区别"><a href="#Class-lt-T-gt-和-Class-lt-gt-区别" class="headerlink" title="Class&lt; T &gt; 和 Class&lt; ? &gt; 区别"></a>Class&lt; T &gt; 和 Class&lt; ? &gt; 区别</h2><p>前面介绍了 ？和 T 的区别，那么对于，<code>Class&lt;T&gt;</code> 和 <code>&lt;Class&lt;?&gt;</code> 又有什么区别呢？</p>
-<p>最常见的是在反射场景下的使用，这里以用一段发射的代码来说明下。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 通过反射的方式生成  multiLimit </span><br><span class="line">// 对象，这里比较明显的是，我们需要使用强制类型转换</span><br><span class="line">MultiLimit multiLimit = (MultiLimit)</span><br><span class="line">Class.forName(&quot;com.glmapper.bridge.boot.generic.MultiLimit&quot;).newInstance();</span><br></pre></td></tr></table></figure>
-<p>对于上述代码，在运行期，如果反射的类型不是 MultiLimit 类，那么一定会报 java.lang.ClassCastException 错误。</p>
-<p>对于这种情况，则可以使用下面的代码来代替，使得在在编译期就能直接 检查到类型的问题：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Ttest3&#123;</span><br><span class="line">	public static &lt;T&gt; T createInstance(Class&lt;T&gt; clazz) throws Exception&#123;</span><br><span class="line">		return clazz.newInstance();</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		A a = createInstance(A.class);</span><br><span class="line">		B b = createInstance(B.class);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class A&#123;&#125;</span><br><span class="line">class B&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p><code>Class&lt;T&gt;</code> 在实例化的时候，T 要替换成具体类。<code>Class&lt;?&gt;</code> 它是个通配泛型，? 可以代表任何类型，所以主要用于声明时的限制情况。比如，我们可以这样做申明：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 可以</span><br><span class="line">public Class&lt;?&gt; clazz;</span><br><span class="line">// 不可以，因为 T 需要指定类型</span><br><span class="line">public Class&lt;T&gt; clazzT;</span><br></pre></td></tr></table></figure>
-<p>所以当不知道定声明什么类型的 Class 的时候可以定义一 个<code>Class&lt;?&gt;</code>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Test3 &#123;</span><br><span class="line">    public Class&lt;?&gt; clazz;</span><br><span class="line">    public Class&lt;T&gt; clazzT;</span><br></pre></td></tr></table></figure>
-<p>那如果也想 <code>public Class&lt;T&gt; clazzT;</code> 这样的话，就必须让当前的类也指定 T ，</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Test3&lt;T&gt; &#123;</span><br><span class="line">    public Class&lt;?&gt; clazz;</span><br><span class="line">    // 不会报错</span><br><span class="line">    public Class&lt;T&gt; clazzT;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -1081,6 +935,225 @@
       </categories>
       <tags>
         <tag>电视</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客部署到VPS</title>
+    <url>/2021/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0VPS/</url>
+    <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>网上流传的武功秘籍分为两种：</p>
+<ul>
+<li>将 Hexo 项目上传到 VPS 上面后执行 <code>hexo server</code>，之后配置 Nginx 反向代理，让域名指向 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000</a>。</li>
+<li>将 Hexo 在本地通过 <code>hexo generate</code> 生成静态文件，在通过 <code>hexo deploy</code> 部署到 VPS 上面，使用 Nginx 直接做 Web 服务器。</li>
+</ul>
+<p>相比第二种方式，第一种每次写博客与更新博客时候的操作会很繁琐。所以我们使用第二种方式进行部署，这样既可以将静态文件 deploy 到 VPS 上，也可以上传到 Github 上用作备份，操作性和安全性上都要胜于前者。</p>
+<p>而对于第二种方式而言，常用的又有 <code>git hook</code> 和 <code>rsync</code> 两种自动部署解决方案。</p>
+<p>本文主要介绍 <code>git hook</code> 部署过程，过程为：</p>
+<p>我们在本地编辑文本，然后使用 Git 远程部署到 VPS 的 Git 仓库。<code>hexo d</code> 命令实际上只 deploy 了本地的 public 文件夹，Git Hooks 实际上就是当 Git 仓库收到最新的 push 时，将 Git 仓库接受到的内容复制到 VPS 上的网站目录内。相当于完成了手动将 public 文件夹复制到 VPS 的网站根目录里。</p>
+<p>在vps上搭建hexo博客需要下面这些工具：</p>
+<ol>
+<li>Nginx: 用于博客展示</li>
+<li>SSH：用于Git 推送</li>
+<li>Git: 用于将生成的静态文件推送到vps上</li>
+</ol>
+<p>本文服务器环境为CentOS 7.6</p>
+<p>之前本地已经搭建好Hexo博客，之前是提交到Github进行更新</p>
+<h2 id="本地配置"><a href="#本地配置" class="headerlink" title="本地配置"></a>本地配置</h2><p>查看C:\Users\用户名\.ssh 下是否存在私钥文件<code>id_rsa</code>和公钥文件<code>id_rsa.pub</code></p>
+<p>如果没有，则需要通过<code>ssh-keygen -t rsa -C &quot;你的邮箱&quot;</code> 生成</p>
+<h2 id="VPS端配置"><a href="#VPS端配置" class="headerlink" title="VPS端配置"></a>VPS端配置</h2><h3 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h3><p>ssh连接到VPS后，执行如下指令进行Git的安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum update &amp;&amp; upgrade -y</span><br><span class="line">yum install epel-release</span><br><span class="line">yum install git-core</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum install nginx -y</span><br><span class="line">service nginx start  #启动nginx</span><br></pre></td></tr></table></figure>
+<p>如果开启了防火墙，还要在防火墙上开启响应端口，操作如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-service=http</span><br><span class="line">firewall-cmd --permanent --zone=public --add-service=https</span><br><span class="line">firewall-cmd --reload</span><br><span class="line"></span><br><span class="line">启动： systemctl start firewalld</span><br><span class="line">关闭： systemctl stop firewalld</span><br><span class="line">查看状态： systemctl status firewalld </span><br><span class="line">开机禁用 ： systemctl disable firewalld</span><br><span class="line">开机启用 ： systemctl enable firewalld</span><br></pre></td></tr></table></figure>
+<p>安装完Nginx后，最好设置Nginx为开机自启动，操作如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl enable nginx</span><br></pre></td></tr></table></figure>
+<h3 id="Git相关配置"><a href="#Git相关配置" class="headerlink" title="Git相关配置"></a>Git相关配置</h3><ol>
+<li>新建git用户，在终端输入如下指令以新建账户，专门用于提交git</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su root</span><br><span class="line">adduser git #创建新用户，名为git</span><br></pre></td></tr></table></figure>
+<p>接下来修改git账户的权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod 740 /etc/sudoers</span><br><span class="line">vi /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>在<code>root ALL=(ALL) ALL</code>下面新建一段字符：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git ALL=(ALL) install</span><br></pre></td></tr></table></figure>
+<p>接着保存退出，并执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod 440 /etc/sudoers</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建git仓库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su git                 # 操作转到git用户</span><br><span class="line">cd                     # 定位到Home目录</span><br><span class="line">mkdir .ssh &amp;&amp; cd .ssh  # 创建.ssh文件夹并进入</span><br><span class="line">vi authorized_keys     # 创建密钥文件</span><br></pre></td></tr></table></figure>
+<p>此时，将本地<code>id_rsa.pub</code>文件内的内容粘贴到新建的<code>authorized_keys</code>文件中。接下来执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd</span><br><span class="line">mkdir hexo.git &amp;&amp; cd hexo.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
+<p>此时，在本地终端中输入<code>ssh git@VPS_ip</code>查看收否能连接，如果提示要密码，则需要在VPS内设置一下git用户的密码，操作如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">passwd git</span><br></pre></td></tr></table></figure>
+<p>接着设置git用户的密码，并在本地终端中重新连接，输入密码，应该就可以连接了。</p>
+<p>如果部署时还是需要密码，则是authorized_keys 文件权限设置有问题，请查看博客里的另一篇文章 <a href="http://www.minmax.site/2021/03/25/authorized-keys不生效解决办法/" target="_blank" rel="noopener">authorized_keys不生效解决办法</a></p>
+<ol start="3">
+<li>接下来要创建网站的目录，并赋予权限</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su root</span><br><span class="line">cd /var/www</span><br><span class="line">mkdir hexo</span><br><span class="line">chown git:git -R /var/www/hexo</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>配置Git Hooks</li>
+</ol>
+<p>【注意】这一步在git用户下执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su git</span><br><span class="line">cd /home/git/hexo.git/hooks</span><br><span class="line">vi post-receive</span><br></pre></td></tr></table></figure>
+<p>输入如下内容后保存</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">GIT_REPO=/home/git/hexo.git       #git仓库路径</span><br><span class="line">TMP_GIT_CLONE=/tmp/hexo</span><br><span class="line">PUBLIC_WWW=/var/www/hexo          #hexo网站目录</span><br><span class="line">rm -rf $&#123;TMP_GIT_CLONE&#125;</span><br><span class="line">git clone $GIT_REPO $TMP_GIT_CLONE</span><br><span class="line">rm -rf $&#123;PUBLIC_WWW&#125;/*</span><br><span class="line">cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125;</span><br></pre></td></tr></table></figure>
+<p>接着赋予权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
+<h3 id="Nginx相关配置"><a href="#Nginx相关配置" class="headerlink" title="Nginx相关配置"></a>Nginx相关配置</h3><p>【注意】本操作在root用户下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">su root</span><br><span class="line">vim /etc/nginx/conf.d/hexo.conf</span><br></pre></td></tr></table></figure>
+<p>插入如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen  80 ;</span><br><span class="line">    root /var/www/hexo; //这里可以改成你的网站目录地址，我将网站放在/var/www/hexo</span><br><span class="line">    server_name example.com www.example.com;   //这里输入你的域名或IP地址</span><br><span class="line">    access_log  /var/log/nginx/hexo_access.log;</span><br><span class="line">    error_log   /var/log/nginx/hexo_error.log;</span><br><span class="line">    location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ &#123;</span><br><span class="line">            root /var/www/hexo;</span><br><span class="line">            access_log   off;</span><br><span class="line">            expires      1d;</span><br><span class="line">    &#125;</span><br><span class="line">    location ~* ^.+\.(css|js|txt|xml|swf|wav)$ &#123;</span><br><span class="line">        root /var/www/hexo;</span><br><span class="line">        access_log   off;</span><br><span class="line">        expires      10m;</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;</span><br><span class="line">        root /var/www/hexo;      //这里可以改成你的网站目录地址，我将网站放在/var/www/hexo</span><br><span class="line">        if (-f $request_filename) &#123;</span><br><span class="line">            rewrite ^/(.*)$  /$1 break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重启Nginx</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">service nginx restart</span><br></pre></td></tr></table></figure>
+<h2 id="本地Hexo配置修改"><a href="#本地Hexo配置修改" class="headerlink" title="本地Hexo配置修改"></a>本地Hexo配置修改</h2><p>在本地<code>hexo</code>博客文件下，编辑配置文件<code>\_config.yml</code>，修改<code>deploy</code>选项，可同时发布到github和vps</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  - type: git</span><br><span class="line">    repo: git@github.com:zhangyfzone/zhangyfzone.github.io.git  #gitHub上用作备份</span><br><span class="line">    branch: master</span><br><span class="line">  - type: git</span><br><span class="line">    repo: ssh://git@VPSIP:端口号/~/hexo.git   #部署到VPS上</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+<p>保存修改后，便可以使用<code>hexo g</code>,<code>hexo d</code>等指令进行博客更新了。</p>
+<h2 id="gitHub配置更改"><a href="#gitHub配置更改" class="headerlink" title="gitHub配置更改"></a>gitHub配置更改</h2><p>如果之前部署到github上时设置了域名，则再setting里把custom domain 之前设置的域名清除。</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>vps</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java泛型</title>
+    <url>/2021/java%E6%B3%9B%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>泛型在java中有很重要的地位，在面向对象编程及各种设计模式中有非常广泛的应用。</p>
+<p>什么是泛型？为什么要使用泛型？</p>
+<blockquote>
+<p><strong>泛型，即“参数化类型”。一提到参数，最熟悉的就是定义方法时有形参，然后调用此方法时传递实参。那么参数化类型怎么理解呢？顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。</strong></p>
+<p><strong>泛型的本质是为了参数化类型（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）</strong>。也就是说在泛型使用过程中，操作的数据类型被指定为一个参数，这种参数类型可以用在类、接口和方法中，分别被称为泛型类、泛型接口、泛型方法。</p>
+</blockquote>
+<h1 id="一个栗子"><a href="#一个栗子" class="headerlink" title="一个栗子"></a>一个栗子</h1><p>一个被举了无数次的例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List arrayList = <span class="keyword">new</span> ArrayList();</span><br><span class="line">arrayList.add(<span class="string">"aaaa"</span>);</span><br><span class="line">arrayList.add(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; arrayList.size();i++)&#123;</span><br><span class="line">    String item = (String)arrayList.get(i);</span><br><span class="line">    Log.d(<span class="string">"泛型测试"</span>,<span class="string">"item = "</span> + item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>毫无疑问，程序的运行结果会以崩溃结束：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String1</span><br></pre></td></tr></table></figure>
+<p>ArrayList可以存放任意类型，例子中添加了一个String类型，添加了一个Integer类型，再使用时都以String的方式使用，因此程序崩溃了。为了解决类似这样的问题（在编译阶段就可以解决），泛型应运而生。</p>
+<p>我们将第一行声明初始化list的代码更改一下，编译器会在编译阶段就能够帮我们发现类似这样的问题。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">...</span><br><span class="line"><span class="comment">//arrayList.add(100); 在编译阶段，编译器就会报错123</span></span><br></pre></td></tr></table></figure>
+<h1 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h1><p>泛型只在编译阶段有效。看下面的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; stringArrayList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">List&lt;Integer&gt; integerArrayList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line"></span><br><span class="line">Class classStringArrayList = stringArrayList.getClass();</span><br><span class="line">Class classIntegerArrayList = integerArrayList.getClass();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(classStringArrayList.equals(classIntegerArrayList))&#123;</span><br><span class="line">    Log.d(<span class="string">"泛型测试"</span>,<span class="string">"类型相同"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：<code>D/泛型测试: 类型相同</code>。</p>
+<p>通过上面的例子可以证明，在编译之后程序会采取去泛型化的措施。也就是说Java中的泛型，只在编译阶段有效。在编译过程中，正确检验泛型结果后，会将泛型的相关信息擦出，并且在对象进入和离开方法的边界处添加类型检查和类型转换的方法。也就是说，泛型信息不会进入到运行时阶段。</p>
+<p><strong>对此总结成一句话：泛型类型在逻辑上看以看成是多个不同的类型，实际上都是相同的基本类型。</strong></p>
+<h1 id="泛型的使用"><a href="#泛型的使用" class="headerlink" title="泛型的使用"></a>泛型的使用</h1><p>泛型有三种使用方式，分别为：泛型类、泛型接口、泛型方法</p>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><p>泛型类型用于类的定义中，被称为泛型类。通过泛型可以完成对一组类的操作对外开放相同的接口。最典型的就是各种容器类，如：List、Set、Map。</p>
+<p>泛型类的最基本写法（这么看可能会有点晕，会在下面的例子中详解）：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类名称 &lt;泛型标识：可以随便写任意标识号，标识指定的泛型的类型&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">private</span> 泛型标识 <span class="comment">/*（成员变量类型）*/</span> <span class="keyword">var</span>; </span><br><span class="line">  .....</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个最普通的泛型类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型</span></span><br><span class="line"><span class="comment">//在实例化泛型类时，必须指定T的具体类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Generic</span>&lt;<span class="title">T</span>&gt;</span>&#123; </span><br><span class="line">    <span class="comment">//key这个成员变量的类型为T,T的类型由外部指定  </span></span><br><span class="line">    <span class="keyword">private</span> T key;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Generic</span><span class="params">(T key)</span> </span>&#123; <span class="comment">//泛型构造方法形参key的类型也为T，T的类型由外部指定</span></span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getKey</span><span class="params">()</span></span>&#123; <span class="comment">//泛型方法getKey的返回值类型为T，T的类型由外部指定</span></span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//泛型的类型参数只能是类类型（包括自定义类），不能是简单类型</span></span><br><span class="line"><span class="comment">//传入的实参类型需与泛型的类型参数类型相同，即为Integer.</span></span><br><span class="line">Generic&lt;Integer&gt; genericInteger = <span class="keyword">new</span> Generic&lt;Integer&gt;(<span class="number">123456</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//传入的实参类型需与泛型的类型参数类型相同，即为String.</span></span><br><span class="line">Generic&lt;String&gt; genericString = <span class="keyword">new</span> Generic&lt;String&gt;(<span class="string">"key_vlaue"</span>);</span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + genericInteger.getKey());</span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + genericString.getKey());<span class="number">12345678</span></span><br><span class="line"><span class="number">12</span>-<span class="number">27</span> <span class="number">09</span>:<span class="number">20</span>:<span class="number">04.432</span> <span class="number">13063</span>-<span class="number">13063</span>/? D/泛型测试: key is <span class="number">123456</span></span><br><span class="line"><span class="number">12</span>-<span class="number">27</span> <span class="number">09</span>:<span class="number">20</span>:<span class="number">04.432</span> <span class="number">13063</span>-<span class="number">13063</span>/? D/泛型测试: key is key_vlaue12</span><br></pre></td></tr></table></figure>
+<p>定义的泛型类，就一定要传入泛型类型实参么？并不是这样，在使用泛型的时候如果传入泛型实参，则会根据传入的泛型实参做相应的限制，此时泛型才会起到本应起到的限制作用。如果不传入泛型类型实参的话，在泛型类中使用泛型的方法或成员变量定义的类型可以为任何的类型。</p>
+<p>看一个例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Generic generic = <span class="keyword">new</span> Generic(<span class="string">"111111"</span>);</span><br><span class="line">Generic generic1 = <span class="keyword">new</span> Generic(<span class="number">4444</span>);</span><br><span class="line">Generic generic2 = <span class="keyword">new</span> Generic(<span class="number">55.55</span>);</span><br><span class="line">Generic generic3 = <span class="keyword">new</span> Generic(<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + generic.getKey());</span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + generic1.getKey());</span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + generic2.getKey());</span><br><span class="line">Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key is "</span> + generic3.getKey());</span><br><span class="line">D/泛型测试: key is <span class="number">111111</span></span><br><span class="line">D/泛型测试: key is <span class="number">4444</span></span><br><span class="line">D/泛型测试: key is <span class="number">55.55</span></span><br><span class="line">D/泛型测试: key is false1234</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：</p>
+<ul>
+<li><ol>
+<li>泛型的类型参数只能是类类型，不能是简单类型。</li>
+</ol>
+</li>
+<li><ol>
+<li><p>不能对确切的泛型类型使用instanceof操作。如下面的操作是非法的，编译时会出错。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&gt;      <span class="keyword">if</span>(ex_num <span class="keyword">instanceof</span> Generic&lt;Number&gt;)&#123;   </span><br><span class="line">&gt;      &#125; <span class="number">12</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h2 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h2><p>泛型接口与泛型类的定义及使用基本相同。泛型接口常被用在各种类的生产器中，可以看一个例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义一个泛型接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Generator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当实现泛型接口的类，未传入泛型实参时：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 未传入泛型实参时，与泛型类的定义相同，在声明类的时候，需将泛型的声明也一起加到类中</span></span><br><span class="line"><span class="comment"> * 即：class FruitGenerator&lt;T&gt; implements Generator&lt;T&gt;&#123;</span></span><br><span class="line"><span class="comment"> * 如果不声明泛型，如：class FruitGenerator implements Generator&lt;T&gt;，编译器会报错："Unknown class"</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FruitGenerator</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Generator</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当实现泛型接口的类，传入泛型实参时：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 传入泛型实参时：</span></span><br><span class="line"><span class="comment"> * 定义一个生产器实现这个接口,虽然我们只创建了一个泛型接口Generator&lt;T&gt;</span></span><br><span class="line"><span class="comment"> * 但是我们可以为T传入无数个实参，形成无数种类型的Generator接口。</span></span><br><span class="line"><span class="comment"> * 在实现类实现泛型接口时，如已将泛型类型传入实参类型，则所有使用泛型的地方都要替换成传入的实参类型</span></span><br><span class="line"><span class="comment"> * 即：Generator&lt;T&gt;，public T next();中的的T都要替换成传入的String类型。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FruitGenerator</span> <span class="keyword">implements</span> <span class="title">Generator</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String[] fruits = <span class="keyword">new</span> String[]&#123;<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Pear"</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Random rand = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">return</span> fruits[rand.nextInt(<span class="number">3</span>)];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><p>在java中,泛型类的定义非常简单，但是泛型方法就比较复杂了。</p>
+<blockquote>
+<p>尤其是我们见到的大多数泛型类中的成员方法也都使用了泛型，有的甚至泛型类中也包含着泛型方法，这样在初学者中非常容易将泛型方法理解错了。</p>
+</blockquote>
+<p><strong>泛型类，是在实例化类的时候指明泛型的具体类型；泛型方法，是在调用方法的时候指明泛型的具体类型</strong> 。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 泛型方法的基本介绍</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> tClass 传入的泛型实参</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> T 返回值为T类型</span></span><br><span class="line"><span class="comment"> * 说明：</span></span><br><span class="line"><span class="comment"> *     1）public 与 返回值中间&lt;T&gt;非常重要，可以理解为声明此方法为泛型方法。</span></span><br><span class="line"><span class="comment"> *     2）只有声明了&lt;T&gt;的方法才是泛型方法，泛型类中的使用了泛型的成员方法并不是泛型方法。</span></span><br><span class="line"><span class="comment"> *     3）&lt;T&gt;表明该方法将使用泛型类型T，此时才可以在方法中使用泛型类型T。</span></span><br><span class="line"><span class="comment"> *     4）与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">genericMethod</span><span class="params">(Class&lt;T&gt; tClass)</span><span class="keyword">throws</span> InstantiationException ,</span></span><br><span class="line"><span class="function">  IllegalAccessException</span>&#123;</span><br><span class="line">        T instance = tClass.newInstance();</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br><span class="line">Object obj = genericMethod(Class.forName(<span class="string">"com.test.test"</span>));<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="泛型方法的基本用法"><a href="#泛型方法的基本用法" class="headerlink" title="泛型方法的基本用法"></a>泛型方法的基本用法</h3><p>光看上面的例子有的同学可能依然会非常迷糊，我们再通过一个例子，把我泛型方法再总结一下。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericTest</span> </span>&#123;</span><br><span class="line">   <span class="comment">//这个类是个泛型类，在上面已经介绍过</span></span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Generic</span>&lt;<span class="title">T</span>&gt;</span>&#123;     </span><br><span class="line">        <span class="keyword">private</span> T key;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Generic</span><span class="params">(T key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.key = key;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//我想说的其实是这个，虽然在方法中使用了泛型，但是这并不是一个泛型方法。</span></span><br><span class="line">        <span class="comment">//这只是类中一个普通的成员方法，只不过他的返回值是在声明泛型类已经声明过的泛型。</span></span><br><span class="line">        <span class="comment">//所以在这个方法中才可以继续使用 T 这个泛型。</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> T <span class="title">getKey</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> key;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 这个方法显然是有问题的，在编译器会给我们提示这样的错误信息"cannot reslove symbol E"</span></span><br><span class="line"><span class="comment">         * 因为在类的声明中并未声明泛型E，所以在使用E做形参和返回值类型时，编译器会无法识别。</span></span><br><span class="line"><span class="comment">        public E setKey(E key)&#123;</span></span><br><span class="line"><span class="comment">             this.key = keu</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 这才是一个真正的泛型方法。</span></span><br><span class="line"><span class="comment">     * 首先在public与返回值之间的&lt;T&gt;必不可少，这表明这是一个泛型方法，并且声明了一个泛型T</span></span><br><span class="line"><span class="comment">     * 这个T可以出现在这个泛型方法的任意位置.</span></span><br><span class="line"><span class="comment">     * 泛型的数量也可以为任意多个 </span></span><br><span class="line"><span class="comment">     *    如：public &lt;T,K&gt; K showKeyName(Generic&lt;T&gt; container)&#123;</span></span><br><span class="line"><span class="comment">     *        ...</span></span><br><span class="line"><span class="comment">     *        &#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">showKeyName</span><span class="params">(Generic&lt;T&gt; container)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"container key :"</span> + container.getKey());</span><br><span class="line">        <span class="comment">//当然这个例子举的不太合适，只是为了说明泛型方法的特性。</span></span><br><span class="line">        T test = container.getKey();</span><br><span class="line">        <span class="keyword">return</span> test;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这也不是一个泛型方法，这就是一个普通的方法，只是使用了Generic&lt;Number&gt;这个泛型类做形参而已。</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showKeyValue1</span><span class="params">(Generic&lt;Number&gt; obj)</span></span>&#123;</span><br><span class="line">        Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key value is "</span> + obj.getKey());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这也不是一个泛型方法，这也是一个普通的方法，只不过使用了泛型通配符?</span></span><br><span class="line">    <span class="comment">//同时这也印证了泛型通配符章节所描述的，?是一种类型实参，可以看做为Number等所有类的父类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showKeyValue2</span><span class="params">(Generic&lt;?&gt; obj)</span></span>&#123;</span><br><span class="line">        Log.d(<span class="string">"泛型测试"</span>,<span class="string">"key value is "</span> + obj.getKey());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 这个方法是有问题的，编译器会为我们提示错误信息："UnKnown class 'E' "</span></span><br><span class="line"><span class="comment">     * 虽然我们声明了&lt;T&gt;,也表明了这是一个可以处理泛型的类型的泛型方法。</span></span><br><span class="line"><span class="comment">     * 但是只声明了泛型类型T，并未声明泛型类型E，因此编译器并不知道该如何处理E这个类型。</span></span><br><span class="line"><span class="comment">    public &lt;T&gt; T showKeyName(Generic&lt;E&gt; container)&#123;</span></span><br><span class="line"><span class="comment">        ...</span></span><br><span class="line"><span class="comment">    &#125;  </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 这个方法也是有问题的，编译器会为我们提示错误信息："UnKnown class 'T' "</span></span><br><span class="line"><span class="comment">     * 对于编译器来说T这个类型并未项目中声明过，因此编译也不知道该如何编译这个类。</span></span><br><span class="line"><span class="comment">     * 所以这也不是一个正确的泛型方法声明。</span></span><br><span class="line"><span class="comment">    public void showkey(T genericObj)&#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="类中的泛型方法"><a href="#类中的泛型方法" class="headerlink" title="类中的泛型方法"></a>类中的泛型方法</h3><p>当然这并不是泛型方法的全部，泛型方法可以出现杂任何地方和任何场景中使用。但是有一种情况是非常特殊的，当泛型方法出现在泛型类中时，我们再通过一个例子看一下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericFruit</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Fruit</span></span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"fruit"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">extends</span> <span class="title">Fruit</span></span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"apple"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Person"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">GenerateTest</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show_1</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">            System.out.println(t.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//在泛型类中声明了一个泛型方法，使用泛型E，这种泛型E可以为任意类型。可以类型与T相同，也可以不同。</span></span><br><span class="line">        <span class="comment">//由于泛型方法在声明的时候会声明泛型&lt;E&gt;，因此即使在泛型类中并未声明泛型，编译器也能够正确识别泛型方法中识别的泛型。</span></span><br><span class="line">        <span class="keyword">public</span> &lt;E&gt; <span class="function"><span class="keyword">void</span> <span class="title">show_3</span><span class="params">(E t)</span></span>&#123;</span><br><span class="line">            System.out.println(t.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//在泛型类中声明了一个泛型方法，使用泛型T，注意这个T是一种全新的类型，可以与泛型类中声明的T不是同一种类型。</span></span><br><span class="line">        <span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">show_2</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">            System.out.println(t.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Apple apple = <span class="keyword">new</span> Apple();</span><br><span class="line">        Person person = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line">        GenerateTest&lt;Fruit&gt; generateTest = <span class="keyword">new</span> GenerateTest&lt;Fruit&gt;();</span><br><span class="line">        <span class="comment">//apple是Fruit的子类，所以这里可以</span></span><br><span class="line">        generateTest.show_1(apple);</span><br><span class="line">        <span class="comment">//编译器会报错，因为泛型类型实参指定的是Fruit，而传入的实参类是Person</span></span><br><span class="line">        <span class="comment">//generateTest.show_1(person);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//使用这两个方法都可以成功</span></span><br><span class="line">        generateTest.show_2(apple);</span><br><span class="line">        generateTest.show_2(person);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//使用这两个方法也都可以成功</span></span><br><span class="line">        generateTest.show_3(apple);</span><br><span class="line">        generateTest.show_3(person);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="泛型方法与可变参数"><a href="#泛型方法与可变参数" class="headerlink" title="泛型方法与可变参数"></a>泛型方法与可变参数</h3><p>再看一个泛型方法和可变参数的例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">printMsg</span><span class="params">( T... args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(T t : args)&#123;</span><br><span class="line">        Log.d(<span class="string">"泛型测试"</span>,<span class="string">"t is "</span> + t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">printMsg(<span class="string">"111"</span>,<span class="number">222</span>,<span class="string">"aaaa"</span>,<span class="string">"2323.4"</span>,<span class="number">55.55</span>);<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="静态方法与泛型"><a href="#静态方法与泛型" class="headerlink" title="静态方法与泛型"></a>静态方法与泛型</h3><p>静态方法有一种情况需要注意一下，那就是在类中的静态方法使用泛型：<strong>静态方法无法访问类上定义的泛型；如果静态方法操作的引用数据类型不确定的时候，必须要将泛型定义在方法上。</strong></p>
+<p>即：<strong>如果静态方法要使用泛型的话，必须将静态方法也定义成泛型方法</strong> 。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticGenerator</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    ....</span><br><span class="line">    ....</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 如果在类中定义使用泛型的静态方法，需要添加额外的泛型声明（将这个方法定义成泛型方法）</span></span><br><span class="line"><span class="comment">     * 即使静态方法要使用泛型类中已经声明过的泛型也不可以。</span></span><br><span class="line"><span class="comment">     * 如：public static void show(T t)&#123;..&#125;,此时编译器会提示错误信息：</span></span><br><span class="line"><span class="comment">          "StaticGenerator cannot be refrenced from static context"</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="泛型方法总结"><a href="#泛型方法总结" class="headerlink" title="泛型方法总结"></a>泛型方法总结</h3><p>泛型方法能使方法独立于类而产生变化，以下是一个基本的指导原则：</p>
+<blockquote>
+<p>无论何时，如果你能做到，你就该尽量使用泛型方法。也就是说，如果使用泛型方法将整个类泛型化，那么就应该使用泛型方法。另外对于一个static的方法而已，无法访问泛型类型的参数。所以如果static方法要使用泛型能力，就必须使其成为泛型方法</p>
+</blockquote>
+<h2 id="泛型中通配符"><a href="#泛型中通配符" class="headerlink" title="泛型中通配符"></a>泛型中通配符</h2><p>我们在定义泛型类，泛型方法，泛型接口的时候经常会碰见很多不同的通配符，比如 T，E，K，V 等等，这些通配符又都是什么意思呢？</p>
+<p>本质上这些个都是通配符，没啥区别，只不过是编码时的一种约定俗成的东西。比如上述代码中的 T ，我们可以换成 A-Z 之间的任何一个 字母都可以，并不会影响程序的正常运行，但是如果换成其他的字母代替 T ，在可读性上可能会弱一些。通常情况下，T，E，K，V，？是这样约定的：</p>
+<ul>
+<li>？表示不确定的 java 类型</li>
+<li>T (type) 表示具体的一个java类型</li>
+<li>K V (key value) 分别代表java键值中的Key Value</li>
+<li>E (element) 代表Element</li>
+</ul>
+<h3 id="？无界通配符"><a href="#？无界通配符" class="headerlink" title="？无界通配符"></a>？无界通配符</h3><p>先从一个小例子看起，我有一个父类 Animal 和几个子类，如狗、猫等，现在我需要一个动物的列表，我的第一个想法是像这样的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">List&lt;Animal&gt; listAnimals</span><br></pre></td></tr></table></figure>
+<p>但是老板的想法确实这样的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">List&lt;? extends Animal&gt; listAnimals</span><br></pre></td></tr></table></figure>
+<p>为什么要使用通配符而不是简单的泛型呢？通配符其实在声明局部变量时是没有什么意义的，但是当你为一个方法声明一个参数时，它是非常重要的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countLegs</span> <span class="params">(List&lt;? extends Animal &gt; animals )</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> retVal = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> ( Animal animal : animals )</span><br><span class="line">    &#123;</span><br><span class="line">        retVal += animal.countLegs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> retVal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countLegs1</span> <span class="params">(List&lt; Animal &gt; animals )</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> retVal = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> ( Animal animal : animals )</span><br><span class="line">    &#123;</span><br><span class="line">        retVal += animal.countLegs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> retVal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    List&lt;Dog&gt; dogs = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     <span class="comment">// 不会报错</span></span><br><span class="line">    countLegs( dogs );</span><br><span class="line">    <span class="comment">// 报错</span></span><br><span class="line">    countLegs1(dogs);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当调用 countLegs1 时，就会报错。所以，对于不确定或者不关心实际要操作的类型，可以使用无限制通配符（尖括号里一个问号，即 <code>&lt;?&gt;</code>），表示可以持有任何类型。像 countLegs 方法中，限定了上届，但是不关心具体类型是什么，所以对于传入的 Animal 的所有子类都可以支持，并且不会报错。而 countLegs1 就不行。</p>
+<h3 id="上界通配符-lt-extends-E-gt"><a href="#上界通配符-lt-extends-E-gt" class="headerlink" title="上界通配符 &lt; ? extends E&gt;"></a>上界通配符 &lt; ? extends E&gt;</h3><blockquote>
+<p>上界：用 extends 关键字声明，表示参数化的类型可能是所指定的类型，或者是此类型的子类。</p>
+</blockquote>
+<p>在类型参数中使用 extends 表示这个泛型中的参数必须是 E 或者 E 的子类，这样有两个好处：</p>
+<ul>
+<li>如果传入的类型不是 E 或者 E 的子类，编译不成功</li>
+<li>泛型中可以使用 E 的方法，要不然还得强转成 E 才能使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private &lt;K extends A, E extends B&gt; E test(K arg1, E arg2)&#123;</span><br><span class="line">    E result = arg2;</span><br><span class="line">    arg2.compareTo(arg1);</span><br><span class="line">    //.....</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类型参数列表中如果有多个类型参数上限，用逗号分开</p>
+<h3 id="下界通配符-lt-super-E-gt"><a href="#下界通配符-lt-super-E-gt" class="headerlink" title="下界通配符 &lt; ? super E&gt;"></a>下界通配符 &lt; ? super E&gt;</h3><blockquote>
+<p>下界: 用 super 进行声明，表示参数化的类型可能是所指定的类型，或者是此类型的父类型，直至 Object</p>
+</blockquote>
+<p>在类型参数中使用 super 表示这个泛型中的参数必须是 E 或者 E 的父类。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">private &lt;T&gt; void test(List&lt;? super T&gt; dst, List&lt;T&gt; src)&#123;</span><br><span class="line">    for (T t : src) &#123;</span><br><span class="line">        dst.add(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    List&lt;Dog&gt; dogs = new ArrayList&lt;&gt;();</span><br><span class="line">    List&lt;Animal&gt; animals = new ArrayList&lt;&gt;();</span><br><span class="line">    new Test3().test(animals,dogs);</span><br><span class="line">&#125;</span><br><span class="line">// Dog 是 Animal 的子类</span><br><span class="line">class Dog extends Animal &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>dst 类型 “大于等于” src 的类型，这里的“大于等于”是指 dst 表示的范围比 src 要大，因此装得下 dst 的容器也就能装 src 。</p>
+<h3 id="？和-T-的区别"><a href="#？和-T-的区别" class="headerlink" title="？和 T 的区别"></a>？和 T 的区别</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//指定集合元素只能是T类型</span><br><span class="line">List&lt;T&gt; list =new ArrayList&lt;T&gt;();</span><br><span class="line"></span><br><span class="line">//集合元素可以是任意类型，这种没有意义，一般是方法中，只是为了说明用法</span><br><span class="line">List&lt;?&gt; list =new ArrayList&lt;?&gt;();</span><br></pre></td></tr></table></figure>
+<p>？和 T 都表示不确定的类型，区别在于我们可以对 T 进行操作，但是对 ？不行，比如如下这种 ：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 可以</span><br><span class="line">T t = operate();</span><br><span class="line"></span><br><span class="line">// 不可以</span><br><span class="line">?car = operate();</span><br></pre></td></tr></table></figure>
+<p>简单总结下：</p>
+<blockquote>
+<p>T 是一个 确定的 类型，通常用于泛型类和泛型方法的定义，？是一个 不确定 的类型，通常用于泛型方法的调用代码和形参，不能用于定义类和泛型方法。</p>
+</blockquote>
+<h4 id="区别1：通过-T-来-确保-泛型参数的一致性"><a href="#区别1：通过-T-来-确保-泛型参数的一致性" class="headerlink" title="区别1：通过 T 来 确保 泛型参数的一致性"></a>区别1：通过 T 来 确保 泛型参数的一致性</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 通过 T 来 确保 泛型参数的一致性</span><br><span class="line">public &lt;T extends Number&gt; void</span><br><span class="line">test(List&lt;T&gt; dest, List&lt;T&gt; src)</span><br><span class="line"></span><br><span class="line">//通配符是 不确定的，所以这个方法不能保证两个 List 具有相同的元素类型</span><br><span class="line">public void</span><br><span class="line">test(List&lt;? extends Number&gt; dest, List&lt;? extends Number&gt; src)</span><br></pre></td></tr></table></figure>
+<p>像下面的代码中，约定的 T 是 Number 的子类才可以，但是申明时是用的 String ，所以就会飘红报错。</p>
+<p>不能保证两个 List 具有相同的元素类型的情况</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GlmapperGeneric&lt;String&gt; glmapperGeneric = new GlmapperGeneric&lt;&gt;();</span><br><span class="line">List&lt;String&gt; dest = new ArrayList&lt;&gt;();</span><br><span class="line">List&lt;Number&gt; src = new ArrayList&lt;&gt;();</span><br><span class="line">glmapperGeneric.testNon(dest,src);</span><br></pre></td></tr></table></figure>
+<p>上面的代码在编译器并不会报错，但是当进入到 testNon 方法内部操作时（比如赋值），对于 dest 和 src 而言，就还是需要进行类型转换。</p>
+<h4 id="区别2：类型参数可以多重限定而通配符不行"><a href="#区别2：类型参数可以多重限定而通配符不行" class="headerlink" title="区别2：类型参数可以多重限定而通配符不行"></a>区别2：类型参数可以多重限定而通配符不行</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiLimit</span> <span class="keyword">implements</span> <span class="title">MultiLimitInterfaceA</span>,<span class="title">MultiLimitInterfaceB</span></span>&#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	* 使用 &amp; 符号设定多重边界</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span>&lt;T extends MultiLimitInterfaceA &amp; MultiLimitInterfaceB&gt; <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MultiLimitInterfaceA</span></span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MulitLimitInterfaceB</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 &amp; 符号设定多重边界（Multi Bounds)，指定泛型类型 T 必须是 MultiLimitInterfaceA 和 MultiLimitInterfaceB 的共有子类型，此时变量 t 就具有了所有限定的方法和属性。对于通配符来说，因为它不是一个确定的类型，所以不能进行多重限定。</p>
+<h4 id="区别3：通配符可以使用超类限定而类型参数不行"><a href="#区别3：通配符可以使用超类限定而类型参数不行" class="headerlink" title="区别3：通配符可以使用超类限定而类型参数不行"></a>区别3：通配符可以使用超类限定而类型参数不行</h4><p>类型参数 T 只具有 一种 类型限定方式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">T extends A</span><br></pre></td></tr></table></figure>
+<p>但是通配符 ? 可以进行 两种限定：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">? extends A</span><br><span class="line">? super A</span><br></pre></td></tr></table></figure>
+<h2 id="Class-lt-T-gt-和-Class-lt-gt-区别"><a href="#Class-lt-T-gt-和-Class-lt-gt-区别" class="headerlink" title="Class&lt; T &gt; 和 Class&lt; ? &gt; 区别"></a>Class&lt; T &gt; 和 Class&lt; ? &gt; 区别</h2><p>前面介绍了 ？和 T 的区别，那么对于，<code>Class&lt;T&gt;</code> 和 <code>&lt;Class&lt;?&gt;</code> 又有什么区别呢？</p>
+<p>最常见的是在反射场景下的使用，这里以用一段发射的代码来说明下。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 通过反射的方式生成  multiLimit </span><br><span class="line">// 对象，这里比较明显的是，我们需要使用强制类型转换</span><br><span class="line">MultiLimit multiLimit = (MultiLimit)</span><br><span class="line">Class.forName(&quot;com.glmapper.bridge.boot.generic.MultiLimit&quot;).newInstance();</span><br></pre></td></tr></table></figure>
+<p>对于上述代码，在运行期，如果反射的类型不是 MultiLimit 类，那么一定会报 java.lang.ClassCastException 错误。</p>
+<p>对于这种情况，则可以使用下面的代码来代替，使得在在编译期就能直接 检查到类型的问题：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Ttest3&#123;</span><br><span class="line">	public static &lt;T&gt; T createInstance(Class&lt;T&gt; clazz) throws Exception&#123;</span><br><span class="line">		return clazz.newInstance();</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) throws Exception&#123;</span><br><span class="line">		A a = createInstance(A.class);</span><br><span class="line">		B b = createInstance(B.class);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class A&#123;&#125;</span><br><span class="line">class B&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Class&lt;T&gt;</code> 在实例化的时候，T 要替换成具体类。<code>Class&lt;?&gt;</code> 它是个通配泛型，? 可以代表任何类型，所以主要用于声明时的限制情况。比如，我们可以这样做申明：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 可以</span><br><span class="line">public Class&lt;?&gt; clazz;</span><br><span class="line">// 不可以，因为 T 需要指定类型</span><br><span class="line">public Class&lt;T&gt; clazzT;</span><br></pre></td></tr></table></figure>
+<p>所以当不知道定声明什么类型的 Class 的时候可以定义一 个<code>Class&lt;?&gt;</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Test3 &#123;</span><br><span class="line">    public Class&lt;?&gt; clazz;</span><br><span class="line">    public Class&lt;T&gt; clazzT;</span><br></pre></td></tr></table></figure>
+<p>那如果也想 <code>public Class&lt;T&gt; clazzT;</code> 这样的话，就必须让当前的类也指定 T ，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Test3&lt;T&gt; &#123;</span><br><span class="line">    public Class&lt;?&gt; clazz;</span><br><span class="line">    // 不会报错</span><br><span class="line">    public Class&lt;T&gt; clazzT;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
 </search>
