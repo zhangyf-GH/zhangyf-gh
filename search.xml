@@ -506,6 +506,55 @@
       </tags>
   </entry>
   <entry>
+    <title>WOL-远程唤醒-ARP绑定</title>
+    <url>/2021/WOL-%E8%BF%9C%E7%A8%8B%E5%94%A4%E9%86%92-ARP%E7%BB%91%E5%AE%9A/</url>
+    <content><![CDATA[<p>如果路由器具有公网IP，可以不需要VPS转发WOL数据包，直接在外网连接路由器发送WOL数据包，进行远程唤醒。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li><p>域名设置DDNS  <strong>aaa.com -&gt; 路由器公网IP</strong></p>
+</li>
+<li><p>windows系统设置了允许WOL的配置，可参考以前文章。</p>
+</li>
+<li><p>路由器设置了端口转发，如下：</p>
+<p>外部9000端口转发到192.168.50.100的9号端口；外部9001端口转发到192.168.50.123的9号端口</p>
+</li>
+</ol>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/dkzf.png" alt="dkzf"></p>
+<ol start="4">
+<li>路由器设置IP和mac地址绑定，<strong>内网wol可以不设置地址绑定, 外网wol必须设置地址绑定</strong>，如下：</li>
+</ol>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/bd.png" alt="bd"></p>
+<p>数据流转：<br>   外网WOL：唤醒端在外网9000号端口发起请求-&gt;路由器端口映射-&gt;192.168.50.100:9 -&gt;查询绑定的mac地址的机器，然后启动。<strong>和frp远程访问不同（frpc配置广播地址，不需要设置端口转发）</strong></p>
+<p>   内网WOL：使用广播地址192.168.50.255 和mac地址进行广播，找到mac地址相同的进行启动。frp原理和此相同。</p>
+<p>遇到问题是，不能每次都唤醒，所以需要ARP绑定。</p>
+<h2 id="何为-ARP-绑定"><a href="#何为-ARP-绑定" class="headerlink" title="何为 ARP 绑定"></a>何为 ARP 绑定</h2><p>华硕路由器居然连 ARP 绑定功能都没有。这里要区别一下，在客户端列表中开启 <code>MAC地址与IP绑定</code> 其实仅仅是 DHCP 绑定，它可以保证每次给相同设备总是分配同一个 IP 地址，但<strong>前提是设备必须请求IP！</strong></p>
+<p>我们知道路由器内部会维护一个 ARP 表，记录 IP 与 MAC 的关系，每当设备请求 IP 时便会被记录，其超时时间因具体设置而不同。因此当设备长时间不在线（比如关机）时吗，ARP 记录就会失效，从而无法再通过 IP 给此设备发送数据。</p>
+<p>有一个典型需求：PC需要 WOL 网络唤醒。因此我们要进行 <strong>ARP 绑定</strong>，与 DHCP 绑定不同，ARP 绑定相当于把 IP 对应关系写死在表里，无论设备是否在线。</p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>ssh 或 telnet 登录路由器，执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arp -s [IP] [MAC]</span><br></pre></td></tr></table></figure>
+<p>就搞定了。</p>
+<p>但是这样每次重启都会失效，我们需要通过自启脚本来手动添加 ARP 项，因此官方固件是不行的，先刷梅林，使用putty连接到路由器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /jffs/scripts/ <span class="comment"># 进入脚本目录</span></span><br><span class="line">vi services-start <span class="comment"># 打开编辑器（你也可以用其他编辑器）</span></span><br></pre></td></tr></table></figure>
+<p>将文件内容改为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">arp -s [IP] [MAC]</span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+<p>保存，最后给予执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+rx /jffs/scripts/*</span><br></pre></td></tr></table></figure>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>验证ARP绑定无误也非常简单，上面步骤做完以后，重启一下路由器，putty连接路由器，直接输入<code>arp</code> 查看 ARP 表，对应项目如果标识有 <code>[PERM]</code> 就是已经绑定了。</p>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_12-57-38.png" alt="Snipaste_2021-04-06_12-57-38"></p>
+<p>应该可以通过域名从互联网开机了。</p>
+<h2 id="唤醒端配置"><a href="#唤醒端配置" class="headerlink" title="唤醒端配置"></a>唤醒端配置</h2><p>手机下载WOL软件，PC和NAS唤醒配置如下：</p>
+<p> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-37-08.png" alt="Snipaste_2021-04-06_11-37-08"><br> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-36-52.png" alt="Snipaste_2021-04-06_11-36-52"></p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>WOL</category>
+      </categories>
+      <tags>
+        <tag>WOL</tag>
+        <tag>ARP</tag>
+        <tag>端口转发</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>WOL-远程唤醒-FRP</title>
     <url>/2021/WOL-%E8%BF%9C%E7%A8%8B%E5%94%A4%E9%86%92-FRP/</url>
     <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
@@ -571,55 +620,6 @@
         <tag>内网穿透</tag>
         <tag>frp</tag>
         <tag>WOL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WOL-远程唤醒-ARP绑定</title>
-    <url>/2021/WOL-%E8%BF%9C%E7%A8%8B%E5%94%A4%E9%86%92-ARP%E7%BB%91%E5%AE%9A/</url>
-    <content><![CDATA[<p>如果路由器具有公网IP，可以不需要VPS转发WOL数据包，直接在外网连接路由器发送WOL数据包，进行远程唤醒。</p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
-<li><p>域名设置DDNS  <strong>aaa.com -&gt; 路由器公网IP</strong></p>
-</li>
-<li><p>windows系统设置了允许WOL的配置，可参考以前文章。</p>
-</li>
-<li><p>路由器设置了端口转发，如下：</p>
-<p>外部9000端口转发到192.168.50.100的9号端口；外部9001端口转发到192.168.50.123的9号端口</p>
-</li>
-</ol>
-<p><img src="/2021/WOL-远程唤醒-ARP绑定/dkzf.png" alt="dkzf"></p>
-<ol start="4">
-<li>路由器设置IP和mac地址绑定，<strong>内网wol可以不设置地址绑定, 外网wol必须设置地址绑定</strong>，如下：</li>
-</ol>
-<p><img src="/2021/WOL-远程唤醒-ARP绑定/bd.png" alt="bd"></p>
-<p>数据流转：<br>   外网WOL：唤醒端在外网9000号端口发起请求-&gt;路由器端口映射-&gt;192.168.50.100:9 -&gt;查询绑定的mac地址的机器，然后启动。<strong>和frp远程访问不同（frpc配置广播地址，不需要设置端口转发）</strong></p>
-<p>   内网WOL：使用广播地址192.168.50.255 和mac地址进行广播，找到mac地址相同的进行启动。frp原理和此相同。</p>
-<p>遇到问题是，不能每次都唤醒，所以需要ARP绑定。</p>
-<h2 id="何为-ARP-绑定"><a href="#何为-ARP-绑定" class="headerlink" title="何为 ARP 绑定"></a>何为 ARP 绑定</h2><p>华硕路由器居然连 ARP 绑定功能都没有。这里要区别一下，在客户端列表中开启 <code>MAC地址与IP绑定</code> 其实仅仅是 DHCP 绑定，它可以保证每次给相同设备总是分配同一个 IP 地址，但<strong>前提是设备必须请求IP！</strong></p>
-<p>我们知道路由器内部会维护一个 ARP 表，记录 IP 与 MAC 的关系，每当设备请求 IP 时便会被记录，其超时时间因具体设置而不同。因此当设备长时间不在线（比如关机）时吗，ARP 记录就会失效，从而无法再通过 IP 给此设备发送数据。</p>
-<p>有一个典型需求：PC需要 WOL 网络唤醒。因此我们要进行 <strong>ARP 绑定</strong>，与 DHCP 绑定不同，ARP 绑定相当于把 IP 对应关系写死在表里，无论设备是否在线。</p>
-<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>ssh 或 telnet 登录路由器，执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arp -s [IP] [MAC]</span><br></pre></td></tr></table></figure>
-<p>就搞定了。</p>
-<p>但是这样每次重启都会失效，我们需要通过自启脚本来手动添加 ARP 项，因此官方固件是不行的，先刷梅林，使用putty连接到路由器。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /jffs/scripts/ <span class="comment"># 进入脚本目录</span></span><br><span class="line">vi services-start <span class="comment"># 打开编辑器（你也可以用其他编辑器）</span></span><br></pre></td></tr></table></figure>
-<p>将文件内容改为：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">arp -s [IP] [MAC]</span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
-<p>保存，最后给予执行权限：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+rx /jffs/scripts/*</span><br></pre></td></tr></table></figure>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>验证ARP绑定无误也非常简单，上面步骤做完以后，重启一下路由器，putty连接路由器，直接输入<code>arp</code> 查看 ARP 表，对应项目如果标识有 <code>[PERM]</code> 就是已经绑定了。</p>
-<p><img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_12-57-38.png" alt="Snipaste_2021-04-06_12-57-38"></p>
-<p>应该可以通过域名从互联网开机了。</p>
-<h2 id="唤醒端配置"><a href="#唤醒端配置" class="headerlink" title="唤醒端配置"></a>唤醒端配置</h2><p>手机下载WOL软件，PC和NAS唤醒配置如下：</p>
-<p> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-37-08.png" alt="Snipaste_2021-04-06_11-37-08"><br> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-36-52.png" alt="Snipaste_2021-04-06_11-36-52"></p>
-]]></content>
-      <categories>
-        <category>network</category>
-        <category>WOL</category>
-      </categories>
-      <tags>
-        <tag>WOL</tag>
-        <tag>ARP</tag>
-        <tag>端口转发</tag>
       </tags>
   </entry>
   <entry>
@@ -1327,6 +1327,38 @@
       </categories>
       <tags>
         <tag>network</tag>
+        <tag>NAS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>路由器端口转发访问NAS</title>
+    <url>/2021/%E8%B7%AF%E7%94%B1%E5%99%A8%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E8%AE%BF%E9%97%AENAS/</url>
+    <content><![CDATA[<p>如果<strong>路由器具有公网IP</strong>，则访问家里的NAS时，不需要通过VPS进行转发，直接在路由器中设置端口转发即可。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li><p>路由器具有公网IP</p>
+</li>
+<li><p>申请一个域名例如aaa.com，并设置了解析 aaa.com -&gt; 路由器公网IP</p>
+</li>
+</ol>
+<h2 id="设置端口转发"><a href="#设置端口转发" class="headerlink" title="设置端口转发"></a>设置端口转发</h2><p>以华硕AC86U为例，开启端口转发的设置为：</p>
+<p><img src="/2021/路由器端口转发访问NAS/Snipaste_2021-04-06_21-50-25.png" alt="Snipaste_2021-04-06_21-50-25"></p>
+<h2 id="设置DDNS"><a href="#设置DDNS" class="headerlink" title="设置DDNS"></a>设置DDNS</h2><p>路由器的外网动态IP是不断变化的，所以域名解析设置也需要同步更新，使用DDNS服务，可以在路由器公网IP变化时，自动同步域名解析的配置，我们就可以只记住一个域名就可以访问NAS的服务。</p>
+<p>以华硕ac86u为例，在软件中心安装<strong>Aliddns</strong>插件，设置如下图：</p>
+<p><img src="/2021/路由器端口转发访问NAS/Snipaste_2021-04-06_21-57-55.png" alt="Snipaste_2021-04-06_21-57-55"></p>
+<h2 id="访问地址"><a href="#访问地址" class="headerlink" title="访问地址"></a>访问地址</h2><p>DS file、DS finder、DS audio 官方使用5000端口 ， DS photo官方使用80端口</p>
+<p>运营商封锁了aaa.com域名的80、443端口，所以不能访问aaa.com的80和443端口，不需要在端口转发中设置这两个端口的配置。</p>
+<p>web端访问管理界面 <a href="http://aaa.com:5000/" target="_blank" rel="noopener">http://aaa.com:5000</a> 端口号不能省略</p>
+<p>移动端APP填入以下地址：</p>
+<p>ds file aaa.com:5000                :5000能省略，省略的话，APP可能默认使用5000端口<br>ds audio aaa.com:5000           :5000能省略，省略的话，APP可能默认使用5000端口<br>ds photo aaa.com:8008           :8008不能省略，省略的话，APP可能默认使用80端口<br>android drive aaa.com:5000   :5000能省略，省略的话，APP可能默认使用5000端口</p>
+<p>windows drive   aaa.com:6690   不能省略端口</p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>NAS</category>
+      </categories>
+      <tags>
+        <tag>路由器</tag>
+        <tag>端口转发</tag>
         <tag>NAS</tag>
       </tags>
   </entry>
