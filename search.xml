@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AC86U创建虚拟内存U盘读写速度不够</title>
+    <url>/2021/AC86U%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98U%E7%9B%98%E8%AF%BB%E5%86%99%E9%80%9F%E5%BA%A6%E4%B8%8D%E5%A4%9F/</url>
+    <content><![CDATA[<h4 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h4><p><code>AC86U</code> 升级固件后挂载虚拟内存总是提示读写速度不够，新固件的读取速度要求 <code>20M/s</code>，写入速度要求 <code>30M/s</code><br><img src="/2021/AC86U创建虚拟内存U盘读写速度不够/20210106091033.png" alt="img"></p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>修改参数限制</p>
+<p><code>ssh</code> 登录到路由器，执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 修改写入速度限制，30替换为10</span><br><span class="line">sed -i &apos;s/^W_LIMIT=30/W_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br><span class="line"></span><br><span class="line"># 修改读取速度限制，20替换为10</span><br><span class="line">sed -i &apos;s/^R_LIMIT=20/R_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br></pre></td></tr></table></figure>
+<p>以上参数可以根据自己的实际情况进行调整</p>
+<p>完成后重新进入管理界面挂载虚拟内存即可</p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>路由器</category>
+      </categories>
+      <tags>
+        <tag>network</tag>
+        <tag>路由器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DNF-包管理器</title>
+    <url>/2020/DNF-%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/</url>
+    <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>DNF(Dandified Yum)是新一代的RPM软件包管理器。<br>DNF包管理器克服了YUM包管理器的一些瓶颈，提升了包括用户体验，内存占用，依赖分析，运行速度等多方面的内容。</p>
+<h3 id="安装DNF"><a href="#安装DNF" class="headerlink" title="安装DNF"></a>安装DNF</h3><p>DNF并未默认安装在RHEL或CentOS7系统中，但可以在使用YUM的同时使用DNF。</p>
+<ol>
+<li>安装epel-release依赖：<code>yum install epel-release</code> 或者 <code>yum install epel-release -y</code></li>
+<li>安装DNF包：<code>yum install dnf</code> 或者 <code>yum install dnf -y</code></li>
+</ol>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>/etc/dnf/dnf.conf</p>
+<h3 id="代理设置"><a href="#代理设置" class="headerlink" title="代理设置"></a>代理设置</h3><p>Add the following settings in [main] section of /etc/dnf/dnf.conf, and save the file.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">proxy=http://&lt;ip address&gt;:&lt;port&gt;</span><br><span class="line">proxy_username=&lt;username&gt;</span><br><span class="line">proxy_password=&lt;password&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="DNF命令"><a href="#DNF命令" class="headerlink" title="DNF命令"></a>DNF命令</h3><p>与YUM基本保持一致，少数用法有区别。<br><a href="http://man.linuxde.net/dnf" target="_blank" rel="noopener">常用dnf命令</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">##### 版本</span></span><br><span class="line">dnf –version  <span class="comment"># 查看DNF包管理器版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 帮助</span></span><br><span class="line">dnf <span class="built_in">help</span>  <span class="comment"># 查看所有的DNF命令及其用途</span></span><br><span class="line">dnf <span class="built_in">help</span> &lt;<span class="built_in">command</span>&gt;  <span class="comment"># 获取命令的使用帮助</span></span><br><span class="line">dnf <span class="built_in">history</span>  <span class="comment"># 查看 DNF 命令的执行历史</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 信息查看</span></span><br><span class="line">dnf repolist  <span class="comment"># 查看系统中可用的DNF软件库</span></span><br><span class="line">dnf search &lt;package&gt;  <span class="comment"># 搜索软件库中的RPM包</span></span><br><span class="line"></span><br><span class="line">dnf list installed  <span class="comment"># 列出所有安装的RPM包</span></span><br><span class="line">dnf list available  <span class="comment"># 列出所有可安装的RPM包</span></span><br><span class="line">dnf info &lt;package&gt;  <span class="comment"># 查看软件包详情</span></span><br><span class="line"></span><br><span class="line">dnf provides &lt;file&gt;  <span class="comment"># 查找某一文件的提供者</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 软件包操作</span></span><br><span class="line">dnf install &lt;package&gt;  <span class="comment"># 安装软件包及其所需的所有依赖</span></span><br><span class="line">dnf update &lt;package&gt;  <span class="comment"># 升级软件包</span></span><br><span class="line">dnf remove &lt;package&gt;  <span class="comment"># 删除软件包</span></span><br><span class="line">dnf reinstall &lt;package&gt;  <span class="comment"># 重新安装特定软件包</span></span><br><span class="line">dnf distro-sync  <span class="comment"># 更新软件包到最新的稳定发行版</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 系统软件包</span></span><br><span class="line">dnf check-update  <span class="comment"># 检查系统所有软件包的更新</span></span><br><span class="line">dnf update  <span class="comment"># 升级所有系统软件包</span></span><br><span class="line">dnf clean all  <span class="comment"># 删除缓存的无用软件包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 组</span></span><br><span class="line">dnf grouplist</span><br><span class="line">dnf groupinstall <span class="string">'xxx'</span></span><br><span class="line">dnf groupupdate <span class="string">'xxx'</span></span><br><span class="line">dnf groupremove</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Centos</tag>
+        <tag>DNF</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>FRP内网穿透</title>
     <url>/2021/FRP%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</url>
     <content><![CDATA[<p>NAS没有公网IP是一件很不方便的事情，尤其是在国内的网络环境，学校和小区内的用户通常都没有公网IP。为了解决这个问题，则需要内网穿透，而内网穿透的方法主要有两种：</p>
@@ -94,84 +136,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo+GitPages搭建博客</title>
-    <url>/2021/Hexo-GitPages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><p>假设：邮箱：<a href="mailto:aaa@163.com" target="_blank" rel="noopener">aaa@163.com</a>  </p>
-<p>​            名字: aaa</p>
-<p>1.到官网下载git安装包后安装</p>
-<p>2.在Windows系统安装git后，配置SSH key </p>
-<p>用git bash执行如下命令： windows中在C:\Users\zhangyf.ssh目录</p>
-<p><code>$ cd ~/. ssh #检查本机已存在的ssh密钥</code></p>
-<p>如果提示：No such file or directory 说明你是第一次使用git。</p>
-<p><code>ssh-keygen -t rsa -C &quot;aaa@163.com&quot;</code></p>
-<p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到.ssh\id_rsa.pub文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：</p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image002.png" alt="img"></p>
-<p>将刚复制的内容粘贴到key那里，title随便填，保存。</p>
-<p>3.测试是否成功</p>
-<p>$ ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> # 注意邮箱地址不用改</p>
-<p>如果提示Are you sure you want to continue connecting (yes/no)?，输入yes，然后会看到：</p>
-<p>Hi liuxianan! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
-<p>看到这个信息说明SSH已配置成功！</p>
-<p>此时你还需要配置：</p>
-<p><code>git config --global user.email &quot;aaa@163.com&quot;</code></p>
-<p><code>git config --global user.name &quot;aaa&quot;</code></p>
-<h2 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h2><p>在node.js官网下载安装包安装即可</p>
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>首先在本地磁盘中建立一个Hexo文件夹用于存储本地文件(做本地文件保存以及测试使用)</p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image004.jpg" alt="img"></p>
-<p>然后在文件夹中右击打开git命令框(我第一次直接在桌面右击，所以命令行无效果)</p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image006.jpg" alt="img"></p>
-<p>在git命令框中安装hexo命令行工具 ，执行 <code>npm install -g hexo-cli</code> </p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image008.jpg" alt="img"></p>
-<p> 初始化 ，执行<code>hexo init zyfblog</code> 加上zyfblog，则全部文件都在zyfblog下</p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image010.jpg" alt="img"></p>
-<p>执行<code>cd zyfblog</code> 进入zyfblog目录</p>
-<p>启动服务，依次执行</p>
-<p><code>(npm install --&gt;hexo server)</code></p>
-<p>浏览器输入<a href="http://localhost:4000,按理来说应该会出现本地访问页面" target="_blank" rel="noopener">http://localhost:4000,按理来说应该会出现本地访问页面</a></p>
-<h2 id="部署到GItPages"><a href="#部署到GItPages" class="headerlink" title="部署到GItPages"></a>部署到GItPages</h2><h3 id="在github上面创建项目"><a href="#在github上面创建项目" class="headerlink" title="在github上面创建项目"></a>在github上面创建项目</h3><p>假设:Owner为: zhangyfzone </p>
-<p>​         <strong>Repository name必须为: zhangyfzone.github.io</strong></p>
-<p>​         申请的域名：minmax.site</p>
-<p><img src="/2021/Hexo-GitPages搭建博客/image-20210330094423950.png" alt="image-20210330094423950"></p>
-<h3 id="DNS设置"><a href="#DNS设置" class="headerlink" title="DNS设置"></a>DNS设置</h3><p>如果没有域名，则只能通过GitPages默认链接访问<a href="https://zhangyfzone.github.io/" target="_blank" rel="noopener">https://zhangyfzone.github.io/</a></p>
-<p>如果有域名，可将域名解析到zhangyfzone.github.io，这样比较简洁。</p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image016.png" alt="img"></p>
-<h3 id="hexo-CNAME设置"><a href="#hexo-CNAME设置" class="headerlink" title="hexo CNAME设置"></a>hexo CNAME设置</h3><p> Hexo目录下的source中建一个CNAME命名的文件夹(切记没有后缀)</p>
-<p>创建方式：右键新建txt文本-&gt;输入你购买的域名minmax.site&gt;保存关闭</p>
-<p>然后快捷键F2或者右键该文本重命名-&gt;将.txt后缀去掉-&gt;会提示文件不可用继续确定即可</p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image018.jpg" alt="img"></p>
-<p>内容如下所示</p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image019.png" alt="img"></p>
-<h3 id="github上绑定域名"><a href="#github上绑定域名" class="headerlink" title="github上绑定域名"></a>github上绑定域名</h3><p>在设置中的custom domain填入域名minmax.site 保存</p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image021.png" alt="img"></p>
-<h3 id="修改-config-yml"><a href="#修改-config-yml" class="headerlink" title="修改_config.yml"></a>修改_config.yml</h3><p><img src="/2021/Hexo-GitPages搭建博客/clip_image023.jpg" alt="img"></p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image024.png" alt="img"></p>
-<p>配置github项目连接(</p>
-<p>deploy: </p>
-<p>type: git </p>
-<p>repos: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:zhangyfzone/zhangyfzone.github.io.git</p>
-<p>branch: master):</p>
-<p><img src="/2021/Hexo-GitPages搭建博客/clip_image026.jpg" alt="img"></p>
-<h3 id="使用git发布"><a href="#使用git发布" class="headerlink" title="使用git发布"></a>使用git发布</h3><p>执行 <code>npm install hexo-deployer-git --save</code></p>
-<p>基本的流程到这里快要结束了</p>
-<p>信件一篇博文  <code>hexo new post &#39;第一篇博文&#39;</code>  可在source/post文件夹下面看到，可以编辑内容。</p>
-<p>最后执行:<code>(hexo clean --&gt;hexo generate --&gt;hexo deploy)</code></p>
-<p><code>hexo generate --&gt;hexo deploy</code> 可简写为 <code>hexo g -d</code></p>
-<p>你就可以通过域名看到你的博客了</p>
-<p>记住，每次修改配置信息或者其他必须要执行上面的步骤，才可以使得配置信息生效。</p>
-<p> 常用命令：</p>
-<p><code>hexo new &#39;博文&#39;</code>  默认创建post</p>
-<p><code>hexo server</code></p>
-<p><code>hexo g -d</code></p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CollectionUtils工具类</title>
     <url>/2020/CollectionUtils%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
     <content><![CDATA[<p>这篇讲的CollectionUtils工具类是在<code>apache下</code>的, 而不是springframework下的CollectionUtils。</p>
@@ -229,48 +193,6 @@
       </categories>
       <tags>
         <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DNF-包管理器</title>
-    <url>/2020/DNF-%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/</url>
-    <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>DNF(Dandified Yum)是新一代的RPM软件包管理器。<br>DNF包管理器克服了YUM包管理器的一些瓶颈，提升了包括用户体验，内存占用，依赖分析，运行速度等多方面的内容。</p>
-<h3 id="安装DNF"><a href="#安装DNF" class="headerlink" title="安装DNF"></a>安装DNF</h3><p>DNF并未默认安装在RHEL或CentOS7系统中，但可以在使用YUM的同时使用DNF。</p>
-<ol>
-<li>安装epel-release依赖：<code>yum install epel-release</code> 或者 <code>yum install epel-release -y</code></li>
-<li>安装DNF包：<code>yum install dnf</code> 或者 <code>yum install dnf -y</code></li>
-</ol>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>/etc/dnf/dnf.conf</p>
-<h3 id="代理设置"><a href="#代理设置" class="headerlink" title="代理设置"></a>代理设置</h3><p>Add the following settings in [main] section of /etc/dnf/dnf.conf, and save the file.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">proxy=http://&lt;ip address&gt;:&lt;port&gt;</span><br><span class="line">proxy_username=&lt;username&gt;</span><br><span class="line">proxy_password=&lt;password&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="DNF命令"><a href="#DNF命令" class="headerlink" title="DNF命令"></a>DNF命令</h3><p>与YUM基本保持一致，少数用法有区别。<br><a href="http://man.linuxde.net/dnf" target="_blank" rel="noopener">常用dnf命令</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">##### 版本</span></span><br><span class="line">dnf –version  <span class="comment"># 查看DNF包管理器版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 帮助</span></span><br><span class="line">dnf <span class="built_in">help</span>  <span class="comment"># 查看所有的DNF命令及其用途</span></span><br><span class="line">dnf <span class="built_in">help</span> &lt;<span class="built_in">command</span>&gt;  <span class="comment"># 获取命令的使用帮助</span></span><br><span class="line">dnf <span class="built_in">history</span>  <span class="comment"># 查看 DNF 命令的执行历史</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 信息查看</span></span><br><span class="line">dnf repolist  <span class="comment"># 查看系统中可用的DNF软件库</span></span><br><span class="line">dnf search &lt;package&gt;  <span class="comment"># 搜索软件库中的RPM包</span></span><br><span class="line"></span><br><span class="line">dnf list installed  <span class="comment"># 列出所有安装的RPM包</span></span><br><span class="line">dnf list available  <span class="comment"># 列出所有可安装的RPM包</span></span><br><span class="line">dnf info &lt;package&gt;  <span class="comment"># 查看软件包详情</span></span><br><span class="line"></span><br><span class="line">dnf provides &lt;file&gt;  <span class="comment"># 查找某一文件的提供者</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 软件包操作</span></span><br><span class="line">dnf install &lt;package&gt;  <span class="comment"># 安装软件包及其所需的所有依赖</span></span><br><span class="line">dnf update &lt;package&gt;  <span class="comment"># 升级软件包</span></span><br><span class="line">dnf remove &lt;package&gt;  <span class="comment"># 删除软件包</span></span><br><span class="line">dnf reinstall &lt;package&gt;  <span class="comment"># 重新安装特定软件包</span></span><br><span class="line">dnf distro-sync  <span class="comment"># 更新软件包到最新的稳定发行版</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 系统软件包</span></span><br><span class="line">dnf check-update  <span class="comment"># 检查系统所有软件包的更新</span></span><br><span class="line">dnf update  <span class="comment"># 升级所有系统软件包</span></span><br><span class="line">dnf clean all  <span class="comment"># 删除缓存的无用软件包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### 组</span></span><br><span class="line">dnf grouplist</span><br><span class="line">dnf groupinstall <span class="string">'xxx'</span></span><br><span class="line">dnf groupupdate <span class="string">'xxx'</span></span><br><span class="line">dnf groupremove</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Centos</tag>
-        <tag>DNF</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AC86U创建虚拟内存U盘读写速度不够</title>
-    <url>/2021/AC86U%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98U%E7%9B%98%E8%AF%BB%E5%86%99%E9%80%9F%E5%BA%A6%E4%B8%8D%E5%A4%9F/</url>
-    <content><![CDATA[<h4 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h4><p><code>AC86U</code> 升级固件后挂载虚拟内存总是提示读写速度不够，新固件的读取速度要求 <code>20M/s</code>，写入速度要求 <code>30M/s</code><br><img src="/2021/AC86U创建虚拟内存U盘读写速度不够/20210106091033.png" alt="img"></p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>修改参数限制</p>
-<p><code>ssh</code> 登录到路由器，执行如下命令</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 修改写入速度限制，30替换为10</span><br><span class="line">sed -i &apos;s/^W_LIMIT=30/W_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br><span class="line"></span><br><span class="line"># 修改读取速度限制，20替换为10</span><br><span class="line">sed -i &apos;s/^R_LIMIT=20/R_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br></pre></td></tr></table></figure>
-<p>以上参数可以根据自己的实际情况进行调整</p>
-<p>完成后重新进入管理界面挂载虚拟内存即可</p>
-]]></content>
-      <categories>
-        <category>network</category>
-        <category>路由器</category>
-      </categories>
-      <tags>
-        <tag>network</tag>
-        <tag>路由器</tag>
       </tags>
   </entry>
   <entry>
@@ -355,6 +277,84 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo+GitPages搭建博客</title>
+    <url>/2021/Hexo-GitPages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><p>假设：邮箱：<a href="mailto:aaa@163.com" target="_blank" rel="noopener">aaa@163.com</a>  </p>
+<p>​            名字: aaa</p>
+<p>1.到官网下载git安装包后安装</p>
+<p>2.在Windows系统安装git后，配置SSH key </p>
+<p>用git bash执行如下命令： windows中在C:\Users\zhangyf.ssh目录</p>
+<p><code>$ cd ~/. ssh #检查本机已存在的ssh密钥</code></p>
+<p>如果提示：No such file or directory 说明你是第一次使用git。</p>
+<p><code>ssh-keygen -t rsa -C &quot;aaa@163.com&quot;</code></p>
+<p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到.ssh\id_rsa.pub文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：</p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image002.png" alt="img"></p>
+<p>将刚复制的内容粘贴到key那里，title随便填，保存。</p>
+<p>3.测试是否成功</p>
+<p>$ ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> # 注意邮箱地址不用改</p>
+<p>如果提示Are you sure you want to continue connecting (yes/no)?，输入yes，然后会看到：</p>
+<p>Hi liuxianan! You’ve successfully authenticated, but GitHub does not provide shell access.</p>
+<p>看到这个信息说明SSH已配置成功！</p>
+<p>此时你还需要配置：</p>
+<p><code>git config --global user.email &quot;aaa@163.com&quot;</code></p>
+<p><code>git config --global user.name &quot;aaa&quot;</code></p>
+<h2 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h2><p>在node.js官网下载安装包安装即可</p>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>首先在本地磁盘中建立一个Hexo文件夹用于存储本地文件(做本地文件保存以及测试使用)</p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image004.jpg" alt="img"></p>
+<p>然后在文件夹中右击打开git命令框(我第一次直接在桌面右击，所以命令行无效果)</p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image006.jpg" alt="img"></p>
+<p>在git命令框中安装hexo命令行工具 ，执行 <code>npm install -g hexo-cli</code> </p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image008.jpg" alt="img"></p>
+<p> 初始化 ，执行<code>hexo init zyfblog</code> 加上zyfblog，则全部文件都在zyfblog下</p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image010.jpg" alt="img"></p>
+<p>执行<code>cd zyfblog</code> 进入zyfblog目录</p>
+<p>启动服务，依次执行</p>
+<p><code>(npm install --&gt;hexo server)</code></p>
+<p>浏览器输入<a href="http://localhost:4000,按理来说应该会出现本地访问页面" target="_blank" rel="noopener">http://localhost:4000,按理来说应该会出现本地访问页面</a></p>
+<h2 id="部署到GItPages"><a href="#部署到GItPages" class="headerlink" title="部署到GItPages"></a>部署到GItPages</h2><h3 id="在github上面创建项目"><a href="#在github上面创建项目" class="headerlink" title="在github上面创建项目"></a>在github上面创建项目</h3><p>假设:Owner为: zhangyfzone </p>
+<p>​         <strong>Repository name必须为: zhangyfzone.github.io</strong></p>
+<p>​         申请的域名：minmax.site</p>
+<p><img src="/2021/Hexo-GitPages搭建博客/image-20210330094423950.png" alt="image-20210330094423950"></p>
+<h3 id="DNS设置"><a href="#DNS设置" class="headerlink" title="DNS设置"></a>DNS设置</h3><p>如果没有域名，则只能通过GitPages默认链接访问<a href="https://zhangyfzone.github.io/" target="_blank" rel="noopener">https://zhangyfzone.github.io/</a></p>
+<p>如果有域名，可将域名解析到zhangyfzone.github.io，这样比较简洁。</p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image016.png" alt="img"></p>
+<h3 id="hexo-CNAME设置"><a href="#hexo-CNAME设置" class="headerlink" title="hexo CNAME设置"></a>hexo CNAME设置</h3><p> Hexo目录下的source中建一个CNAME命名的文件夹(切记没有后缀)</p>
+<p>创建方式：右键新建txt文本-&gt;输入你购买的域名minmax.site&gt;保存关闭</p>
+<p>然后快捷键F2或者右键该文本重命名-&gt;将.txt后缀去掉-&gt;会提示文件不可用继续确定即可</p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image018.jpg" alt="img"></p>
+<p>内容如下所示</p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image019.png" alt="img"></p>
+<h3 id="github上绑定域名"><a href="#github上绑定域名" class="headerlink" title="github上绑定域名"></a>github上绑定域名</h3><p>在设置中的custom domain填入域名minmax.site 保存</p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image021.png" alt="img"></p>
+<h3 id="修改-config-yml"><a href="#修改-config-yml" class="headerlink" title="修改_config.yml"></a>修改_config.yml</h3><p><img src="/2021/Hexo-GitPages搭建博客/clip_image023.jpg" alt="img"></p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image024.png" alt="img"></p>
+<p>配置github项目连接(</p>
+<p>deploy: </p>
+<p>type: git </p>
+<p>repos: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:zhangyfzone/zhangyfzone.github.io.git</p>
+<p>branch: master):</p>
+<p><img src="/2021/Hexo-GitPages搭建博客/clip_image026.jpg" alt="img"></p>
+<h3 id="使用git发布"><a href="#使用git发布" class="headerlink" title="使用git发布"></a>使用git发布</h3><p>执行 <code>npm install hexo-deployer-git --save</code></p>
+<p>基本的流程到这里快要结束了</p>
+<p>信件一篇博文  <code>hexo new post &#39;第一篇博文&#39;</code>  可在source/post文件夹下面看到，可以编辑内容。</p>
+<p>最后执行:<code>(hexo clean --&gt;hexo generate --&gt;hexo deploy)</code></p>
+<p><code>hexo generate --&gt;hexo deploy</code> 可简写为 <code>hexo g -d</code></p>
+<p>你就可以通过域名看到你的博客了</p>
+<p>记住，每次修改配置信息或者其他必须要执行上面的步骤，才可以使得配置信息生效。</p>
+<p> 常用命令：</p>
+<p><code>hexo new &#39;博文&#39;</code>  默认创建post</p>
+<p><code>hexo server</code></p>
+<p><code>hexo g -d</code></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LF will be replaced by CRLF</title>
     <url>/2020/LF-will-be-replaced-by-CRLF/</url>
     <content><![CDATA[<p>本文主要写了在 Hexo 博客中 出现 LF will be replaced by CRLF 的原因以及它的解决方式。</p>
@@ -372,37 +372,6 @@
       </categories>
       <tags>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NAT类型和穿透性</title>
-    <url>/2021/NAT%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%A9%BF%E9%80%8F%E6%80%A7/</url>
-    <content><![CDATA[<h2 id="网络地址映射"><a href="#网络地址映射" class="headerlink" title="网络地址映射"></a>网络地址映射</h2><p>在有中心化服务器的网络中，客户端，服务器，网关构成网络拓扑图。如下图1所示：由于后续出现的名词概念很多，先约法三章，在这里统一一下称呼：所有的终端机器成为客户端，不同客户端使用大写字母区分（A,B,C,…）；客户端上面运行的应用程序统一称为客户程序，不同的应用程序使用不数字区分（1,2,3,…）。作为服务器的物理机称为服务器，而服务器上运行的程序称为服务程序，后文中每一个拓扑组件都只有一个IP地址。为客户端提供公网IP服务的组件称为网关。</p>
-<p><img src="/2021/NAT类型和穿透性/clip_image002.jpg" alt="img" style="zoom:67%;"></p>
-<p>图1 中心化服务器的网络拓扑图</p>
-<p>从网关映射到客户端中的网络结构，这里需要引入一个NAT的概念。什么NAT呢？中文名叫网络地址转换，习惯称为网络地址映射。为什么需要网络地址映射呢？：需要说到IPV4网络地址已经用完，全部使用IPV6又会造成很多只支持IPV4的终端设备无法正常使用，所以网络地址映射应运而生，忍辱负重。才会有我们现在所谓的网络穿透的出现。到底怎么映射的？如图2网络地址映射所示。客户程序使用192.168.0.234:7890发送数据，通过网关的网络地址映射在公网被转换为112.93.116.102:6834，被互联网上的大家所认知。此时在公网上使用客户程序的ip与端口被112.93.116.102:6834代替。在这里大家应该明白了NAT是何许物种了。</p>
-<p><img src="/2021/NAT类型和穿透性/clip_image004.jpg" alt="img" style="zoom: 67%;"><br>​图2 网络地址映射</p>
-<p>为了保持新手福音，业界良心的态度。什么是穿透？因为NAT是客户程序发起的，网络为了保持通讯新建的一个临时牌照，随时可能被收回，而且重新发起后的牌照不一样。从而外界及时知道了这个临时牌照也没有用。所以需要通过穿透在网关上面打个洞，来为外界进行服务。那NAT与穿透有什么关系呢？正因为有了NAT才需要穿透，如果是IPV6每个客户端一个IP地址，那就不需要直接可以找到客户端了。</p>
-<h2 id="NAT种类"><a href="#NAT种类" class="headerlink" title="NAT种类"></a>NAT种类</h2><p>  由于网关的安全性要求不一致，就出现四种不同的NAT方式。分别进行阐述：</p>
-<p>第一种<strong>完全锥形NAT</strong>，英文名叫<strong>Full Cone NAT</strong>。如图3完全锥形NAT所示，客户程序(192.168.0.234:7890)与服务器A(13.44.178.98:9800)通信，通过网关的地址转换产生的临时牌照的公网地址（112.93.116.102:6834），服务器B（157.78.13.156:23456）发送数据到公网地址（112.93.116.102:6834），如果客户程序(192.168.0.234:7890)能够收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为完全锥形NAT；</p>
-<p><img src="/2021/NAT类型和穿透性/clip_image006.png" alt="img" style="zoom:67%;"><br>​图3 完全锥形NAT</p>
-<p>第二种<strong>限制锥形NAT</strong>，英文名叫<strong>RestrictedCone NAT</strong>。在图3 完全锥形NAT中，如果客户程序(192.168.0.234:7890)不能收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为限制型锥形NAT。</p>
-<p>第三种<strong>端口限制锥形NAT</strong>，英文名叫<strong>Port RestrictedCone NAT</strong>。客户程序(192.168.0.234:7890)发送数据给服务程序（13.44.178.98:9800）,网关通过网络地址转换产生的地址（112.93.116.102:6834）,同样的服务器内的另一个服务程序（13.44.178.178:9801）发送数据给网关（112.93.116.102:6834）地址，如果客户程序(192.168.0.234:7890)能够收到，则为限制锥形NAT，如果客户程序(192.168.0.234:7890)不能收到，则为端口限制锥形NAT。</p>
-<p>  对于所有的锥型NAT，客户程序（192.168.0.234:7890）对外发送的数据时，网关地址转换的地址都是一样的为（112.93.116.102:6834）,那为什么在图4 限制型锥形NAT中，客户程序不能收到服务程序B（13.44.178.98:9801）的数据呢？因为在网关中没有发生过客户程序（192.168.0.234:7890）给服务程序B（13.44.178.98:9801），故服务程序（13.44.178.98:9801）直接发送给网关（112.93.116.102:6834），则被网关所丢弃。</p>
-<p><img src="/2021/NAT类型和穿透性/clip_image008.jpg" alt="img" style="zoom:67%;"></p>
-<p>图4 限制型锥形NAT</p>
-<p>第四种<strong>对称NAT</strong>，英文，名叫<strong>Symmetric NAT</strong>。如图5对称NAT所示，客户程序（192.168.0.234:7890）发送数据给两个不同服务器（13.44.178.98:9800）和（157.78.13.156:23456）时，网关会进行不同的网络地址映射产生（112.93.116.102:6834）和（112.93.116.102:6835）。这是对于整个NAT网络发送数据出去的过程，而接收数据与端口限制锥形NAT一致。</p>
-<p><img src="/2021/NAT类型和穿透性/clip_image010.png" alt="img" style="zoom:67%;"><br>             图5 对称NAT</p>
-<h2 id="不同NAT组合的穿透性"><a href="#不同NAT组合的穿透性" class="headerlink" title="不同NAT组合的穿透性"></a><strong>不同NAT组合的穿透性</strong></h2><p>这里说的穿透指在没有经过第三方数据中转的情况下，两者直接建立点对点的连接，可直接进行数据交换，相当于两者在一个虚拟的局域网中。</p>
-<p><img src="/2021/NAT类型和穿透性/image-20210401162435764.png" alt="image-20210401162435764"></p>
-]]></content>
-      <categories>
-        <category>network</category>
-        <category>理论</category>
-      </categories>
-      <tags>
-        <tag>内网穿透</tag>
-        <tag>network</tag>
       </tags>
   </entry>
   <entry>
@@ -443,8 +412,159 @@
         <category>理论</category>
       </categories>
       <tags>
-        <tag>内网穿透</tag>
         <tag>network</tag>
+        <tag>内网穿透</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WOL-远程唤醒-ARP绑定</title>
+    <url>/2021/WOL-%E8%BF%9C%E7%A8%8B%E5%94%A4%E9%86%92-ARP%E7%BB%91%E5%AE%9A/</url>
+    <content><![CDATA[<p>如果路由器具有公网IP，可以不需要VPS转发WOL数据包，直接在外网连接路由器发送WOL数据包，进行远程唤醒。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li><p>域名设置DDNS  <strong>aaa.com -&gt; 路由器公网IP</strong></p>
+</li>
+<li><p>windows系统设置了允许WOL的配置，可参考以前文章。</p>
+</li>
+<li><p>路由器设置了端口转发，如下：</p>
+<p>外部9000端口转发到192.168.50.100的9号端口；外部9001端口转发到192.168.50.123的9号端口</p>
+</li>
+</ol>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/dkzf.png" alt="dkzf"></p>
+<ol start="4">
+<li>路由器设置IP和mac地址绑定，<strong>内网wol可以不设置地址绑定, 外网wol必须设置地址绑定</strong>，如下：</li>
+</ol>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/bd.png" alt="bd"></p>
+<p>数据流转：</p>
+<pre><code>外网WOL：唤醒端在外网9000号端口发起请求-&gt;路由器端口映射-&gt;192.168.50.100:9 -&gt;查询绑定的mac地址的机器，然后启动。**和frp远程访问不同（frpc配置广播地址，不需要设置端口转发）**
+</code></pre><p>​    内网WOL：使用广播地址192.168.50.255 和mac地址进行广播，找到mac地址相同的进行启动。frp原理和此相同。</p>
+<p>遇到问题是，不能每次都唤醒，所以需要ARP绑定。</p>
+<h2 id="何为-ARP-绑定"><a href="#何为-ARP-绑定" class="headerlink" title="何为 ARP 绑定"></a>何为 ARP 绑定</h2><p>华硕路由器居然连 ARP 绑定功能都没有。这里要区别一下，在客户端列表中开启 <code>MAC地址与IP绑定</code> 其实仅仅是 DHCP 绑定，它可以保证每次给相同设备总是分配同一个 IP 地址，但<strong>前提是设备必须请求IP！</strong></p>
+<p>我们知道路由器内部会维护一个 ARP 表，记录 IP 与 MAC 的关系，每当设备请求 IP 时便会被记录，其超时时间因具体设置而不同。因此当设备长时间不在线（比如关机）时吗，ARP 记录就会失效，从而无法再通过 IP 给此设备发送数据。</p>
+<p>有一个典型需求：PC需要 WOL 网络唤醒。因此我们要进行 <strong>ARP 绑定</strong>，与 DHCP 绑定不同，ARP 绑定相当于把 IP 对应关系写死在表里，无论设备是否在线。</p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>ssh 或 telnet 登录路由器，执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arp -s [IP] [MAC]</span><br></pre></td></tr></table></figure>
+<p>就搞定了。</p>
+<p>但是这样每次重启都会失效，我们需要通过自启脚本来手动添加 ARP 项，因此官方固件是不行的，先刷梅林，使用putty连接到路由器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /jffs/scripts/ <span class="comment"># 进入脚本目录</span></span><br><span class="line">vi services-start <span class="comment"># 打开编辑器（你也可以用其他编辑器）</span></span><br></pre></td></tr></table></figure>
+<p>将文件内容改为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">arp -s [IP] [MAC]</span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+<p>保存，最后给予执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+rx /jffs/scripts/*</span><br></pre></td></tr></table></figure>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>验证ARP绑定无误也非常简单，上面步骤做完以后，重启一下路由器，putty连接路由器，直接输入<code>arp</code> 查看 ARP 表，对应项目如果标识有 <code>[PERM]</code> 就是已经绑定了。</p>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_12-57-38.png" alt="Snipaste_2021-04-06_12-57-38"></p>
+<p>应该可以通过域名从互联网开机了。</p>
+<h2 id="唤醒端配置"><a href="#唤醒端配置" class="headerlink" title="唤醒端配置"></a>唤醒端配置</h2><p>手机下载WOL软件，PC和NAS唤醒配置如下：</p>
+<p> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-37-08.png" alt="Snipaste_2021-04-06_11-37-08"><br> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-36-52.png" alt="Snipaste_2021-04-06_11-36-52"></p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>WOL</category>
+      </categories>
+      <tags>
+        <tag>WOL</tag>
+        <tag>ARP</tag>
+        <tag>端口转发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WOL-远程唤醒-FRP</title>
+    <url>/2021/WOL-%E8%BF%9C%E7%A8%8B%E5%94%A4%E9%86%92-FRP/</url>
+    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li>VPS（具有公网IP），配置了fprs服务。</li>
+<li>路由器可安装frpc插件,我是用的华硕ac86u</li>
+<li>申请了域名 ，例如aaa.com，并配置DDNS域名解析：  <strong>aaa.com-&gt; vps IP</strong></li>
+</ol>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>路由器没有公网IP，需要vps转发数据。唤醒端在外网通过域名请求vps 9号端口，vps将开机命令包通过udp协议转发给路由器所在局域网的 192.168.50.255（广播地址，此广播地址根据192.169.50.1路由器IP算出来的掩码），遍历mac地址相同的机器，发送到该机器的9号端口，进行开机。</p>
+<h2 id="Windows系统唤醒"><a href="#Windows系统唤醒" class="headerlink" title="Windows系统唤醒"></a>Windows系统唤醒</h2><h3 id="被唤醒端配置"><a href="#被唤醒端配置" class="headerlink" title="被唤醒端配置"></a>被唤醒端配置</h3><ol>
+<li><p>设置技嘉主板BIOS的Erp选项为disable，启动远程开机的功能。其他主板配置不同，参阅百度或者说明手册。</p>
+</li>
+<li><p>设置windows系统支持远程开机启动<br>设置网卡，选择当前使用的网卡，右键网卡属性，在“网络”tab页点击配置。</p>
+<p><img src="/2021/WOL-远程唤醒-FRP/image-20210406091402158.png" alt="image-20210406091402158" style="zoom: 67%;"></p>
+<p>在 <strong>高级</strong> 菜单中的属性找到 <strong>唤醒魔包</strong> (Wake on Magic Packet) 设置为 <strong>启用</strong></p>
+</li>
+</ol>
+<p>   <img src="/2021/WOL-远程唤醒-FRP/clip_image002.jpg" alt="IMG_258" style="zoom:50%;"></p>
+<p>   在 <strong>电源管理</strong> 中 勾选 <strong>允许此设备唤醒计算机</strong></p>
+<p>   <img src="/2021/WOL-远程唤醒-FRP/clip_image004.jpg" alt="IMG_259" style="zoom:50%;"></p>
+<h3 id="路由器配置"><a href="#路由器配置" class="headerlink" title="路由器配置"></a>路由器配置</h3><ol>
+<li>用vps进行开机udp命令包转发，需要在路由器中安装frpc插件，设置frpc内网穿透配置；</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[wol]</span><br><span class="line">type = udp  #类型为UDP</span><br><span class="line">local_ip = 192.168.50.255  #此处填写广播地址，不需要再路由器中设置端口转发</span><br><span class="line">local_port = 9 #一般采用这个端口进行wol</span><br><span class="line">remote_port = 9</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>将mac地址和IP地址进行绑定</li>
+</ol>
+<p><img src="/2021/WOL-远程唤醒-FRP/clip_image002b.jpg" alt="IMG_260"></p>
+<h3 id="唤醒端配置"><a href="#唤醒端配置" class="headerlink" title="唤醒端配置"></a>唤醒端配置</h3><p><strong>远程唤醒</strong>Android端下载WOL软件，可以通过手机唤醒</p>
+<p><img src="/2021/WOL-远程唤醒-FRP/Snipaste_2021-04-06_09-42-52.png" alt="Snipaste_2021-04-06_09-42-52"></p>
+<p><strong>局域网唤醒</strong></p>
+<p><img src="/2021/WOL-远程唤醒-FRP/Snipaste_2021-04-06_09-45-52.png" alt="Snipaste_2021-04-06_09-45-52"></p>
+<h2 id="NAS系统唤醒"><a href="#NAS系统唤醒" class="headerlink" title="NAS系统唤醒"></a>NAS系统唤醒</h2><h3 id="被唤醒端配置-1"><a href="#被唤醒端配置-1" class="headerlink" title="被唤醒端配置"></a>被唤醒端配置</h3><ol>
+<li><p>改为设置主板华擎J4105的BIOS和NAS系统，NAS开机进入BIOS后，</p>
+<p>选择Advanced -&gt; Chipset Configuration</p>
+<pre><code>Onboard LAN 设置为enable，启动网卡
+Enable or disable the onboard network interface controller.
+</code></pre><p>​    PCIE1 Link Speed<br>​    Select the link speed for PCIE1.</p>
+<p>​    Deep S5 (设置系统的休眠级别，可能有关系，改小试试)<br>​    Configure deep sleep mode for power saving when the computer is shut down.</p>
+<p>选择Advanced -&gt; ACPI Configuration</p>
+<pre><code>PCIE Device Power On 设置为 enable
+Allow the system to be waked up by a PCIE device and enable wake on LAN.
+</code></pre><p>​    <strong>Boot From Onboard LAN</strong> <strong>设置为**</strong>enable<strong><br>​    </strong>Allow the system to be waked up by the onboard LAN.**</p>
+</li>
+<li><p>NAS系统暂未发现设置项，可能不需要设置</p>
+</li>
+</ol>
+<h3 id="路由器端配置"><a href="#路由器端配置" class="headerlink" title="路由器端配置"></a>路由器端配置</h3><ol>
+<li>用vps进行开机udp命令包转发，需要在路由器中安装frpc插件，设置frpc内网穿透配置；</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[wol]</span><br><span class="line">type = udp  #类型为UDP</span><br><span class="line">local_ip = 192.168.50.255  #此处填写广播地址，不需要再路由器中设置端口转发</span><br><span class="line">local_port = 9 #一般采用这个端口进行wol</span><br><span class="line">remote_port = 9</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>将NAS的mac地址和IP地址进行绑定<br><img src="/2021/WOL-远程唤醒-FRP/Snipaste_2021-04-06_10-05-49.png" alt="Snipaste_2021-04-06_10-05-49"></p>
+<h3 id="唤醒端配置-1"><a href="#唤醒端配置-1" class="headerlink" title="唤醒端配置"></a>唤醒端配置</h3></li>
+</ol>
+<p><strong>远程唤醒</strong></p>
+<p><img src="/2021/WOL-远程唤醒-FRP/Snipaste_2021-04-06_10-07-15.png" alt="Snipaste_2021-04-06_10-07-15"></p>
+<p><strong>局域网唤醒</strong></p>
+<p><img src="/2021/WOL-远程唤醒-FRP/Snipaste_2021-04-06_10-07-37.png" alt="Snipaste_2021-04-06_10-07-37"></p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>WOL</category>
+      </categories>
+      <tags>
+        <tag>内网穿透</tag>
+        <tag>frp</tag>
+        <tag>WOL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NAT类型和穿透性</title>
+    <url>/2021/NAT%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%A9%BF%E9%80%8F%E6%80%A7/</url>
+    <content><![CDATA[<h2 id="网络地址映射"><a href="#网络地址映射" class="headerlink" title="网络地址映射"></a>网络地址映射</h2><p>在有中心化服务器的网络中，客户端，服务器，网关构成网络拓扑图。如下图1所示：由于后续出现的名词概念很多，先约法三章，在这里统一一下称呼：所有的终端机器成为客户端，不同客户端使用大写字母区分（A,B,C,…）；客户端上面运行的应用程序统一称为客户程序，不同的应用程序使用不数字区分（1,2,3,…）。作为服务器的物理机称为服务器，而服务器上运行的程序称为服务程序，后文中每一个拓扑组件都只有一个IP地址。为客户端提供公网IP服务的组件称为网关。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image002.jpg" alt="img" style="zoom:67%;"></p>
+<p>图1 中心化服务器的网络拓扑图</p>
+<p>从网关映射到客户端中的网络结构，这里需要引入一个NAT的概念。什么NAT呢？中文名叫网络地址转换，习惯称为网络地址映射。为什么需要网络地址映射呢？：需要说到IPV4网络地址已经用完，全部使用IPV6又会造成很多只支持IPV4的终端设备无法正常使用，所以网络地址映射应运而生，忍辱负重。才会有我们现在所谓的网络穿透的出现。到底怎么映射的？如图2网络地址映射所示。客户程序使用192.168.0.234:7890发送数据，通过网关的网络地址映射在公网被转换为112.93.116.102:6834，被互联网上的大家所认知。此时在公网上使用客户程序的ip与端口被112.93.116.102:6834代替。在这里大家应该明白了NAT是何许物种了。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image004.jpg" alt="img" style="zoom: 67%;"><br>​图2 网络地址映射</p>
+<p>为了保持新手福音，业界良心的态度。什么是穿透？因为NAT是客户程序发起的，网络为了保持通讯新建的一个临时牌照，随时可能被收回，而且重新发起后的牌照不一样。从而外界及时知道了这个临时牌照也没有用。所以需要通过穿透在网关上面打个洞，来为外界进行服务。那NAT与穿透有什么关系呢？正因为有了NAT才需要穿透，如果是IPV6每个客户端一个IP地址，那就不需要直接可以找到客户端了。</p>
+<h2 id="NAT种类"><a href="#NAT种类" class="headerlink" title="NAT种类"></a>NAT种类</h2><p>  由于网关的安全性要求不一致，就出现四种不同的NAT方式。分别进行阐述：</p>
+<p>第一种<strong>完全锥形NAT</strong>，英文名叫<strong>Full Cone NAT</strong>。如图3完全锥形NAT所示，客户程序(192.168.0.234:7890)与服务器A(13.44.178.98:9800)通信，通过网关的地址转换产生的临时牌照的公网地址（112.93.116.102:6834），服务器B（157.78.13.156:23456）发送数据到公网地址（112.93.116.102:6834），如果客户程序(192.168.0.234:7890)能够收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为完全锥形NAT；</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image006.png" alt="img" style="zoom:67%;"><br>​图3 完全锥形NAT</p>
+<p>第二种<strong>限制锥形NAT</strong>，英文名叫<strong>RestrictedCone NAT</strong>。在图3 完全锥形NAT中，如果客户程序(192.168.0.234:7890)不能收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为限制型锥形NAT。</p>
+<p>第三种<strong>端口限制锥形NAT</strong>，英文名叫<strong>Port RestrictedCone NAT</strong>。客户程序(192.168.0.234:7890)发送数据给服务程序（13.44.178.98:9800）,网关通过网络地址转换产生的地址（112.93.116.102:6834）,同样的服务器内的另一个服务程序（13.44.178.178:9801）发送数据给网关（112.93.116.102:6834）地址，如果客户程序(192.168.0.234:7890)能够收到，则为限制锥形NAT，如果客户程序(192.168.0.234:7890)不能收到，则为端口限制锥形NAT。</p>
+<p>  对于所有的锥型NAT，客户程序（192.168.0.234:7890）对外发送的数据时，网关地址转换的地址都是一样的为（112.93.116.102:6834）,那为什么在图4 限制型锥形NAT中，客户程序不能收到服务程序B（13.44.178.98:9801）的数据呢？因为在网关中没有发生过客户程序（192.168.0.234:7890）给服务程序B（13.44.178.98:9801），故服务程序（13.44.178.98:9801）直接发送给网关（112.93.116.102:6834），则被网关所丢弃。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image008.jpg" alt="img" style="zoom:67%;"></p>
+<p>图4 限制型锥形NAT</p>
+<p>第四种<strong>对称NAT</strong>，英文，名叫<strong>Symmetric NAT</strong>。如图5对称NAT所示，客户程序（192.168.0.234:7890）发送数据给两个不同服务器（13.44.178.98:9800）和（157.78.13.156:23456）时，网关会进行不同的网络地址映射产生（112.93.116.102:6834）和（112.93.116.102:6835）。这是对于整个NAT网络发送数据出去的过程，而接收数据与端口限制锥形NAT一致。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image010.png" alt="img" style="zoom:67%;"><br>             图5 对称NAT</p>
+<h2 id="不同NAT组合的穿透性"><a href="#不同NAT组合的穿透性" class="headerlink" title="不同NAT组合的穿透性"></a><strong>不同NAT组合的穿透性</strong></h2><p>这里说的穿透指在没有经过第三方数据中转的情况下，两者直接建立点对点的连接，可直接进行数据交换，相当于两者在一个虚拟的局域网中。</p>
+<p><img src="/2021/NAT类型和穿透性/image-20210401162435764.png" alt="image-20210401162435764"></p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>理论</category>
+      </categories>
+      <tags>
+        <tag>network</tag>
+        <tag>内网穿透</tag>
       </tags>
   </entry>
   <entry>
@@ -711,6 +831,61 @@
       </categories>
       <tags>
         <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>远程桌面</title>
+    <url>/2021/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2/</url>
+    <content><![CDATA[<h2 id="远程访问-Android"><a href="#远程访问-Android" class="headerlink" title="远程访问 Android"></a>远程访问 Android</h2><p>小米通话：小米手机之间远程软件，米聊已停服。</p>
+<h2 id="远程访问-Windows"><a href="#远程访问-Windows" class="headerlink" title="远程访问 Windows"></a>远程访问 Windows</h2><p>远程软件主要有： </p>
+<p><strong>向日葵</strong> 免费，多用时收费</p>
+<p><strong>teamviewer</strong> 少用时免费，多用时可能检测为商业用途</p>
+<p><strong>Anydesk</strong> 同是德国软件，teamviewer 公司里面的人再创业出品</p>
+<p><strong>VNC Server</strong>(被控端) + <strong>VNC Viewer</strong>(控制端) </p>
+<p><strong>microsoft remote desktop</strong> 和 <strong>远程桌面</strong>(system32\mstsc.exe) 微软官方出品 <strong>需要局域网环境或内网穿透</strong></p>
+<h3 id="windows端设置"><a href="#windows端设置" class="headerlink" title="windows端设置"></a>windows端设置</h3><p>本文介绍在使用<strong>microsoft remote desktop</strong> 或  <strong>远程桌面</strong>(system32\mstsc.exe) 时windows需要设置的配置。</p>
+<ol>
+<li><p>先确定被遥控的电脑的系统必须是Professional或Enterprise以上版本，<strong>家庭版不支持远程桌面</strong>。</p>
+</li>
+<li><p>确保自己的系统登录是带有密码的，<strong>采用outlook网络账号登录</strong>，而不是本地账户登录。</p>
+</li>
+<li><p><strong>打开控制面板 -&gt;系统 -&gt;点击远程设置，在“远程设置”tab页中</strong> 点击允许远程连接到此计算机，并且勾上仅允许运行使用网络级别身份验证的远程桌面的计算机连接（建议）。</p>
+<p><img src="/2021/远程桌面/1.png" alt="1"></p>
+<ol start="4">
+<li>点击选择用户，可以看到网络账户，例如：<a href="mailto:aaa@outlook.com" target="_blank" rel="noopener">aaa@outlook.com</a>已经有访问权。</li>
+</ol>
+</li>
+</ol>
+<p><img src="/2021/远程桌面/Snipaste_2021-04-06_13-25-44.png" alt="Snipaste_2021-04-06_13-25-44"></p>
+<ol start="5">
+<li>接下来是最重要的一步，依次打开控制面板 -&gt;Windows Defender 防火墙→允许应用或功能通过Windows Defender防火墙，点击更改设置，找到远程桌面（一般为最下方），将后面的两个框都勾上，点击确定保存。</li>
+</ol>
+<p><img src="/2021/远程桌面/22.png" alt="22"></p>
+<h3 id="局域网访问"><a href="#局域网访问" class="headerlink" title="局域网访问"></a>局域网访问</h3><ol>
+<li><p>查看自己的内网IP地址，按Win+R，输入cmd，跳出对话框，输入ipconfig，在跳出的一筐数字中找到一栏，IPv4地址，记录下后面的地址。</p>
+</li>
+<li><p>打开Microsoft Remote Desktop，PC和Android端都有该软件。或  远程桌面(system32\mstsc.exe) PC端<br>PC name 填入主机的局域网IP，User name 填入网络outlook账号和密码，入下图所示，后面3389为默认端口，可省略。</p>
+</li>
+</ol>
+<p><img src="/2021/远程桌面/Snipaste_2021-04-06_19-01-00.png" alt="Snipaste_2021-04-06_19-01-00"></p>
+<h3 id="广域网访问"><a href="#广域网访问" class="headerlink" title="广域网访问"></a>广域网访问</h3><h4 id="路由器设置-frp内网穿透"><a href="#路由器设置-frp内网穿透" class="headerlink" title="路由器设置-frp内网穿透"></a>路由器设置-frp内网穿透</h4><p><strong>路由器没有公网IP</strong>，在外网访问家里的电脑，需要在路由器中对frpc进行配置，在VPS进行frps设置（自己的局域网可以利用路由器24小时开机的特性，进行frpc配置，公司网络没这个条件）</p>
+<p>唤醒端应用请求vps 3389端口，vps转发到路由器所在的局域网中IP为192.168.50.100的主机的3389端口进行远程桌面。</p>
+<p>WOL唤醒后才能远程访问，使用远程桌面进行访问，走vps主机流量。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[remote desktop]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 192.168.50.100</span><br><span class="line">local_port = 3389 #通常本地采用3389进行远程访问</span><br><span class="line">remote_port = 3389</span><br></pre></td></tr></table></figure>
+<h4 id="路由器设置-端口转发"><a href="#路由器设置-端口转发" class="headerlink" title="路由器设置-端口转发"></a>路由器设置-端口转发</h4><p><strong>路由器有公网IP</strong>，在外网访问家里的电脑，不需要在路由器设置frpc，只需要设置端口转发，如下图：</p>
+<p><img src="/2021/远程桌面/Snipaste_2021-04-06_19-14-42.png" alt="Snipaste_2021-04-06_19-14-42"></p>
+<p>唤醒程序直接根据路由器IP，请求路由器IP的3389 端口，不需要经过VPS转发，速度更快。</p>
+<h4 id="唤醒端设置"><a href="#唤醒端设置" class="headerlink" title="唤醒端设置"></a>唤醒端设置</h4><p>打开Microsoft Remote Desktop，PC name 填入域名:3389   User name 填入网络outlook账号和密码</p>
+<p><img src="/2021/远程桌面/Snipaste_2021-04-06_19-01-19.png" alt="Snipaste_2021-04-06_19-01-19"></p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>远程桌面</category>
+      </categories>
+      <tags>
+        <tag>frp</tag>
+        <tag>端口转发</tag>
+        <tag>远程桌面</tag>
       </tags>
   </entry>
   <entry>
@@ -1152,6 +1327,42 @@
       </tags>
   </entry>
   <entry>
+    <title>雷鸟电视在线安装软件</title>
+    <url>/2021/%E9%9B%B7%E9%B8%9F%E7%94%B5%E8%A7%86%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>新买的雷鸟R625C电视往往默认是无法安装第三方应用的，即使用U盘安装了第三方应用，应用也没有升级权限。另外，也无法通过沙发管家等应用市场来安装应用。接下来说说如何使用adb工具打开雷鸟电视的第三方应用安装权限。</p>
+<h2 id="ADB安装"><a href="#ADB安装" class="headerlink" title="ADB安装"></a>ADB安装</h2><p>ADB的全称为Android Debug Bridge，通过ADB工具，我们可以直接操作管理android模拟器或者真实的android设备（如安卓手机、机顶盒）。它主要有以下几种作用：<br>（1）运行设备的shell(命令行)<br>（2）管理模拟器或设备的端口映射<br>（3）计算机和android设备之间上传/下载文件<br>（4）将本地apk软件安装至android模拟器或android设备</p>
+<h3 id="下载Android-Platform-Tools"><a href="#下载Android-Platform-Tools" class="headerlink" title="下载Android Platform Tools"></a>下载Android Platform Tools</h3><p>到Android开发官网下载Android Platform Tools并解压，解压后可以看到文件夹platform-tools，里面包含adb调试工具。<br> <img src="/2021/雷鸟电视在线安装软件/image-20210331111636482.png" alt="image-20210331111636482"></p>
+<h3 id="环境变量设置"><a href="#环境变量设置" class="headerlink" title="环境变量设置"></a>环境变量设置</h3><p>打开“我的电脑-&gt;属性-&gt;系统高级设置-&gt;环境变量”，在Path变量中添加platform-tools文件夹的路径：</p>
+<p><img src="/2021/雷鸟电视在线安装软件/image-20210331111701288.png" alt="image-20210331111701288"></p>
+<h3 id="运行ADB"><a href="#运行ADB" class="headerlink" title="运行ADB"></a>运行ADB</h3><p>打开命令行窗口，输入adb，能打印出adb的版本号和用法，即为安装成功。</p>
+<p> <img src="/2021/雷鸟电视在线安装软件/image-20210331111724426.png" alt="image-20210331111724426"></p>
+<h2 id="打开电视的adb调试开关"><a href="#打开电视的adb调试开关" class="headerlink" title="打开电视的adb调试开关"></a>打开电视的adb调试开关</h2><p>进入设置-&gt;系统-&gt;系统信息，遥控器依次按下“上”、“下”、“左”、“右”，即可看到页面中跳出adb开关，将ADB设为开启状态即可：</p>
+<p><img src="/2021/雷鸟电视在线安装软件/image-20210331111929404.png" alt="image-20210331111929404"></p>
+<h2 id="abd工具打开电视权限"><a href="#abd工具打开电视权限" class="headerlink" title="abd工具打开电视权限"></a>abd工具打开电视权限</h2><ol>
+<li><p>首先将电脑和雷鸟电视连接到同一网络下。</p>
+</li>
+<li><p>查看雷鸟电视的ip地址，我的这台电视的ip为192.168.0.129</p>
+</li>
+<li><p>根据上一步获得的ip地址，在windows命令行执行<code>adb connect 192.168.0.129:5555</code>连接到雷鸟电视：</p>
+</li>
+<li><p>执行adb shell进入shell模式，然后执行以下两条命令就可以成功打开第三方应用安装权限：<br><code>setprop persist.tcl.debug.installapk 1</code><br><code>setprop persist.tcl.installapk.enable 1</code></p>
+<p><img src="/2021/雷鸟电视在线安装软件/image-20210331112424137.png" alt="image-20210331112424137"></p>
+</li>
+<li><p>然后再尝试用电视安装或升级第三方应用，第三方应用已经可以正常安装和升级，用当贝极速版或者沙发管家下载就可以了。</p>
+</li>
+<li><p>如果需要直接通过adb工具安装应用，先按照步骤1~3连接到电视，再执行<code>adb install</code>命令安装应用即可：<br><code>adb install XXX.apk</code></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>电视</category>
+      </categories>
+      <tags>
+        <tag>电视</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>加密算法</title>
     <url>/2020/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h2 id="对称性加密算法"><a href="#对称性加密算法" class="headerlink" title="对称性加密算法"></a>对称性加密算法</h2><p><img src="/2020/加密算法/1.jpg" alt="加密流程图"></p>
@@ -1211,42 +1422,6 @@
       </categories>
       <tags>
         <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>雷鸟电视在线安装软件</title>
-    <url>/2021/%E9%9B%B7%E9%B8%9F%E7%94%B5%E8%A7%86%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>新买的雷鸟R625C电视往往默认是无法安装第三方应用的，即使用U盘安装了第三方应用，应用也没有升级权限。另外，也无法通过沙发管家等应用市场来安装应用。接下来说说如何使用adb工具打开雷鸟电视的第三方应用安装权限。</p>
-<h2 id="ADB安装"><a href="#ADB安装" class="headerlink" title="ADB安装"></a>ADB安装</h2><p>ADB的全称为Android Debug Bridge，通过ADB工具，我们可以直接操作管理android模拟器或者真实的android设备（如安卓手机、机顶盒）。它主要有以下几种作用：<br>（1）运行设备的shell(命令行)<br>（2）管理模拟器或设备的端口映射<br>（3）计算机和android设备之间上传/下载文件<br>（4）将本地apk软件安装至android模拟器或android设备</p>
-<h3 id="下载Android-Platform-Tools"><a href="#下载Android-Platform-Tools" class="headerlink" title="下载Android Platform Tools"></a>下载Android Platform Tools</h3><p>到Android开发官网下载Android Platform Tools并解压，解压后可以看到文件夹platform-tools，里面包含adb调试工具。<br> <img src="/2021/雷鸟电视在线安装软件/image-20210331111636482.png" alt="image-20210331111636482"></p>
-<h3 id="环境变量设置"><a href="#环境变量设置" class="headerlink" title="环境变量设置"></a>环境变量设置</h3><p>打开“我的电脑-&gt;属性-&gt;系统高级设置-&gt;环境变量”，在Path变量中添加platform-tools文件夹的路径：</p>
-<p><img src="/2021/雷鸟电视在线安装软件/image-20210331111701288.png" alt="image-20210331111701288"></p>
-<h3 id="运行ADB"><a href="#运行ADB" class="headerlink" title="运行ADB"></a>运行ADB</h3><p>打开命令行窗口，输入adb，能打印出adb的版本号和用法，即为安装成功。</p>
-<p> <img src="/2021/雷鸟电视在线安装软件/image-20210331111724426.png" alt="image-20210331111724426"></p>
-<h2 id="打开电视的adb调试开关"><a href="#打开电视的adb调试开关" class="headerlink" title="打开电视的adb调试开关"></a>打开电视的adb调试开关</h2><p>进入设置-&gt;系统-&gt;系统信息，遥控器依次按下“上”、“下”、“左”、“右”，即可看到页面中跳出adb开关，将ADB设为开启状态即可：</p>
-<p><img src="/2021/雷鸟电视在线安装软件/image-20210331111929404.png" alt="image-20210331111929404"></p>
-<h2 id="abd工具打开电视权限"><a href="#abd工具打开电视权限" class="headerlink" title="abd工具打开电视权限"></a>abd工具打开电视权限</h2><ol>
-<li><p>首先将电脑和雷鸟电视连接到同一网络下。</p>
-</li>
-<li><p>查看雷鸟电视的ip地址，我的这台电视的ip为192.168.0.129</p>
-</li>
-<li><p>根据上一步获得的ip地址，在windows命令行执行<code>adb connect 192.168.0.129:5555</code>连接到雷鸟电视：</p>
-</li>
-<li><p>执行adb shell进入shell模式，然后执行以下两条命令就可以成功打开第三方应用安装权限：<br><code>setprop persist.tcl.debug.installapk 1</code><br><code>setprop persist.tcl.installapk.enable 1</code></p>
-<p><img src="/2021/雷鸟电视在线安装软件/image-20210331112424137.png" alt="image-20210331112424137"></p>
-</li>
-<li><p>然后再尝试用电视安装或升级第三方应用，第三方应用已经可以正常安装和升级，用当贝极速版或者沙发管家下载就可以了。</p>
-</li>
-<li><p>如果需要直接通过adb工具安装应用，先按照步骤1~3连接到电视，再执行<code>adb install</code>命令安装应用即可：<br><code>adb install XXX.apk</code></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>network</category>
-        <category>电视</category>
-      </categories>
-      <tags>
-        <tag>电视</tag>
       </tags>
   </entry>
 </search>
