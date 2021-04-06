@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://minmax.site/2021/WOL-远程唤醒-FRP/Snipaste_2021-04-06_10-05-49.png">
 <meta property="og:image" content="http://minmax.site/2021/WOL-远程唤醒-FRP/Snipaste_2021-04-06_10-07-15.png">
 <meta property="og:image" content="http://minmax.site/2021/WOL-远程唤醒-FRP/Snipaste_2021-04-06_10-07-37.png">
-<meta property="og:updated_time" content="2021-04-06T11:37:51.914Z">
+<meta property="og:updated_time" content="2021-04-06T11:49:20.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WOL-远程唤醒-FRP">
 <meta name="twitter:description" content="准备 VPS（具有公网IP），配置了fprs服务。 路由器可安装frpc插件,我是用的华硕ac86u 申请了域名 ，例如aaa.com，并配置DDNS域名解析：  aaa.com-&amp;gt; vps IP  原理路由器没有公网IP，需要vps转发数据。唤醒端在外网通过域名请求vps 9号端口，vps将开机命令包通过udp协议转发给路由器所在局域网的 192.168.50.255（广播地址，此广播地址">
@@ -437,14 +437,12 @@
 <h2 id="NAS系统唤醒"><a href="#NAS系统唤醒" class="headerlink" title="NAS系统唤醒"></a>NAS系统唤醒</h2><h3 id="被唤醒端配置-1"><a href="#被唤醒端配置-1" class="headerlink" title="被唤醒端配置"></a>被唤醒端配置</h3><ol>
 <li><p>改为设置主板华擎J4105的BIOS和NAS系统，NAS开机进入BIOS后，</p>
 <p>选择Advanced -&gt; Chipset Configuration</p>
-<pre><code>Onboard LAN 设置为enable，启动网卡
-Enable or disable the onboard network interface controller.
-</code></pre><p>​    PCIE1 Link Speed<br>​    Select the link speed for PCIE1.</p>
-<p>​    Deep S5 (设置系统的休眠级别，可能有关系，改小试试)<br>​    Configure deep sleep mode for power saving when the computer is shut down.</p>
+<p>Onboard LAN 设置为enable，启动网卡<br>Enable or disable the onboard network interface controller.</p>
+<p>PCIE1 Link Speed<br>Select the link speed for PCIE1.</p>
+<p>Deep S5 (设置系统的休眠级别，可能有关系，改小试试)<br>Configure deep sleep mode for power saving when the computer is shut down.</p>
 <p>选择Advanced -&gt; ACPI Configuration</p>
-<pre><code>PCIE Device Power On 设置为 enable
-Allow the system to be waked up by a PCIE device and enable wake on LAN.
-</code></pre><p>​    <strong>Boot From Onboard LAN</strong> <strong>设置为**</strong>enable<strong><br>​    </strong>Allow the system to be waked up by the onboard LAN.**</p>
+<p>PCIE Device Power On 设置为 enable<br>Allow the system to be waked up by a PCIE device and enable wake on LAN.</p>
+<p><strong>Boot From Onboard LAN设置为enable</strong><br><strong>Allow the system to be waked up by the onboard LAN.</strong></p>
 </li>
 <li><p>NAS系统暂未发现设置项，可能不需要设置</p>
 </li>

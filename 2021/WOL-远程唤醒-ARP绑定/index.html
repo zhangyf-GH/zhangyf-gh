@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://minmax.site/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_12-57-38.png">
 <meta property="og:image" content="http://minmax.site/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-37-08.png">
 <meta property="og:image" content="http://minmax.site/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-36-52.png">
-<meta property="og:updated_time" content="2021-04-06T11:41:23.040Z">
+<meta property="og:updated_time" content="2021-04-06T11:50:41.016Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WOL-远程唤醒-ARP绑定">
 <meta name="twitter:description" content="如果路由器具有公网IP，可以不需要VPS转发WOL数据包，直接在外网连接路由器发送WOL数据包，进行远程唤醒。 准备 域名设置DDNS  aaa.com -&amp;gt; 路由器公网IP  windows系统设置了允许WOL的配置，可参考以前文章。  路由器设置了端口转发，如下： 外部9000端口转发到192.168.50.100的9号端口；外部9001端口转发到192.168.50.123的9号端口">
@@ -416,9 +416,8 @@
 <li>路由器设置IP和mac地址绑定，<strong>内网wol可以不设置地址绑定, 外网wol必须设置地址绑定</strong>，如下：</li>
 </ol>
 <p><img src="/2021/WOL-远程唤醒-ARP绑定/bd.png" alt="bd"></p>
-<p>数据流转：</p>
-<pre><code>外网WOL：唤醒端在外网9000号端口发起请求-&gt;路由器端口映射-&gt;192.168.50.100:9 -&gt;查询绑定的mac地址的机器，然后启动。**和frp远程访问不同（frpc配置广播地址，不需要设置端口转发）**
-</code></pre><p>​    内网WOL：使用广播地址192.168.50.255 和mac地址进行广播，找到mac地址相同的进行启动。frp原理和此相同。</p>
+<p>数据流转：<br>   外网WOL：唤醒端在外网9000号端口发起请求-&gt;路由器端口映射-&gt;192.168.50.100:9 -&gt;查询绑定的mac地址的机器，然后启动。<strong>和frp远程访问不同（frpc配置广播地址，不需要设置端口转发）</strong></p>
+<p>   内网WOL：使用广播地址192.168.50.255 和mac地址进行广播，找到mac地址相同的进行启动。frp原理和此相同。</p>
 <p>遇到问题是，不能每次都唤醒，所以需要ARP绑定。</p>
 <h2 id="何为-ARP-绑定"><a href="#何为-ARP-绑定" class="headerlink" title="何为 ARP 绑定"></a>何为 ARP 绑定</h2><p>华硕路由器居然连 ARP 绑定功能都没有。这里要区别一下，在客户端列表中开启 <code>MAC地址与IP绑定</code> 其实仅仅是 DHCP 绑定，它可以保证每次给相同设备总是分配同一个 IP 地址，但<strong>前提是设备必须请求IP！</strong></p>
 <p>我们知道路由器内部会维护一个 ARP 表，记录 IP 与 MAC 的关系，每当设备请求 IP 时便会被记录，其超时时间因具体设置而不同。因此当设备长时间不在线（比如关机）时吗，ARP 记录就会失效，从而无法再通过 IP 给此设备发送数据。</p>
