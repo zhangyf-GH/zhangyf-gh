@@ -1335,11 +1335,11 @@
     <url>/2021/%E8%B7%AF%E7%94%B1%E5%99%A8%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E8%AE%BF%E9%97%AENAS/</url>
     <content><![CDATA[<p>如果<strong>路由器具有公网IP</strong>，则访问家里的NAS时，不需要通过VPS进行转发，直接在路由器中设置端口转发即可。</p>
 <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
-<li><p>路由器具有公网IP</p>
-</li>
-<li><p>申请一个域名例如aaa.com，并设置了解析 aaa.com -&gt; 路由器公网IP</p>
-</li>
+<li>路由器具有公网IP</li>
+<li>申请一个域名例如aaa.com，并设置了解析 aaa.com -&gt; 路由器公网IP</li>
 </ol>
+<h2 id="设置IP与MAC地址绑定"><a href="#设置IP与MAC地址绑定" class="headerlink" title="设置IP与MAC地址绑定"></a>设置IP与MAC地址绑定</h2><p>以华硕AC86U为例，开启IP与MAC地址绑定为：</p>
+<p><img src="/2021/路由器端口转发访问NAS/Snipaste_2021-04-06_22-15-14.png" alt="Snipaste_2021-04-06_22-15-14"></p>
 <h2 id="设置端口转发"><a href="#设置端口转发" class="headerlink" title="设置端口转发"></a>设置端口转发</h2><p>以华硕AC86U为例，开启端口转发的设置为：</p>
 <p><img src="/2021/路由器端口转发访问NAS/Snipaste_2021-04-06_21-50-25.png" alt="Snipaste_2021-04-06_21-50-25"></p>
 <h2 id="设置DDNS"><a href="#设置DDNS" class="headerlink" title="设置DDNS"></a>设置DDNS</h2><p>路由器的外网动态IP是不断变化的，所以域名解析设置也需要同步更新，使用DDNS服务，可以在路由器公网IP变化时，自动同步域名解析的配置，我们就可以只记住一个域名就可以访问NAS的服务。</p>
