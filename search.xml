@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CSS定位</title>
-    <url>/2019/CSS%E5%AE%9A%E4%BD%8D/</url>
-    <content><![CDATA[<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;html lang="en"&gt;</span><br><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">    &lt;meta charset="UTF-8"&gt;</span><br><span class="line">    &lt;title&gt;定位&lt;/title&gt;</span><br><span class="line">  &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">    <span class="selector-id">#left</span>,<span class="selector-id">#center</span>,<span class="selector-id">#right</span>&#123;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">33.3%</span>;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">float</span>: left;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-id">#left</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: aqua;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#center</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellowgreen;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  相对定位</span></span><br><span class="line"><span class="comment">  1.相对于自己原来的显示位置进行显示</span></span><br><span class="line"><span class="comment">  2.原来的空间不会被其他元素占用</span></span><br><span class="line"><span class="comment">  3.如果一个元素，只是开启了相对定位，没有偏移量， 那么这个元素一般是用来作为参照的，&lt;div style="position: relative"&gt;</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   绝对定位</span></span><br><span class="line"><span class="comment">   1.相对于离他最近的，并且使用了定位的父元素，如果没有找到，以body为参照</span></span><br><span class="line"><span class="comment">   2.原来的显示空间会被其他元素占用</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#right</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#fix</span>&#123;</span><br><span class="line">  <span class="comment">/*以整个屏幕为基准*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">&lt;div style="position: relative"&gt;</span><br><span class="line">  &lt;div id="left"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id="center"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id="right"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id="fix"&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/CSS定位/Snipaste_2019-02-06_15-08-02.png" alt="Snipaste_2021-07-06_15-08-02"></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>HTML CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AC86U创建虚拟内存U盘读写速度不够</title>
     <url>/2021/AC86U%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98U%E7%9B%98%E8%AF%BB%E5%86%99%E9%80%9F%E5%BA%A6%E4%B8%8D%E5%A4%9F/</url>
     <content><![CDATA[<h4 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h4><p><code>AC86U</code> 升级固件后挂载虚拟内存总是提示读写速度不够，新固件的读取速度要求 <code>20M/s</code>，写入速度要求 <code>30M/s</code><br><img src="/2021/AC86U创建虚拟内存U盘读写速度不够/20210106091033.png" alt="img"></p>
@@ -31,6 +17,20 @@
       <tags>
         <tag>network</tag>
         <tag>路由器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS定位</title>
+    <url>/2019/CSS%E5%AE%9A%E4%BD%8D/</url>
+    <content><![CDATA[<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;html lang="en"&gt;</span><br><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">    &lt;meta charset="UTF-8"&gt;</span><br><span class="line">    &lt;title&gt;定位&lt;/title&gt;</span><br><span class="line">  &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">    <span class="selector-id">#left</span>,<span class="selector-id">#center</span>,<span class="selector-id">#right</span>&#123;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">33.3%</span>;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">float</span>: left;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-id">#left</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: aqua;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#center</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellowgreen;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  相对定位</span></span><br><span class="line"><span class="comment">  1.相对于自己原来的显示位置进行显示</span></span><br><span class="line"><span class="comment">  2.原来的空间不会被其他元素占用</span></span><br><span class="line"><span class="comment">  3.如果一个元素，只是开启了相对定位，没有偏移量， 那么这个元素一般是用来作为参照的，&lt;div style="position: relative"&gt;</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   绝对定位</span></span><br><span class="line"><span class="comment">   1.相对于离他最近的，并且使用了定位的父元素，如果没有找到，以body为参照</span></span><br><span class="line"><span class="comment">   2.原来的显示空间会被其他元素占用</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#right</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#fix</span>&#123;</span><br><span class="line">  <span class="comment">/*以整个屏幕为基准*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">&lt;div style="position: relative"&gt;</span><br><span class="line">  &lt;div id="left"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id="center"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id="right"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id="fix"&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/CSS定位/Snipaste_2019-02-06_15-08-02.png" alt="Snipaste_2021-07-06_15-08-02"></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>HTML CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -390,6 +390,52 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux打印</title>
+    <url>/2015/Linux%E6%89%93%E5%8D%B0/</url>
+    <content><![CDATA[<p>打印包括：</p>
+<p>  打印作业</p>
+<p>  打印队列</p>
+<p>  打印服务  常见打印服务有CUPS和LPRng，现在CUPS（Common UNIX Printing System）是主流，常见的打印机能识别的格式为Postscript 及 Ghostscript。</p>
+<p>CUPS 支持的常见的打印机联机分享方式：</p>
+<p>  socket</p>
+<blockquote>
+<p>数据透过 internet socket(端口口)来传送，一般为 port 9100 或 35。如果想要进行数据的传输</p>
+<p>与打印，可以透过在浏觅器上面输入： socket://host-printer:9100/ 来进行。不过，这种模式不常用就是了。</p>
+</blockquote>
+<p>  LPD (Line Pritner Daemon)</p>
+<blockquote>
+<p>LPD 是较早之前的打印服务，LPRng 就是使用这种方式的联机啦！ LPD 主要是</p>
+<p>利用串行端口来达成打印的需求，打印机名称就是 LPT1/LPT2… 等等。 目前还是可以在比较早期的 Linux distributions 看到这种打印方式。</p>
+</blockquote>
+<p>  IPP (Internet Printing Protocol)</p>
+<blockquote>
+<p>这是目前比较流行的打印机打印协议， CUPS预设也是支持这种协议啊！当启动 IPP </p>
+<p>时，打印机会启动 port 631 ，打印的数据就是透过这个 port 来进行传送的。另外，如果你的</p>
+<p>打印机或者 Linux 主机启动了 ipp 之后， 嘿嘿！你可以直接使用浏觅器，输入：</p>
+<p>ipp://printer_IP/printername，或者是： http:/printer_IP:631 就能够直接在线处理打印机的设定。</p>
+</blockquote>
+<p>  SMB (Server Message Block)</p>
+<p>​      这家伙就是网络上的芳邻啦！协议使用的是： smb://user:password@host/printer 。</p>
+<p> /etc/cups/printers.conf：打印机的设定值，都写在这个档案中；（设定打印机地址等信息） /etc/cups/cupsd.conf：CUPS 的主要配置文件，包括做为服务器之用途的设定。 /etc/cups/ppd/*.ppd：就是各个打印机的驱动程序 (PPD 配置文件)；</p>
+<p>>/etc/init.d/cups restart  –启动CUPS服务</p>
+<p>>netstat -tlunp | grep 631  –查询是否启动CUPS服务</p>
+<h3 id="lpadmin-打印机建立与删除"><a href="#lpadmin-打印机建立与删除" class="headerlink" title="lpadmin 打印机建立与删除"></a><strong>lpadmin 打印机建立与删除</strong></h3><p><img src="/2015/Linux打印/853a8341-07ab-4cfe-ac67-b78666530f05.png" alt="img"></p>
+<p><img src="/2015/Linux打印/1f2d6143-fe7b-439f-b13f-ebc223048d1f.png" alt="img"></p>
+<h3 id="lpstatus-查看打印机状态"><a href="#lpstatus-查看打印机状态" class="headerlink" title="lpstatus 查看打印机状态"></a><strong>lpstatus 查看打印机状态</strong></h3><p><img src="/2015/Linux打印/12408597-c8d8-4b31-8ac7-b9dc7716465b.png" alt="img"></p>
+<h3 id="lp和lpr打印"><a href="#lp和lpr打印" class="headerlink" title="lp和lpr打印"></a><strong>lp和lpr打印</strong></h3><p><img src="/2015/Linux打印/b16e1f60-eee6-4671-a225-9bf36857e995.png" alt="img"></p>
+<p><img src="/2015/Linux打印/1c3ae070-8125-4859-bc66-b59bf829444d.png" alt="img"></p>
+<h3 id="打印作业的观察-lpq"><a href="#打印作业的观察-lpq" class="headerlink" title="打印作业的观察 (lpq)"></a><strong>打印作业的观察 (lpq)</strong></h3><p><img src="/2015/Linux打印/35ac25c0-0f5f-4d6f-a030-46aa2eefaecd.png" alt="img"></p>
+<h3 id="打印作业的删除-lprm"><a href="#打印作业的删除-lprm" class="headerlink" title="打印作业的删除 (lprm)"></a><strong>打印作业的删除 (lprm)</strong></h3><p><img src="/2015/Linux打印/2dee6621-92a0-4aba-93c0-769df5ebf984.png" alt="img"></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>鸟哥的Linux私房菜</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux软件安装</title>
     <url>/2014/Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<p>Tarball安装（源代码安装）<br>1.解压到 /usr/local/src<br>2.到软件目录下执行 ./configure 检测平台环境变量，生成Makefile<br>3.执行make命令，编译成目标文件并连接库函数，生成二进制文件 其实是替代了gcc的一步步编译，make自动去找Makefile文件，Makefile文件中写了很多gcc编译的配置。当前目录下生成objs文件夹<br>4.执行make install 将编译后的文件放到安装目录下</p>
@@ -562,55 +608,6 @@
       </tags>
   </entry>
   <entry>
-    <title>WOL-远程唤醒-ARP绑定</title>
-    <url>/2021/WOL-%E8%BF%9C%E7%A8%8B%E5%94%A4%E9%86%92-ARP%E7%BB%91%E5%AE%9A/</url>
-    <content><![CDATA[<p>如果路由器具有公网IP，可以不需要VPS转发WOL数据包，直接在外网连接路由器发送WOL数据包，进行远程唤醒。</p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
-<li><p>域名设置DDNS  <strong>aaa.com -&gt; 路由器公网IP</strong></p>
-</li>
-<li><p>windows系统设置了允许WOL的配置，可参考以前文章。</p>
-</li>
-<li><p>路由器设置了端口转发，如下：</p>
-<p>外部9000端口转发到192.168.50.100的9号端口；外部9001端口转发到192.168.50.123的9号端口</p>
-</li>
-</ol>
-<p><img src="/2021/WOL-远程唤醒-ARP绑定/dkzf.png" alt="dkzf"></p>
-<ol start="4">
-<li>路由器设置IP和mac地址绑定，<strong>内网wol可以不设置地址绑定, 外网wol必须设置地址绑定</strong>，如下：</li>
-</ol>
-<p><img src="/2021/WOL-远程唤醒-ARP绑定/bd.png" alt="bd"></p>
-<p>数据流转：<br>   外网WOL：唤醒端在外网9000号端口发起请求-&gt;路由器端口映射-&gt;192.168.50.100:9 -&gt;查询绑定的mac地址的机器，然后启动。<strong>和frp远程访问不同（frpc配置广播地址，不需要设置端口转发）</strong></p>
-<p>   内网WOL：使用广播地址192.168.50.255 和mac地址进行广播，找到mac地址相同的进行启动。frp原理和此相同。</p>
-<p>遇到问题是，不能每次都唤醒，所以需要ARP绑定。</p>
-<h2 id="何为-ARP-绑定"><a href="#何为-ARP-绑定" class="headerlink" title="何为 ARP 绑定"></a>何为 ARP 绑定</h2><p>华硕路由器居然连 ARP 绑定功能都没有。这里要区别一下，在客户端列表中开启 <code>MAC地址与IP绑定</code> 其实仅仅是 DHCP 绑定，它可以保证每次给相同设备总是分配同一个 IP 地址，但<strong>前提是设备必须请求IP！</strong></p>
-<p>我们知道路由器内部会维护一个 ARP 表，记录 IP 与 MAC 的关系，每当设备请求 IP 时便会被记录，其超时时间因具体设置而不同。因此当设备长时间不在线（比如关机）时吗，ARP 记录就会失效，从而无法再通过 IP 给此设备发送数据。</p>
-<p>有一个典型需求：PC需要 WOL 网络唤醒。因此我们要进行 <strong>ARP 绑定</strong>，与 DHCP 绑定不同，ARP 绑定相当于把 IP 对应关系写死在表里，无论设备是否在线。</p>
-<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>ssh 或 telnet 登录路由器，执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arp -s [IP] [MAC]</span><br></pre></td></tr></table></figure>
-<p>就搞定了。</p>
-<p>但是这样每次重启都会失效，我们需要通过自启脚本来手动添加 ARP 项，因此官方固件是不行的，先刷梅林，使用putty连接到路由器。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /jffs/scripts/ <span class="comment"># 进入脚本目录</span></span><br><span class="line">vi services-start <span class="comment"># 打开编辑器（你也可以用其他编辑器）</span></span><br></pre></td></tr></table></figure>
-<p>将文件内容改为：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">arp -s [IP] [MAC]</span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
-<p>保存，最后给予执行权限：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+rx /jffs/scripts/*</span><br></pre></td></tr></table></figure>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>验证ARP绑定无误也非常简单，上面步骤做完以后，重启一下路由器，putty连接路由器，直接输入<code>arp</code> 查看 ARP 表，对应项目如果标识有 <code>[PERM]</code> 就是已经绑定了。</p>
-<p><img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_12-57-38.png" alt="Snipaste_2021-04-06_12-57-38"></p>
-<p>应该可以通过域名从互联网开机了。</p>
-<h2 id="唤醒端配置"><a href="#唤醒端配置" class="headerlink" title="唤醒端配置"></a>唤醒端配置</h2><p>手机下载WOL软件，PC和NAS唤醒配置如下：</p>
-<p> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-37-08.png" alt="Snipaste_2021-04-06_11-37-08"><br> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-36-52.png" alt="Snipaste_2021-04-06_11-36-52"></p>
-]]></content>
-      <categories>
-        <category>network</category>
-        <category>WOL</category>
-      </categories>
-      <tags>
-        <tag>WOL</tag>
-        <tag>ARP</tag>
-        <tag>端口转发</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OSI七层模型与TCP IP五层模型</title>
     <url>/2021/OSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E4%B8%8ETCP-IP%E4%BA%94%E5%B1%82%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h2 id="一、OSI参考模型"><a href="#一、OSI参考模型" class="headerlink" title="一、OSI参考模型"></a>一、OSI参考模型</h2><p>​    今天我们先学习一下以太网最基本也是重要的知识——OSI参考模型。</p>
@@ -666,6 +663,55 @@
       <tags>
         <tag>network</tag>
         <tag>理论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WOL-远程唤醒-ARP绑定</title>
+    <url>/2021/WOL-%E8%BF%9C%E7%A8%8B%E5%94%A4%E9%86%92-ARP%E7%BB%91%E5%AE%9A/</url>
+    <content><![CDATA[<p>如果路由器具有公网IP，可以不需要VPS转发WOL数据包，直接在外网连接路由器发送WOL数据包，进行远程唤醒。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li><p>域名设置DDNS  <strong>aaa.com -&gt; 路由器公网IP</strong></p>
+</li>
+<li><p>windows系统设置了允许WOL的配置，可参考以前文章。</p>
+</li>
+<li><p>路由器设置了端口转发，如下：</p>
+<p>外部9000端口转发到192.168.50.100的9号端口；外部9001端口转发到192.168.50.123的9号端口</p>
+</li>
+</ol>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/dkzf.png" alt="dkzf"></p>
+<ol start="4">
+<li>路由器设置IP和mac地址绑定，<strong>内网wol可以不设置地址绑定, 外网wol必须设置地址绑定</strong>，如下：</li>
+</ol>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/bd.png" alt="bd"></p>
+<p>数据流转：<br>   外网WOL：唤醒端在外网9000号端口发起请求-&gt;路由器端口映射-&gt;192.168.50.100:9 -&gt;查询绑定的mac地址的机器，然后启动。<strong>和frp远程访问不同（frpc配置广播地址，不需要设置端口转发）</strong></p>
+<p>   内网WOL：使用广播地址192.168.50.255 和mac地址进行广播，找到mac地址相同的进行启动。frp原理和此相同。</p>
+<p>遇到问题是，不能每次都唤醒，所以需要ARP绑定。</p>
+<h2 id="何为-ARP-绑定"><a href="#何为-ARP-绑定" class="headerlink" title="何为 ARP 绑定"></a>何为 ARP 绑定</h2><p>华硕路由器居然连 ARP 绑定功能都没有。这里要区别一下，在客户端列表中开启 <code>MAC地址与IP绑定</code> 其实仅仅是 DHCP 绑定，它可以保证每次给相同设备总是分配同一个 IP 地址，但<strong>前提是设备必须请求IP！</strong></p>
+<p>我们知道路由器内部会维护一个 ARP 表，记录 IP 与 MAC 的关系，每当设备请求 IP 时便会被记录，其超时时间因具体设置而不同。因此当设备长时间不在线（比如关机）时吗，ARP 记录就会失效，从而无法再通过 IP 给此设备发送数据。</p>
+<p>有一个典型需求：PC需要 WOL 网络唤醒。因此我们要进行 <strong>ARP 绑定</strong>，与 DHCP 绑定不同，ARP 绑定相当于把 IP 对应关系写死在表里，无论设备是否在线。</p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>ssh 或 telnet 登录路由器，执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arp -s [IP] [MAC]</span><br></pre></td></tr></table></figure>
+<p>就搞定了。</p>
+<p>但是这样每次重启都会失效，我们需要通过自启脚本来手动添加 ARP 项，因此官方固件是不行的，先刷梅林，使用putty连接到路由器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /jffs/scripts/ <span class="comment"># 进入脚本目录</span></span><br><span class="line">vi services-start <span class="comment"># 打开编辑器（你也可以用其他编辑器）</span></span><br></pre></td></tr></table></figure>
+<p>将文件内容改为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">arp -s [IP] [MAC]</span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+<p>保存，最后给予执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+rx /jffs/scripts/*</span><br></pre></td></tr></table></figure>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>验证ARP绑定无误也非常简单，上面步骤做完以后，重启一下路由器，putty连接路由器，直接输入<code>arp</code> 查看 ARP 表，对应项目如果标识有 <code>[PERM]</code> 就是已经绑定了。</p>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_12-57-38.png" alt="Snipaste_2021-04-06_12-57-38"></p>
+<p>应该可以通过域名从互联网开机了。</p>
+<h2 id="唤醒端配置"><a href="#唤醒端配置" class="headerlink" title="唤醒端配置"></a>唤醒端配置</h2><p>手机下载WOL软件，PC和NAS唤醒配置如下：</p>
+<p> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-37-08.png" alt="Snipaste_2021-04-06_11-37-08"><br> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-36-52.png" alt="Snipaste_2021-04-06_11-36-52"></p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>WOL</category>
+      </categories>
+      <tags>
+        <tag>WOL</tag>
+        <tag>ARP</tag>
+        <tag>端口转发</tag>
       </tags>
   </entry>
   <entry>
@@ -1174,6 +1220,18 @@
       </tags>
   </entry>
   <entry>
+    <title>文件系统</title>
+    <url>/2015/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>鸟哥的Linux私房菜</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>清除浮动</title>
     <url>/2018/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/</url>
     <content><![CDATA[<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>float<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#left</span>&#123;</span></span><br><span class="line">      height: 100px;</span><br><span class="line">      background-color: aqua;</span><br><span class="line">      width: 50%;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#right</span>&#123;</span></span><br><span class="line">      height: 120px;</span><br><span class="line">      background-color: yellow;</span><br><span class="line">      width: 50%;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#content2</span>&#123;</span></span><br><span class="line">      height: 150px;</span><br><span class="line">      background-color: blue;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.clearFix</span><span class="selector-pseudo">:after</span>&#123;</span></span><br><span class="line">      content: '清除浮动';</span><br><span class="line">      display: block;</span><br><span class="line">      clear: both;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#cle</span>&#123;</span></span><br><span class="line">      clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 行内元素 不占一行 宽度取决于包裹的元素宽度</span></span><br><span class="line"><span class="comment">     块状元素占一行</span></span><br><span class="line"><span class="comment">浮动后块状元素变成行内元素，如果不设置宽度时，宽度大小取决于其包裹的元素的大小--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content1"</span>  <span class="attr">class</span>=<span class="string">"clearFix"</span>  &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"left"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--&lt;div id="cle"&gt;&lt;/div&gt;--&gt;</span> <span class="comment">&lt;!--此清除float方法不好，添加了一个dom元素，采用class="clearFix"即可--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content2"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -1188,6 +1246,123 @@
       </categories>
       <tags>
         <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>系统安装开关机流程</title>
+    <url>/2014/%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E5%BC%80%E5%85%B3%E6%9C%BA%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h3 id="磁盘结构"><a href="#磁盘结构" class="headerlink" title="磁盘结构"></a>磁盘结构</h3><p>磁盘的第一个扇区主要记录了两个重要的信息，分别是：</p>
+<ul>
+<li>主要启动记录区(Master Boot Record, MBR)：可以安装开机管理程序的地方，有 446 bytes。</li>
+<li>分割表(partition table)：记录整颗硬盘分割的状态，有 64 bytes。</li>
+<li>由于分割表就只有 64 bytes 而已，最多只能容纳四笔分割的记录， 这四个分割的记录被称为主分区(Primary)和扩展分区(Extended)。</li>
+<li>其实所谓的『分区』叧是针对那个 64 bytes的分割表进行设定而已！</li>
+<li>硬盘的分割表仅能写入四组分割信息盘默认</li>
+<li>这四组分割信息我们称为主(Primary)和扩展(Extended)分区</li>
+<li>分区的最小单位为磁柱(cylinder)</li>
+<li>当系统要写入磁盘时，一定会参考磁盘分区表，才能针对某个分割槽进行数据的处理</li>
+<li>主分区和扩展分区最多可以有四笔(硬盘的限制)</li>
+<li>扩展分区最多只能有一个(操作系统的限制)</li>
+<li>逻辑分区（Logical）是由扩展分区持续切割出来的分割槽；</li>
+<li>能够被格式化后，作为数据存取的分割槽为主分区和逻辑分区。扩展分区无法格式化；</li>
+<li>逻辑分区数量依操作系统而不同，在 Linux 系统中，IDE 硬盘最多有 59 个逻辑分区(5 号到63 号)， SATA 硬盘则有 11 个逻辑分区(5 号到 15 号)。 </li>
+</ul>
+<h3 id="开机流程"><a href="#开机流程" class="headerlink" title="开机流程"></a><strong>开机流程</strong></h3><p>BIOS（加载CMOS中存储信息，INT13中断）——&gt;MBR(包含boot loader)——&gt;开机管理程序（boot loader）——&gt;kernal(/boot/vmlinuz)+initrd( Initial RAM Disk /boot/initrd)——&gt;/sbin/init(设置/etc/inittab)</p>
+<ol>
+<li>grub可以访问磁盘，加载kernal和intrd。</li>
+<li>在kernal访问磁盘时，如果是非IDE接口的例如SATA接口，那么kernal没有硬盘驱动，kernal无法识别和访问SATA 磁盘。但是 SATA 的驱动程序在磁盘中的 /lib/modules 内，你根本无法访问磁盘又怎么读取到 /lib/modules/ 内的驱动程序呢。</li>
+</ol>
+<p>虚拟文件系统 (Initial RAM Disk) 一般使用的档名为 /boot/initrd ，这个档案的特色是，他也能够透过 boot loader 来加载到内存中，然后这个档案会被解压缩并且在内存当中仿真成一个根目录， 且此仿真在内存当中的文件系统能够提供一支可执行的程序，透过该程序来加载开机过程中所最需要的核心模块， 通常这些模块就是 USB, RAID, LVM, SCSI 等文件系统与磁盘接口的驱动程序啦。</p>
+<p>一般来说，需要 initrd 的时刻为：</p>
+<ul>
+<li>根目录所在磁盘为 SATA、USB 或 SCSI 等连接接口；</li>
+<li>根目录所在文件系统为 LVM, RAID 等特殊格式；</li>
+<li>根目录所在文件系统为非传统 Linux 认识的文件系统时；</li>
+<li>其他必须要在核心加载时提供的模块。 </li>
+</ul>
+<h4 id="init执行流程"><a href="#init执行流程" class="headerlink" title="init执行流程"></a><strong>init执行流程</strong></h4><ol>
+<li>先取得 runlevel 亦即默认执行等级的相关等级 (以鸟哥的测试机为例，为 5 号)；</li>
+<li>使用 /etc/rc.d/rc.sysinit 进行系统初始化，调用 /etc/sysconfig里面脚本，设定好整个系统环境，准备软件执行的作业环境 (如网络、时区等)。</li>
+<li>根据/etc/rc.d/rc，根据运行级别调用/etc/rc.d/rc5.d来启动和停止服务 连接到/etc/rc.d/init.d里面的程序 ，然后调用/etc/rc.d/rc.local ， 启动自定义服务。</li>
+<li>设定好 [ctrl]+[alt]+[del] 这组的组合键功能</li>
+<li>设定不断电系统的 pf, pr 两种机制；</li>
+<li>启动 mingetty 的六个终端机 (tty1 ~ tty6)</li>
+<li>最终以 /etc/X11/perfdm -nodaemon 启动图形接口啦！<br>开机管理程序除了可以安装在 MBR 之外， 还可以安装在每个分割槽的启动扇区(boot sector)中，提供以下功能：</li>
+<li>提供选单</li>
+<li>载入核心档案</li>
+<li>转交其他loader</li>
+</ol>
+<h4 id="GRUB启动的两个阶段"><a href="#GRUB启动的两个阶段" class="headerlink" title="GRUB启动的两个阶段"></a><strong>GRUB启动的两个阶段</strong></h4><p>MBR 是整个硬盘的第一个 sector 内的一个区块，整个大小也才 446 bytes 而已。 我们的 loader 功能这么强，光是程序代码于设定数据不止 446 bytes 。</p>
+<p>为了解决这个问题，所以 Linux 将 boot loader 的程序代码执行与设定值加载分成两个阶段 (stage) 来执行：</p>
+<ul>
+<li>Stage 1：执行 boot loader 主程序：<br>第一阶段为执行 boot loader 的主程序，这个主程序必须要被安装在开机区，亦即是 MBR 或者<br>是 boot sector 。但如前所述，因为 MBR 实在太小了，所以，MBR 或 boot sector 通常仅安<br>装 boot loader 的最小主程序，并没有安装 loader 的相关配置文件；</li>
+<li>Stage 2：主程序加载配置文件：<br>第二阶段为透过 boot loader 加载所有配置文件与相关的环境参数档案 (包括文件系统定义与主<br>要配置文件 /boot/menu.lst)， 一般来说，配置文件都在 /boot 底下。<br>重新启动 X Window 的快速按钮</li>
+<li>直接注销，然后再重新登入卲可；</li>
+<li>在 X 的画面中直接按下[Alt] + [Ctrl] + [Backspace]；</li>
+</ul>
+<p>X window 与文本模式的切换</p>
+<ul>
+<li>[Ctrl] + [Alt] + [F1] ~ [F6]  ：文字接口登入 tty1 ~ tty6 终端机；  run level 3</li>
+<li>[Ctrl] + [Alt] + [F7]       ：图形接口桌面。                 run level 5</li>
+</ul>
+<p>etc/issue   显示文本模式登录前的系统提示信息</p>
+<p>etc/inittab 显示运行模式</p>
+<p>[vbird@www ~]$ date +%Y/%m/%d<br>2009/08/17</p>
+<p>[vbird@www ~]$ date +%H:%M</p>
+<p>17:04</p>
+<p>Ctrl+c  中断当前执行的指令</p>
+<p>Ctrl+z  是把当前的程序挂起，暂停执行这个程序。用fg返回执行的指令，当然，配合bg和fg命令进行前后台切换会非常方便。</p>
+<p>Ctrl+d  =exit 退出当前用户</p>
+<p>[Tab][Tab] 两个tab键显示有多少Linux命令</p>
+<h3 id="获取帮助信息"><a href="#获取帮助信息" class="headerlink" title="获取帮助信息"></a>获取帮助信息</h3><ul>
+<li>man date</li>
+</ul>
+<p>DATE(1)   NULL(4)</p>
+<p>man man 可查询指令等级</p>
+<p>代号                 代表内容</p>
+<p> 1      用户在 shell 环境中可以操作的指令或可执行文件</p>
+<p> 2      系统核心可呼叫的凼数或工具等</p>
+<p> 3      一些常用的凼数(function)与凼式库(library)，大部分为 C 的凼式库(libc)</p>
+<p> 4      装置档案的说明，通常在/dev 下的档案</p>
+<p> 5      配置文件或者是某些档案的格式</p>
+<p> 6      游戏(games)</p>
+<p> 7      惯例与协议等，例如 Linux 文件系统、网络协议、ASCII code 等等的说明</p>
+<p> 8      系统管理员可用的管理指令</p>
+<p> 9      跟 kernel 有关的文件</p>
+<p>指令查找：</p>
+<p>man -f man= whatis man 查找指令名为man的或包含man指令 。whatis指令需建立whatis数据库 makewhatis(无空格)</p>
+<p>man -k man=apropos man 查找命令的描述信息中含有man的指令。</p>
+<ul>
+<li>info date</li>
+<li>/usr/share/doc</li>
+</ul>
+<p>nano vim 编辑器</p>
+<h3 id="关机步骤"><a href="#关机步骤" class="headerlink" title="关机步骤"></a>关机步骤</h3><ol>
+<li>查看状态<br>who 谁在线<br>netstat -a 网络状态<br>ps aux  进程状态</li>
+<li>sync  内存回写硬盘</li>
+<li>shutdown -h now 立刻关机<br> shutdown -h 20:35 在20:35关机<br> shutdown -h +10  ‘I will shutdown after 10 mins’= shutdown -h 10  ‘I will shutdown after 10 mins<br> shutdown -r now  立刻重启<br> shutdown -k now ‘This system will reboot’ 发出警告<br> reboot   重启<br> halt     关机<br> poweroff 关机<br> init 0    关机<br> init 6    重启</li>
+</ol>
+<h3 id="RUN-LEVEL"><a href="#RUN-LEVEL" class="headerlink" title="RUN LEVEL"></a>RUN LEVEL</h3><ul>
+<li>0 - halt (系统直接关机)</li>
+<li>1 - single user mode (单人维护模式，用在系统出问题时的维护)</li>
+<li>2 - Multi-user, without NFS (类似底下的 runlevel 3，但无 NFS 服务)</li>
+<li>3 - Full multi-user mode (完整含有网络功能的纯文本模式)</li>
+<li>4 - unused (系统保留功能)</li>
+<li>5 - X11 (与runlevel 3 类似，但加载使用 X Window)</li>
+<li>6 - reboot (重新启动)</li>
+</ul>
+<h3 id="CentOS7-更新"><a href="#CentOS7-更新" class="headerlink" title="CentOS7 更新"></a>CentOS7 更新</h3><p><img src="/2014/系统安装开关机流程/7429718.png" alt="img"><img src="/2014/系统安装开关机流程/7450031.png" alt="img"><img src="/2014/系统安装开关机流程/7469375.png" alt="img"><img src="/2014/系统安装开关机流程/7529968.png" alt="img"></p>
+<p>更新驱动模块之间的相依性</p>
+<p>modep [-A] 不加任何参数时, depmod 会主动的去分析目前核心的模块,并且重新写入/lib/modules/$(uname -r)/modules.dep 当中。</p>
+<p>​      若加入 -A 参数时,则depmod会去搜寻比 modules.dep 内还要新的模块,如果真找到新模块,才会更新。</p>
+<p>modprobe [-r]驱动名  自动搜寻modules.dep，加载驱动,删除驱动</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>鸟哥的Linux私房菜</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
