@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CSS定位</title>
+    <url>/2019/CSS%E5%AE%9A%E4%BD%8D/</url>
+    <content><![CDATA[<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;html lang="en"&gt;</span><br><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">    &lt;meta charset="UTF-8"&gt;</span><br><span class="line">    &lt;title&gt;定位&lt;/title&gt;</span><br><span class="line">  &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">    <span class="selector-id">#left</span>,<span class="selector-id">#center</span>,<span class="selector-id">#right</span>&#123;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">33.3%</span>;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">float</span>: left;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-id">#left</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: aqua;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#center</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellowgreen;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  相对定位</span></span><br><span class="line"><span class="comment">  1.相对于自己原来的显示位置进行显示</span></span><br><span class="line"><span class="comment">  2.原来的空间不会被其他元素占用</span></span><br><span class="line"><span class="comment">  3.如果一个元素，只是开启了相对定位，没有偏移量， 那么这个元素一般是用来作为参照的，&lt;div style="position: relative"&gt;</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   绝对定位</span></span><br><span class="line"><span class="comment">   1.相对于离他最近的，并且使用了定位的父元素，如果没有找到，以body为参照</span></span><br><span class="line"><span class="comment">   2.原来的显示空间会被其他元素占用</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#right</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#fix</span>&#123;</span><br><span class="line">  <span class="comment">/*以整个屏幕为基准*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">&lt;div style="position: relative"&gt;</span><br><span class="line">  &lt;div id="left"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id="center"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id="right"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id="fix"&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/CSS定位/Snipaste_2019-02-06_15-08-02.png" alt="Snipaste_2021-07-06_15-08-02"></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>HTML CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AC86U创建虚拟内存U盘读写速度不够</title>
+    <url>/2021/AC86U%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98U%E7%9B%98%E8%AF%BB%E5%86%99%E9%80%9F%E5%BA%A6%E4%B8%8D%E5%A4%9F/</url>
+    <content><![CDATA[<h4 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h4><p><code>AC86U</code> 升级固件后挂载虚拟内存总是提示读写速度不够，新固件的读取速度要求 <code>20M/s</code>，写入速度要求 <code>30M/s</code><br><img src="/2021/AC86U创建虚拟内存U盘读写速度不够/20210106091033.png" alt="img"></p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>修改参数限制</p>
+<p><code>ssh</code> 登录到路由器，执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 修改写入速度限制，30替换为10</span><br><span class="line">sed -i &apos;s/^W_LIMIT=30/W_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br><span class="line"></span><br><span class="line"># 修改读取速度限制，20替换为10</span><br><span class="line">sed -i &apos;s/^R_LIMIT=20/R_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br></pre></td></tr></table></figure>
+<p>以上参数可以根据自己的实际情况进行调整</p>
+<p>完成后重新进入管理界面挂载虚拟内存即可</p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>路由器</category>
+      </categories>
+      <tags>
+        <tag>network</tag>
+        <tag>路由器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CollectionUtils工具类</title>
     <url>/2020/CollectionUtils%E5%B7%A5%E5%85%B7%E7%B1%BB/</url>
     <content><![CDATA[<p>这篇讲的CollectionUtils工具类是在<code>apache下</code>的, 而不是springframework下的CollectionUtils。</p>
@@ -58,25 +91,6 @@
       </categories>
       <tags>
         <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AC86U创建虚拟内存U盘读写速度不够</title>
-    <url>/2021/AC86U%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98U%E7%9B%98%E8%AF%BB%E5%86%99%E9%80%9F%E5%BA%A6%E4%B8%8D%E5%A4%9F/</url>
-    <content><![CDATA[<h4 id="前记"><a href="#前记" class="headerlink" title="前记"></a>前记</h4><p><code>AC86U</code> 升级固件后挂载虚拟内存总是提示读写速度不够，新固件的读取速度要求 <code>20M/s</code>，写入速度要求 <code>30M/s</code><br><img src="/2021/AC86U创建虚拟内存U盘读写速度不够/20210106091033.png" alt="img"></p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>修改参数限制</p>
-<p><code>ssh</code> 登录到路由器，执行如下命令</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 修改写入速度限制，30替换为10</span><br><span class="line">sed -i &apos;s/^W_LIMIT=30/W_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br><span class="line"></span><br><span class="line"># 修改读取速度限制，20替换为10</span><br><span class="line">sed -i &apos;s/^R_LIMIT=20/R_LIMIT=10/&apos; /koolshare/scripts/swap_make.sh</span><br></pre></td></tr></table></figure>
-<p>以上参数可以根据自己的实际情况进行调整</p>
-<p>完成后重新进入管理界面挂载虚拟内存即可</p>
-]]></content>
-      <categories>
-        <category>network</category>
-        <category>路由器</category>
-      </categories>
-      <tags>
-        <tag>network</tag>
-        <tag>路由器</tag>
       </tags>
   </entry>
   <entry>
@@ -376,6 +390,105 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux软件安装</title>
+    <url>/2014/Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<p>Tarball安装（源代码安装）<br>1.解压到 /usr/local/src<br>2.到软件目录下执行 ./configure 检测平台环境变量，生成Makefile<br>3.执行make命令，编译成目标文件并连接库函数，生成二进制文件 其实是替代了gcc的一步步编译，make自动去找Makefile文件，Makefile文件中写了很多gcc编译的配置。当前目录下生成objs文件夹<br>4.执行make install 将编译后的文件放到安装目录下</p>
+<table>
+<thead>
+<tr>
+<th>distribution 代表</th>
+<th>软件管理机制</th>
+<th>使用命令</th>
+<th>在线升级机制(命令)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Red Hat/Fedora</td>
+<td>RPM</td>
+<td>rpm, rpmbuild</td>
+<td>YUM (yum)</td>
+</tr>
+<tr>
+<td>Debian/Ubuntu</td>
+<td>DPKG</td>
+<td>dpkg</td>
+<td>APT (apt-get)</td>
+</tr>
+</tbody>
+</table>
+<p>虽然RPM与DPKG有效的解决的软体的安装，移除与查询的需求，但是在Linux上的套件管理还有一个很大的问题必须解决，就是各软体间的相依性(dependency)。 <strong>RPM与DPKG只能做到检查相依性，在安装或移除时告知相依性的不满足，皆下来就需要使用者自行去找出所需的套件来安装。 这样的确是有点不方便，因此产生了前端工具软体- APT及YUM。</strong></p>
+<p>安装/更新</p>
+<p> -h用#(hash)符显示rpm安装过程  -v详述安装过程<br>rpm -ivh fds.rpm –force –prefix /usr/local<br>rpm -Uvh fds.rpm  后面接的软件，如果原本未安装，则直接安装，原本已安装时，则直接升级；<br>rpm -Fvh fds.rpm  后面接的软件，如果原本未安装，则不安装，原本已安装时，则直接升级；</p>
+<p>查询<br>rpm -qa<br>rpm -qlicdR 已安装package<br>rpm -qf 文件名  –查询文件属于哪个软件<br>rpm -qplicdR 未安装package</p>
+<p>rpm -qa|grep ^a|wc -l 以a开头的软件个数</p>
+<p>验证<br>rpm -Va<br>rpm -V 已安装软件<br>rpm -Vf 文件名</p>
+<p>卸载<br>rpm -ev 已安装软件</p>
+<p>重建数据库<br>rpm –rebuilddb</p>
+<p>SRPM(source RPM)方式<br>rpmbuild –rebuild  aaa.src.rpm 编译打包<br>rpmbuild –recompile aaa.src.rpm 编译打包安装<br>rpmbuild -ba aaa.spec 编译并同时产生RPM与SRPM档案<br>rpmbuild -bb aaa.spec 仅编译成RPM档案</p>
+<p>yum线上安装<br>yum search raid<br>yum list pam*  =rpm -qa<br>yum list updates 查询可升级软件<br>yum info raid  =rpm -qi<br>yum provides passwd  =rpm -qf</p>
+<p>yum -y install pam-devel –installroot=/path<br>yum update pam 整个系统都升级不加软件名<br>yum remove pam-devel</p>
+<p><strong>更改repository地址</strong><br><img src="/2014/Linux软件安装/11394328.png" alt="img"></p>
+<p><strong>新建repository地址</strong></p>
+<p>>vim /etc/yum.repos.d/drbl.repo</p>
+<p> [drbl]</p>
+<p> name = this is DRBL site</p>
+<p> baseurl=<a href="http://free.nchc.org.tw/drbl-core/i386/RPMS.drbl-stable/" target="_blank" rel="noopener">http://free.nchc.org.tw/drbl-core/i386/RPMS.drbl-stable/</a></p>
+<p> enable =1</p>
+<p> gpgcheck=0</p>
+<p>>yum search drbl</p>
+<p>>yum repolist all</p>
+<p>yum clean [packages|headers|all] 清除原来的软件列表<br>yum [grouplist|groupinfo|groupinstall|groupremove] 群组软件名</p>
+<p>  yum grouplist 显示所有可以安装的群组</p>
+<p>  yum grouplist | grep Development</p>
+<p>  yum groupinfo “Development tools”</p>
+<p>  <strong>yum -y groupinstall “Development tools” 如果报错，先执行 yum clean all</strong></p>
+<p>yum -y update  系统升级</p>
+<p>安装</p>
+<p>dpkg -i pkgfile.deb</p>
+<p>在Debian使用alien处理RPM套件</p>
+<blockquote>
+<p>alien 可处理.deb、.rpm、.slp、.tgz 等档案格式, 进行转档或安装.<br>于Debian安装非Debian套件时,可使用<strong>alien</strong>进行安装.<br>安装alien套件: apt-get install alien</p>
+</blockquote>
+<ul>
+<li>在Debian安装RPM套件: alien -i quota-3.12-7.i386.rpm</li>
+<li>制作成deb的套件格式: alien -d quota-3.12-7.i386.rpm</li>
+<li>制作成rpm的套件格式: alien -r quota_3.12-6_i386.deb</li>
+</ul>
+<p>查询</p>
+<p>dpkg -l(小写L)        显示所有安装套件</p>
+<p>dpkg -l softwarename (小写L,只列出简洁资讯) </p>
+<p>dpkg -s softwarename (显示详细资讯)<br>dpkg -p softwarename (显示详细资讯</p>
+<p>dpkg -L softwarename  显示套件包含的所有档案</p>
+<p>dpkg -S /path/to/file    显示特定档案所属套件名称</p>
+<p>dpkg -I pkgfile.deb (大写i) 查询安装软件包资讯</p>
+<p>dpkg -c pkgfile.deb   查询安装软件包资讯</p>
+<p>卸载</p>
+<p>dpkg -r softwarename (会留下套件设定档)<br>dpkg -P softwarename (完全移除)</p>
+<p>apt-get线上安装  </p>
+<p>  aptitude与 apt-get 一样，是 Debian 及其衍生系统中功能极其强大的包管理工具。与 apt-get 不同的是，aptitude在处理依赖问题上更佳一些。</p>
+<p>举例来说，aptitude在删除一个包时，会同时删除本身所依赖的包。这样，系统中不会残留无用的包，整个系统更为干净。功能参数差不多。</p>
+<p>apt-get install softname</p>
+<p>apt-get update             更新软件包索引</p>
+<p>apt-get upgrade            软件升级，执行前须执行update</p>
+<p>apt-get remove softwarename 移除软体(保留设定档）</p>
+<p>apt-get  –purge remove softwarename 移除软体(不保留设定档）</p>
+<p><strong>软件包: build-essential 安装方法：sudo apt-get install build-essential</strong></p>
+<p> 软件库地址文件/etc/apt/souces.list</p>
+<p>apt-cache search softwarename   列出所有sofrwarename的套件</p>
+<p>apt-cache show packageName   显示更多描述细节</p>
+<p>apt-get clean(autoclean)         删除系统暂存的deb(autoclean只会将比目前系统旧版的套件删除)</p>
+<p>apt-get dist-upgrade            转换系统的版本（需在/etc/apt/sources.list指定stable，testing或unstable）</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>鸟哥的Linux私房菜</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NAT号段</title>
     <url>/2021/NAT%E5%8F%B7%E6%AE%B5/</url>
     <content><![CDATA[<p>我们现在常使用的IP地址是IPv4地址，由32位二进制数组成，每隔8位二进制数字用小数点分隔，可得四组二进制数，将每组二进制数转为十进制数，就是我们平常看到的IP地址。Internet上的每一台主机或者路由器都至少有一个IP地址。IP地址的长度是32位，总数为2的32次方，大约43亿个。</p>
@@ -415,6 +528,86 @@
       <tags>
         <tag>network</tag>
         <tag>内网穿透</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NAT类型和穿透性</title>
+    <url>/2021/NAT%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%A9%BF%E9%80%8F%E6%80%A7/</url>
+    <content><![CDATA[<h2 id="网络地址映射"><a href="#网络地址映射" class="headerlink" title="网络地址映射"></a>网络地址映射</h2><p>在有中心化服务器的网络中，客户端，服务器，网关构成网络拓扑图。如下图1所示：由于后续出现的名词概念很多，先约法三章，在这里统一一下称呼：所有的终端机器成为客户端，不同客户端使用大写字母区分（A,B,C,…）；客户端上面运行的应用程序统一称为客户程序，不同的应用程序使用不数字区分（1,2,3,…）。作为服务器的物理机称为服务器，而服务器上运行的程序称为服务程序，后文中每一个拓扑组件都只有一个IP地址。为客户端提供公网IP服务的组件称为网关。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image002.jpg" alt="img" style="zoom:67%;"></p>
+<p>图1 中心化服务器的网络拓扑图</p>
+<p>从网关映射到客户端中的网络结构，这里需要引入一个NAT的概念。什么NAT呢？中文名叫网络地址转换，习惯称为网络地址映射。为什么需要网络地址映射呢？：需要说到IPV4网络地址已经用完，全部使用IPV6又会造成很多只支持IPV4的终端设备无法正常使用，所以网络地址映射应运而生，忍辱负重。才会有我们现在所谓的网络穿透的出现。到底怎么映射的？如图2网络地址映射所示。客户程序使用192.168.0.234:7890发送数据，通过网关的网络地址映射在公网被转换为112.93.116.102:6834，被互联网上的大家所认知。此时在公网上使用客户程序的ip与端口被112.93.116.102:6834代替。在这里大家应该明白了NAT是何许物种了。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image004.jpg" alt="img" style="zoom: 67%;"><br>​图2 网络地址映射</p>
+<p>为了保持新手福音，业界良心的态度。什么是穿透？因为NAT是客户程序发起的，网络为了保持通讯新建的一个临时牌照，随时可能被收回，而且重新发起后的牌照不一样。从而外界及时知道了这个临时牌照也没有用。所以需要通过穿透在网关上面打个洞，来为外界进行服务。那NAT与穿透有什么关系呢？正因为有了NAT才需要穿透，如果是IPV6每个客户端一个IP地址，那就不需要直接可以找到客户端了。</p>
+<h2 id="NAT种类"><a href="#NAT种类" class="headerlink" title="NAT种类"></a>NAT种类</h2><p>  由于网关的安全性要求不一致，就出现四种不同的NAT方式。分别进行阐述：</p>
+<p>第一种<strong>完全锥形NAT</strong>，英文名叫<strong>Full Cone NAT</strong>。如图3完全锥形NAT所示，客户程序(192.168.0.234:7890)与服务器A(13.44.178.98:9800)通信，通过网关的地址转换产生的临时牌照的公网地址（112.93.116.102:6834），服务器B（157.78.13.156:23456）发送数据到公网地址（112.93.116.102:6834），如果客户程序(192.168.0.234:7890)能够收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为完全锥形NAT；</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image006.png" alt="img" style="zoom:67%;"><br>​图3 完全锥形NAT</p>
+<p>第二种<strong>限制锥形NAT</strong>，英文名叫<strong>RestrictedCone NAT</strong>。在图3 完全锥形NAT中，如果客户程序(192.168.0.234:7890)不能收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为限制型锥形NAT。</p>
+<p>第三种<strong>端口限制锥形NAT</strong>，英文名叫<strong>Port RestrictedCone NAT</strong>。客户程序(192.168.0.234:7890)发送数据给服务程序（13.44.178.98:9800）,网关通过网络地址转换产生的地址（112.93.116.102:6834）,同样的服务器内的另一个服务程序（13.44.178.178:9801）发送数据给网关（112.93.116.102:6834）地址，如果客户程序(192.168.0.234:7890)能够收到，则为限制锥形NAT，如果客户程序(192.168.0.234:7890)不能收到，则为端口限制锥形NAT。</p>
+<p>  对于所有的锥型NAT，客户程序（192.168.0.234:7890）对外发送的数据时，网关地址转换的地址都是一样的为（112.93.116.102:6834）,那为什么在图4 限制型锥形NAT中，客户程序不能收到服务程序B（13.44.178.98:9801）的数据呢？因为在网关中没有发生过客户程序（192.168.0.234:7890）给服务程序B（13.44.178.98:9801），故服务程序（13.44.178.98:9801）直接发送给网关（112.93.116.102:6834），则被网关所丢弃。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image008.jpg" alt="img" style="zoom:67%;"></p>
+<p>图4 限制型锥形NAT</p>
+<p>第四种<strong>对称NAT</strong>，英文，名叫<strong>Symmetric NAT</strong>。如图5对称NAT所示，客户程序（192.168.0.234:7890）发送数据给两个不同服务器（13.44.178.98:9800）和（157.78.13.156:23456）时，网关会进行不同的网络地址映射产生（112.93.116.102:6834）和（112.93.116.102:6835）。这是对于整个NAT网络发送数据出去的过程，而接收数据与端口限制锥形NAT一致。</p>
+<p><img src="/2021/NAT类型和穿透性/clip_image010.png" alt="img" style="zoom:67%;"><br>             图5 对称NAT</p>
+<h2 id="不同NAT组合的穿透性"><a href="#不同NAT组合的穿透性" class="headerlink" title="不同NAT组合的穿透性"></a><strong>不同NAT组合的穿透性</strong></h2><p>这里说的穿透指在没有经过第三方数据中转的情况下，两者直接建立点对点的连接，可直接进行数据交换，相当于两者在一个虚拟的局域网中。</p>
+<p><img src="/2021/NAT类型和穿透性/image-20210401162435764.png" alt="image-20210401162435764"></p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>理论</category>
+      </categories>
+      <tags>
+        <tag>network</tag>
+        <tag>内网穿透</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WOL-远程唤醒-ARP绑定</title>
+    <url>/2021/WOL-%E8%BF%9C%E7%A8%8B%E5%94%A4%E9%86%92-ARP%E7%BB%91%E5%AE%9A/</url>
+    <content><![CDATA[<p>如果路由器具有公网IP，可以不需要VPS转发WOL数据包，直接在外网连接路由器发送WOL数据包，进行远程唤醒。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li><p>域名设置DDNS  <strong>aaa.com -&gt; 路由器公网IP</strong></p>
+</li>
+<li><p>windows系统设置了允许WOL的配置，可参考以前文章。</p>
+</li>
+<li><p>路由器设置了端口转发，如下：</p>
+<p>外部9000端口转发到192.168.50.100的9号端口；外部9001端口转发到192.168.50.123的9号端口</p>
+</li>
+</ol>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/dkzf.png" alt="dkzf"></p>
+<ol start="4">
+<li>路由器设置IP和mac地址绑定，<strong>内网wol可以不设置地址绑定, 外网wol必须设置地址绑定</strong>，如下：</li>
+</ol>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/bd.png" alt="bd"></p>
+<p>数据流转：<br>   外网WOL：唤醒端在外网9000号端口发起请求-&gt;路由器端口映射-&gt;192.168.50.100:9 -&gt;查询绑定的mac地址的机器，然后启动。<strong>和frp远程访问不同（frpc配置广播地址，不需要设置端口转发）</strong></p>
+<p>   内网WOL：使用广播地址192.168.50.255 和mac地址进行广播，找到mac地址相同的进行启动。frp原理和此相同。</p>
+<p>遇到问题是，不能每次都唤醒，所以需要ARP绑定。</p>
+<h2 id="何为-ARP-绑定"><a href="#何为-ARP-绑定" class="headerlink" title="何为 ARP 绑定"></a>何为 ARP 绑定</h2><p>华硕路由器居然连 ARP 绑定功能都没有。这里要区别一下，在客户端列表中开启 <code>MAC地址与IP绑定</code> 其实仅仅是 DHCP 绑定，它可以保证每次给相同设备总是分配同一个 IP 地址，但<strong>前提是设备必须请求IP！</strong></p>
+<p>我们知道路由器内部会维护一个 ARP 表，记录 IP 与 MAC 的关系，每当设备请求 IP 时便会被记录，其超时时间因具体设置而不同。因此当设备长时间不在线（比如关机）时吗，ARP 记录就会失效，从而无法再通过 IP 给此设备发送数据。</p>
+<p>有一个典型需求：PC需要 WOL 网络唤醒。因此我们要进行 <strong>ARP 绑定</strong>，与 DHCP 绑定不同，ARP 绑定相当于把 IP 对应关系写死在表里，无论设备是否在线。</p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>ssh 或 telnet 登录路由器，执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arp -s [IP] [MAC]</span><br></pre></td></tr></table></figure>
+<p>就搞定了。</p>
+<p>但是这样每次重启都会失效，我们需要通过自启脚本来手动添加 ARP 项，因此官方固件是不行的，先刷梅林，使用putty连接到路由器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /jffs/scripts/ <span class="comment"># 进入脚本目录</span></span><br><span class="line">vi services-start <span class="comment"># 打开编辑器（你也可以用其他编辑器）</span></span><br></pre></td></tr></table></figure>
+<p>将文件内容改为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">arp -s [IP] [MAC]</span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+<p>保存，最后给予执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+rx /jffs/scripts/*</span><br></pre></td></tr></table></figure>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>验证ARP绑定无误也非常简单，上面步骤做完以后，重启一下路由器，putty连接路由器，直接输入<code>arp</code> 查看 ARP 表，对应项目如果标识有 <code>[PERM]</code> 就是已经绑定了。</p>
+<p><img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_12-57-38.png" alt="Snipaste_2021-04-06_12-57-38"></p>
+<p>应该可以通过域名从互联网开机了。</p>
+<h2 id="唤醒端配置"><a href="#唤醒端配置" class="headerlink" title="唤醒端配置"></a>唤醒端配置</h2><p>手机下载WOL软件，PC和NAS唤醒配置如下：</p>
+<p> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-37-08.png" alt="Snipaste_2021-04-06_11-37-08"><br> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-36-52.png" alt="Snipaste_2021-04-06_11-36-52"></p>
+]]></content>
+      <categories>
+        <category>network</category>
+        <category>WOL</category>
+      </categories>
+      <tags>
+        <tag>WOL</tag>
+        <tag>ARP</tag>
+        <tag>端口转发</tag>
       </tags>
   </entry>
   <entry>
@@ -473,86 +666,6 @@
       <tags>
         <tag>network</tag>
         <tag>理论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WOL-远程唤醒-ARP绑定</title>
-    <url>/2021/WOL-%E8%BF%9C%E7%A8%8B%E5%94%A4%E9%86%92-ARP%E7%BB%91%E5%AE%9A/</url>
-    <content><![CDATA[<p>如果路由器具有公网IP，可以不需要VPS转发WOL数据包，直接在外网连接路由器发送WOL数据包，进行远程唤醒。</p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
-<li><p>域名设置DDNS  <strong>aaa.com -&gt; 路由器公网IP</strong></p>
-</li>
-<li><p>windows系统设置了允许WOL的配置，可参考以前文章。</p>
-</li>
-<li><p>路由器设置了端口转发，如下：</p>
-<p>外部9000端口转发到192.168.50.100的9号端口；外部9001端口转发到192.168.50.123的9号端口</p>
-</li>
-</ol>
-<p><img src="/2021/WOL-远程唤醒-ARP绑定/dkzf.png" alt="dkzf"></p>
-<ol start="4">
-<li>路由器设置IP和mac地址绑定，<strong>内网wol可以不设置地址绑定, 外网wol必须设置地址绑定</strong>，如下：</li>
-</ol>
-<p><img src="/2021/WOL-远程唤醒-ARP绑定/bd.png" alt="bd"></p>
-<p>数据流转：<br>   外网WOL：唤醒端在外网9000号端口发起请求-&gt;路由器端口映射-&gt;192.168.50.100:9 -&gt;查询绑定的mac地址的机器，然后启动。<strong>和frp远程访问不同（frpc配置广播地址，不需要设置端口转发）</strong></p>
-<p>   内网WOL：使用广播地址192.168.50.255 和mac地址进行广播，找到mac地址相同的进行启动。frp原理和此相同。</p>
-<p>遇到问题是，不能每次都唤醒，所以需要ARP绑定。</p>
-<h2 id="何为-ARP-绑定"><a href="#何为-ARP-绑定" class="headerlink" title="何为 ARP 绑定"></a>何为 ARP 绑定</h2><p>华硕路由器居然连 ARP 绑定功能都没有。这里要区别一下，在客户端列表中开启 <code>MAC地址与IP绑定</code> 其实仅仅是 DHCP 绑定，它可以保证每次给相同设备总是分配同一个 IP 地址，但<strong>前提是设备必须请求IP！</strong></p>
-<p>我们知道路由器内部会维护一个 ARP 表，记录 IP 与 MAC 的关系，每当设备请求 IP 时便会被记录，其超时时间因具体设置而不同。因此当设备长时间不在线（比如关机）时吗，ARP 记录就会失效，从而无法再通过 IP 给此设备发送数据。</p>
-<p>有一个典型需求：PC需要 WOL 网络唤醒。因此我们要进行 <strong>ARP 绑定</strong>，与 DHCP 绑定不同，ARP 绑定相当于把 IP 对应关系写死在表里，无论设备是否在线。</p>
-<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><p>ssh 或 telnet 登录路由器，执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">arp -s [IP] [MAC]</span><br></pre></td></tr></table></figure>
-<p>就搞定了。</p>
-<p>但是这样每次重启都会失效，我们需要通过自启脚本来手动添加 ARP 项，因此官方固件是不行的，先刷梅林，使用putty连接到路由器。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /jffs/scripts/ <span class="comment"># 进入脚本目录</span></span><br><span class="line">vi services-start <span class="comment"># 打开编辑器（你也可以用其他编辑器）</span></span><br></pre></td></tr></table></figure>
-<p>将文件内容改为：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">arp -s [IP] [MAC]</span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
-<p>保存，最后给予执行权限：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod a+rx /jffs/scripts/*</span><br></pre></td></tr></table></figure>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>验证ARP绑定无误也非常简单，上面步骤做完以后，重启一下路由器，putty连接路由器，直接输入<code>arp</code> 查看 ARP 表，对应项目如果标识有 <code>[PERM]</code> 就是已经绑定了。</p>
-<p><img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_12-57-38.png" alt="Snipaste_2021-04-06_12-57-38"></p>
-<p>应该可以通过域名从互联网开机了。</p>
-<h2 id="唤醒端配置"><a href="#唤醒端配置" class="headerlink" title="唤醒端配置"></a>唤醒端配置</h2><p>手机下载WOL软件，PC和NAS唤醒配置如下：</p>
-<p> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-37-08.png" alt="Snipaste_2021-04-06_11-37-08"><br> <img src="/2021/WOL-远程唤醒-ARP绑定/Snipaste_2021-04-06_11-36-52.png" alt="Snipaste_2021-04-06_11-36-52"></p>
-]]></content>
-      <categories>
-        <category>network</category>
-        <category>WOL</category>
-      </categories>
-      <tags>
-        <tag>WOL</tag>
-        <tag>ARP</tag>
-        <tag>端口转发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NAT类型和穿透性</title>
-    <url>/2021/NAT%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%A9%BF%E9%80%8F%E6%80%A7/</url>
-    <content><![CDATA[<h2 id="网络地址映射"><a href="#网络地址映射" class="headerlink" title="网络地址映射"></a>网络地址映射</h2><p>在有中心化服务器的网络中，客户端，服务器，网关构成网络拓扑图。如下图1所示：由于后续出现的名词概念很多，先约法三章，在这里统一一下称呼：所有的终端机器成为客户端，不同客户端使用大写字母区分（A,B,C,…）；客户端上面运行的应用程序统一称为客户程序，不同的应用程序使用不数字区分（1,2,3,…）。作为服务器的物理机称为服务器，而服务器上运行的程序称为服务程序，后文中每一个拓扑组件都只有一个IP地址。为客户端提供公网IP服务的组件称为网关。</p>
-<p><img src="/2021/NAT类型和穿透性/clip_image002.jpg" alt="img" style="zoom:67%;"></p>
-<p>图1 中心化服务器的网络拓扑图</p>
-<p>从网关映射到客户端中的网络结构，这里需要引入一个NAT的概念。什么NAT呢？中文名叫网络地址转换，习惯称为网络地址映射。为什么需要网络地址映射呢？：需要说到IPV4网络地址已经用完，全部使用IPV6又会造成很多只支持IPV4的终端设备无法正常使用，所以网络地址映射应运而生，忍辱负重。才会有我们现在所谓的网络穿透的出现。到底怎么映射的？如图2网络地址映射所示。客户程序使用192.168.0.234:7890发送数据，通过网关的网络地址映射在公网被转换为112.93.116.102:6834，被互联网上的大家所认知。此时在公网上使用客户程序的ip与端口被112.93.116.102:6834代替。在这里大家应该明白了NAT是何许物种了。</p>
-<p><img src="/2021/NAT类型和穿透性/clip_image004.jpg" alt="img" style="zoom: 67%;"><br>​图2 网络地址映射</p>
-<p>为了保持新手福音，业界良心的态度。什么是穿透？因为NAT是客户程序发起的，网络为了保持通讯新建的一个临时牌照，随时可能被收回，而且重新发起后的牌照不一样。从而外界及时知道了这个临时牌照也没有用。所以需要通过穿透在网关上面打个洞，来为外界进行服务。那NAT与穿透有什么关系呢？正因为有了NAT才需要穿透，如果是IPV6每个客户端一个IP地址，那就不需要直接可以找到客户端了。</p>
-<h2 id="NAT种类"><a href="#NAT种类" class="headerlink" title="NAT种类"></a>NAT种类</h2><p>  由于网关的安全性要求不一致，就出现四种不同的NAT方式。分别进行阐述：</p>
-<p>第一种<strong>完全锥形NAT</strong>，英文名叫<strong>Full Cone NAT</strong>。如图3完全锥形NAT所示，客户程序(192.168.0.234:7890)与服务器A(13.44.178.98:9800)通信，通过网关的地址转换产生的临时牌照的公网地址（112.93.116.102:6834），服务器B（157.78.13.156:23456）发送数据到公网地址（112.93.116.102:6834），如果客户程序(192.168.0.234:7890)能够收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为完全锥形NAT；</p>
-<p><img src="/2021/NAT类型和穿透性/clip_image006.png" alt="img" style="zoom:67%;"><br>​图3 完全锥形NAT</p>
-<p>第二种<strong>限制锥形NAT</strong>，英文名叫<strong>RestrictedCone NAT</strong>。在图3 完全锥形NAT中，如果客户程序(192.168.0.234:7890)不能收到服务器B（157.78.13.156:23456）发送的数据，这种NAT映射关系为限制型锥形NAT。</p>
-<p>第三种<strong>端口限制锥形NAT</strong>，英文名叫<strong>Port RestrictedCone NAT</strong>。客户程序(192.168.0.234:7890)发送数据给服务程序（13.44.178.98:9800）,网关通过网络地址转换产生的地址（112.93.116.102:6834）,同样的服务器内的另一个服务程序（13.44.178.178:9801）发送数据给网关（112.93.116.102:6834）地址，如果客户程序(192.168.0.234:7890)能够收到，则为限制锥形NAT，如果客户程序(192.168.0.234:7890)不能收到，则为端口限制锥形NAT。</p>
-<p>  对于所有的锥型NAT，客户程序（192.168.0.234:7890）对外发送的数据时，网关地址转换的地址都是一样的为（112.93.116.102:6834）,那为什么在图4 限制型锥形NAT中，客户程序不能收到服务程序B（13.44.178.98:9801）的数据呢？因为在网关中没有发生过客户程序（192.168.0.234:7890）给服务程序B（13.44.178.98:9801），故服务程序（13.44.178.98:9801）直接发送给网关（112.93.116.102:6834），则被网关所丢弃。</p>
-<p><img src="/2021/NAT类型和穿透性/clip_image008.jpg" alt="img" style="zoom:67%;"></p>
-<p>图4 限制型锥形NAT</p>
-<p>第四种<strong>对称NAT</strong>，英文，名叫<strong>Symmetric NAT</strong>。如图5对称NAT所示，客户程序（192.168.0.234:7890）发送数据给两个不同服务器（13.44.178.98:9800）和（157.78.13.156:23456）时，网关会进行不同的网络地址映射产生（112.93.116.102:6834）和（112.93.116.102:6835）。这是对于整个NAT网络发送数据出去的过程，而接收数据与端口限制锥形NAT一致。</p>
-<p><img src="/2021/NAT类型和穿透性/clip_image010.png" alt="img" style="zoom:67%;"><br>             图5 对称NAT</p>
-<h2 id="不同NAT组合的穿透性"><a href="#不同NAT组合的穿透性" class="headerlink" title="不同NAT组合的穿透性"></a><strong>不同NAT组合的穿透性</strong></h2><p>这里说的穿透指在没有经过第三方数据中转的情况下，两者直接建立点对点的连接，可直接进行数据交换，相当于两者在一个虚拟的局域网中。</p>
-<p><img src="/2021/NAT类型和穿透性/image-20210401162435764.png" alt="image-20210401162435764"></p>
-]]></content>
-      <categories>
-        <category>network</category>
-        <category>理论</category>
-      </categories>
-      <tags>
-        <tag>network</tag>
-        <tag>内网穿透</tag>
       </tags>
   </entry>
   <entry>
@@ -621,6 +734,22 @@
         <tag>内网穿透</tag>
         <tag>frp</tag>
         <tag>WOL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>X Window System</title>
+    <url>/2014/X-Window-System/</url>
+    <content><![CDATA[<p>X Client 应用程序会将所想要呈现的画面告知 X Server ，最后由 X server 来将结果透过他所管理的硬件绘制出来</p>
+<p>X Server 管理的是显示适配器、屏幕分辨率、鼠标按键对应等等</p>
+<p>每部客户端主机都需要安装 X Server，而服务器端则是提供 X Client 软件， 以提供客户端绘图所需要的数据windows客户端 &lt;————服务器————&gt;mac客户端提供X Server管理         提供X Client     提供X Server管理<br>X window system 主要分为 X server 和 X client ，其中 ：X Server 在管理硬件（包括鼠标，键盘，显示器等）和图形绘制。 X Client 则 是应用程序，可提供数据给X Server来绘制图形。<br>每一支 X client 都不知道对方得存在，必须要透过特殊的 X client ，称为 Window Manager 的， 来管理各窗口的重迭、移动、最小化等工作。</p>
+<p>startx 获取参数调用xinit启动窗口</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>鸟哥的Linux私房菜</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -826,6 +955,42 @@
       </tags>
   </entry>
   <entry>
+    <title>padding陷阱</title>
+    <url>/2018/padding%E9%99%B7%E9%98%B1/</url>
+    <content><![CDATA[<p>我们都知道padding是为块级元素设置内边距</p>
+<p>但是在使用过程中，我们却会遇到一些问题。padding的标准盒模型和怪异盒模型</p>
+<h4 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a><strong>标准盒模型</strong></h4><p>我们先摆出HTML和CSS代码：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.shoebox</span>&#123;</span></span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: red;</span><br><span class="line">            padding: 10px;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.shoes</span>&#123;</span></span><br><span class="line">            width: 80px;</span><br><span class="line">            height: 80px;</span><br><span class="line">            background-color: green;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoebox"</span>&gt;</span>         </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoes"</span>&gt;</span>              </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>一个demo，我的一双大小是 80*80  的鞋子,为此我给了这个鞋子做了一个 100*100 的盒子，我想要让这个鞋子有10px的内边距，所以我设了一个 padding: 10px; </p>
+<p>我们想象中的场景效果可能是这样的：<img src="/2018/padding陷阱/Snipaste_2018-06-27_15-46-29.png" alt="Snipaste_2021-07-06_15-46-29">  但是现实真的好残酷。。他却是这样的：</p>
+<p><img src="/2018/padding陷阱/Snipaste_2018-06-27_15-46-14.png" alt="Snipaste_2021-07-06_15-46-14"><br><img src="/2018/padding陷阱/image-2018-06-27154932074.png" alt="image-20210706154932074"><br><img src="/2018/padding陷阱/image-2018-06-27155011508.png" alt="image-20210706155011508"></p>
+<p>这时候我们会很奇怪，明明我们设置的shoebox的高和宽是100*100怎么变成了110*110了呢，这多出来的10px是怎么回事。</p>
+<p>这是padding元素膨胀造成的结果。在标准盒模型中，设置padding会自动挤压空间，而不会利用给出来的空间，不会占用宽内位置，不通过width影响，会自己挤出空间来，就好像，我的鞋子是80*80的，我不需要100*100的盒子，你给我一个80*80的盒子就好了，我靠我自己来把他挤成100*100，这时很显然的解决的办法就出来了，我们的盒子的宽度只要设置成80*80然后设置padding：10px；来让鞋子把周围额空间挤成100*100。</p>
+<p>这就是padding的标准盒模型，先做好鞋子，再去做盒子</p>
+<h4 id="怪异盒模型"><a href="#怪异盒模型" class="headerlink" title="怪异盒模型"></a><strong>怪异盒模型</strong></h4><p>怪异盒模型与标准盒模型的区别就是，怪异盒模型是先做好盒子，再来做鞋子，我把盒子的大小固定住，你鞋子怎么挤也没有用。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.shoebox</span>&#123;</span></span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: red;</span><br><span class="line">            padding: 10px;</span><br><span class="line">            box-sizing: border-box;//怪异盒模型</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.shoes</span>&#123;</span></span><br><span class="line">            width: 80px;</span><br><span class="line">            height: 80px;</span><br><span class="line">            background-color: green;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoebox"</span>&gt;</span>         </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoes"</span>&gt;</span>              </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这时我们只要在我们的代码中加一条box-sizing：boeder-box，就可以把我的盒子给固定住，这时你鞋子想要用padding来撑大盒子的空间已经没用了，因为鞋子已经被固定死了。<br><img src="/2018/padding陷阱/Snipaste_2018-06-27_15-46-29.png" alt="Snipaste_2021-07-06_15-46-29"><br><img src="/2018/padding陷阱/image-2018-06-27155148568.png" alt="image-20210706155148568"><br><img src="/2018/padding陷阱/image-2018-06-27155011508.png" alt="image-20210706155011508"></p>
+<p>最后在<strong>总结</strong>一点padding的知识：</p>
+<ol>
+<li><p>当我们给width设置一个固定的值或者给width设置100%时，设置padding都会把盒子给挤开，挤大了</p>
+</li>
+<li><p>若想要不使用怪异盒模型又不会把盒子挤大，请把width设置为auto，width默认的值是auto。自动占满整个屏幕</p>
+</li>
+<li><p>标准盒模型在pc端比较常用，因为pc端的屏幕大，有优势可以撑</p>
+</li>
+<li><p>怪异盒模型在手机端比较常用。手机屏幕是有限大小的，有时我们往往需要使用怪异盒模型把他固定住。</p>
+</li>
+<li><p>怪异盒模型的盒子大小还要加上border的大小。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>HTML CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>加密算法</title>
     <url>/2020/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h2 id="对称性加密算法"><a href="#对称性加密算法" class="headerlink" title="对称性加密算法"></a>对称性加密算法</h2><p><img src="/2020/加密算法/1.jpg" alt="加密流程图"></p>
@@ -1006,6 +1171,23 @@
       </categories>
       <tags>
         <tag>Vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>清除浮动</title>
+    <url>/2018/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/</url>
+    <content><![CDATA[<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>float<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#left</span>&#123;</span></span><br><span class="line">      height: 100px;</span><br><span class="line">      background-color: aqua;</span><br><span class="line">      width: 50%;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#right</span>&#123;</span></span><br><span class="line">      height: 120px;</span><br><span class="line">      background-color: yellow;</span><br><span class="line">      width: 50%;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#content2</span>&#123;</span></span><br><span class="line">      height: 150px;</span><br><span class="line">      background-color: blue;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.clearFix</span><span class="selector-pseudo">:after</span>&#123;</span></span><br><span class="line">      content: '清除浮动';</span><br><span class="line">      display: block;</span><br><span class="line">      clear: both;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#cle</span>&#123;</span></span><br><span class="line">      clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 行内元素 不占一行 宽度取决于包裹的元素宽度</span></span><br><span class="line"><span class="comment">     块状元素占一行</span></span><br><span class="line"><span class="comment">浮动后块状元素变成行内元素，如果不设置宽度时，宽度大小取决于其包裹的元素的大小--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content1"</span>  <span class="attr">class</span>=<span class="string">"clearFix"</span>  &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"left"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--&lt;div id="cle"&gt;&lt;/div&gt;--&gt;</span> <span class="comment">&lt;!--此清除float方法不好，添加了一个dom元素，采用class="clearFix"即可--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content2"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>清除浮动前：</p>
+<p><img src="/2018/清除浮动/Snipaste11.png" alt="Snipaste11"></p>
+<p>清除浮动后：</p>
+<p><img src="/2018/清除浮动/Snipaste1.png" alt="Snipaste1"></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>HTML CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -1510,6 +1692,48 @@
       </categories>
       <tags>
         <tag>NAS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解压缩</title>
+    <url>/2014/%E8%A7%A3%E5%8E%8B%E7%BC%A9/</url>
+    <content><![CDATA[<p>*.tar.gz    tar 程序打包的档案，其中并且经过 gzip的压缩</p>
+<p>*.tar.bz2   tar 程序打包的档案，其中并且经过 bzip2 的压缩</p>
+<p>gzip -v man.config 压缩 man.config 生成 man.config.gz,源文件没有了。</p>
+<p>gzip -d man.config.gz 解压缩 man.config.gz </p>
+<p>gzip -9 -c man.config &gt; man.config.gz  -9等级，1-9,1最快，9最慢 -c重定向</p>
+<p>-—–<br>bzip2 -z  -k man.config   -z 压缩 -k 保留原文件</p>
+<p>bzip2 -d man.config.bz2  -d解压缩</p>
+<p>bzip2 -9 -c man.config &gt; man.config.bz2<br>-——</p>
+<p>j代表bzip2软件 z代表gzip软件  c 创建 t 查询 x 解压</p>
+<p>-p  ：保留备份数据癿原本权限不属性，常用于备份(-c)重要癿配置文件</p>
+<p>-P (大写) ：保留绝对路径，亦即允讲备份数据中吨有根目录存在之意，一般不用；</p>
+<p>–exclude=FILE 压缩式不包含FILE</p>
+<p>bzip2</p>
+<p>压缩：tar -jcv -f aa.tar.bz2  /usr</p>
+<p>查询：tar -jtv -f aa.tar.bz2</p>
+<p>解压缩：tar -jxv -f aa.tar.bz2 -C  /tmp</p>
+<p><strong>gzip</strong></p>
+<p><strong>压缩：tar -zcv -f  /root/aa.tar.gz  /etc    将/etc中文件压缩成/root下的aa.tar.gz</strong></p>
+<p><strong>查询：tar -ztv -f aa.tar.gz</strong></p>
+<p><strong>解压缩：tar -zxv -f aa.tar.gz  -C /tmp    将 aa.tar.gz解压到/tmp中</strong></p>
+<p>打包</p>
+<p>tar -cv -f /backup  /home /root /etc  将/home /root /etc打包到/backup  </p>
+<p>tar -cvf - /etc|tar -xvf -              打包/etc复制到当前目录</p>
+<p>dd if=”input_file” of=”out_file” bs=”block_size” count=”number” </p>
+<p>bs默认为512 bytes（一个sector的大小）</p>
+<p>dd  -if=/dev/zero  -of=/boot/testing.img  bs=1M  count=10</p>
+<p>dd if=/etc/passwd of=/tmp/passwd.back 将 /etc/passwd 备份到 /tmp/passwd.back 当中</p>
+<p>dump 可备份文件系统或单一目录，在备份目录时不能用level和-u更新时间</p>
+<p>dd 可备份完整分区或磁盘，因为 dd 可读取磁盘的 sector 表面数据</p>
+<p>cpio 为相当优秀的备份指令，不过必项要搭配类似 find 指令来读入欲备份的文件名数据，方可进行备份动作。</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>鸟哥的Linux私房菜</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
