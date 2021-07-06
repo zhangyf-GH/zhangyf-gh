@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="以梦为马，明日天涯。。。">
+<meta name="description" content="常用命令chgrp users install.log chgrp -R users  /etc/usr   -R递归 chown root  install.log chown root:root  install.log chown -R users  /etc/usr   -R递归 chmod 755  .bashrc  权限为-rwxr-xr-x  -R与目录配合递归 chmod  u=r">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件系统">
 <meta property="og:url" content="http://minmax.site/2015/文件系统/index.html">
 <meta property="og:site_name" content="小站 大梦">
-<meta property="og:description" content="以梦为马，明日天涯。。。">
+<meta property="og:description" content="常用命令chgrp users install.log chgrp -R users  /etc/usr   -R递归 chown root  install.log chown root:root  install.log chown -R users  /etc/usr   -R递归 chmod 755  .bashrc  权限为-rwxr-xr-x  -R与目录配合递归 chmod  u=r">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-07-06T09:28:37.721Z">
+<meta property="og:image" content="http://minmax.site/2015/文件系统/9608dc1a-b8cf-4deb-bb92-25093864d1b7.png">
+<meta property="og:updated_time" content="2021-07-06T14:36:13.524Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件系统">
-<meta name="twitter:description" content="以梦为马，明日天涯。。。">
+<meta name="twitter:description" content="常用命令chgrp users install.log chgrp -R users  /etc/usr   -R递归 chown root  install.log chown root:root  install.log chown -R users  /etc/usr   -R递归 chmod 755  .bashrc  权限为-rwxr-xr-x  -R与目录配合递归 chmod  u=r">
+<meta name="twitter:image" content="http://minmax.site/2015/文件系统/9608dc1a-b8cf-4deb-bb92-25093864d1b7.png">
 
 
 
@@ -395,7 +397,306 @@
       
 
       
-        
+        <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>chgrp users install.log</p>
+<p>chgrp -R users  /etc/usr   -R递归</p>
+<p>chown root  install.log</p>
+<p>chown root:root  install.log</p>
+<p>chown -R users  /etc/usr   -R递归</p>
+<p>chmod 755  .bashrc  权限为-rwxr-xr-x  -R与目录配合递归</p>
+<p>chmod  u=rwx,go=rx   .bashrc</p>
+<p>chmod  a+x  .bashrc   a包括owner group others全部</p>
+<p>chmod  a-x  .bashrc </p>
+<h3 id="档案与目录"><a href="#档案与目录" class="headerlink" title="档案与目录"></a>档案与目录</h3><p><strong>档案</strong>是实际含有数据的地方，包括一般文本文件、数据库内容文件、二进制可执行文件(binary program)等等。 因此，权限对于档案来说，他的意义是这样的：</p>
+<p> r (Read)：  可读取此档案内包含的内容，如读取文本文件的文字内容等；</p>
+<p> w (Write)：可以新增、删除或修改此档案里面包含的内容(<strong>但不能删除该档案</strong>)；</p>
+<p> x (eXecute)：该档案具有可以被系统执行的权限。</p>
+<p>Windows 底下一个档案是否具有执行的能力是藉由『 扩展名 』来判断的， 例如：.exe, .bat, .com 等等，</p>
+<p>但是在 Linux 底下，我们的档案是否能被执行，则是藉由是否具有『x』这个权限来决定的！跟档名是没有绝对的关系的！</p>
+<p><strong>目录</strong>主要的内容在记录文件名列表，文件名与目录有强烈的关连啦！ r (read contents in directory)：</p>
+<blockquote>
+<p>表示具有读取目录结构列表的权限，所以当你具有读取(r)一个目录的权限时，表示你可以查询该目录下的文件名数据。 所以你就可以利用 ls 这个指令将该目录的内容列表显示出来！</p>
+</blockquote>
+<p> w (modify contents of directory)：</p>
+<blockquote>
+<p>这个可写入的权限对目录来说，是很了不起的！ 因为他表示你具有异动该目录结构列表的权限，也就是底下这些权限：</p>
+<p>o  建立新的档案与目录；</p>
+<p>o  删除已经存在的档案与目录(不论该档案的权限为何！)</p>
+<p>o  将已存在的档案或补录进行更名；</p>
+<p>o  搬移该目录内的档案、目录位置。</p>
+<p>总之，目录的 w 权限就与该目录底下的文件名异动有关就对了啦！</p>
+</blockquote>
+<p> x (access directory)：</p>
+<blockquote>
+<p>目录的 x 代表的是用户能否进入该目录成为工作目录的用途！ 所谓的工作目录(work directory)就是你目前所在的目录啦！</p>
+<p>举例来说，当你登入 Linux 时， 你所在的家目录就是你当下的工作目录。而变换目录的指令是『cd』(change directory)啰。</p>
+</blockquote>
+<p>例题：</p>
+<blockquote>
+<p>假如有个账号名称为 dmtsai，他的家目录在/home/dmtsai/，dmtsai 对此目录具有[rwx]的权限。 </p>
+<p>若在此目彔下有个名为 the_root.data 的档案，该档案的权限如下： </p>
+<p>-rwx—— 1 root root 4365 Sep 19 23:20 the_root.data</p>
+<p>请问 dmtsai 对此档案的权限为何？可否删除此档案？ </p>
+</blockquote>
+<p>答：</p>
+<blockquote>
+<p>由于 dmtsai 对此档案来说是『others』的身份，因此这个档案他无法读、无法编辑也无法执行， 也就是说，他无法变动这个档案的内容就是了。</p>
+<p>但是由于这个档案在他的家目录下，他在此目录下具有 rwx 的完整权限，因此对于the_root.data 这个『档名』来说，他是能够『删除』的！ </p>
+<p>结果就是，dmtsai 这个用户能够删除 the_root.data 这个档案！</p>
+</blockquote>
+<p><strong>r=4,w=2,x=1</strong></p>
+<p><strong>umask –默认值需要减掉的权限</strong></p>
+<p>>umask </p>
+<p>0022</p>
+<p>>umask -S</p>
+<p>u=rwx,g=rx,o=rx</p>
+<p>>umask 002  设置umask为002，同组人可读写该文件。</p>
+<p>档案默认权限666 -rw-rw-rw-  ; 目录默认权限777 drwxrwxrwx</p>
+<p>  建立档案时：(-rw-rw-rw-) - (—–w–w-) ==&gt; -rw-r–r–</p>
+<p>  建立目录时：(drwxrwxrwx) - (d—-w–w-) ==&gt; drwxr-xr-x</p>
+<p>umask 为 003 ，所以拿掉的权限为 ——–wx，</p>
+<p>因此：</p>
+<p>档案： (-rw-rw-rw-) - (——–wx) = -rw-rw-r–</p>
+<p>目录： (drwxrwxrwx) - (——–wx) = drwxrwxr–</p>
+<p>先将umask转换成rwx符号，用符号相减，不能用666-003=663=rw-rw-wx,不对。</p>
+<p><strong>档案的隐藏属性 –</strong>在Ext2/Ext3 的文件系统中</p>
+<p><strong>chattr</strong></p>
+<p> +  ：增加某一个特殊参数，其他原本存在参数则不动。</p>
+<p> -  ：移除某一个特殊参数，其他原本存在参数则不动。</p>
+<p> =  ：设定一定，且仅有后面接的参数</p>
+<p> a  ：当设定 a 之后，这个档案将只能增加数据，而不能删除也不能修改数据，只有 root才能设定这个属性。</p>
+<p>  i  ：这个 i 可就很厉害了！他可以让一个档案『不能被删除、改名、设定连结也无法写入或新增资料！』对于系统安全性有相当大的帮助！只有 root 能设定    此属性。</p>
+<p>>chattr +i attrtest</p>
+<p>>chattr -i  attrtest</p>
+<p><strong>lsattr (显示档案隐藏属性)</strong></p>
+<blockquote>
+<p>-a ：将隐藏文件的属性也秀出来；</p>
+<p>-d ：如果接的是目录，仅列出目录本身的属性而非目录内的文件名；</p>
+<p>-R ：连同子目录的数据也一并列出来！</p>
+</blockquote>
+<p>> chattr +aij attrtest</p>
+<p>>lsattr attrtest</p>
+<p>—-ia—j— attrtest</p>
+<p><strong>档案特殊权限： SUID, SGID, SBIT</strong></p>
+<p><strong>Set UID（档案，不能是shell script 和目录）</strong></p>
+<p>s 这个标志出现在档案拥有者的 x 权限上时，为Set UID,简称为SUID的特殊权限。</p>
+<p>-rw<strong>s</strong>r-xr-x 1 root root 22984 Jan 7 2007 /usr/bin/passwd</p>
+<p>SUID作用：</p>
+<blockquote>
+<p>  SUID 权限仅对二进制程序(binary program)有效；</p>
+<p>  执行者对于该程序需要具有 x 的可执行权限；</p>
+<p>  本权限仅在执行该程序的过程中有效 (run-time)；</p>
+<p>  执行者将具有该程序拥有者 (owner) 的权限。</p>
+</blockquote>
+<p>一般用户改密码</p>
+<ol>
+<li><p>/usr/bin/passwd为二进制程序。</p>
+</li>
+<li><p>vbird具有执行权限</p>
+</li>
+<li><p>vbird在执行passwd时</p>
+</li>
+</ol>
+<p>4.具有该程序的拥有者root的权限，vbird暂时变成该程序拥有者root，故vbird执行passwd，相当于root执行passwd，passwd会修改/etc/shadow(该程序只能由root读写)的内容来修改用户的密码。</p>
+<p><strong>Set GID</strong></p>
+<p>s 在群组的 x 时则称为 Set GID，SGID</p>
+<p>-rwx–<strong>s</strong>–x 1 root slocate  23856 Mar 15 2007 /usr/bin/locate</p>
+<p>-rw-r—–  1 root slocate 3175776 Sep 28 04:02 /var/lib/mlocate/mlocate.db  </p>
+<p>对档案来说， SGID 有如下的功能：</p>
+<p>  SGID 对二进制程序有用；</p>
+<p>  程序执行者对于该程序来说，需具备 x的权限；</p>
+<p>  执行者在执行的过程中将会获得该程序群组的支持！变为群组的一员。</p>
+<p>vbird对locate这个二进制程序有执行权限，故执行时，获得群组支持，暂时成为slocate一员，能够读取mlocate.db的内容。</p>
+<p>对目录设定了 SGID 的权限后，他将具有如下的功能：</p>
+<p>  用户若对于此目录具有 r 与x 的权限时，该用户能够进入此目录；</p>
+<p>  用户在此目录下的有效群组(effective group)将会变成该目录的群组；</p>
+<p>  用途：若用户在此目录下具有 w 的权限(可以新建档案)，则使用者所建立的新档案，该新档案的群组与此目录的群组相同。</p>
+<p>auser（群组agroup，project）buser(群组bgroup,project) 在devp目录下（drwxrwx— 2 root project）,目录未加SGID时，auser在devp内新建文件</p>
+<p>-rw-rw-r– 1 auser agroup 0 Sep 29 22:46 abcd，此文件buser只能删除不能编辑，加上SGID后，当user新建文件时</p>
+<p>-rw-rw-r– 1 auser project  0 Sep 29 22:53 1234  群组变为devp的群组project,由于两人都属于project群组,umask为002，所以两人可以互相修改对方的文件。</p>
+<p><strong>Sticky Bit（只对目录有效）</strong></p>
+<p>SBIT 对于目录的作用是：</p>
+<p> 当用户对于此目录具有 w, x 权限，亦即具有写入的权限时；</p>
+<p>  当用户在该目录下建立档案或目录时，仅有自己与 root 才有权力删除该档案</p>
+<p>换句话说：当甲这个用户于 A 目录是具有群组或其他人的身份，并且拥有该目录 w 的权限， 这表示『甲用户对该目录内任何人建立的目录活档案均可进行 “删除/更名/搬移” 等动作。』 不过，如果将 A 目录加上了 SBIT 得权限项目时， 则甲只能够针对自己建立的档案或目录进行删除/更名/移动等动作，而无法删除他人的案。</p>
+<p> 举例来说，我们的 /tmp 本身的权限是『drwxrwxrw<strong>t</strong>』， 在这样的权限内容下，任何人都可以在/tmp 内新增、修改档案，但仅有该档案/目录建立者与 root 能够删除自己的目录或档案。没有t时，对目录拥有w权限，能删目录下的全部档案，加上t后，自己只能删自己的，不能删别人的。</p>
+<p><strong>4 为 SUID 2 为 SGID 1 为 SBIT</strong></p>
+<p> >chmod 4755 test</p>
+<p>-rwsr-xr-x 1 root root 0 Sep 29 03:06 test  加入SUID</p>
+<p>>chmod 6755 test</p>
+<p>-rwsr-sr-x 1 root root 0 Sep 29 03:06 test  加入SUID/SGID</p>
+<p>>chmod 1755 test</p>
+<p>-rwxr-xr-t 1 root root 0 Sep 29 03:06 test  加入SBIT</p>
+<p>>chmod 7666</p>
+<p>-rwSrwSrwT 1 root root 0 Sep 29 03:06 test  加入空的SUID/SGID</p>
+<p>7666,没有执行权限了，只有rw权限，拥有者都不能执行，故没有特殊权限了</p>
+<p>>chmod u=rwxs,go=x test -rws–x–x 1 root root 0 Aug 18 23:47 test&gt; chmod g+s,o+t test -rws–s–t 1 root root 0 Aug 18 23:47 test</p>
+<h3 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h3><p>正规档案（regular file） （-）</p>
+<p>   文本文档(ASCII)</p>
+<p>   二进制文件(binary)</p>
+<p>   数据格式文件(data)</p>
+<p>目录（directory）（d）<br>链接档（link）（l）<br>设备与装置文件（device）</p>
+<p>   区块设备（b）</p>
+<p>   字符设备（c）</p>
+<p>资料接口文件（sockets）（s）</p>
+<p>数据输送文件（FIFO,pipe）（p）</p>
+<p>有五个目录不可与根目录放在不同的 partition，分别为/etc, /bin, /lib, /dev, /sbin 五个。</p>
+<p>Linux 档名的限制为：单一档案或目录的最大容讲文件名为 255 个字符；包含完整路径名称及目录(/) 之完整档名为 4096 个字符</p>
+<p> FHS 订定出来的四种目彔特色为： shareable, unshareable, static, variable 等四类；<br> FHS 所定义的三层主目彔为： /, /var, /usr 三层而已；</p>
+<h3 id="目录相关命令"><a href="#目录相关命令" class="headerlink" title="目录相关命令"></a>目录相关命令</h3><p>cd(Change Directory)  </p>
+<p>​    cd ~  =  cd  进入家目录</p>
+<p>​    cd -  进入上一工作目录</p>
+<p>pwd(Print Working Directory )</p>
+<p>   pwd  -P  ：显示出确实的路径，而非使用链接 (link) 路径。</p>
+<p>mkdir</p>
+<p>​    mkdir -p test1/test2/test3/test4  连续建立子目录。</p>
+<p>​    mkdir -m 711 test2             建立711的test2目录，不挂吧umask。 </p>
+<p>rmdir</p>
+<p>​    rmdir  /test4  仅能删除空目录</p>
+<p>​    </p>
+<p> PATH=”$PATH”:/root    将/root加入到PATH中</p>
+<p>-————————</p>
+<h3 id="档案相关命令"><a href="#档案相关命令" class="headerlink" title="档案相关命令"></a>档案相关命令</h3><p><strong>ls</strong></p>
+<p>  -a：显示隐藏文件和 .  ..目录</p>
+<p>  -l ：长数据串输出，包括档案的属性和权限</p>
+<p>  -d : 仅列出目录本身，而不是列出目录内的癿档案数据</p>
+<p>  -h : 将档案容量以人类较易读的方式(例如 GB, KB 等等)列出来；</p>
+<p>  -n : 列出 UID  与 GID 而非使用者与群组的名称 </p>
+<p>  -i  :  列出 inode 号码。</p>
+<p>  ls -al /tmp</p>
+<p><strong>cp(copy)</strong></p>
+<p>   -a : 相当于-pdr ，复制文件 的权限，子目录，和源文件一样。</p>
+<p>   -d  ：若来源文件为链接文件的属性(link file)，则复制链接文件属性而非档案本身；</p>
+<p>   -f  ：为强制(force)的意思，若目标档案已经存在且无法开启，则移除后再尝试一次；</p>
+<p>   -i  ：若目标文件(destination)已经存在时，在覆盖时会先询问动作的进行(常用)</p>
+<p>   -l  ：进行硬式连结(hard link)的连结档建立，而非复制档案本身；</p>
+<p>   -s  ：复制成为符号链接文件 (symbolic link)，亦即『忚捷方式』档案；</p>
+<p>   -p  ：连同档案的属性一起复制过去，而非使用默认属性(备份常用)；</p>
+<p>   -r  ：递归持续复制，用于目录复制行为；(常用)</p>
+<p>cp -a /var/log/wtmp /tmp/vbird_wtmp</p>
+<p>cp -r /etc/ /tmp  -r复制目录单权限改变，可用 -a备份</p>
+<p>cp -s bashrc bashrc_slink  建立符号链接文件。</p>
+<p>cp -l bashrc bashrc_hlink  建立硬式连接文件。</p>
+<p><strong>rm(remove)</strong></p>
+<p>   -f 强制。</p>
+<p>   -i 交互提示，需要确认。</p>
+<p>   -r 递归删除，删除目录。</p>
+<p>rmdir  /tmp/etc rmdir只能删除空目录</p>
+<p>rm -r /tmp/etc 可以删除</p>
+<p><strong>mv(move)</strong></p>
+<p>   -f 强制。</p>
+<p>   -i 交互提示，需要确认。</p>
+<p>mv file1 file2 dir1 将file1 file2 移动到dir1中</p>
+<p>mv dir1  dir2 改名</p>
+<p>-————————————————————————————</p>
+<h4 id="查看文件内容"><a href="#查看文件内容" class="headerlink" title="查看文件内容"></a>查看文件内容</h4><p><strong>cat(concatenate)</strong></p>
+<p>  -A 显示全部特殊符号</p>
+<p>  -n 显示行号 </p>
+<p>  -b  显示行号，空白行不加</p>
+<p>cat  -n /etc/issue</p>
+<p><strong>tac  –将内容反序显示，最后一行按第一行显示</strong></p>
+<p><strong>nl</strong> </p>
+<p><strong>more</strong></p>
+<p>   对管线不能向前翻页</p>
+<p><strong>less</strong>  </p>
+<p>   可以前后翻页</p>
+<p><strong>head</strong></p>
+<p>   默认显示前10行</p>
+<p>head -n  20 /etc/man.config   显示前20行</p>
+<p>head -n -100 /etc/man.config 后面的100行不显示</p>
+<p><strong>tail</strong> </p>
+<p>  默认显示后10行</p>
+<p>tail -n  20   /etc/ man.config  显示后面的20行</p>
+<p>tail -n +100  /etc/man.config  前面的100行不显示</p>
+<p>head -n 20 /etc/man.config|tail -n 10  显示10-20行</p>
+<p><strong>od</strong></p>
+<p><strong>modification time (mtime)： 档案内容改变时间。默认
+</strong></p>
+<p><strong>status time (ctime)： 权限或属性被改变时间
+</strong></p>
+<p><strong>access time (atime)：档案被访问时间</strong></p>
+<p>ll bashrc; ll –time=atime bashrc; ll –time=ctime bashrc 显示bashrc的三个时间</p>
+<p><strong>touch bbb 建立一个BBB空档案</strong></p>
+<p><strong>touch -t  1401010709 bashrc  将bashrc时间改为2014-01-01 07:09  mtime和atime改变，ctime为当前时间。</strong></p>
+<p><strong>file 查看文件类型</strong></p>
+<p><strong>which 二进制命令  按PATH路径进行搜索 命令</strong></p>
+<p>  -a将所有由 PATH 目录中可以找到的指令均列出，而不止第一个被找到得命令名称</p>
+<p><strong>whereis 档案或目录  搜索文件 在文件索引数据库中</strong></p>
+<p><strong>locate  文件名</strong></p>
+<blockquote>
+<p>-i  ：忽略大小写的差异；</p>
+<p>-r  ：后面可接正则表示法的显示方式</p>
+</blockquote>
+<p>搜索 /var/lib/mlocate数据库 可用updatedb指令更新数据。</p>
+<p><strong>find（直接查找硬盘）</strong></p>
+<p>find /var -mtime -4  4天内更改的文件（含四天本身）</p>
+<p>find /var -mtime +4 4天前更改的文件（不含四天本身）</p>
+<p>find /var -mtime  4  4天前的那一天更改的文件</p>
+<p>find / -mtime 0   24小时内更改的文件</p>
+<p>find /etc -newer /etc/passwd</p>
+<p><img src="/2015/文件系统/9608dc1a-b8cf-4deb-bb92-25093864d1b7.png" alt="img"></p>
+<p>find /var  -uid n</p>
+<p>find /var  -gid n</p>
+<p>find /var  -user  vbird       find /var  -nouser</p>
+<p>find /var  -group  ugroup    find /var  -nogroup   </p>
+<p>find / -name passwd</p>
+<p>find / -size  +50k   find / -size  -50c   c为byte</p>
+<p>find /var -type s   一般正规档案 (f),装置档案 (b, c), 目录 (d), 连结档 (l), socket (s),及 FIFO (p) 等属性。</p>
+<p>find / -perm 4755 根目录下权限等于 -rwsr-xr-x的文件</p>
+<p>find / -perm -0744 根目录下权限大于-rwsr-xr-x的文件，即全部囊括-rwsr-xr-x   –最小权限</p>
+<p>find / -perm +7000根目录下包含任意—s–s–t的文件，即只要含有 s 或 t 的就列出 –最大权限</p>
+<p>find / -perm -7000 根目录下包含—s–s–t所有三个特殊权限的文件</p>
+<p>find / -perm +7000 -exec ls -l {} \;</p>
+<p>find /etc -size +50k -a ! -user root -type f -exec ls -l {} \   -a=and</p>
+<p>find /etc -size +1500k -o -size 0                       -o=or</p>
+<p>find /etc -name ‘<em>httpd</em>‘</p>
+<p>  superblock：记录此 filesystem 的整体信息，包括 inode/block 的总量、使用量、剩余量， 以及文件系统的格式与相关信息等；</p>
+<p>  inode：记录档案的属性，一个档案占用一个 inode，同时记录此档案的数据所在的 block 号码；</p>
+<p>  block：实际记录档案的内容，若档案太大时，会占用多个 block 。 </p>
+<p>linux通过VFS((Virtual Filesystem Switch)进行管理和读取各个 partition 上头的 filesystem。</p>
+<p><strong>df  –查询superblock</strong></p>
+<p>  -a  ：列出所有的文件系统，包括系统特有的 /proc（内存里程序） 等文件系统；  /dev/shm为内存虚拟的磁盘空间。</p>
+<p>  -h  ：以人们较易阅读的 GBytes, MBytes, KBytes 等格式自行显示；</p>
+<p>  -T  ：连同该 partition 的 filesystem 名称 (例如 ext3) 也列出；</p>
+<p>  -i  ：不用硬盘容量，而以 inode的数量来显示</p>
+<p>>df -ahT</p>
+<p>>df -i</p>
+<p><strong>du</strong></p>
+<p>  -a  ：列出所有的档案与目录容量，因为默认仅统计目录底下的档案量而已。</p>
+<p>  -h  ：以人们较易读的容量格式 (G/M) 显示；<br>   -s  ：列出总量而已，而不列出每个各别得目录占用容量；</p>
+<p>   -S  ：不包括子目录下得总计，不 -s 有点差别。</p>
+<p>>du -ah</p>
+<p><strong>ln</strong>   详见P260</p>
+<p>hard link :目录a指向数据，新增一个目录b指向a链接的数据。b直接访问数据。</p>
+<p>soft  link : 目录a指向数据，新增一个目录b指向a。通过a访问数据。</p>
+<p>>ln passwd passwd-hd</p>
+<p>>ln -s passwd passwd-so   加s为软连接，不加默认为硬链接</p>
+<p>> ls -li passwd*</p>
+<p>586361 -rw-r–r– 2 root root 1945 Sep 29 02:21 passwd</p>
+<p>586361 -rw-r–r– 2 root root 1945 Sep 29 02:21 passwd-hd</p>
+<p>586401 lrwxrwxrwx 1 root root  6 Oct 22 14:18 passwd-so -&gt; passwd</p>
+<p><strong>fdisk  （分区命令）</strong></p>
+<p>   -l 显示分区表</p>
+<p>fdisk 硬盘名（不是分区名）  不加硬盘名时扫描整个系统，显示全部硬盘的信息</p>
+<p>>fdisk  /dev/hda</p>
+<p>>partprobe  &lt;==强制让核心重新捉一次 partition table</p>
+<p><strong>mkfs（</strong>make filesystem<strong>）（格式化命令）</strong></p>
+<p>>mkfs -t ext3 /dev/hdc6</p>
+<p><strong>mke2fs</strong> 不用，麻烦</p>
+<p>>mke2fs -j -L “vbird_logical” -b 2048 -i 8192 /dev/hdc6</p>
+<p><strong>mount</strong> 装置文件名 挂载点</p>
+<p>mount /dev/hdc6   /mnt/hdc6  将/dev/hdc6挂载到/mnt/hdc6下</p>
+<p>mount -l                    显示系统已挂载的文件系统 -l显示label name</p>
+<p>mount -o remount,rw,auto /    重新挂载根目录</p>
+<p><strong>umount</strong> 装置文件名或挂载点</p>
+<p>umount /dev/hdc6 </p>
+<p>umount /mnt/hdc6</p>
+<p>dumpe2fs -h /dev/hdc6            查询label name</p>
+<p>mount -L “vbird_logical” /mnt/hdc6  根据label name 进行挂载</p>
+<p><strong>e2label</strong> 更改labelname</p>
+<p>dumpe2fs -h /dev/hdc6            查询label name</p>
+<p>e2label /dev/hdc6 “my_test”         将label name 改为my_test</p>
+<p><strong>在/etc/fstab 中设定挂载文件系统</strong></p>
+
       
     </div>
     
@@ -489,8 +790,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -582,6 +892,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#档案与目录"><span class="nav-number">2.</span> <span class="nav-text">档案与目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件类型"><span class="nav-number">3.</span> <span class="nav-text">文件类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录相关命令"><span class="nav-number">4.</span> <span class="nav-text">目录相关命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#档案相关命令"><span class="nav-number">5.</span> <span class="nav-text">档案相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看文件内容"><span class="nav-number">5.1.</span> <span class="nav-text">查看文件内容</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
