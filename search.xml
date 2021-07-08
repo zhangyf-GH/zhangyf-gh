@@ -20,20 +20,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSS定位</title>
-    <url>/2019/CSS%E5%AE%9A%E4%BD%8D/</url>
-    <content><![CDATA[<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;html lang="en"&gt;</span><br><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">    &lt;meta charset="UTF-8"&gt;</span><br><span class="line">    &lt;title&gt;定位&lt;/title&gt;</span><br><span class="line">  &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">    <span class="selector-id">#left</span>,<span class="selector-id">#center</span>,<span class="selector-id">#right</span>&#123;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">33.3%</span>;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">float</span>: left;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-id">#left</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: aqua;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#center</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellowgreen;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  相对定位</span></span><br><span class="line"><span class="comment">  1.相对于自己原来的显示位置进行显示</span></span><br><span class="line"><span class="comment">  2.原来的空间不会被其他元素占用</span></span><br><span class="line"><span class="comment">  3.如果一个元素，只是开启了相对定位，没有偏移量， 那么这个元素一般是用来作为参照的，&lt;div style="position: relative"&gt;</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   绝对定位</span></span><br><span class="line"><span class="comment">   1.相对于离他最近的，并且使用了定位的父元素，如果没有找到，以body为参照</span></span><br><span class="line"><span class="comment">   2.原来的显示空间会被其他元素占用</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#right</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#fix</span>&#123;</span><br><span class="line">  <span class="comment">/*以整个屏幕为基准*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">&lt;div style="position: relative"&gt;</span><br><span class="line">  &lt;div id="left"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id="center"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id="right"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id="fix"&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/CSS定位/Snipaste_2019-02-06_15-08-02.png" alt="Snipaste_2021-07-06_15-08-02"></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>HTML CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>BASH和SHELL编程</title>
     <url>/2015/BASH%E5%92%8CSHELL%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<p>查询/etc/shells 获取本系统支持的shell：</p>
@@ -1505,42 +1491,6 @@
       </tags>
   </entry>
   <entry>
-    <title>padding陷阱</title>
-    <url>/2018/padding%E9%99%B7%E9%98%B1/</url>
-    <content><![CDATA[<p>我们都知道padding是为块级元素设置内边距</p>
-<p>但是在使用过程中，我们却会遇到一些问题。padding的标准盒模型和怪异盒模型</p>
-<h4 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a><strong>标准盒模型</strong></h4><p>我们先摆出HTML和CSS代码：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.shoebox</span>&#123;</span></span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: red;</span><br><span class="line">            padding: 10px;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.shoes</span>&#123;</span></span><br><span class="line">            width: 80px;</span><br><span class="line">            height: 80px;</span><br><span class="line">            background-color: green;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoebox"</span>&gt;</span>         </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoes"</span>&gt;</span>              </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>一个demo，我的一双大小是 80*80  的鞋子,为此我给了这个鞋子做了一个 100*100 的盒子，我想要让这个鞋子有10px的内边距，所以我设了一个 padding: 10px; </p>
-<p>我们想象中的场景效果可能是这样的：<img src="/2018/padding陷阱/Snipaste_2018-06-27_15-46-29.png" alt="Snipaste_2021-07-06_15-46-29">  但是现实真的好残酷。。他却是这样的：</p>
-<p><img src="/2018/padding陷阱/Snipaste_2018-06-27_15-46-14.png" alt="Snipaste_2021-07-06_15-46-14"><br><img src="/2018/padding陷阱/image-2018-06-27154932074.png" alt="image-20210706154932074"><br><img src="/2018/padding陷阱/image-2018-06-27155011508.png" alt="image-20210706155011508"></p>
-<p>这时候我们会很奇怪，明明我们设置的shoebox的高和宽是100*100怎么变成了110*110了呢，这多出来的10px是怎么回事。</p>
-<p>这是padding元素膨胀造成的结果。在标准盒模型中，设置padding会自动挤压空间，而不会利用给出来的空间，不会占用宽内位置，不通过width影响，会自己挤出空间来，就好像，我的鞋子是80*80的，我不需要100*100的盒子，你给我一个80*80的盒子就好了，我靠我自己来把他挤成100*100，这时很显然的解决的办法就出来了，我们的盒子的宽度只要设置成80*80然后设置padding：10px；来让鞋子把周围额空间挤成100*100。</p>
-<p>这就是padding的标准盒模型，先做好鞋子，再去做盒子</p>
-<h4 id="怪异盒模型"><a href="#怪异盒模型" class="headerlink" title="怪异盒模型"></a><strong>怪异盒模型</strong></h4><p>怪异盒模型与标准盒模型的区别就是，怪异盒模型是先做好盒子，再来做鞋子，我把盒子的大小固定住，你鞋子怎么挤也没有用。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.shoebox</span>&#123;</span></span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: red;</span><br><span class="line">            padding: 10px;</span><br><span class="line">            box-sizing: border-box;//怪异盒模型</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.shoes</span>&#123;</span></span><br><span class="line">            width: 80px;</span><br><span class="line">            height: 80px;</span><br><span class="line">            background-color: green;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoebox"</span>&gt;</span>         </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoes"</span>&gt;</span>              </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这时我们只要在我们的代码中加一条box-sizing：boeder-box，就可以把我的盒子给固定住，这时你鞋子想要用padding来撑大盒子的空间已经没用了，因为鞋子已经被固定死了。<br><img src="/2018/padding陷阱/Snipaste_2018-06-27_15-46-29.png" alt="Snipaste_2021-07-06_15-46-29"><br><img src="/2018/padding陷阱/image-2018-06-27155148568.png" alt="image-20210706155148568"><br><img src="/2018/padding陷阱/image-2018-06-27155011508.png" alt="image-20210706155011508"></p>
-<p>最后在<strong>总结</strong>一点padding的知识：</p>
-<ol>
-<li><p>当我们给width设置一个固定的值或者给width设置100%时，设置padding都会把盒子给挤开，挤大了</p>
-</li>
-<li><p>若想要不使用怪异盒模型又不会把盒子挤大，请把width设置为auto，width默认的值是auto。自动占满整个屏幕</p>
-</li>
-<li><p>标准盒模型在pc端比较常用，因为pc端的屏幕大，有优势可以撑</p>
-</li>
-<li><p>怪异盒模型在手机端比较常用。手机屏幕是有限大小的，有时我们往往需要使用怪异盒模型把他固定住。</p>
-</li>
-<li><p>怪异盒模型的盒子大小还要加上border的大小。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>HTML CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>例行性工作排程</title>
     <url>/2015/%E4%BE%8B%E8%A1%8C%E6%80%A7%E5%B7%A5%E4%BD%9C%E6%8E%92%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="仅执行一次的工作排程"><a href="#仅执行一次的工作排程" class="headerlink" title="仅执行一次的工作排程"></a>仅执行一次的工作排程</h2><p><strong>启动一次工作排程服务的damon程序atd</strong></p>
@@ -1753,51 +1703,6 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>彻底明白VUE修饰符sync</title>
-    <url>/2021/%E5%BD%BB%E5%BA%95%E6%98%8E%E7%99%BDVUE%E4%BF%AE%E9%A5%B0%E7%AC%A6sync/</url>
-    <content><![CDATA[<blockquote>
-<p>对于VUE的初学者来讲，肯定会感觉prop的写法很麻烦，很讨厌！你肯定想如果prop也可以实现双向绑定那怎是一个爽字了得！不过现实是残酷的，如果子组件可以任意修改父组件的内容，那势必会带来数据的混乱，从而造成维护的困扰！毕竟父组件也是有尊严的！</p>
-</blockquote>
-<p>官方推荐使用一种update:my-prop-name 的模式来替代事件触发，目的是为了优雅而不粗鲁的实现父子组件间的双向绑定！先来完成一个小功能：通过父组件按钮将子组件显示出来，如图：</p>
-<p><img src="/2021/彻底明白VUE修饰符sync/webp" alt="img"></p>
-<p>父组件代码：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> </span></span><br><span class="line"><span class="tag">               <span class="attr">value</span>=<span class="string">"我是父组件中的按钮"</span> </span></span><br><span class="line"><span class="tag">               @<span class="attr">click</span>=<span class="string">"show"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    import child from "@/components/child"</span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                isShow:false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        components:&#123;</span><br><span class="line">            child</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            show()&#123;</span><br><span class="line">                this.isShow=true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>子组件child代码：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">         我是一个子组件，我在红色的海洋里！</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>接下来加个需求，在子组当中增加一个按钮，通过该按钮来将自已隐藏起来！需要借助父子之间的传值了！如图：</p>
-<p><img src="/2021/彻底明白VUE修饰符sync/webp1" alt="img"></p>
-<p>父组件代码：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">value</span>=<span class="string">"我是父组件中的按钮"</span></span></span><br><span class="line"><span class="tag">               @<span class="attr">click</span>=<span class="string">"show"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> @<span class="attr">upIsShow</span>=<span class="string">"changeIsShow"</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    import child from "@/components/child"</span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                isShow:false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        components:&#123;</span><br><span class="line">            child</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            show()&#123;</span><br><span class="line">                this.isShow=true;</span><br><span class="line">            &#125;,</span><br><span class="line">            changeIsShow(bol)&#123;</span><br><span class="line">                this.isShow=bol;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>子组件代码：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">         我是一个子组件，我在红色的海洋里！</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"点我隐身"</span> @<span class="attr">click</span>=<span class="string">"upIsShow"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    export default &#123;</span><br><span class="line">        methods:&#123;</span><br><span class="line">            upIsShow()&#123;</span><br><span class="line">                this.$emit("upIsShow",false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如果我要将父组件中的事@upIsShow修改为@update:isShow不违法吧：</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">&lt;child <span class="meta">@update</span>:isShow=<span class="string">"changeIsShow"</span> v-<span class="keyword">show</span>=<span class="string">"isShow"</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>子组件的emit自然也要做对应调整：</p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">upIsShow()&#123;</span><br><span class="line">    <span class="keyword">this</span>.$emit(<span class="string">"update:isShow"</span>,<span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行一下，一切正常！真好！</p>
-<p>那么如果现在我将父组件的changeIsShow直接写成匿名函数，也能运行吧：</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">&lt;child <span class="meta">@update</span>:isShow=<span class="string">"function(bol)&#123;isShow=bol&#125;"</span> v-<span class="keyword">show</span>=<span class="string">"isShow"</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>再次运行，一切还是那么美好，真好！</p>
-<p>现在我将那匿名函数改成箭头函数，不过分吧：</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">&lt;child <span class="meta">@update</span>:isShow=<span class="string">"bol=&gt;isShow=bol"</span> v-<span class="keyword">show</span>=<span class="string">"isShow"</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>再运行一次，完美，真好！</p>
-<p>最后我将上面那行代码做最后一次修改：</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">&lt;child :isShow.<span class="keyword">sync</span>=<span class="string">"isShow"</span> v-<span class="keyword">show</span>=<span class="string">"isShow"</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>至此终于涉及到了sync了。以上代码 :isShow.sync=”isShow”其实是 @update:isShow=”bol=&gt;isShow=bol”语法糖。是其一种简写形式。附上完整代码。<br>父组件：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">value</span>=<span class="string">"我是父组件中的按钮"</span></span></span><br><span class="line"><span class="tag">               @<span class="attr">click</span>=<span class="string">"show"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> <span class="attr">:isShow.sync</span>=<span class="string">"isShow"</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    import child from "@/components/child"</span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                isShow:false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        components:&#123;</span><br><span class="line">            child</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            show()&#123;</span><br><span class="line">                this.isShow=true;</span><br><span class="line">            &#125;,</span><br><span class="line">            changeIsShow(bol)&#123;</span><br><span class="line">                this.isShow=bol;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>子组件：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">         我是一个子组件，我在红色的海洋里！</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"点我隐身"</span> @<span class="attr">click</span>=<span class="string">"upIsShow"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    export default &#123;</span><br><span class="line">        methods:&#123;</span><br><span class="line">            upIsShow()&#123;</span><br><span class="line">                this.$emit("update:isShow",false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>最后：sync只是给大家伙提供了一种与父组件沟通的思路而已！所以在后面日子里，你如果只是单纯的在子组件当中修改父组件的某个数据时，建议使用sync，简单，快捷，有档次！真好！</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>Vue.js</category>
-      </categories>
-      <tags>
-        <tag>Vue.js</tag>
       </tags>
   </entry>
   <entry>
@@ -2112,23 +2017,6 @@
       </tags>
   </entry>
   <entry>
-    <title>清除浮动</title>
-    <url>/2018/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/</url>
-    <content><![CDATA[<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>float<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#left</span>&#123;</span></span><br><span class="line">      height: 100px;</span><br><span class="line">      background-color: aqua;</span><br><span class="line">      width: 50%;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#right</span>&#123;</span></span><br><span class="line">      height: 120px;</span><br><span class="line">      background-color: yellow;</span><br><span class="line">      width: 50%;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#content2</span>&#123;</span></span><br><span class="line">      height: 150px;</span><br><span class="line">      background-color: blue;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.clearFix</span><span class="selector-pseudo">:after</span>&#123;</span></span><br><span class="line">      content: '清除浮动';</span><br><span class="line">      display: block;</span><br><span class="line">      clear: both;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#cle</span>&#123;</span></span><br><span class="line">      clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 行内元素 不占一行 宽度取决于包裹的元素宽度</span></span><br><span class="line"><span class="comment">     块状元素占一行</span></span><br><span class="line"><span class="comment">浮动后块状元素变成行内元素，如果不设置宽度时，宽度大小取决于其包裹的元素的大小--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content1"</span>  <span class="attr">class</span>=<span class="string">"clearFix"</span>  &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"left"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--&lt;div id="cle"&gt;&lt;/div&gt;--&gt;</span> <span class="comment">&lt;!--此清除float方法不好，添加了一个dom元素，采用class="clearFix"即可--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content2"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>清除浮动前：</p>
-<p><img src="/2018/清除浮动/Snipaste11.png" alt="Snipaste11"></p>
-<p>清除浮动后：</p>
-<p><img src="/2018/清除浮动/Snipaste1.png" alt="Snipaste1"></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>HTML CSS</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>程序管理和SELinux</title>
     <url>/2021/%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86%E5%92%8CSELinux/</url>
     <content><![CDATA[<p>程序 (program)：通常为 binary program ，放置在储存媒体中 (如硬盘、光盘、软盘、磁带等)， 为实体档案的型态存在；</p>
@@ -2398,6 +2286,223 @@
 <p>> chattr +a /var/log/admin.log  –只能增加，不能删除和移动，改名等。</p>
 <p>>vi /etc/logrotate.d/admin</p>
  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#This configuration is from zhangyf 2014/2/12</span><br><span class="line">/var/log/admin.log &#123;</span><br><span class="line">	monthly          &lt;==每个月进行一次</span><br><span class="line">	size=10M         &lt;==档案容量大于 10M 则开始处置</span><br><span class="line">	rotate 5         &lt;==保留五个！</span><br><span class="line">	compress         &lt;==进行压缩工作！</span><br><span class="line">	sharedscripts</span><br><span class="line">	prerotate</span><br><span class="line">	         /usr/bin/chattr -a /var/log/admin.log</span><br><span class="line">	endscript</span><br><span class="line">	sharedscripts</span><br><span class="line">	postrotate</span><br><span class="line">	        /usr/bin/killall -HUP syslogd</span><br><span class="line">	       /usr/bin/chattr +a /var/log/admin.log</span><br><span class="line">	endscript</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>鸟哥的Linux私房菜</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网络防火墙SSH</title>
+    <url>/2015/%E7%BD%91%E7%BB%9C%E9%98%B2%E7%81%AB%E5%A2%99SSH/</url>
+    <content><![CDATA[<p>观察主记路由 route</p>
+<p>>route [-n]   n ： 将主机名以 IP 的方式显示</p>
+<p>>ifconfig eth0 观察本机的网卡卡号</p>
+<p>取得本机的 ARP 表格内的 IP/MAC 对应数据</p>
+<p>>arp [-n]     n ： 将主机名以 IP 的方式显示</p>
+<p>   /etc/services这个档案则是记录架构在 TCP/IP 上面的总总协议，包括 http, ftp, ssh, telnet 等等服务所定义的 port number ，都是这个档案所规划出来的。如果你想要自定义一个新的协议与 port 的对应，就得要改这个档案了；   /etc/protocols这个档案则是在定义出 IP 封包协议的相关数据，包括 ICMP/TCP/UDP 这方面的封包协议的定义等。<br>ifup eth0 (ifdown eth0)启动或者是关闭某张网络接口。可以透过这个简单的 script 来处理喔！ 这两个 script 会主动到 /etc/sysconfig/network-scripts/ 目录下，  读取适当的配置文件来处理啊！ (例如 ifcfg-eth0)。</p>
+<p><img src="/2015/网络防火墙SSH/9073b2b7-9c21-4541-a505-1bf85f949743.png" alt="img"></p>
+<h2 id="固定IP设置"><a href="#固定IP设置" class="headerlink" title="固定IP设置"></a>固定IP设置</h2><p>\1.   IP/Netmask/Gateway 的设定、启动与观察</p>
+<p><img src="/2015/网络防火墙SSH/572e274c-a40c-44a6-8705-a9f8daf2dedd.png" alt="img"></p>
+<p><img src="/2015/网络防火墙SSH/71031518-480c-40fb-b966-5216c40056fc.png" alt="img"></p>
+<p><img src="/2015/网络防火墙SSH/ea13b29f-b3cc-40b1-b632-1b5ec8b88ed4.png" alt="img"></p>
+<p><img src="/2015/网络防火墙SSH/e229784f-e336-48a6-9992-f4799d6f2def.png" alt="img"></p>
+<p>\2.   DNS 服务器的 IP 设定与观察</p>
+<p><img src="/2015/网络防火墙SSH/1b25a14d-cffd-4142-9002-4f94f209c596.jpg" alt="img"></p>
+<p>\3.   主机名的修改、启动与观察（修改完毕之后要顺利启动的话，得要重新启动才可以）</p>
+<h2 id><a href="#" class="headerlink" title></a><img src="/2015/网络防火墙SSH/1520c456-79db-458c-87cc-33178ab29bec.jpg" alt="img"></h2><h2 id="DHCP设置"><a href="#DHCP设置" class="headerlink" title="DHCP设置"></a>DHCP设置</h2><p><img src="/2015/网络防火墙SSH/5f15a44b-2f4e-4c5d-804b-a6920f72bcf0.jpg" alt="img"></p>
+<p><strong>宽带直连</strong></p>
+<p><strong>ADSL拨接上网</strong></p>
+<p>  安装rp-pppoe</p>
+<p>  执行pppoe-setup设置账号密码</p>
+<p><strong>WLAN无线网络</strong></p>
+<p>1.察看模块与相对应的网卡代号</p>
+<p><img src="/2015/网络防火墙SSH/4ccfb7a6-499f-432d-adeb-b1ea97c116b3.jpg" alt="img"></p>
+<p>2.利用 iwlist 侦测 AP</p>
+<p><img src="/2015/网络防火墙SSH/6a629a0d-cc0c-4d19-9b51-16b704768584.jpg" alt="img"></p>
+<p><img src="/2015/网络防火墙SSH/b6ce3708-6215-407f-933a-32a4655a12ec.png" alt="img"></p>
+<p><img src="/2015/网络防火墙SSH/aaffeded-8298-41ed-9786-a580316567c8.png" alt="img"></p>
+<p>3.设定网络卡配置文件 (ifcfg-ethn)</p>
+<p><img src="/2015/网络防火墙SSH/a7eb64e1-2beb-40b8-a412-13c9df45bcb1.png" alt="img"></p>
+<p>4.启动与观察无线网卡</p>
+<p><img src="/2015/网络防火墙SSH/3355020d-73ff-4b72-be32-9d0f555a0d0e.png" alt="img"></p>
+<h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h3><p><strong>&gt;ifconfig {interface} {up|down} &lt;== 观察与启动接口</strong></p>
+<p><strong>&gt;ifconfig interface {options}    &lt;== 设定与修改接口</strong></p>
+<p>选项与参数：</p>
+<p>interface：网络卡接口代号，包括 eth0, eth1, ppp0 等等</p>
+<p>options  ：可以接的参数，包括如下：</p>
+<blockquote>
+<p>up, down ：启动 (up) 或关闭 (down) 该网络接口(不涉及任何参数)</p>
+<p>mtu  ：可以设定不同的 MTU 数值，例如 mtu 1500 (单位为 byte)</p>
+<p>netmask  ：就是子屏蔽网络；</p>
+<p>broadcast：就是广播地址啊！</p>
+</blockquote>
+<p>>ifconfig   观察所有的网络接口</p>
+<p>>ifconfig eth0 192.168.100.100  netmask 255.255.255.128  mtu 800  设定eth0网络卡参数</p>
+<p>>ifconfig eth0:0 192.168.50.50   为eth0设定第二个IP</p>
+<p>>ifconfig eth0:0 down          关掉 eth0:0 这个界面。那如果想用默认值启动 eth1：『ifconfig eth1 up』即可达成</p>
+<h3 id="ifup-ifdown"><a href="#ifup-ifdown" class="headerlink" title="ifup, ifdown"></a>ifup, ifdown</h3><p><strong>&gt;ifup|ifdown {interface}</strong></p>
+<p>两支程序其实是 script 而已，他会直接到/etc/sysconfig/network-scripts 目录下搜寻对应的ifcfg-ethX 配置文件。</p>
+<p>例如 ifup eth0 时，他会找出 ifcfg-eth0 这个档案的内容，然后来加以设定。</p>
+<p>注意：如果以 ifconfig eth0 …. 来设定或者是修改了网络接口后， 那就无法再以ifdown eth0 的方式来关闭了！</p>
+<p>因为 ifdown 会分析比对目前的网络参数与ifcfg-eth0 是否相符，不符的话，就会放弃该次动作。</p>
+<p><strong>因此，使用 ifconfig 修改完毕后，应该要以 ifconfig eth0 down 才能够关闭该接口喔！</strong></p>
+<h3 id="route"><a href="#route" class="headerlink" title="route"></a>route</h3><p><strong>route [-nee]</strong></p>
+<p>-n  ：不要使用通讯协议或主机名，直接使用 IP 或 port number；-ee ：使用更详细的信息来显示<img src="/2015/网络防火墙SSH/1f01ede4-5026-41dd-824d-daaf66bdda51.png" alt="img"><br>Flags：总共有多个旗标，代表的意义如下：o   U (route is up)：该路由是启动的；o   H (target is a host)：目标是一部主机 (IP) 而非网域；o   G (use gateway)：需要透过外部的主机 (gateway) 来转递封包； o   R (reinstate route for dynamic routing)：使用动态路由时，恢复路由信息的旗标；o   D (dynamically installed by daemon or redirect)：已经由服务或转 port 功能设定为动态路由o   M (modified from routing daemon or redirect)：路由已经被修改了；o   ! (reject route)：这个路由将不会被接受(用来抵挡不安全的网域！</p>
+<p>Metric 距离、跳数。暂无用。</p>
+<p>Ref  不用管，恒为0。</p>
+<p>Use   该路由被使用的次数，可以粗略估计通向指定网络地址的网络流量。</p>
+<p><strong>route add [-net|-host] [网域或主机] netmask [mask] [gw|dev]</strong></p>
+<p><strong>route del  [-net|-host] [网域或主机] netmask [mask] [gw|dev]</strong></p>
+<p>>route  del  -net 169.254.0.0   netmask 255.255.0.0   dev eth0  删除路由</p>
+<p>>route add  -net 192.168.100.0 netmask 255.255.255.0 dev eth0 增加路由</p>
+<p>>route add default gw 192.168.1.250  设置默认路由</p>
+<h3 id="ip"><a href="#ip" class="headerlink" title="ip"></a>ip</h3><p><strong>ip [-s] link show &lt;== 单纯的查阅该装置相关的信息，**</strong>-s ：显示出该装置的统计数据(statistics)，例如总接受封包数等<strong>**ip link set [device] [动作与参数]</strong>     set ：可以开始设定项目， device 指的是 eth0, eth1 等等界面代号；</p>
+<blockquote>
+<p>up|down  ：启动 (up) 或关闭 (down) 某个接口，其他参数使用默认的以太网络；</p>
+<p>address  ：如果这个装置可以更改 MAC 的话，用这个参数修改！</p>
+<p>name  ：给予这个装置一个特殊的名字；</p>
+<p>mtu  ：就是最大传输单元啊！</p>
+</blockquote>
+<p>>ip link set eth0 up|down</p>
+<p>更改网卡名称 mac地址</p>
+<p>> ip link set eth0 down &lt;==关闭界面</p>
+<p>> ip link set eth0 name vbird &lt;==重新设定</p>
+<p>> ip link show &lt;==观察一下</p>
+<p>> ip link set vbird name eth0 &lt;==界面改回来</p>
+<p>> ip link set eth0 address aa:aa:aa:aa:aa:aa</p>
+<p><strong>ip address show &lt;==就是查阅 IP 参数啊！</strong></p>
+<p><strong>ip address [add|del] [IP 参数] [dev 装置名] [相关参数]</strong></p>
+<p>相关参数：</p>
+<blockquote>
+<p>broadcast：设定广播地址，如果设定值是 + 表示『让系统自动计算』<br>label  ：亦即是这个装置的别名，例如 eth0:0 就是了！<br>scope  ：这个界面的领域，通常是这几个大类：<br> global ：允许来自所有来源的联机；预设为此。<br>site  ：仅支持 IPv6 ，仅允许本主机的联机；<br>link  ：仅允许本装置自我联机；<br>host  ：仅允许本主机内部的联机；</p>
+</blockquote>
+<p>>ip  address  add  192.168.50.50/24  broadcast +  dev eth0  label eth0:vbird</p>
+<p>>ip  address  del  192.168.50.50/24  dev eth0</p>
+<p><strong>ip route show &lt;==单纯的显示出路由的设定而已</strong></p>
+<p><strong>ip route [add|del] [IP 或网域] [via gateway] [dev 装置]</strong></p>
+<p>>ip route add 192.168.5.0/24  dev  eth0</p>
+<p>>ip route add 192.168.10.0/24  via  192.168.5.100  dev  eth0</p>
+<p>>ip route add default  via  192.168.1.254  dev  eth0</p>
+<p>>ip route del  192.168.10.0/24</p>
+<h3 id="dhclient"><a href="#dhclient" class="headerlink" title="dhclient"></a>dhclient</h3><p>>dhclient eth0  可以立刻叫我们的网络卡以 dhcp 协议去尝试取得 IP</p>
+<h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><p><strong>ping [参数] IP</strong></p>
+<p>-c 数值：后面接的是执行 ping 的次数，例如 -c 5 ；-n  ：在输出数据时不进行 IP 与主机名的反查，直接使用 IP 输出(速度较快)；-s 数值：发送出去的 ICMP 封包大小，预设为 56bytes，不过你可以放大此数值；-t 数值：TTL 的数值，预设是 255，每经过一个节点就会少一；-W 数值：等待响应对方主机的秒数。-M [do|dont] ：主要在侦测网络的 MTU 数值大小，两个常见的项目是：</p>
+<blockquote>
+<p>do  ：代表传送一个 DF (Don’t Fragment) 旗标，让封包不能重新拆包与打包；</p>
+<p>dont：代表不要传送 DF 旗标，表示封包可以在其他主机上拆包与打包</p>
+</blockquote>
+<p><img src="/2015/网络防火墙SSH/430a2387-882e-4aa9-acef-8d0d5683466e.png" alt="img"></p>
+<p>如果你的主机与待侦测主机并不在同一个网域内，  那么 TTL 预设使用255 ，如果是同一个网域内，那么 TTL 预设则使用 64 。</p>
+<p>找出MTU</p>
+<p><img src="/2015/网络防火墙SSH/38db0d85-bb97-4035-a1a1-249c51a29d7d.png" alt="img"></p>
+<p>#!/bin/bash</p>
+<p>for siteip in $(seq 1 254)</p>
+<p>do</p>
+<blockquote>
+<p>site=”192.168.1.${siteip}”</p>
+<p>ping -c1 -W1 ${site} &amp;&gt; /dev/null</p>
+<p>if [ “$?” == “0” ]; then </p>
+<p>  echo “$site is UP”</p>
+<p>else</p>
+<p>  echo “$site is DOWN”</p>
+<p>fi</p>
+</blockquote>
+<p>done</p>
+<h3 id="traceroute"><a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute</h3><p>traceroute [选项与参数] IP选项与参数：-n ：可以不必进行主机的名称解析，单纯用 IP ，速度较快！-U ：使用 UDP 的 port <a href="tel:33434" target="_blank" rel="noopener">33434</a> 来进行侦测，这是预设的侦测协议；-I ：使用 ICMP 的方式来进行侦测； -T ：使用 TCP 来进行侦测，一般使用 port 80 测试-w ：若对方主机在几秒钟内没有回声就宣告不治…预设是 5 秒-p 埠号：若不想使用 UDP 与 TCP 的预设埠号来侦测，可在此改变埠号。-g 路由：与 -i 的参数相仿，只是 -g 后面接的是 gateway 的 IP 就是了<br>-i 装置：用在比较复杂的环境，如果你的网络接口很多很复杂时，才会用到这个参数；举例来说，你有两条 ADSL 可以连接到外部，那你的主机会有两个ppp，你可以使用 -i 来选择是 ppp0 还是 ppp1 啦！&gt;traceroute -n  <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<p>>traceroute -w 1 -n -T  <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<h3 id="host"><a href="#host" class="headerlink" title="host"></a>host</h3><p><strong>host [-a] hostname [server]</strong> -a ：列出该主机详细的各项主机名设定数据<br>[server] ：可以使用非为 /etc/resolv.conf 的 DNS 服务器 IP 来查询。&gt;host <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 查询百度的服务器主机IP<strong>dig</strong>dig <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a>  查询百度的服务器主机IPiwlist  iwconfig无线设置命令,在设置无线网络时用过。telnet <strong>telnet [host|IP [port]]</strong><br>>telnet localhost 110<br>wgettcpdump封包撷取器<strong>tcpdump [-AennqX] [-i 接口] [-w 储存档名] [-c 次数] [-r 档案] [所欲撷取的封包数据格式]</strong>选项与参数：-A ：封包的内容以 ASCII 显示，通常用来捉取 WWW 的网页封包资料。-e ：使用资料连接层 (OSI 第二层) 的 MAC 封包数据来显示；-nn：直接以 IP 及 port number 显示，而非主机名与服务名称-q ：仅列出较为简短的封包信息，每一行的内容比较精简-X ：可以列出十六进制 (hex) 以及 ASCII 的封包内容，对于监听封包内容很有用-i  ：后面接要『监听』的网络接口，例如 eth0, lo, ppp0 等等的界面；-w ：如果你要将监听所得的封包数据储存下来，用这个参数就对了！后面接档名-r  ：从后面接的档案将封包数据读出来。那个『档案』是已经存在的档案，并且这个『档案』是由 -w 所制作出来的。-c  ：监听的封包数，如果没有这个参数， tcpdump 会持续不断的监听，直到使用者输入 [ctrl]-c 为止。</p>
+<p>所欲撷取的封包数据格式：我们可以专门针对某些通讯协议或者是 IP 来源进行封包撷取， 那就可以简化输出的结果，并取得最有用的信息。常见的表示方法有：</p>
+<blockquote>
+<p>‘host foo’, ‘host 127.0.0.1’ ：针对单部主机来进行封包撷取</p>
+<p>‘net 192.168’ ：针对某个网域来进行封包的撷取；</p>
+<p>‘src host 127.0.0.1’ ‘dst net 192.168’：同时加上来源(src)或目标(dst)限制</p>
+<p>‘tcp port 21’：还可以针对通讯协议侦测，如 tcp, udp, arp, ether 等</p>
+<p>还可以利用 and 与 or 来进行封包数据的整合显示呢！</p>
+</blockquote>
+<p>>tcpdump -i eth0 -nn</p>
+<p>>tcpdump -i eth0 -nn  port 21</p>
+<p>>tcpdump -i lo -nn -X  ‘port 21’</p>
+<p>>tcpdump -i eth0 -nn ‘port 22 and src host 192.168.14.100’</p>
+<h3 id="nc，netcat-接口监听"><a href="#nc，netcat-接口监听" class="headerlink" title="nc，netcat 接口监听"></a>nc，netcat 接口监听</h3><p><strong>nc [-lu] [IP|host] [port]</strong></p>
+<p>-l ：作为监听之用，亦即开启一个 port 来监听用户的联机；-u ：不使用 TCP 而是使用 UDP 作为联机的封包状态 <img src="/2015/网络防火墙SSH/65ea43e2-e5ba-4e63-8cfc-78202b5b8c7a.png" alt="img"><br>server:<img src="/2015/网络防火墙SSH/f1788bb8-dc26-4596-8817-744d3b358d83.png" alt="img"></p>
+<p>client:<img src="/2015/网络防火墙SSH/ef0bdf06-470b-4a92-a961-75b60c9381f4.png" alt="img">在客户端我们可以打入一些字，你会发现在服务器端会同时出现你输入的字眼吶！</p>
+<p>端口与服务的启动/关闭及开机时状态设定1.最直接 kill -9 rpcbind  但是是强制关闭，会引起不确定因素。2.stand alone 方式服务<img src="/2015/网络防火墙SSH/e2ae4e66-62c8-47cc-a373-5e9c24eb8102.png" alt="img"><br> rpc.statd 的启动脚本在：『rpm  -qc $(rpm  -qf $(which rpc.statd) ) | grep init』这样找，结果是在 /etc/rc.d/init.d/nfslock3.super daemon 方式服务要启动 telnet 首先必须要已经安装了 telnet 的服务器才行，先以 rpm 查询看看是否有安装 telnet-server『rpm -qa | grep telnet-server』<br>       如果没有安装的话，用『yum install telnet-server』安装；</p>
+<ul>
+<li>由于是 super daemon 控管，所以请编辑 /etc/xinetd.d/telnet 这个档案，将其中的『disable = yes』改成『disable = no』</li>
+</ul>
+<p>​     之后以『/etc/init.d/xinetd restart』重新启动 super daemon 吧！</p>
+<ul>
+<li>利用 netstat -tnlp 察看是否有启动 port 23 </li>
+</ul>
+<p><strong>将服务关闭，并设为开机不启动</strong></p>
+<p><img src="/2015/网络防火墙SSH/941af9ae-ee2b-493b-9b37-65527f0cc782.png" alt="img"></p>
+<hr>
+<h3 id="防火墙："><a href="#防火墙：" class="headerlink" title="防火墙："></a><strong>防火墙</strong>：</h3><p>​      <strong>TCP Wrappers (程序控管) 通过**</strong>/etc/hosts.{allow|deny} 的设定方式，进行权限设定</p>
+<p>​      <strong>Proxy (代理服务器）</strong></p>
+<p>​      <strong>Netfilter (封包过滤机制)</strong> <strong>Netfilter 提供**</strong>了 iptables 这个软件来作为防火墙封包过滤的指令。</p>
+<p>Linux 的 iptables 至少就有三个表格，包括管理本机进出的 filter 、管理后端主机 (防火墙内部的其他计算机) 的 nat 、管理特殊旗标使用的 mangle (较少使用 ) 常用的是本机的 filter 表格， 这也是默认表格啦<br>  filter (过滤器) ：主要跟进入 Linux 本机的封包有关，这个是预设的table 喔！</p>
+<p>​     o  INPUT：主要与想要进入我们 Linux 本机的封包有关；</p>
+<p>​     o  OUTPUT：主要与我们 Linux 本机所要送出的封包有关；</p>
+<p>​    o  FORWARD：这个咚咚与 Linux 本机比较没有关系， 他可以『转递封包』到后端的计算机中，与下列 nat table 相关性较高。</p>
+<p>  nat (地址转换) ：是 Network Address Translation 的缩写， 这个表格主要在进行来源与目的之 IP 或 port 的转换，与 Linux 本机较无关，主要与Linux 主机后的局域网络内计算机较有相关。</p>
+<p>​     o  PREROUTING：在进行路由判断之前所要进行的规则(DNAT/REDIRECT)</p>
+<p>​    o  POSTROUTING：在进行路由判断之后所要进行的规则(SNAT/MASQUERADE)</p>
+<p>​     o  OUTPUT：与发送出去的封包有关</p>
+<p>  mangle (破坏者) ：这个表格主要是与特殊的封包的路由旗标有关， 早期仅有 PREROUTING 及 OUTPUT 链，不过从 kernel 2.4.18 之后加入了 INPUT及FORWARD 链。 由于这个表格与特殊旗标相关性较高，所以像咱们这种单纯的环境当中，较少使用 mangle 这个表格。</p>
+<p><strong>1.规则的观察与清除</strong></p>
+<p><img src="/2015/网络防火墙SSH/7177f2fe-ee52-4c54-9b07-028616a45238.jpg" alt="9b983a51-8bdc-496e-b62d-357f05d50001.jpg"></p>
+<p><img src="/2015/网络防火墙SSH/b8450685-cf84-4c07-b851-190d7684e4fe.png" alt="img"><br><img src="/2015/网络防火墙SSH/05343c60-1e87-4f6b-9d04-f6ba42b39e76.jpg" alt="img"><br><strong>2.定义预设政策 (policy)</strong></p>
+<p><img src="/2015/网络防火墙SSH/438112eb-7307-4ed4-a670-9ce84a8e00d7.jpg" alt="img"></p>
+<p><strong>3.封包的基础比对：IP, 网域及接口装置</strong></p>
+<p>iptables [-AI 链名] [-io 网络接口] [-p 协议] [-s 来源 IP/网域] [-d 目标 IP/网域] -j [ACCEPT|DROP|REJECT|LOG]</p>
+<p>选项与参数：</p>
+<p>-AI 链名：针对某的链进行规则的 “插入” 或 “累加”</p>
+<p>  -A ：新增加一条规则，该规则增加在原本规则的最后面。例如原本已经有四条规则，使用 -A 就可以加上第五条规则！</p>
+<p>  -I ：插入一条规则。如果没有指定此规则的顺序，默认是插入变成第一条规则。例如原本有四条规则，使用 -I 则该规则变成第一条，</p>
+<p>​      而原本四条变成 2~5 号链 ：有INPUT, OUTPUT, FORWARD 等，此链名称又与 -io 有关，请看底下。</p>
+<p>-io 网络接口：设定封包进出的接口规范</p>
+<p>  -i ：封包所进入的那个网络接口，例如 eth0, lo 等接口。需与 INPUT 链配合；</p>
+<p>  -o ：封包所传出的那个网络接口，需与 OUTPUT 链配合；</p>
+<p>  -p 协定：设定此规则适用于哪种封包格式，主要的封包格式有： tcp, udp, icmp 及 all 。</p>
+<p>-s 来源 IP/网域：设定此规则之封包的来源项目，可指定单纯的 IP 或包括网域，例如：</p>
+<blockquote>
+<p>IP  ：192.168.0.100</p>
+<p>网域：192.168.0.0/24, 192.168.0.0/255.255.255.0 均可。</p>
+<p>若规范为『不许』时，则加上 ! 即可，例如：</p>
+<p>-s ! 192.168.100.0/24 表示不许 192.168.100.0/24 之封包来源；</p>
+</blockquote>
+<p>-d 目标 IP/网域：同 -s ，只不过这里指的是目标的 IP 或网域。</p>
+<p>-j ：后面接动作，主要的动作有接受(ACCEPT)、丢弃(DROP)、拒绝(REJECT)及记录(LOG)</p>
+<p><img src="/2015/网络防火墙SSH/702693c5-4944-4947-9f62-d46c5301caff.png" alt="img"></p>
+<p><img src="/2015/网络防火墙SSH/32d6e73a-09cd-44b5-846d-6fd9f251857e.png" alt="img"></p>
+<p><strong>4.TCP, UDP 的规则比对：针对埠口设定
+</strong></p>
+<p>iptables [-AI 链] [-io 网络接口] [-p tcp,udp] [-s 来源 IP/网域] [–sport 埠口范围] [-d 目标 IP/网域] [–dport 埠口范围] -j [ACCEPT|DROP|REJECT] </p>
+<p>选项与参数：–sport 埠口范围：限制来源的端口口号码，端口口号码可以是连续的，例如1024:65535–dport 埠口范围：限制目标的端口口号码。因为仅有 tcp 与 udp 封包具有埠口，因此你想要使用 –dport, –sport 时，得要加上 -p tcp 或 -p udp 的参数才会成功喔<img src="/2015/网络防火墙SSH/bdc40c07-dbb5-49af-b3b0-6d1971f3c00d.png" alt="img"><br>只要来自 192.168.1.0/24 的 1024:65535 埠口的封包，且想要联机到本机的 ssh port 就予以抵挡：&gt;iptables -A INPUT -i eth0 -p tcp -s 192.168.1.0/24  –sport 1024:65534 –dport ssh -j DROP</p>
+<p>将来自任何地方来源 port 1:1023 的主动联机到本机端的 1:1023 联机丢弃</p>
+<p>>iptables -A INPUT -i eth0 -p tcp –sport 1:1023 –dport 1:1023 –syn -j DROP </p>
+<p><strong>5.iptables 外挂模块：mac 与 state</strong><br><img src="/2015/网络防火墙SSH/77bcb250-b0fa-4961-9af2-420e559b741a.png" alt="img"></p>
+<p>范例：只要已建立或相关封包就予以通过，只要是不合法封包就丢弃</p>
+<p>> iptables -A INPUT -m state –state RELATED,ESTABLISHED -j ACCEPT</p>
+<p>> iptables -A INPUT -m state –state INVALID -j DROP</p>
+<p>范例：针对局域网络内的 aa:bb:cc:dd:ee:ff 主机开放其联机</p>
+<p>> iptables  -A INPUT  -m mac  –mac-source aa:bb:cc:dd:ee:ff -j ACCEPT</p>
+<p>选项与参数：</p>
+<p>–mac-source ：就是来源主机的 MAC 啦！</p>
+<p><strong>6.ICMP 封包规则的比对：针对是否响应 ping 来设计</strong><br><img src="/2015/网络防火墙SSH/6f057fe4-1127-4e5d-be61-a733e5101b2d.jpg" alt="img"></p>
+<p><strong>7.简单的客户端防火墙设计与防火墙规则储存</strong><br><img src="/2015/网络防火墙SSH/cb1dc68f-7931-4923-b7eb-6afb5df50a32.jpg" alt="img"></p>
+<hr>
+<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a><strong>SSH</strong></h3><p>SSH 是 Secure  SHell protocol 的简写 (安全的壳程序协议)，它可以透过数据封包加密技术，将等待传输的封包加密后再传输到网络上。取代了明码传输的telnet技术。<br><img src="/2015/网络防火墙SSH/3b4426d0-ad39-42ca-8dc7-8cf835a0a022.png" alt="img"><br><img src="/2015/网络防火墙SSH/4becbb44-d79b-4b96-85c6-73ac4afb4c16.jpg" alt="img"></p>
+<p>>ssh <a href="mailto:student@127.0.0.1" target="_blank" rel="noopener">student@127.0.0.1</a> find / &amp;&gt; ~/find1.log  执行后需要等待</p>
+<p>>ssh -f <a href="mailto:student@127.0.0.1" target="_blank" rel="noopener">student@127.0.0.1</a> find / &amp;&gt; ~/find1.log  加上 -f 的参数可以将指令后台执行而立马断开联机</p>
+<p>>ssh -o StrictHostKeyChecking=no root@localhost</p>
+<p>>ssh -f root@some_IP shutdown -h now  不用等待关机后退出，直接断开连接。</p>
+<h3 id="sftp"><a href="#sftp" class="headerlink" title="sftp"></a>sftp</h3><p>模拟 FTP 的文件传输方式，使用 ssh 的通道 (port 22)，只是模拟成 FTP 与复制的动作而已。<br><img src="/2015/网络防火墙SSH/5a8f0d34-770e-4b00-a675-e34efb54e82d.png" alt="img"><br><img src="/2015/网络防火墙SSH/8668cca1-18ca-4d8f-9c83-be542b0d34a7.png" alt="img"><br><img src="/2015/网络防火墙SSH/e23af27d-6fc3-47e9-9f40-e9c3da21cdcc.png" alt="img"><br><img src="/2015/网络防火墙SSH/000c8821-76fd-4457-8ee8-785a47548f0a.jpg" alt="img"></p>
+<h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>档案异地直接复制，通常使用 sftp 是因为可能不知道服务器上面有什么档名的档案存在，如果已经知道服务器上的档案档名了，  那么最简单的文件传输则是透过 scp 这个指令喔！最简单的 scp 用法如下：<br><img src="/2015/网络防火墙SSH/3f8cd937-351d-4890-8abe-6dde583910ab.png" alt="img"></p>
+]]></content>
       <categories>
         <category>Linux</category>
         <category>鸟哥的Linux私房菜</category>
@@ -2845,223 +2950,6 @@
       </tags>
   </entry>
   <entry>
-    <title>网络防火墙SSH</title>
-    <url>/2015/%E7%BD%91%E7%BB%9C%E9%98%B2%E7%81%AB%E5%A2%99SSH/</url>
-    <content><![CDATA[<p>观察主记路由 route</p>
-<p>>route [-n]   n ： 将主机名以 IP 的方式显示</p>
-<p>>ifconfig eth0 观察本机的网卡卡号</p>
-<p>取得本机的 ARP 表格内的 IP/MAC 对应数据</p>
-<p>>arp [-n]     n ： 将主机名以 IP 的方式显示</p>
-<p>   /etc/services这个档案则是记录架构在 TCP/IP 上面的总总协议，包括 http, ftp, ssh, telnet 等等服务所定义的 port number ，都是这个档案所规划出来的。如果你想要自定义一个新的协议与 port 的对应，就得要改这个档案了；   /etc/protocols这个档案则是在定义出 IP 封包协议的相关数据，包括 ICMP/TCP/UDP 这方面的封包协议的定义等。<br>ifup eth0 (ifdown eth0)启动或者是关闭某张网络接口。可以透过这个简单的 script 来处理喔！ 这两个 script 会主动到 /etc/sysconfig/network-scripts/ 目录下，  读取适当的配置文件来处理啊！ (例如 ifcfg-eth0)。</p>
-<p><img src="/2015/网络防火墙SSH/9073b2b7-9c21-4541-a505-1bf85f949743.png" alt="img"></p>
-<h2 id="固定IP设置"><a href="#固定IP设置" class="headerlink" title="固定IP设置"></a>固定IP设置</h2><p>\1.   IP/Netmask/Gateway 的设定、启动与观察</p>
-<p><img src="/2015/网络防火墙SSH/572e274c-a40c-44a6-8705-a9f8daf2dedd.png" alt="img"></p>
-<p><img src="/2015/网络防火墙SSH/71031518-480c-40fb-b966-5216c40056fc.png" alt="img"></p>
-<p><img src="/2015/网络防火墙SSH/ea13b29f-b3cc-40b1-b632-1b5ec8b88ed4.png" alt="img"></p>
-<p><img src="/2015/网络防火墙SSH/e229784f-e336-48a6-9992-f4799d6f2def.png" alt="img"></p>
-<p>\2.   DNS 服务器的 IP 设定与观察</p>
-<p><img src="/2015/网络防火墙SSH/1b25a14d-cffd-4142-9002-4f94f209c596.jpg" alt="img"></p>
-<p>\3.   主机名的修改、启动与观察（修改完毕之后要顺利启动的话，得要重新启动才可以）</p>
-<h2 id><a href="#" class="headerlink" title></a><img src="/2015/网络防火墙SSH/1520c456-79db-458c-87cc-33178ab29bec.jpg" alt="img"></h2><h2 id="DHCP设置"><a href="#DHCP设置" class="headerlink" title="DHCP设置"></a>DHCP设置</h2><p><img src="/2015/网络防火墙SSH/5f15a44b-2f4e-4c5d-804b-a6920f72bcf0.jpg" alt="img"></p>
-<p><strong>宽带直连</strong></p>
-<p><strong>ADSL拨接上网</strong></p>
-<p>  安装rp-pppoe</p>
-<p>  执行pppoe-setup设置账号密码</p>
-<p><strong>WLAN无线网络</strong></p>
-<p>1.察看模块与相对应的网卡代号</p>
-<p><img src="/2015/网络防火墙SSH/4ccfb7a6-499f-432d-adeb-b1ea97c116b3.jpg" alt="img"></p>
-<p>2.利用 iwlist 侦测 AP</p>
-<p><img src="/2015/网络防火墙SSH/6a629a0d-cc0c-4d19-9b51-16b704768584.jpg" alt="img"></p>
-<p><img src="/2015/网络防火墙SSH/b6ce3708-6215-407f-933a-32a4655a12ec.png" alt="img"></p>
-<p><img src="/2015/网络防火墙SSH/aaffeded-8298-41ed-9786-a580316567c8.png" alt="img"></p>
-<p>3.设定网络卡配置文件 (ifcfg-ethn)</p>
-<p><img src="/2015/网络防火墙SSH/a7eb64e1-2beb-40b8-a412-13c9df45bcb1.png" alt="img"></p>
-<p>4.启动与观察无线网卡</p>
-<p><img src="/2015/网络防火墙SSH/3355020d-73ff-4b72-be32-9d0f555a0d0e.png" alt="img"></p>
-<h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h3><p><strong>&gt;ifconfig {interface} {up|down} &lt;== 观察与启动接口</strong></p>
-<p><strong>&gt;ifconfig interface {options}    &lt;== 设定与修改接口</strong></p>
-<p>选项与参数：</p>
-<p>interface：网络卡接口代号，包括 eth0, eth1, ppp0 等等</p>
-<p>options  ：可以接的参数，包括如下：</p>
-<blockquote>
-<p>up, down ：启动 (up) 或关闭 (down) 该网络接口(不涉及任何参数)</p>
-<p>mtu  ：可以设定不同的 MTU 数值，例如 mtu 1500 (单位为 byte)</p>
-<p>netmask  ：就是子屏蔽网络；</p>
-<p>broadcast：就是广播地址啊！</p>
-</blockquote>
-<p>>ifconfig   观察所有的网络接口</p>
-<p>>ifconfig eth0 192.168.100.100  netmask 255.255.255.128  mtu 800  设定eth0网络卡参数</p>
-<p>>ifconfig eth0:0 192.168.50.50   为eth0设定第二个IP</p>
-<p>>ifconfig eth0:0 down          关掉 eth0:0 这个界面。那如果想用默认值启动 eth1：『ifconfig eth1 up』即可达成</p>
-<h3 id="ifup-ifdown"><a href="#ifup-ifdown" class="headerlink" title="ifup, ifdown"></a>ifup, ifdown</h3><p><strong>&gt;ifup|ifdown {interface}</strong></p>
-<p>两支程序其实是 script 而已，他会直接到/etc/sysconfig/network-scripts 目录下搜寻对应的ifcfg-ethX 配置文件。</p>
-<p>例如 ifup eth0 时，他会找出 ifcfg-eth0 这个档案的内容，然后来加以设定。</p>
-<p>注意：如果以 ifconfig eth0 …. 来设定或者是修改了网络接口后， 那就无法再以ifdown eth0 的方式来关闭了！</p>
-<p>因为 ifdown 会分析比对目前的网络参数与ifcfg-eth0 是否相符，不符的话，就会放弃该次动作。</p>
-<p><strong>因此，使用 ifconfig 修改完毕后，应该要以 ifconfig eth0 down 才能够关闭该接口喔！</strong></p>
-<h3 id="route"><a href="#route" class="headerlink" title="route"></a>route</h3><p><strong>route [-nee]</strong></p>
-<p>-n  ：不要使用通讯协议或主机名，直接使用 IP 或 port number；-ee ：使用更详细的信息来显示<img src="/2015/网络防火墙SSH/1f01ede4-5026-41dd-824d-daaf66bdda51.png" alt="img"><br>Flags：总共有多个旗标，代表的意义如下：o   U (route is up)：该路由是启动的；o   H (target is a host)：目标是一部主机 (IP) 而非网域；o   G (use gateway)：需要透过外部的主机 (gateway) 来转递封包； o   R (reinstate route for dynamic routing)：使用动态路由时，恢复路由信息的旗标；o   D (dynamically installed by daemon or redirect)：已经由服务或转 port 功能设定为动态路由o   M (modified from routing daemon or redirect)：路由已经被修改了；o   ! (reject route)：这个路由将不会被接受(用来抵挡不安全的网域！</p>
-<p>Metric 距离、跳数。暂无用。</p>
-<p>Ref  不用管，恒为0。</p>
-<p>Use   该路由被使用的次数，可以粗略估计通向指定网络地址的网络流量。</p>
-<p><strong>route add [-net|-host] [网域或主机] netmask [mask] [gw|dev]</strong></p>
-<p><strong>route del  [-net|-host] [网域或主机] netmask [mask] [gw|dev]</strong></p>
-<p>>route  del  -net 169.254.0.0   netmask 255.255.0.0   dev eth0  删除路由</p>
-<p>>route add  -net 192.168.100.0 netmask 255.255.255.0 dev eth0 增加路由</p>
-<p>>route add default gw 192.168.1.250  设置默认路由</p>
-<h3 id="ip"><a href="#ip" class="headerlink" title="ip"></a>ip</h3><p><strong>ip [-s] link show &lt;== 单纯的查阅该装置相关的信息，**</strong>-s ：显示出该装置的统计数据(statistics)，例如总接受封包数等<strong>**ip link set [device] [动作与参数]</strong>     set ：可以开始设定项目， device 指的是 eth0, eth1 等等界面代号；</p>
-<blockquote>
-<p>up|down  ：启动 (up) 或关闭 (down) 某个接口，其他参数使用默认的以太网络；</p>
-<p>address  ：如果这个装置可以更改 MAC 的话，用这个参数修改！</p>
-<p>name  ：给予这个装置一个特殊的名字；</p>
-<p>mtu  ：就是最大传输单元啊！</p>
-</blockquote>
-<p>>ip link set eth0 up|down</p>
-<p>更改网卡名称 mac地址</p>
-<p>> ip link set eth0 down &lt;==关闭界面</p>
-<p>> ip link set eth0 name vbird &lt;==重新设定</p>
-<p>> ip link show &lt;==观察一下</p>
-<p>> ip link set vbird name eth0 &lt;==界面改回来</p>
-<p>> ip link set eth0 address aa:aa:aa:aa:aa:aa</p>
-<p><strong>ip address show &lt;==就是查阅 IP 参数啊！</strong></p>
-<p><strong>ip address [add|del] [IP 参数] [dev 装置名] [相关参数]</strong></p>
-<p>相关参数：</p>
-<blockquote>
-<p>broadcast：设定广播地址，如果设定值是 + 表示『让系统自动计算』<br>label  ：亦即是这个装置的别名，例如 eth0:0 就是了！<br>scope  ：这个界面的领域，通常是这几个大类：<br> global ：允许来自所有来源的联机；预设为此。<br>site  ：仅支持 IPv6 ，仅允许本主机的联机；<br>link  ：仅允许本装置自我联机；<br>host  ：仅允许本主机内部的联机；</p>
-</blockquote>
-<p>>ip  address  add  192.168.50.50/24  broadcast +  dev eth0  label eth0:vbird</p>
-<p>>ip  address  del  192.168.50.50/24  dev eth0</p>
-<p><strong>ip route show &lt;==单纯的显示出路由的设定而已</strong></p>
-<p><strong>ip route [add|del] [IP 或网域] [via gateway] [dev 装置]</strong></p>
-<p>>ip route add 192.168.5.0/24  dev  eth0</p>
-<p>>ip route add 192.168.10.0/24  via  192.168.5.100  dev  eth0</p>
-<p>>ip route add default  via  192.168.1.254  dev  eth0</p>
-<p>>ip route del  192.168.10.0/24</p>
-<h3 id="dhclient"><a href="#dhclient" class="headerlink" title="dhclient"></a>dhclient</h3><p>>dhclient eth0  可以立刻叫我们的网络卡以 dhcp 协议去尝试取得 IP</p>
-<h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><p><strong>ping [参数] IP</strong></p>
-<p>-c 数值：后面接的是执行 ping 的次数，例如 -c 5 ；-n  ：在输出数据时不进行 IP 与主机名的反查，直接使用 IP 输出(速度较快)；-s 数值：发送出去的 ICMP 封包大小，预设为 56bytes，不过你可以放大此数值；-t 数值：TTL 的数值，预设是 255，每经过一个节点就会少一；-W 数值：等待响应对方主机的秒数。-M [do|dont] ：主要在侦测网络的 MTU 数值大小，两个常见的项目是：</p>
-<blockquote>
-<p>do  ：代表传送一个 DF (Don’t Fragment) 旗标，让封包不能重新拆包与打包；</p>
-<p>dont：代表不要传送 DF 旗标，表示封包可以在其他主机上拆包与打包</p>
-</blockquote>
-<p><img src="/2015/网络防火墙SSH/430a2387-882e-4aa9-acef-8d0d5683466e.png" alt="img"></p>
-<p>如果你的主机与待侦测主机并不在同一个网域内，  那么 TTL 预设使用255 ，如果是同一个网域内，那么 TTL 预设则使用 64 。</p>
-<p>找出MTU</p>
-<p><img src="/2015/网络防火墙SSH/38db0d85-bb97-4035-a1a1-249c51a29d7d.png" alt="img"></p>
-<p>#!/bin/bash</p>
-<p>for siteip in $(seq 1 254)</p>
-<p>do</p>
-<blockquote>
-<p>site=”192.168.1.${siteip}”</p>
-<p>ping -c1 -W1 ${site} &amp;&gt; /dev/null</p>
-<p>if [ “$?” == “0” ]; then </p>
-<p>  echo “$site is UP”</p>
-<p>else</p>
-<p>  echo “$site is DOWN”</p>
-<p>fi</p>
-</blockquote>
-<p>done</p>
-<h3 id="traceroute"><a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute</h3><p>traceroute [选项与参数] IP选项与参数：-n ：可以不必进行主机的名称解析，单纯用 IP ，速度较快！-U ：使用 UDP 的 port <a href="tel:33434" target="_blank" rel="noopener">33434</a> 来进行侦测，这是预设的侦测协议；-I ：使用 ICMP 的方式来进行侦测； -T ：使用 TCP 来进行侦测，一般使用 port 80 测试-w ：若对方主机在几秒钟内没有回声就宣告不治…预设是 5 秒-p 埠号：若不想使用 UDP 与 TCP 的预设埠号来侦测，可在此改变埠号。-g 路由：与 -i 的参数相仿，只是 -g 后面接的是 gateway 的 IP 就是了<br>-i 装置：用在比较复杂的环境，如果你的网络接口很多很复杂时，才会用到这个参数；举例来说，你有两条 ADSL 可以连接到外部，那你的主机会有两个ppp，你可以使用 -i 来选择是 ppp0 还是 ppp1 啦！&gt;traceroute -n  <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
-<p>>traceroute -w 1 -n -T  <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
-<h3 id="host"><a href="#host" class="headerlink" title="host"></a>host</h3><p><strong>host [-a] hostname [server]</strong> -a ：列出该主机详细的各项主机名设定数据<br>[server] ：可以使用非为 /etc/resolv.conf 的 DNS 服务器 IP 来查询。&gt;host <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 查询百度的服务器主机IP<strong>dig</strong>dig <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a>  查询百度的服务器主机IPiwlist  iwconfig无线设置命令,在设置无线网络时用过。telnet <strong>telnet [host|IP [port]]</strong><br>>telnet localhost 110<br>wgettcpdump封包撷取器<strong>tcpdump [-AennqX] [-i 接口] [-w 储存档名] [-c 次数] [-r 档案] [所欲撷取的封包数据格式]</strong>选项与参数：-A ：封包的内容以 ASCII 显示，通常用来捉取 WWW 的网页封包资料。-e ：使用资料连接层 (OSI 第二层) 的 MAC 封包数据来显示；-nn：直接以 IP 及 port number 显示，而非主机名与服务名称-q ：仅列出较为简短的封包信息，每一行的内容比较精简-X ：可以列出十六进制 (hex) 以及 ASCII 的封包内容，对于监听封包内容很有用-i  ：后面接要『监听』的网络接口，例如 eth0, lo, ppp0 等等的界面；-w ：如果你要将监听所得的封包数据储存下来，用这个参数就对了！后面接档名-r  ：从后面接的档案将封包数据读出来。那个『档案』是已经存在的档案，并且这个『档案』是由 -w 所制作出来的。-c  ：监听的封包数，如果没有这个参数， tcpdump 会持续不断的监听，直到使用者输入 [ctrl]-c 为止。</p>
-<p>所欲撷取的封包数据格式：我们可以专门针对某些通讯协议或者是 IP 来源进行封包撷取， 那就可以简化输出的结果，并取得最有用的信息。常见的表示方法有：</p>
-<blockquote>
-<p>‘host foo’, ‘host 127.0.0.1’ ：针对单部主机来进行封包撷取</p>
-<p>‘net 192.168’ ：针对某个网域来进行封包的撷取；</p>
-<p>‘src host 127.0.0.1’ ‘dst net 192.168’：同时加上来源(src)或目标(dst)限制</p>
-<p>‘tcp port 21’：还可以针对通讯协议侦测，如 tcp, udp, arp, ether 等</p>
-<p>还可以利用 and 与 or 来进行封包数据的整合显示呢！</p>
-</blockquote>
-<p>>tcpdump -i eth0 -nn</p>
-<p>>tcpdump -i eth0 -nn  port 21</p>
-<p>>tcpdump -i lo -nn -X  ‘port 21’</p>
-<p>>tcpdump -i eth0 -nn ‘port 22 and src host 192.168.14.100’</p>
-<h3 id="nc，netcat-接口监听"><a href="#nc，netcat-接口监听" class="headerlink" title="nc，netcat 接口监听"></a>nc，netcat 接口监听</h3><p><strong>nc [-lu] [IP|host] [port]</strong></p>
-<p>-l ：作为监听之用，亦即开启一个 port 来监听用户的联机；-u ：不使用 TCP 而是使用 UDP 作为联机的封包状态 <img src="/2015/网络防火墙SSH/65ea43e2-e5ba-4e63-8cfc-78202b5b8c7a.png" alt="img"><br>server:<img src="/2015/网络防火墙SSH/f1788bb8-dc26-4596-8817-744d3b358d83.png" alt="img"></p>
-<p>client:<img src="/2015/网络防火墙SSH/ef0bdf06-470b-4a92-a961-75b60c9381f4.png" alt="img">在客户端我们可以打入一些字，你会发现在服务器端会同时出现你输入的字眼吶！</p>
-<p>端口与服务的启动/关闭及开机时状态设定1.最直接 kill -9 rpcbind  但是是强制关闭，会引起不确定因素。2.stand alone 方式服务<img src="/2015/网络防火墙SSH/e2ae4e66-62c8-47cc-a373-5e9c24eb8102.png" alt="img"><br> rpc.statd 的启动脚本在：『rpm  -qc $(rpm  -qf $(which rpc.statd) ) | grep init』这样找，结果是在 /etc/rc.d/init.d/nfslock3.super daemon 方式服务要启动 telnet 首先必须要已经安装了 telnet 的服务器才行，先以 rpm 查询看看是否有安装 telnet-server『rpm -qa | grep telnet-server』<br>       如果没有安装的话，用『yum install telnet-server』安装；</p>
-<ul>
-<li>由于是 super daemon 控管，所以请编辑 /etc/xinetd.d/telnet 这个档案，将其中的『disable = yes』改成『disable = no』</li>
-</ul>
-<p>​     之后以『/etc/init.d/xinetd restart』重新启动 super daemon 吧！</p>
-<ul>
-<li>利用 netstat -tnlp 察看是否有启动 port 23 </li>
-</ul>
-<p><strong>将服务关闭，并设为开机不启动</strong></p>
-<p><img src="/2015/网络防火墙SSH/941af9ae-ee2b-493b-9b37-65527f0cc782.png" alt="img"></p>
-<hr>
-<h3 id="防火墙："><a href="#防火墙：" class="headerlink" title="防火墙："></a><strong>防火墙</strong>：</h3><p>​      <strong>TCP Wrappers (程序控管) 通过**</strong>/etc/hosts.{allow|deny} 的设定方式，进行权限设定</p>
-<p>​      <strong>Proxy (代理服务器）</strong></p>
-<p>​      <strong>Netfilter (封包过滤机制)</strong> <strong>Netfilter 提供**</strong>了 iptables 这个软件来作为防火墙封包过滤的指令。</p>
-<p>Linux 的 iptables 至少就有三个表格，包括管理本机进出的 filter 、管理后端主机 (防火墙内部的其他计算机) 的 nat 、管理特殊旗标使用的 mangle (较少使用 ) 常用的是本机的 filter 表格， 这也是默认表格啦<br>  filter (过滤器) ：主要跟进入 Linux 本机的封包有关，这个是预设的table 喔！</p>
-<p>​     o  INPUT：主要与想要进入我们 Linux 本机的封包有关；</p>
-<p>​     o  OUTPUT：主要与我们 Linux 本机所要送出的封包有关；</p>
-<p>​    o  FORWARD：这个咚咚与 Linux 本机比较没有关系， 他可以『转递封包』到后端的计算机中，与下列 nat table 相关性较高。</p>
-<p>  nat (地址转换) ：是 Network Address Translation 的缩写， 这个表格主要在进行来源与目的之 IP 或 port 的转换，与 Linux 本机较无关，主要与Linux 主机后的局域网络内计算机较有相关。</p>
-<p>​     o  PREROUTING：在进行路由判断之前所要进行的规则(DNAT/REDIRECT)</p>
-<p>​    o  POSTROUTING：在进行路由判断之后所要进行的规则(SNAT/MASQUERADE)</p>
-<p>​     o  OUTPUT：与发送出去的封包有关</p>
-<p>  mangle (破坏者) ：这个表格主要是与特殊的封包的路由旗标有关， 早期仅有 PREROUTING 及 OUTPUT 链，不过从 kernel 2.4.18 之后加入了 INPUT及FORWARD 链。 由于这个表格与特殊旗标相关性较高，所以像咱们这种单纯的环境当中，较少使用 mangle 这个表格。</p>
-<p><strong>1.规则的观察与清除</strong></p>
-<p><img src="/2015/网络防火墙SSH/7177f2fe-ee52-4c54-9b07-028616a45238.jpg" alt="9b983a51-8bdc-496e-b62d-357f05d50001.jpg"></p>
-<p><img src="/2015/网络防火墙SSH/b8450685-cf84-4c07-b851-190d7684e4fe.png" alt="img"><br><img src="/2015/网络防火墙SSH/05343c60-1e87-4f6b-9d04-f6ba42b39e76.jpg" alt="img"><br><strong>2.定义预设政策 (policy)</strong></p>
-<p><img src="/2015/网络防火墙SSH/438112eb-7307-4ed4-a670-9ce84a8e00d7.jpg" alt="img"></p>
-<p><strong>3.封包的基础比对：IP, 网域及接口装置</strong></p>
-<p>iptables [-AI 链名] [-io 网络接口] [-p 协议] [-s 来源 IP/网域] [-d 目标 IP/网域] -j [ACCEPT|DROP|REJECT|LOG]</p>
-<p>选项与参数：</p>
-<p>-AI 链名：针对某的链进行规则的 “插入” 或 “累加”</p>
-<p>  -A ：新增加一条规则，该规则增加在原本规则的最后面。例如原本已经有四条规则，使用 -A 就可以加上第五条规则！</p>
-<p>  -I ：插入一条规则。如果没有指定此规则的顺序，默认是插入变成第一条规则。例如原本有四条规则，使用 -I 则该规则变成第一条，</p>
-<p>​      而原本四条变成 2~5 号链 ：有INPUT, OUTPUT, FORWARD 等，此链名称又与 -io 有关，请看底下。</p>
-<p>-io 网络接口：设定封包进出的接口规范</p>
-<p>  -i ：封包所进入的那个网络接口，例如 eth0, lo 等接口。需与 INPUT 链配合；</p>
-<p>  -o ：封包所传出的那个网络接口，需与 OUTPUT 链配合；</p>
-<p>  -p 协定：设定此规则适用于哪种封包格式，主要的封包格式有： tcp, udp, icmp 及 all 。</p>
-<p>-s 来源 IP/网域：设定此规则之封包的来源项目，可指定单纯的 IP 或包括网域，例如：</p>
-<blockquote>
-<p>IP  ：192.168.0.100</p>
-<p>网域：192.168.0.0/24, 192.168.0.0/255.255.255.0 均可。</p>
-<p>若规范为『不许』时，则加上 ! 即可，例如：</p>
-<p>-s ! 192.168.100.0/24 表示不许 192.168.100.0/24 之封包来源；</p>
-</blockquote>
-<p>-d 目标 IP/网域：同 -s ，只不过这里指的是目标的 IP 或网域。</p>
-<p>-j ：后面接动作，主要的动作有接受(ACCEPT)、丢弃(DROP)、拒绝(REJECT)及记录(LOG)</p>
-<p><img src="/2015/网络防火墙SSH/702693c5-4944-4947-9f62-d46c5301caff.png" alt="img"></p>
-<p><img src="/2015/网络防火墙SSH/32d6e73a-09cd-44b5-846d-6fd9f251857e.png" alt="img"></p>
-<p><strong>4.TCP, UDP 的规则比对：针对埠口设定
-</strong></p>
-<p>iptables [-AI 链] [-io 网络接口] [-p tcp,udp] [-s 来源 IP/网域] [–sport 埠口范围] [-d 目标 IP/网域] [–dport 埠口范围] -j [ACCEPT|DROP|REJECT] </p>
-<p>选项与参数：–sport 埠口范围：限制来源的端口口号码，端口口号码可以是连续的，例如1024:65535–dport 埠口范围：限制目标的端口口号码。因为仅有 tcp 与 udp 封包具有埠口，因此你想要使用 –dport, –sport 时，得要加上 -p tcp 或 -p udp 的参数才会成功喔<img src="/2015/网络防火墙SSH/bdc40c07-dbb5-49af-b3b0-6d1971f3c00d.png" alt="img"><br>只要来自 192.168.1.0/24 的 1024:65535 埠口的封包，且想要联机到本机的 ssh port 就予以抵挡：&gt;iptables -A INPUT -i eth0 -p tcp -s 192.168.1.0/24  –sport 1024:65534 –dport ssh -j DROP</p>
-<p>将来自任何地方来源 port 1:1023 的主动联机到本机端的 1:1023 联机丢弃</p>
-<p>>iptables -A INPUT -i eth0 -p tcp –sport 1:1023 –dport 1:1023 –syn -j DROP </p>
-<p><strong>5.iptables 外挂模块：mac 与 state</strong><br><img src="/2015/网络防火墙SSH/77bcb250-b0fa-4961-9af2-420e559b741a.png" alt="img"></p>
-<p>范例：只要已建立或相关封包就予以通过，只要是不合法封包就丢弃</p>
-<p>> iptables -A INPUT -m state –state RELATED,ESTABLISHED -j ACCEPT</p>
-<p>> iptables -A INPUT -m state –state INVALID -j DROP</p>
-<p>范例：针对局域网络内的 aa:bb:cc:dd:ee:ff 主机开放其联机</p>
-<p>> iptables  -A INPUT  -m mac  –mac-source aa:bb:cc:dd:ee:ff -j ACCEPT</p>
-<p>选项与参数：</p>
-<p>–mac-source ：就是来源主机的 MAC 啦！</p>
-<p><strong>6.ICMP 封包规则的比对：针对是否响应 ping 来设计</strong><br><img src="/2015/网络防火墙SSH/6f057fe4-1127-4e5d-be61-a733e5101b2d.jpg" alt="img"></p>
-<p><strong>7.简单的客户端防火墙设计与防火墙规则储存</strong><br><img src="/2015/网络防火墙SSH/cb1dc68f-7931-4923-b7eb-6afb5df50a32.jpg" alt="img"></p>
-<hr>
-<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a><strong>SSH</strong></h3><p>SSH 是 Secure  SHell protocol 的简写 (安全的壳程序协议)，它可以透过数据封包加密技术，将等待传输的封包加密后再传输到网络上。取代了明码传输的telnet技术。<br><img src="/2015/网络防火墙SSH/3b4426d0-ad39-42ca-8dc7-8cf835a0a022.png" alt="img"><br><img src="/2015/网络防火墙SSH/4becbb44-d79b-4b96-85c6-73ac4afb4c16.jpg" alt="img"></p>
-<p>>ssh <a href="mailto:student@127.0.0.1" target="_blank" rel="noopener">student@127.0.0.1</a> find / &amp;&gt; ~/find1.log  执行后需要等待</p>
-<p>>ssh -f <a href="mailto:student@127.0.0.1" target="_blank" rel="noopener">student@127.0.0.1</a> find / &amp;&gt; ~/find1.log  加上 -f 的参数可以将指令后台执行而立马断开联机</p>
-<p>>ssh -o StrictHostKeyChecking=no root@localhost</p>
-<p>>ssh -f root@some_IP shutdown -h now  不用等待关机后退出，直接断开连接。</p>
-<h3 id="sftp"><a href="#sftp" class="headerlink" title="sftp"></a>sftp</h3><p>模拟 FTP 的文件传输方式，使用 ssh 的通道 (port 22)，只是模拟成 FTP 与复制的动作而已。<br><img src="/2015/网络防火墙SSH/5a8f0d34-770e-4b00-a675-e34efb54e82d.png" alt="img"><br><img src="/2015/网络防火墙SSH/8668cca1-18ca-4d8f-9c83-be542b0d34a7.png" alt="img"><br><img src="/2015/网络防火墙SSH/e23af27d-6fc3-47e9-9f40-e9c3da21cdcc.png" alt="img"><br><img src="/2015/网络防火墙SSH/000c8821-76fd-4457-8ee8-785a47548f0a.jpg" alt="img"></p>
-<h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>档案异地直接复制，通常使用 sftp 是因为可能不知道服务器上面有什么档名的档案存在，如果已经知道服务器上的档案档名了，  那么最简单的文件传输则是透过 scp 这个指令喔！最简单的 scp 用法如下：<br><img src="/2015/网络防火墙SSH/3f8cd937-351d-4890-8abe-6dde583910ab.png" alt="img"></p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-        <category>鸟哥的Linux私房菜</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>群晖Photo_Station_Video_Station索引无视频缩略图</title>
     <url>/2021/%E7%BE%A4%E6%99%96Photo-Station-Video-Station%E7%B4%A2%E5%BC%95%E6%97%A0%E8%A7%86%E9%A2%91%E7%BC%A9%E7%95%A5%E5%9B%BE/</url>
     <content><![CDATA[<h2 id="群晖（Synology）Photo-Station索引无视频缩略图"><a href="#群晖（Synology）Photo-Station索引无视频缩略图" class="headerlink" title="群晖（Synology）Photo Station索引无视频缩略图"></a>群晖（Synology）Photo Station索引无视频缩略图</h2><h2 id="一、个人环境"><a href="#一、个人环境" class="headerlink" title="一、个人环境"></a>一、个人环境</h2><p>黑群晖DSM6.1.4</p>
@@ -3423,6 +3311,118 @@
       </categories>
       <tags>
         <tag>电视</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS定位</title>
+    <url>/2019/%E5%89%8D%E7%AB%AF/HTML%20CSS/CSS%E5%AE%9A%E4%BD%8D/</url>
+    <content><![CDATA[<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;html lang="en"&gt;</span><br><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">    &lt;meta charset="UTF-8"&gt;</span><br><span class="line">    &lt;title&gt;定位&lt;/title&gt;</span><br><span class="line">  &lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">    <span class="selector-id">#left</span>,<span class="selector-id">#center</span>,<span class="selector-id">#right</span>&#123;</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">33.3%</span>;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">      <span class="attribute">float</span>: left;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-id">#left</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: aqua;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#center</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: yellowgreen;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">  相对定位</span></span><br><span class="line"><span class="comment">  1.相对于自己原来的显示位置进行显示</span></span><br><span class="line"><span class="comment">  2.原来的空间不会被其他元素占用</span></span><br><span class="line"><span class="comment">  3.如果一个元素，只是开启了相对定位，没有偏移量， 那么这个元素一般是用来作为参照的，&lt;div style="position: relative"&gt;</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   绝对定位</span></span><br><span class="line"><span class="comment">   1.相对于离他最近的，并且使用了定位的父元素，如果没有找到，以body为参照</span></span><br><span class="line"><span class="comment">   2.原来的显示空间会被其他元素占用</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#right</span>&#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#fix</span>&#123;</span><br><span class="line">  <span class="comment">/*以整个屏幕为基准*/</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">background-color</span>: yellow;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">&lt;div style="position: relative"&gt;</span><br><span class="line">  &lt;div id="left"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id="center"&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div id="right"&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id="fix"&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/前端/HTML CSS/CSS定位/Snipaste_2019-02-06_15-08-02.png" alt="Snipaste_2021-07-06_15-08-02"></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>HTML CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>padding陷阱</title>
+    <url>/2018/%E5%89%8D%E7%AB%AF/HTML%20CSS/padding%E9%99%B7%E9%98%B1/</url>
+    <content><![CDATA[<p>我们都知道padding是为块级元素设置内边距</p>
+<p>但是在使用过程中，我们却会遇到一些问题。padding的标准盒模型和怪异盒模型</p>
+<h4 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a><strong>标准盒模型</strong></h4><p>我们先摆出HTML和CSS代码：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.shoebox</span>&#123;</span></span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: red;</span><br><span class="line">            padding: 10px;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.shoes</span>&#123;</span></span><br><span class="line">            width: 80px;</span><br><span class="line">            height: 80px;</span><br><span class="line">            background-color: green;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoebox"</span>&gt;</span>         </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoes"</span>&gt;</span>              </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>一个demo，我的一双大小是 80*80  的鞋子,为此我给了这个鞋子做了一个 100*100 的盒子，我想要让这个鞋子有10px的内边距，所以我设了一个 padding: 10px; </p>
+<p>我们想象中的场景效果可能是这样的：<img src="/2018/前端/HTML CSS/padding陷阱/Snipaste_2018-06-27_15-46-29.png" alt="Snipaste_2021-07-06_15-46-29">  但是现实真的好残酷。。他却是这样的：</p>
+<p><img src="/2018/前端/HTML CSS/padding陷阱/Snipaste_2018-06-27_15-46-14.png" alt="Snipaste_2021-07-06_15-46-14"><br><img src="/2018/前端/HTML CSS/padding陷阱/image-2018-06-27154932074.png" alt="image-20210706154932074"><br><img src="/2018/前端/HTML CSS/padding陷阱/image-2018-06-27155011508.png" alt="image-20210706155011508"></p>
+<p>这时候我们会很奇怪，明明我们设置的shoebox的高和宽是100*100怎么变成了110*110了呢，这多出来的10px是怎么回事。</p>
+<p>这是padding元素膨胀造成的结果。在标准盒模型中，设置padding会自动挤压空间，而不会利用给出来的空间，不会占用宽内位置，不通过width影响，会自己挤出空间来，就好像，我的鞋子是80*80的，我不需要100*100的盒子，你给我一个80*80的盒子就好了，我靠我自己来把他挤成100*100，这时很显然的解决的办法就出来了，我们的盒子的宽度只要设置成80*80然后设置padding：10px；来让鞋子把周围额空间挤成100*100。</p>
+<p>这就是padding的标准盒模型，先做好鞋子，再去做盒子</p>
+<h4 id="怪异盒模型"><a href="#怪异盒模型" class="headerlink" title="怪异盒模型"></a><strong>怪异盒模型</strong></h4><p>怪异盒模型与标准盒模型的区别就是，怪异盒模型是先做好盒子，再来做鞋子，我把盒子的大小固定住，你鞋子怎么挤也没有用。<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.shoebox</span>&#123;</span></span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: red;</span><br><span class="line">            padding: 10px;</span><br><span class="line">            box-sizing: border-box;//怪异盒模型</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.shoes</span>&#123;</span></span><br><span class="line">            width: 80px;</span><br><span class="line">            height: 80px;</span><br><span class="line">            background-color: green;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoebox"</span>&gt;</span>         </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoes"</span>&gt;</span>              </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这时我们只要在我们的代码中加一条box-sizing：boeder-box，就可以把我的盒子给固定住，这时你鞋子想要用padding来撑大盒子的空间已经没用了，因为鞋子已经被固定死了。<br><img src="/2018/前端/HTML CSS/padding陷阱/Snipaste_2018-06-27_15-46-29.png" alt="Snipaste_2021-07-06_15-46-29"><br><img src="/2018/前端/HTML CSS/padding陷阱/image-2018-06-27155148568.png" alt="image-20210706155148568"><br><img src="/2018/前端/HTML CSS/padding陷阱/image-2018-06-27155011508.png" alt="image-20210706155011508"></p>
+<p>最后在<strong>总结</strong>一点padding的知识：</p>
+<ol>
+<li><p>当我们给width设置一个固定的值或者给width设置100%时，设置padding都会把盒子给挤开，挤大了</p>
+</li>
+<li><p>若想要不使用怪异盒模型又不会把盒子挤大，请把width设置为auto，width默认的值是auto。自动占满整个屏幕</p>
+</li>
+<li><p>标准盒模型在pc端比较常用，因为pc端的屏幕大，有优势可以撑</p>
+</li>
+<li><p>怪异盒模型在手机端比较常用。手机屏幕是有限大小的，有时我们往往需要使用怪异盒模型把他固定住。</p>
+</li>
+<li><p>怪异盒模型的盒子大小还要加上border的大小。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>HTML CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>清除浮动</title>
+    <url>/2018/%E5%89%8D%E7%AB%AF/HTML%20CSS/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/</url>
+    <content><![CDATA[<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>float<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#left</span>&#123;</span></span><br><span class="line">      height: 100px;</span><br><span class="line">      background-color: aqua;</span><br><span class="line">      width: 50%;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#right</span>&#123;</span></span><br><span class="line">      height: 120px;</span><br><span class="line">      background-color: yellow;</span><br><span class="line">      width: 50%;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#content2</span>&#123;</span></span><br><span class="line">      height: 150px;</span><br><span class="line">      background-color: blue;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.clearFix</span><span class="selector-pseudo">:after</span>&#123;</span></span><br><span class="line">      content: '清除浮动';</span><br><span class="line">      display: block;</span><br><span class="line">      clear: both;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#cle</span>&#123;</span></span><br><span class="line">      clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 行内元素 不占一行 宽度取决于包裹的元素宽度</span></span><br><span class="line"><span class="comment">     块状元素占一行</span></span><br><span class="line"><span class="comment">浮动后块状元素变成行内元素，如果不设置宽度时，宽度大小取决于其包裹的元素的大小--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content1"</span>  <span class="attr">class</span>=<span class="string">"clearFix"</span>  &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"left"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--&lt;div id="cle"&gt;&lt;/div&gt;--&gt;</span> <span class="comment">&lt;!--此清除float方法不好，添加了一个dom元素，采用class="clearFix"即可--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content2"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>清除浮动前：</p>
+<p><img src="/2018/前端/HTML CSS/清除浮动/Snipaste11.png" alt="Snipaste11"></p>
+<p>清除浮动后：</p>
+<p><img src="/2018/前端/HTML CSS/清除浮动/Snipaste1.png" alt="Snipaste1"></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>HTML CSS</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>彻底明白VUE修饰符sync</title>
+    <url>/2021/%E5%89%8D%E7%AB%AF/Vue.js/%E5%BD%BB%E5%BA%95%E6%98%8E%E7%99%BDVUE%E4%BF%AE%E9%A5%B0%E7%AC%A6sync/</url>
+    <content><![CDATA[<blockquote>
+<p>对于VUE的初学者来讲，肯定会感觉prop的写法很麻烦，很讨厌！你肯定想如果prop也可以实现双向绑定那怎是一个爽字了得！不过现实是残酷的，如果子组件可以任意修改父组件的内容，那势必会带来数据的混乱，从而造成维护的困扰！毕竟父组件也是有尊严的！</p>
+</blockquote>
+<p>官方推荐使用一种update:my-prop-name 的模式来替代事件触发，目的是为了优雅而不粗鲁的实现父子组件间的双向绑定！先来完成一个小功能：通过父组件按钮将子组件显示出来，如图：</p>
+<p><img src="/2021/前端/Vue.js/彻底明白VUE修饰符sync/webp" alt="img"></p>
+<p>父组件代码：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> </span></span><br><span class="line"><span class="tag">               <span class="attr">value</span>=<span class="string">"我是父组件中的按钮"</span> </span></span><br><span class="line"><span class="tag">               @<span class="attr">click</span>=<span class="string">"show"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    import child from "@/components/child"</span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                isShow:false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        components:&#123;</span><br><span class="line">            child</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            show()&#123;</span><br><span class="line">                this.isShow=true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>子组件child代码：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">         我是一个子组件，我在红色的海洋里！</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>接下来加个需求，在子组当中增加一个按钮，通过该按钮来将自已隐藏起来！需要借助父子之间的传值了！如图：</p>
+<p><img src="/2021/前端/Vue.js/彻底明白VUE修饰符sync/webp1" alt="img"></p>
+<p>父组件代码：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">value</span>=<span class="string">"我是父组件中的按钮"</span></span></span><br><span class="line"><span class="tag">               @<span class="attr">click</span>=<span class="string">"show"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> @<span class="attr">upIsShow</span>=<span class="string">"changeIsShow"</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    import child from "@/components/child"</span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                isShow:false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        components:&#123;</span><br><span class="line">            child</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            show()&#123;</span><br><span class="line">                this.isShow=true;</span><br><span class="line">            &#125;,</span><br><span class="line">            changeIsShow(bol)&#123;</span><br><span class="line">                this.isShow=bol;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>子组件代码：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">         我是一个子组件，我在红色的海洋里！</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"点我隐身"</span> @<span class="attr">click</span>=<span class="string">"upIsShow"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    export default &#123;</span><br><span class="line">        methods:&#123;</span><br><span class="line">            upIsShow()&#123;</span><br><span class="line">                this.$emit("upIsShow",false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果我要将父组件中的事@upIsShow修改为@update:isShow不违法吧：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">&lt;child <span class="meta">@update</span>:isShow=<span class="string">"changeIsShow"</span> v-<span class="keyword">show</span>=<span class="string">"isShow"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>子组件的emit自然也要做对应调整：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">upIsShow()&#123;</span><br><span class="line">    <span class="keyword">this</span>.$emit(<span class="string">"update:isShow"</span>,<span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行一下，一切正常！真好！</p>
+<p>那么如果现在我将父组件的changeIsShow直接写成匿名函数，也能运行吧：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">&lt;child <span class="meta">@update</span>:isShow=<span class="string">"function(bol)&#123;isShow=bol&#125;"</span> v-<span class="keyword">show</span>=<span class="string">"isShow"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>再次运行，一切还是那么美好，真好！</p>
+<p>现在我将那匿名函数改成箭头函数，不过分吧：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">&lt;child <span class="meta">@update</span>:isShow=<span class="string">"bol=&gt;isShow=bol"</span> v-<span class="keyword">show</span>=<span class="string">"isShow"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>再运行一次，完美，真好！</p>
+<p>最后我将上面那行代码做最后一次修改：</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">&lt;child :isShow.<span class="keyword">sync</span>=<span class="string">"isShow"</span> v-<span class="keyword">show</span>=<span class="string">"isShow"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>至此终于涉及到了sync了。以上代码 :isShow.sync=”isShow”其实是 @update:isShow=”bol=&gt;isShow=bol”语法糖。是其一种简写形式。附上完整代码。<br>父组件：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">value</span>=<span class="string">"我是父组件中的按钮"</span></span></span><br><span class="line"><span class="tag">               @<span class="attr">click</span>=<span class="string">"show"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">child</span> <span class="attr">:isShow.sync</span>=<span class="string">"isShow"</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    import child from "@/components/child"</span><br><span class="line">    export default &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                isShow:false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        components:&#123;</span><br><span class="line">            child</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            show()&#123;</span><br><span class="line">                this.isShow=true;</span><br><span class="line">            &#125;,</span><br><span class="line">            changeIsShow(bol)&#123;</span><br><span class="line">                this.isShow=bol;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>子组件：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">         我是一个子组件，我在红色的海洋里！</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"点我隐身"</span> @<span class="attr">click</span>=<span class="string">"upIsShow"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    export default &#123;</span><br><span class="line">        methods:&#123;</span><br><span class="line">            upIsShow()&#123;</span><br><span class="line">                this.$emit("update:isShow",false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最后：sync只是给大家伙提供了一种与父组件沟通的思路而已！所以在后面日子里，你如果只是单纯的在子组件当中修改父组件的某个数据时，建议使用sync，简单，快捷，有档次！真好！</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>Vue.js</category>
+      </categories>
+      <tags>
+        <tag>Vue.js</tag>
       </tags>
   </entry>
 </search>

@@ -79,21 +79,26 @@
 
 
 
-<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;    &amp;lt;title&amp;gt;float&amp;lt;/tit">
+<meta name="description" content="我们都知道padding是为块级元素设置内边距 但是在使用过程中，我们却会遇到一些问题。padding的标准盒模型和怪异盒模型 标准盒模型我们先摆出HTML和CSS代码：12345678910111213141516171819202122232425262728&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta">
 <meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="清除浮动">
-<meta property="og:url" content="http://minmax.site/2018/清除浮动/index.html">
+<meta property="og:title" content="padding陷阱">
+<meta property="og:url" content="http://minmax.site/2018/前端/HTML CSS/padding陷阱/index.html">
 <meta property="og:site_name" content="小站 大梦">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;    &amp;lt;title&amp;gt;float&amp;lt;/tit">
+<meta property="og:description" content="我们都知道padding是为块级元素设置内边距 但是在使用过程中，我们却会遇到一些问题。padding的标准盒模型和怪异盒模型 标准盒模型我们先摆出HTML和CSS代码：12345678910111213141516171819202122232425262728&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://minmax.site/2018/清除浮动/Snipaste11.png">
-<meta property="og:image" content="http://minmax.site/2018/清除浮动/Snipaste1.png">
-<meta property="og:updated_time" content="2021-07-06T08:19:04.682Z">
+<meta property="og:image" content="http://minmax.site/2018/前端/HTML%20CSS/padding陷阱/Snipaste_2018-06-27_15-46-29.png">
+<meta property="og:image" content="http://minmax.site/2018/前端/HTML%20CSS/padding陷阱/Snipaste_2018-06-27_15-46-14.png">
+<meta property="og:image" content="http://minmax.site/2018/前端/HTML%20CSS/padding陷阱/image-2018-06-27154932074.png">
+<meta property="og:image" content="http://minmax.site/2018/前端/HTML%20CSS/padding陷阱/image-2018-06-27155011508.png">
+<meta property="og:image" content="http://minmax.site/2018/前端/HTML%20CSS/padding陷阱/Snipaste_2018-06-27_15-46-29.png">
+<meta property="og:image" content="http://minmax.site/2018/前端/HTML%20CSS/padding陷阱/image-2018-06-27155148568.png">
+<meta property="og:image" content="http://minmax.site/2018/前端/HTML%20CSS/padding陷阱/image-2018-06-27155011508.png">
+<meta property="og:updated_time" content="2021-07-06T07:57:49.392Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="清除浮动">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;UTF-8&quot;&amp;gt;    &amp;lt;title&amp;gt;float&amp;lt;/tit">
-<meta name="twitter:image" content="http://minmax.site/2018/清除浮动/Snipaste11.png">
+<meta name="twitter:title" content="padding陷阱">
+<meta name="twitter:description" content="我们都知道padding是为块级元素设置内边距 但是在使用过程中，我们却会遇到一些问题。padding的标准盒模型和怪异盒模型 标准盒模型我们先摆出HTML和CSS代码：12345678910111213141516171819202122232425262728&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&quot;en&quot;&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta">
+<meta name="twitter:image" content="http://minmax.site/2018/前端/HTML%20CSS/padding陷阱/Snipaste_2018-06-27_15-46-29.png">
 
 
 
@@ -123,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://minmax.site/2018/清除浮动/">
+  <link rel="canonical" href="http://minmax.site/2018/前端/HTML CSS/padding陷阱/">
 
 
 
 
 
-  <title>清除浮动 | 小站 大梦</title>
+  <title>padding陷阱 | 小站 大梦</title>
   
 
 
@@ -298,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://minmax.site/2018/清除浮动/">
+    <link itemprop="mainEntityOfPage" href="http://minmax.site/2018/前端/HTML CSS/padding陷阱/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhang yongfei">
@@ -315,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">清除浮动</h1>
+          <h1 class="post-title" itemprop="name headline">padding陷阱</h1>
         
 
         <div class="post-meta">
@@ -327,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T15:05:54+08:00">
-                2018-05-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-27T15:05:38+08:00">
+                2018-06-27
               </time>
             
 
@@ -398,11 +403,30 @@
       
 
       
-        <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>float<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-id">#left</span>&#123;</span></span><br><span class="line">      height: 100px;</span><br><span class="line">      background-color: aqua;</span><br><span class="line">      width: 50%;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#right</span>&#123;</span></span><br><span class="line">      height: 120px;</span><br><span class="line">      background-color: yellow;</span><br><span class="line">      width: 50%;</span><br><span class="line">      float: left;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#content2</span>&#123;</span></span><br><span class="line">      height: 150px;</span><br><span class="line">      background-color: blue;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.clearFix</span><span class="selector-pseudo">:after</span>&#123;</span></span><br><span class="line">      content: '清除浮动';</span><br><span class="line">      display: block;</span><br><span class="line">      clear: both;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-id">#cle</span>&#123;</span></span><br><span class="line">      clear: both;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 行内元素 不占一行 宽度取决于包裹的元素宽度</span></span><br><span class="line"><span class="comment">     块状元素占一行</span></span><br><span class="line"><span class="comment">浮动后块状元素变成行内元素，如果不设置宽度时，宽度大小取决于其包裹的元素的大小--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content1"</span>  <span class="attr">class</span>=<span class="string">"clearFix"</span>  &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"left"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--&lt;div id="cle"&gt;&lt;/div&gt;--&gt;</span> <span class="comment">&lt;!--此清除float方法不好，添加了一个dom元素，采用class="clearFix"即可--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content2"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>清除浮动前：</p>
-<p><img src="/2018/清除浮动/Snipaste11.png" alt="Snipaste11"></p>
-<p>清除浮动后：</p>
-<p><img src="/2018/清除浮动/Snipaste1.png" alt="Snipaste1"></p>
+        <p>我们都知道padding是为块级元素设置内边距</p>
+<p>但是在使用过程中，我们却会遇到一些问题。padding的标准盒模型和怪异盒模型</p>
+<h4 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a><strong>标准盒模型</strong></h4><p>我们先摆出HTML和CSS代码：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.shoebox</span>&#123;</span></span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: red;</span><br><span class="line">            padding: 10px;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.shoes</span>&#123;</span></span><br><span class="line">            width: 80px;</span><br><span class="line">            height: 80px;</span><br><span class="line">            background-color: green;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoebox"</span>&gt;</span>         </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoes"</span>&gt;</span>              </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>一个demo，我的一双大小是 80*80  的鞋子,为此我给了这个鞋子做了一个 100*100 的盒子，我想要让这个鞋子有10px的内边距，所以我设了一个 padding: 10px; </p>
+<p>我们想象中的场景效果可能是这样的：<img src="/2018/前端/HTML CSS/padding陷阱/Snipaste_2018-06-27_15-46-29.png" alt="Snipaste_2021-07-06_15-46-29">  但是现实真的好残酷。。他却是这样的：</p>
+<p><img src="/2018/前端/HTML CSS/padding陷阱/Snipaste_2018-06-27_15-46-14.png" alt="Snipaste_2021-07-06_15-46-14"><br><img src="/2018/前端/HTML CSS/padding陷阱/image-2018-06-27154932074.png" alt="image-20210706154932074"><br><img src="/2018/前端/HTML CSS/padding陷阱/image-2018-06-27155011508.png" alt="image-20210706155011508"></p>
+<p>这时候我们会很奇怪，明明我们设置的shoebox的高和宽是100*100怎么变成了110*110了呢，这多出来的10px是怎么回事。</p>
+<p>这是padding元素膨胀造成的结果。在标准盒模型中，设置padding会自动挤压空间，而不会利用给出来的空间，不会占用宽内位置，不通过width影响，会自己挤出空间来，就好像，我的鞋子是80*80的，我不需要100*100的盒子，你给我一个80*80的盒子就好了，我靠我自己来把他挤成100*100，这时很显然的解决的办法就出来了，我们的盒子的宽度只要设置成80*80然后设置padding：10px；来让鞋子把周围额空间挤成100*100。</p>
+<p>这就是padding的标准盒模型，先做好鞋子，再去做盒子</p>
+<h4 id="怪异盒模型"><a href="#怪异盒模型" class="headerlink" title="怪异盒模型"></a><strong>怪异盒模型</strong></h4><p>怪异盒模型与标准盒模型的区别就是，怪异盒模型是先做好盒子，再来做鞋子，我把盒子的大小固定住，你鞋子怎么挤也没有用。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">        <span class="selector-class">.shoebox</span>&#123;</span></span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: red;</span><br><span class="line">            padding: 10px;</span><br><span class="line">            box-sizing: border-box;//怪异盒模型</span><br><span class="line">        &#125;</span><br><span class="line"><span class="css">        <span class="selector-class">.shoes</span>&#123;</span></span><br><span class="line">            width: 80px;</span><br><span class="line">            height: 80px;</span><br><span class="line">            background-color: green;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoebox"</span>&gt;</span>         </span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shoes"</span>&gt;</span>              </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这时我们只要在我们的代码中加一条box-sizing：boeder-box，就可以把我的盒子给固定住，这时你鞋子想要用padding来撑大盒子的空间已经没用了，因为鞋子已经被固定死了。<br><img src="/2018/前端/HTML CSS/padding陷阱/Snipaste_2018-06-27_15-46-29.png" alt="Snipaste_2021-07-06_15-46-29"><br><img src="/2018/前端/HTML CSS/padding陷阱/image-2018-06-27155148568.png" alt="image-20210706155148568"><br><img src="/2018/前端/HTML CSS/padding陷阱/image-2018-06-27155011508.png" alt="image-20210706155011508"></p>
+<p>最后在<strong>总结</strong>一点padding的知识：</p>
+<ol>
+<li><p>当我们给width设置一个固定的值或者给width设置100%时，设置padding都会把盒子给挤开，挤大了</p>
+</li>
+<li><p>若想要不使用怪异盒模型又不会把盒子挤大，请把width设置为auto，width默认的值是auto。自动占满整个屏幕</p>
+</li>
+<li><p>标准盒模型在pc端比较常用，因为pc端的屏幕大，有优势可以撑</p>
+</li>
+<li><p>怪异盒模型在手机端比较常用。手机屏幕是有限大小的，有时我们往往需要使用怪异盒模型把他固定住。</p>
+</li>
+<li><p>怪异盒模型的盒子大小还要加上border的大小。</p>
+</li>
+</ol>
 
       
     </div>
@@ -433,8 +457,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/chsh修改登录shell为zsh/" rel="next" title="chsh修改登录shell为zsh">
-                <i class="fa fa-chevron-left"></i> chsh修改登录shell为zsh
+              <a href="/2018/前端/HTML CSS/清除浮动/" rel="next" title="清除浮动">
+                <i class="fa fa-chevron-left"></i> 清除浮动
               </a>
             
           </div>
@@ -443,8 +467,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/padding陷阱/" rel="prev" title="padding陷阱">
-                padding陷阱 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/前端/HTML CSS/CSS定位/" rel="prev" title="CSS定位">
+                CSS定位 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -497,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -590,6 +623,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#标准盒模型"><span class="nav-number">1.</span> <span class="nav-text">标准盒模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#怪异盒模型"><span class="nav-number">2.</span> <span class="nav-text">怪异盒模型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
