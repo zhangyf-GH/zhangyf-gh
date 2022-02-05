@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java 并发编程实践,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="可伸缩性：当增加计算资源时（例如CPU、内存、存储容器或I/O带宽），程序的吞吐量或者处理能力能相应的增加。  在所有的并发程序中都包含一些串行部分。 Amdahl定律   线程引入的开销 上下文切换   正在运行的线程调度出来，从而使其他线程能够使用CPU     内存同步  阻塞   减少锁的竞争在并发程序中，对可伸缩性的最主要威胁就是独占方式的资源锁。 有三种方式可以降低锁的竞争程度：  减">
+<meta name="keywords" content="Java 并发编程实践">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10.性能和可伸缩性">
+<meta property="og:url" content="http://minmax.site/2017/Java 并发编程实践/10.性能和可伸缩性/index.html">
+<meta property="og:site_name" content="小站 大梦">
+<meta property="og:description" content="可伸缩性：当增加计算资源时（例如CPU、内存、存储容器或I/O带宽），程序的吞吐量或者处理能力能相应的增加。  在所有的并发程序中都包含一些串行部分。 Amdahl定律   线程引入的开销 上下文切换   正在运行的线程调度出来，从而使其他线程能够使用CPU     内存同步  阻塞   减少锁的竞争在并发程序中，对可伸缩性的最主要威胁就是独占方式的资源锁。 有三种方式可以降低锁的竞争程度：  减">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/10.性能和可伸缩性/25649746.png">
+<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/10.性能和可伸缩性/25699230.png">
+<meta property="og:updated_time" content="2021-12-29T02:04:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="10.性能和可伸缩性">
+<meta name="twitter:description" content="可伸缩性：当增加计算资源时（例如CPU、内存、存储容器或I/O带宽），程序的吞吐量或者处理能力能相应的增加。  在所有的并发程序中都包含一些串行部分。 Amdahl定律   线程引入的开销 上下文切换   正在运行的线程调度出来，从而使其他线程能够使用CPU     内存同步  阻塞   减少锁的竞争在并发程序中，对可伸缩性的最主要威胁就是独占方式的资源锁。 有三种方式可以降低锁的竞争程度：  减">
+<meta name="twitter:image" content="http://minmax.site/2017/Java%20并发编程实践/10.性能和可伸缩性/25649746.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://minmax.site/2017/Java 并发编程实践/10.性能和可伸缩性/">
+
+
+
+
+
+  <title>10.性能和可伸缩性 | 小站 大梦</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小站 大梦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Write The Code Change The World</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://minmax.site/2017/Java 并发编程实践/10.性能和可伸缩性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang yongfei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/tx.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小站 大梦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">10.性能和可伸缩性</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-09T10:03:13+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-并发编程实践/" itemprop="url" rel="index">
+                    <span itemprop="name">Java 并发编程实践</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>可伸缩性：当增加计算资源时（例如CPU、内存、存储容器或I/O带宽），程序的吞吐量或者处理能力能相应的增加。</p>
+<p> <strong>在所有的并发程序中都包含一些串行部分。</strong></p>
+<h3 id="Amdahl定律"><a href="#Amdahl定律" class="headerlink" title="Amdahl定律"></a>Amdahl定律</h3><p> <img src="/2017/Java 并发编程实践/10.性能和可伸缩性/25649746.png" alt="img"></p>
+<p><img src="/2017/Java 并发编程实践/10.性能和可伸缩性/25699230.png" alt="img"></p>
+<h3 id="线程引入的开销"><a href="#线程引入的开销" class="headerlink" title="线程引入的开销"></a>线程引入的开销</h3><ul>
+<li><p>上下文切换   正在运行的线程调度出来，从而使其他线程能够使用CPU   </p>
+</li>
+<li><p>内存同步</p>
+</li>
+<li><p>阻塞</p>
+</li>
+</ul>
+<h3 id="减少锁的竞争"><a href="#减少锁的竞争" class="headerlink" title="减少锁的竞争"></a>减少锁的竞争</h3><p><strong>在并发程序中，对可伸缩性的最主要威胁就是独占方式的资源锁。</strong></p>
+<p>有三种方式可以降低锁的竞争程度：</p>
+<ul>
+<li>减少锁的持有时间</li>
+<li>减低所得请求频率</li>
+<li>使用带有协调机制的独占锁，这些机制允许更高的并发性。</li>
+</ul>
+<h4 id="缩小锁的范围（”快进快出“）"><a href="#缩小锁的范围（”快进快出“）" class="headerlink" title="缩小锁的范围（”快进快出“）"></a>缩小锁的范围（”快进快出“）</h4><p>降低发生竞争可能性的一种有效方式就是尽可能缩短锁的持有时间。例如，可以将一些与锁无关的代码移出同步代码块，尤其是那些开销较大的操作。以及可能被阻塞的操作，例如I／O操作。</p>
+<p>缩小同步代码块之前：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AttributeStore</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GuardedBy</span>(<span class="string">"this"</span>) <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, String&gt; attributes = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">userLocationMatches</span><span class="params">(String name, String regexp)</span> </span>&#123;</span><br><span class="line">        String key = <span class="string">"users."</span> + name + <span class="string">".location"</span>;</span><br><span class="line">        String location = attributes.get(key);</span><br><span class="line">        <span class="keyword">if</span> (location == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> Pattern.matches(regexp, location);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>缩小同步代码块之后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BetterAttributeStore</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GuardedBy</span>(<span class="string">"this"</span>) <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, String&gt; attributes = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">userLocationMatches</span><span class="params">(String name, String regexp)</span> </span>&#123;</span><br><span class="line">        String key = <span class="string">"users."</span> + name + <span class="string">".location"</span>;</span><br><span class="line">        String location;</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">            location = attributes.get(key);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (location == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> Pattern.matches(regexp, location);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>极大减少了在持有锁时需要执行的指令数量。根据Amadahl定律，这样消除了限制可伸缩性的一个因素，因为串行代码的总量减少了。</p>
+<p>另一种方式，使用线程安全的Map(Hashtable、synchronizedMap、ConcurrentHashMap)来代替arrtibutes,可以讲确保线程安全性的任务委托给顶层的线程安全容器来实现。</p>
+<p>缩小同步代码块时不能分割原子操作。</p>
+<h4 id="锁分解"><a href="#锁分解" class="headerlink" title="锁分解"></a>锁分解</h4><p>​    另一种减小锁的持有时间的方式是降低线程请求锁的频率（从而减小发生竞争的可能性)-这可以通过锁分解和锁分段等技术来实现，在这些技术中将采用多个相互独立的锁来保护独立的状态变量，从而改变这些变量在之前由单个锁来保护的情况。这些技术能减小锁操作的粒度·并能实现更高的可伸縮性，然而，使用的锁越多，那么发生死锁的风险也就越高。</p>
+<p>​    设想一下，如果在整个应用程序中只有一个锁，而不是为每个对象分配一个独立的锁，那么，所有同步代码块的执行就会变成串行化执行，而不考虑各个同步块中的锁。由于很多线程将竞争同一个全局锁，因此两个线程同时请求这个锁的概率将剧增，从而导致更严重的竞争。所以如果将这些锁请求分布到更多的锁上，那么能有效地降低竞争程度。由于等待锁而被阻塞的线程将更少，因此可伸缩性将提高。</p>
+<p>​    <strong>如果一个锁需要保护多个相互独立的状态变量，那么可以将这个锁分解为多个锁，并且这个锁只保护一个变量，从而提高可伸缩性，并最终降低每个锁被请求的频率。</strong></p>
+<p>分解前：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerStatusBeforeSplit</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GuardedBy</span>(<span class="string">"this"</span>) <span class="keyword">public</span> <span class="keyword">final</span> Set&lt;String&gt; users;</span><br><span class="line">    <span class="meta">@GuardedBy</span>(<span class="string">"this"</span>) <span class="keyword">public</span> <span class="keyword">final</span> Set&lt;String&gt; queries;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ServerStatusBeforeSplit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        users = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        queries = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">(String u)</span> </span>&#123;</span><br><span class="line">        users.add(u);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">addQuery</span><span class="params">(String q)</span> </span>&#123;</span><br><span class="line">        queries.add(q);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">removeUser</span><span class="params">(String u)</span> </span>&#123;</span><br><span class="line">        users.remove(u);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">removeQuery</span><span class="params">(String q)</span> </span>&#123;</span><br><span class="line">        queries.remove(q);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>   分解后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerStatusAfterSplit</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GuardedBy</span>(<span class="string">"users"</span>) <span class="keyword">public</span> <span class="keyword">final</span> Set&lt;String&gt; users;</span><br><span class="line">    <span class="meta">@GuardedBy</span>(<span class="string">"queries"</span>) <span class="keyword">public</span> <span class="keyword">final</span> Set&lt;String&gt; queries;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ServerStatusAfterSplit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        users = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">        queries = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">(String u)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (users) &#123;</span><br><span class="line">            users.add(u);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addQuery</span><span class="params">(String q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (queries) &#123;</span><br><span class="line">            queries.add(q);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeUser</span><span class="params">(String u)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (users) &#123;</span><br><span class="line">            users.remove(u);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeQuery</span><span class="params">(String q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (users) &#123;</span><br><span class="line">            queries.remove(q);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    在代码中不是用ServerStatus锁来保护用户状态和查询状态，而是每个状态都通过一个锁来保护。在对锁进行分解后，每个新的细粒度锁上的访问量将比最初的访问量少·（通过将用户状态和查询状态委托给一个线程安全的Set,而不是使用显式的同步，能隐含地对锁进行分解，因为每个set都会使用一个不同的锁来保护其状态。）</p>
+<p>​    如果在锁上存在适中而不是激烈的竞争时，通过将一个锁分解为两个锁，能最大限度地提升性能。如果对竞争并不激烈的锁进行分解，那么在性能和吞吐量等方面带来的提升将非常有限，但是也会提高性能随着竞争提高而下降的拐点值。对竞争适中的锁进行分解时，实际上是把这些锁转变为非竟争的锁，从而有效地提高性能和可伸縮性。</p>
+<h4 id="锁分段"><a href="#锁分段" class="headerlink" title="锁分段"></a>锁分段</h4><p>​    在某些情况下，可以将锁分解技术进一步扩展为对一组独立对象上的锁进行分解，这种情况被称为锁分段。例如，在ConcurrentHashMap的实现中使用了一个包含16个锁的数组，每个锁保护所有散列桶的1/16，其中第N个散列桶由第(Nmod16）个锁来保护。假设散列函数其有合理的分布性，并且关键字能够实现均匀分布，那么这大约能把对于锁的请求减少到原来的1/16.正是这项技术使得ConcurrentHashMap能够支持多达16个并发的写人器。（要使得拥有大量处理器的系统在高访问量的情况下实现更高的并发性，还可以进一步增加锁的数量，但仅当你能证明并发写入线程的竞争足够激烈并需要突破这个限制时，才能将锁分段的数量超过默认的16个。）</p>
+<p>​    锁分段的一个劣势在于：与采用单个锁来实现独占访问相比，要获取多个锁来实现独占访问将更加困难并且开销更高。通常在执行一个操作时最多只需获取一个锁，但在某些情况下需要加锁整个容器．例如当concurrentHashMap需要扩展映射范围，以及重新计算键值的散列值要分布到更大的桶集合中时，就需要获取分段所集合中所有的锁。在程序StripedMap中给出了基于散列的Map实现，其中使用了锁分段技术。它拥有N_LOCKS个锁，并且每个锁保护散列桶的一个子集。大多数方法，例如get,都只需要获得一个锁，而有些方法則需要获得所有的锁，但并不要求同时获得，例如clear方法的实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StripedMap</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Synchronization policy: buckets[n] guarded by locks[n%N_LOCKS]</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> N_LOCKS = <span class="number">16</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Node[] buckets;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Object[] locks;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        Node next;</span><br><span class="line">        Object key;</span><br><span class="line">        Object value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StripedMap</span><span class="params">(<span class="keyword">int</span> numBuckets)</span> </span>&#123;</span><br><span class="line">        buckets = <span class="keyword">new</span> Node[numBuckets];</span><br><span class="line">        locks = <span class="keyword">new</span> Object[N_LOCKS];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N_LOCKS; i++)</span><br><span class="line">            locks[i] = <span class="keyword">new</span> Object();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Math.abs(key.hashCode() % buckets.length);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> hash = hash(key);</span><br><span class="line">        <span class="keyword">synchronized</span> (locks[hash % N_LOCKS]) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Node m = buckets[hash]; m != <span class="keyword">null</span>; m = m.next)</span><br><span class="line">                <span class="keyword">if</span> (m.key.equals(key))</span><br><span class="line">                    <span class="keyword">return</span> m.value;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; buckets.length; i++) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (locks[i % N_LOCKS]) &#123;</span><br><span class="line">                buckets[i] = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="替代独占锁的方法"><a href="#替代独占锁的方法" class="headerlink" title="替代独占锁的方法"></a>替代独占锁的方法</h4><p>​    当每个操作都请求多个变量时，锁的粒度将很难降低。这是在性能与可伸缩性之间相互制衡的另一个方面，一些常见的优化措施，例如将一些反复计算的结果缓存起来，都会引人一些“热点域(HotField)＂而这些热点域往往会限制可伸缩性。   </p>
+<p>​    第三种降低竞争锁的影晌的技术就是放弃使用独占锁，从而有助于使用一种友好并发的方式来管理共享状态。例如，使用并发容器、读－写锁、不可变对象以及原子变量．       ReadWriteLock实现了一种在多个读取操作以及单个写人操作情况下的加锁规则：如果多个读取操作都不会修改共享资源，那么这些读取操作可以同时访问该共享资源，但在执行写人操作时必须以独占方式来获取锁。对于读取操作占多数的数据结构，ReadWriteLock能提供比独占锁更高的并发性。而对于只读的数据结构，其中包含的不变性可以完全不需要加锁撲作。</p>
+<p>​    原子变量提供了一种方式来降低更新“热点域”时的开销，例如静态计数器、序列发生器、或者对链表数据结构中头节点的引用。原子变量类提供了在整数或者对象引用上的细粒度原子作（因此可伸缩性更高),并使用了现代处理器中提供的底层并发原语（例如比较并交换[compare-and-swap]）。如果在类中只包含少量的热点域，并且这些域不会与其他变量参与到不变性条件中，那么用原子变量来替代它们能提高可伸縮性。（通过减少算法中的热点域，可以提高可伸縮性一一虽然原子变量能降低热点域的更新开销，但并不能完全消除。</p>
+<p><strong>ConcurrentHashMap与同步的HashMap</strong></p>
+<p>​    在单线程坏境下，ConcurrentHashMap的性能比同步的HashMap的性能略好一些，但在并发坏境中则要好得多。在concurrentHashMap的实现中假设，大多数常用的操作都是获取某个已经存在的值，因此它对各种get操作进行了优化从而提供最高的性能和并发性。</p>
+<p>​    在同步Map的实现中．可伸缩性的最主要阻碍在于整个Map中只有一个锁，因此每次只有一个线程能够访问这个Map.不同的是，concurrentHashMap对于大多数读操作并不会加锁，并且在写人操作以及其他一些需要锁的读操作中使用了锁分段技术。因此，多个线程能并发地访问这个Map而不会发生阻塞。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java-并发编程实践/" rel="tag"># Java 并发编程实践</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/Java 并发编程实践/9.避免活跃性危险/" rel="next" title="9.避免活跃性危险">
+                <i class="fa fa-chevron-left"></i> 9.避免活跃性危险
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/Java 并发编程实践/11.并发程序测试/" rel="prev" title="11.并发程序测试">
+                11.并发程序测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/tx.jpg" alt="zhang yongfei">
+            
+              <p class="site-author-name" itemprop="name">zhang yongfei</p>
+              <p class="site-description motion-element" itemprop="description">以梦为马，明日天涯。。。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhangyfzone" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhangyfzone@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="Baidu" target="_blank">Baidu</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Amdahl定律"><span class="nav-number">1.</span> <span class="nav-text">Amdahl定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程引入的开销"><span class="nav-number">2.</span> <span class="nav-text">线程引入的开销</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减少锁的竞争"><span class="nav-number">3.</span> <span class="nav-text">减少锁的竞争</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缩小锁的范围（”快进快出“）"><span class="nav-number">3.1.</span> <span class="nav-text">缩小锁的范围（”快进快出“）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁分解"><span class="nav-number">3.2.</span> <span class="nav-text">锁分解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#锁分段"><span class="nav-number">3.3.</span> <span class="nav-text">锁分段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#替代独占锁的方法"><span class="nav-number">3.4.</span> <span class="nav-text">替代独占锁的方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhang yongfei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

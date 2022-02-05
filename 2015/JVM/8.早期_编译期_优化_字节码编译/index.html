@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JVM,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前端编译器(*.java-&amp;gt;*.class)：SUN的Javac、Eclipse JDT中的增量式编译器(ECJ)JIT编译器(Just In Time Compiler)(*.class-&amp;gt;机器码)：HotSpot VM的C1、C2编译器AOT编译器(Ahead Of Time Compiler)(*.java-&amp;gt;本地机器码)：GUN Compiler for the Java">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8.早期_编译期_优化_字节码编译">
+<meta property="og:url" content="http://minmax.site/2015/JVM/8.早期_编译期_优化_字节码编译/index.html">
+<meta property="og:site_name" content="小站 大梦">
+<meta property="og:description" content="前端编译器(*.java-&amp;gt;*.class)：SUN的Javac、Eclipse JDT中的增量式编译器(ECJ)JIT编译器(Just In Time Compiler)(*.class-&amp;gt;机器码)：HotSpot VM的C1、C2编译器AOT编译器(Ahead Of Time Compiler)(*.java-&amp;gt;本地机器码)：GUN Compiler for the Java">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://minmax.site/2015/JVM/8.早期_编译期_优化_字节码编译/d77f4a7f-b6ee-41ae-8675-37bcfdf53775.png">
+<meta property="og:image" content="http://minmax.site/2015/JVM/8.早期_编译期_优化_字节码编译/59c5b5c1-872d-494e-8601-83cf2d8605b1.png">
+<meta property="og:updated_time" content="2022-02-05T15:13:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="8.早期_编译期_优化_字节码编译">
+<meta name="twitter:description" content="前端编译器(*.java-&amp;gt;*.class)：SUN的Javac、Eclipse JDT中的增量式编译器(ECJ)JIT编译器(Just In Time Compiler)(*.class-&amp;gt;机器码)：HotSpot VM的C1、C2编译器AOT编译器(Ahead Of Time Compiler)(*.java-&amp;gt;本地机器码)：GUN Compiler for the Java">
+<meta name="twitter:image" content="http://minmax.site/2015/JVM/8.早期_编译期_优化_字节码编译/d77f4a7f-b6ee-41ae-8675-37bcfdf53775.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://minmax.site/2015/JVM/8.早期_编译期_优化_字节码编译/">
+
+
+
+
+
+  <title>8.早期_编译期_优化_字节码编译 | 小站 大梦</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小站 大梦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Write The Code Change The World</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://minmax.site/2015/JVM/8.早期_编译期_优化_字节码编译/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang yongfei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/tx.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小站 大梦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">8.早期_编译期_优化_字节码编译</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-09-28T20:40:07+08:00">
+                2015-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>前端编译器</strong>(*.java-&gt;*.class)：SUN的Javac、Eclipse JDT中的增量式编译器(ECJ)<br><strong>JIT编译器(Just In Time Compiler)</strong>(*.class-&gt;机器码)：HotSpot VM的C1、C2编译器<br><strong>AOT编译器(Ahead Of Time Compiler)</strong>(*.java-&gt;本地机器码)：GUN Compiler for the Java(GCJ)、Excelsior JET</p>
+<p>源文件经过<strong>字节码编译</strong>和<strong>JIT编译</strong>变为可执行的本地机器码，Javac 字节码编译器与虚拟机内的 JIT 编译器的执行过程合并起来其实就等同于一个传统编译器所执行的编译过程。</p>
+<p>​    Javac做了许多针时Java语言编码过程的优化措施来改善程序员的编码风格和提高编码放率。相当多新生的Java语法特性，部是靠编译器的”语法糖”来实现，而不是依赖虚拟机的底层改进来支持，可以说，Java中即时编译器在运行期的优化过程对于程序运行来说更重要，而前端编译器在编译期的优化过程对于程序编码来说关系更加密切。</p>
+<p>​    Javac编译器对代码的运行效率几乎没有任何优化措施，虚拟制设计团队把对性能的优化集中到了后端的即时编译器中，这样可以让那些不是由Javac产生的Class文(JRuby、Groovy等语言的Class文件)也同样能享受到编译器优化所带来的好处. </p>
+<p>   在前端编译器中“优化”手段主要用于提升程序的编码效率，之所且把Javac这类将Java代码转变为字节码的编译器称作”前端编译器”，是因为它只完成了从程序到抽象语法树或中间字节码的生成，而在此之后，还有一组内置于虚拟机内部的”后端编译器” 完成了从字节码生成本地机器码的过程，即前面多次提到的即时编译器或JIT编译器，这个编译器的编译速度及编译结果的优劣，是衡量虚拟机性能一个很重要的指标。</p>
+<p>从Sun Javac的代码来看.编译过程大致可以分为3个过程，分别是：</p>
+<ul>
+<li>解析与填充符号表过程</li>
+<li>插入式注解处理器的注解处理过程</li>
+<li>分析与字节码生成过程</li>
+</ul>
+<p><img src="/2015/JVM/8.早期_编译期_优化_字节码编译/d77f4a7f-b6ee-41ae-8675-37bcfdf53775.png" alt="img"><br><img src="/2015/JVM/8.早期_编译期_优化_字节码编译/59c5b5c1-872d-494e-8601-83cf2d8605b1.png" alt="img"></p>
+<h2 id="解析与填充符号表"><a href="#解析与填充符号表" class="headerlink" title="解析与填充符号表"></a>解析与填充符号表</h2><h4 id="1-词法、语法分析解析"><a href="#1-词法、语法分析解析" class="headerlink" title="1.词法、语法分析解析"></a>1.词法、语法分析解析</h4><p>步骤由parseFiles()方法完成。解析步骤包括了经典程序编译原理中的词法分析和语法分析两个过程。<br><strong>词法分析</strong>是将源代码的字符流转变为标记(Tokcn) 集合。<br><strong>语法分析</strong>是根据Token序列构造抽象语法树的过程。编译器就基本不会在对源码文件进行操作了，后续的操作都建立在抽象语法树之上。<br><strong>抽象语法树(Abstract Syntax Tree. AST)</strong> 是一种用来描述程序代码的语法结构的树形表示方式。语法树的每一个节点都代表着程序代码中的一个语法结构(Construct)，例如包、类型、修饰符、运算符、接口、返回值甚至代码注释等都可以是一个语法结构。</p>
+<h4 id="2-填充符号表"><a href="#2-填充符号表" class="headerlink" title="2.填充符号表"></a>2.填充符号表</h4><p><strong>符号表(SymbolTable)</strong>是由一组符号地址和符号信息构成的表格，由enterTrees()方法执行。</p>
+<h2 id="注解处理器"><a href="#注解处理器" class="headerlink" title="注解处理器"></a>注解处理器</h2><p>在JDK1.6中实现了JSR-269规范，提供了一组插入式注解处理器的标准APl在编译期间对注解进行处理，我们可以把它看做时一组编译器的插件，在这些插件里面，可以读取、修改、添加抽象语法树中的任意元素。如果这些插件在处理竹节期间对语法树进行了修改，编译器将回到解析及填充符号表的过程重新处理，直到所有插入式注解处理器都没有在对语法树进行修改为止，每一次循环称为一个Round，就是图中的回环过程。</p>
+<h3 id="语义分析与字节码生成"><a href="#语义分析与字节码生成" class="headerlink" title="语义分析与字节码生成"></a>语义分析与字节码生成</h3><p>语法树能表示一个结构正确的源程序的抽象，但无法保证源程序是符合逻辑的，语义分析的主要任务是在对结构上正确的源程序进行上下文有关性质的审查，如进行类型审查，语义分析过程分为标注检查(attribute())和数据及控制流分析(flow())</p>
+<h4 id="1-标注检查"><a href="#1-标注检查" class="headerlink" title="1.标注检查"></a>1.标注检查</h4><p>标注检查的内容包括变量使用前是否已被声明、变量和赋值之间的数据类型是否匹配等，还包括常量折叠，编译期进行常量折叠，不会增加运行期的运算量。</p>
+<h4 id="2-数据及控制流分析"><a href="#2-数据及控制流分析" class="headerlink" title="2.数据及控制流分析"></a>2.数据及控制流分析</h4><p>数据及控制流分析是对程序上下文逻辑更进一步的验证，它可以检查出诸如程序局部变量在使用前是否有赋值、方法的每条路径是否有返回值、是否所有的受查异常都被正确处理了等问题</p>
+<h4 id="3-解语法糖"><a href="#3-解语法糖" class="headerlink" title="3.解语法糖"></a>3.解语法糖</h4><p>语法糖(syntactic Sugar)指在计算机语言中添加的某种语法，这种语法对语言的功能并没有影响，但是更方便程序员的使用，增加程序的可读性提高效率，提高语法严谨性，从而减少程序代码出错的机会。由desugar()执行。<br>java中最常用的语法糖主要是泛型(泛型并不一定都是语法糖实现，C#中的泛型就是直接由CLR支持的)、变长参数、自动装箱\拆箱等，虚拟机运行时不支持这些语法，它们在编译阶段还原回简单的基础语法结构，这个过程称为解语法糖。</p>
+<h4 id="4-字节码生成"><a href="#4-字节码生成" class="headerlink" title="4.字节码生成"></a>4.字节码生成</h4><p>​    字节码生成阶段不仅把前面各个步骤所生成的信息(语法树、符号表)转化成字节码写到磁盘中，编译器还进行了少量的代码添加和转换工作。    <strong>实例构造器<init>()方法</init></strong>和<strong>类构造器<clinit>()方法</clinit></strong>就是在这个阶段添加到语法树之中的(注意：这里的实例构造器并不是指默认构造函数，如果用户代码中没有提供任何构造函数，那编译器将会添加一个没有参数的、访问性(public、protected或private)与当前类一致的默认构造函数，这个工作在填充符号表阶段就已经完成),   </p>
+<p>​     这两个构造器的产生过程实际上时一个代码收敛的过程，编译器会把语句块(对于实例构造器而言是“{}”块，对于类构造器而言是“static{}”块)、变量初始化(实例变量和类变量)、调用父类的实例构造器(仅仅是实例构造器，<clinit>()方法中无须调用父类的<clinit>()方法，虚拟机会自动保证父类构造器的执行，但在<clinit>()方法中经常会生成调用Java.lang.Object的<init>()方法的代码)等操作收敛到<init>()和<clinit>()方法之中，并且保证一定是按先执行父类的实例构造器，然后初始化变量，最后执行语句块的顺序进行。</clinit></init></init></clinit></clinit></clinit></p>
+<h2 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h2><h3 id="1-泛型和类型擦除"><a href="#1-泛型和类型擦除" class="headerlink" title="1.泛型和类型擦除"></a>1.泛型和类型擦除</h3><p>​    泛型是JDK1.5的一项新增特性，它的本质是参数化类型(Parametersized Type) 的应用，也就是说所操作的数据类型被指定为一个参数。这种参数类型可以用在类、接口和方法的创建中，分别成为泛型类、泛型接口和泛型方法。   </p>
+<pre><code> 泛型思想早在C++语言的模板(Template)中就开始生根发芽，在Java语言处于还没有出现泛型的版本时，执行通过Object是所有类型的父类和类型强制转换两个特点的配合来实现类型泛化。但只有程序员和运行期的虚拟机才知道这个Object到底是个什么类型的对象。在编译期间，编译器无法检查这个Object的强制转型是否成功，如果仅仅依赖程序员区保障这项操作的正确性，许多ClassCastException的风险就会转嫁到程序运行期之中。
+泛型技术在C#和Java之中的使用方式看似相同。但实现上却有着根本性的分歧，C#里面反省无论在程序源码中、编译后的IL中(Intermediate Language，中间语言，这时候泛型是一个占位符)，或是运行期的CLR中，部是切实存在的，List&lt;int&gt;与List&lt;String&gt;就是两个不同的类型，它们在系统运行期生成，有自己的虚方法表和类型数据，这种实现称为**类型膨胀**，基于这种方法实现的泛型称为**真实泛型**。    
+</code></pre><p>​    Java语言中的泛型则不一样，它只在程序源码中存在，在编译后的字节码文件中，就已经替换为原来的原生类型(Raw Type,也称为裸类型)了，并且在相应的地方插入了强制类型代码，因此，对于运行期的Java语言来说，ArrayList<int>与ArrayList<string>就是同一个类，所以泛型技术实际上是Java语言的一个语法糖，Java语言中的泛型实现方法称为<strong>类型擦除</strong>，基于这种方法实现的泛型称为<strong>伪泛型</strong>。\</string></int></p>
+<h3 id="2-自动装箱、拆箱与遍历循环"><a href="#2-自动装箱、拆箱与遍历循环" class="headerlink" title="2.自动装箱、拆箱与遍历循环"></a>2.自动装箱、拆箱与遍历循环</h3><h3 id="3-条件编译"><a href="#3-条件编译" class="headerlink" title="3.条件编译"></a>3.条件编译</h3><p>Java语言中条件编译的实现，也是Java语言的一个语法糖，根据布尔常量值得真假，编译器将会把分支中不成立的代码块消除掉，这一工作将在编译器解除语法糖阶段完成。Java语言还有不少其他的语法糖， 如<strong>内部类、枚举类、断言语句、对枚举和字符串(在JDK1.7中支持)的switch支持、try语句中定义和关闭在资源(在JDK1.7中支持)</strong>等。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/JVM/7.虚拟机字节码执行引擎/" rel="next" title="7.虚拟机字节码执行引擎">
+                <i class="fa fa-chevron-left"></i> 7.虚拟机字节码执行引擎
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/JVM/9.晚期_运行期_优化_JIT编译/" rel="prev" title="9.晚期_运行期_优化_JIT编译">
+                9.晚期_运行期_优化_JIT编译 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/tx.jpg" alt="zhang yongfei">
+            
+              <p class="site-author-name" itemprop="name">zhang yongfei</p>
+              <p class="site-description motion-element" itemprop="description">以梦为马，明日天涯。。。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhangyfzone" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhangyfzone@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="Baidu" target="_blank">Baidu</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解析与填充符号表"><span class="nav-number">1.</span> <span class="nav-text">解析与填充符号表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-词法、语法分析解析"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.词法、语法分析解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-填充符号表"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.填充符号表</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#注解处理器"><span class="nav-number">2.</span> <span class="nav-text">注解处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语义分析与字节码生成"><span class="nav-number">2.1.</span> <span class="nav-text">语义分析与字节码生成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-标注检查"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.标注检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-数据及控制流分析"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.数据及控制流分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-解语法糖"><span class="nav-number">2.1.3.</span> <span class="nav-text">3.解语法糖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-字节码生成"><span class="nav-number">2.1.4.</span> <span class="nav-text">4.字节码生成</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法糖"><span class="nav-number">3.</span> <span class="nav-text">语法糖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-泛型和类型擦除"><span class="nav-number">3.1.</span> <span class="nav-text">1.泛型和类型擦除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-自动装箱、拆箱与遍历循环"><span class="nav-number">3.2.</span> <span class="nav-text">2.自动装箱、拆箱与遍历循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-条件编译"><span class="nav-number">3.3.</span> <span class="nav-text">3.条件编译</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhang yongfei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
