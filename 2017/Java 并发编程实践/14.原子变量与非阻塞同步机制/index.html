@@ -83,34 +83,34 @@
 <meta name="keywords" content="Java 并发编程实践">
 <meta property="og:type" content="article">
 <meta property="og:title" content="14.原子变量与非阻塞同步机制">
-<meta property="og:url" content="http://minmax.site/2017/Java 并发编程实践/14.原子变量与非阻塞同步机制/index.html">
+<meta property="og:url" content="https://minmax.site/2017/Java 并发编程实践/14.原子变量与非阻塞同步机制/index.html">
 <meta property="og:site_name" content="小站 大梦">
 <meta property="og:description" content="​    近年来，在并发算法领域的大多数研究都侧重于非阻塞算法，这种算法用底层的原子机器指令（例如比较并交换指令）代替锁来确保数据在并发访问中的一致性。非阻塞算法被广泛地用于在操作系统和JVM中实现线程/进程调度机制、垃圾回收机制以及锁和其他并发数据结构。 ​    与基于锁的方案相比，非阻塞算法在设计和实现上都要复杂得多，但它们在可伸缩性和活跃性上却拥有巨大的优势·由于非阻塞算法可以使多个线程在">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/11529175.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/11537974.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/21527950.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/21639943.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/21711719.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/21743700.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/21787084.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/28808143.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/2510851.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/2592471.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/7249990.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/7910826.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/7933259.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/7949358.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/7975129.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/8472523.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/8480744.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/8840311.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/8870092.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/11529175.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/11537974.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/21527950.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/21639943.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/21711719.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/21743700.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/21787084.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/28808143.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/2510851.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/2592471.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/7249990.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/7910826.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/7933259.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/7949358.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/7975129.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/8472523.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/8480744.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/8840311.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/8870092.png">
 <meta property="og:updated_time" content="2021-12-29T01:58:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="14.原子变量与非阻塞同步机制">
 <meta name="twitter:description" content="​    近年来，在并发算法领域的大多数研究都侧重于非阻塞算法，这种算法用底层的原子机器指令（例如比较并交换指令）代替锁来确保数据在并发访问中的一致性。非阻塞算法被广泛地用于在操作系统和JVM中实现线程/进程调度机制、垃圾回收机制以及锁和其他并发数据结构。 ​    与基于锁的方案相比，非阻塞算法在设计和实现上都要复杂得多，但它们在可伸缩性和活跃性上却拥有巨大的优势·由于非阻塞算法可以使多个线程在">
-<meta name="twitter:image" content="http://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/11529175.png">
+<meta name="twitter:image" content="https://minmax.site/2017/Java%20并发编程实践/14.原子变量与非阻塞同步机制/11529175.png">
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-  <link rel="canonical" href="http://minmax.site/2017/Java 并发编程实践/14.原子变量与非阻塞同步机制/">
+  <link rel="canonical" href="https://minmax.site/2017/Java 并发编程实践/14.原子变量与非阻塞同步机制/">
 
 
 
@@ -315,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://minmax.site/2017/Java 并发编程实践/14.原子变量与非阻塞同步机制/">
+    <link itemprop="mainEntityOfPage" href="https://minmax.site/2017/Java 并发编程实践/14.原子变量与非阻塞同步机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhang yongfei">

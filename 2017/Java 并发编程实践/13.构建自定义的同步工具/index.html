@@ -83,43 +83,43 @@
 <meta name="keywords" content="Java 并发编程实践">
 <meta property="og:type" content="article">
 <meta property="og:title" content="13.构建自定义的同步工具">
-<meta property="og:url" content="http://minmax.site/2017/Java 并发编程实践/13.构建自定义的同步工具/index.html">
+<meta property="og:url" content="https://minmax.site/2017/Java 并发编程实践/13.构建自定义的同步工具/index.html">
 <meta property="og:site_name" content="小站 大梦">
 <meta property="og:description" content="状态依赖性管理  1234567891011121314151617181920212223242526272829public abstract class BaseBoundedBuffer &amp;lt;V&amp;gt; &amp;#123;    @GuardedBy(&quot;this&quot;) private final V[] buf;    @GuardedBy(&quot;this&quot;) private int tail;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/2498855.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/2533175.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/3005998.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/3015655.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/3378794.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28580615.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28645387.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30117256.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30132435.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30416014.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/4590657.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/11982826.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/29531238.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30132575.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30145851.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/3972783.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/4693726.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28051600.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28062302.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28090522.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28124780.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28985796.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/29470086.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/29480148.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30041580.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30111453.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30161264.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/db7ec425-1c0a-4d36-9909-9f9da4eddd59.jpg">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/2498855.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/2533175.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/3005998.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/3015655.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/3378794.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28580615.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28645387.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30117256.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30132435.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30416014.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/4590657.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/11982826.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/29531238.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30132575.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30145851.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/3972783.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/4693726.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28051600.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28062302.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28090522.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28124780.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/28985796.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/29470086.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/29480148.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30041580.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30111453.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/30161264.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/db7ec425-1c0a-4d36-9909-9f9da4eddd59.jpg">
 <meta property="og:updated_time" content="2021-12-29T01:23:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="13.构建自定义的同步工具">
 <meta name="twitter:description" content="状态依赖性管理  1234567891011121314151617181920212223242526272829public abstract class BaseBoundedBuffer &amp;lt;V&amp;gt; &amp;#123;    @GuardedBy(&quot;this&quot;) private final V[] buf;    @GuardedBy(&quot;this&quot;) private int tail;">
-<meta name="twitter:image" content="http://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/2498855.png">
+<meta name="twitter:image" content="https://minmax.site/2017/Java%20并发编程实践/13.构建自定义的同步工具/2498855.png">
 
 
 
@@ -149,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="http://minmax.site/2017/Java 并发编程实践/13.构建自定义的同步工具/">
+  <link rel="canonical" href="https://minmax.site/2017/Java 并发编程实践/13.构建自定义的同步工具/">
 
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://minmax.site/2017/Java 并发编程实践/13.构建自定义的同步工具/">
+    <link itemprop="mainEntityOfPage" href="https://minmax.site/2017/Java 并发编程实践/13.构建自定义的同步工具/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhang yongfei">

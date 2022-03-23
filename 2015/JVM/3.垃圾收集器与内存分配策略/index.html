@@ -83,30 +83,30 @@
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3.垃圾收集器与内存分配策">
-<meta property="og:url" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/index.html">
+<meta property="og:url" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/index.html">
 <meta property="og:site_name" content="小站 大梦">
 <meta property="og:description" content="垃圾收集 Garbage Collection, GC 1960 年诞生于 MIT的Lisp 是第一门真正使用内存动态分配和垃圾收集的技术语言。 程序计数器，本地方法栈、虚拟机栈为线程私有，随线程生成和毁灭。 java堆，方法区为线程共享，为垃圾收集器主要回收范围。 引用计数算法（Referece Counting）给对象中添加一个引用计数器，当有一个地方引用它时，计数器值就加1；当引用失效时，计">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/d79a16a1-8586-4703-8614-6c6762c7df16.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/e2641d89-6e1a-4231-8013-8121cabf5e6c.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/d663a9d5-5c7a-4142-8225-8b1394246727.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/e9b14844-e3c9-41e0-b2f7-b1c738c7458b.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/a688e9e8-6ada-48e4-84bb-a053e66da7bb.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/76b69d28-13a0-43b6-b05b-5aaf99898e60.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/15b42407-04f7-4bb3-9cd2-c60646410ffb.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/57d4a08f-1b21-4ef9-840c-0a8929307cfc.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/4d93f4ce-a8e2-4092-bbdb-c6460460c564.jpg">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/edc39568-79f4-4b3a-a264-dc9bca718653.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/9fd18455-0ea9-4251-8685-2b8069021d4d.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/e030ada0-1cf3-457f-9d92-f467ee3ae0fa.jpg">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/6d4a6f13-4eb8-4971-9bdb-6eac373697af.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/ffb82734-d81b-4a7b-ab37-ab0e66c31612.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/8c3d9678-728c-4298-8c4b-1f2a0706bc8a.jpg">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/d79a16a1-8586-4703-8614-6c6762c7df16.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/e2641d89-6e1a-4231-8013-8121cabf5e6c.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/d663a9d5-5c7a-4142-8225-8b1394246727.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/e9b14844-e3c9-41e0-b2f7-b1c738c7458b.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/a688e9e8-6ada-48e4-84bb-a053e66da7bb.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/76b69d28-13a0-43b6-b05b-5aaf99898e60.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/15b42407-04f7-4bb3-9cd2-c60646410ffb.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/57d4a08f-1b21-4ef9-840c-0a8929307cfc.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/4d93f4ce-a8e2-4092-bbdb-c6460460c564.jpg">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/edc39568-79f4-4b3a-a264-dc9bca718653.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/9fd18455-0ea9-4251-8685-2b8069021d4d.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/e030ada0-1cf3-457f-9d92-f467ee3ae0fa.jpg">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/6d4a6f13-4eb8-4971-9bdb-6eac373697af.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/ffb82734-d81b-4a7b-ab37-ab0e66c31612.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/8c3d9678-728c-4298-8c4b-1f2a0706bc8a.jpg">
 <meta property="og:updated_time" content="2022-01-21T08:54:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3.垃圾收集器与内存分配策">
 <meta name="twitter:description" content="垃圾收集 Garbage Collection, GC 1960 年诞生于 MIT的Lisp 是第一门真正使用内存动态分配和垃圾收集的技术语言。 程序计数器，本地方法栈、虚拟机栈为线程私有，随线程生成和毁灭。 java堆，方法区为线程共享，为垃圾收集器主要回收范围。 引用计数算法（Referece Counting）给对象中添加一个引用计数器，当有一个地方引用它时，计数器值就加1；当引用失效时，计">
-<meta name="twitter:image" content="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/d79a16a1-8586-4703-8614-6c6762c7df16.png">
+<meta name="twitter:image" content="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/d79a16a1-8586-4703-8614-6c6762c7df16.png">
 
 
 
@@ -136,7 +136,7 @@
 
 
 
-  <link rel="canonical" href="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/">
+  <link rel="canonical" href="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/">
 
 
 
@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/">
+    <link itemprop="mainEntityOfPage" href="https://minmax.site/2015/JVM/3.垃圾收集器与内存分配策略/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhang yongfei">

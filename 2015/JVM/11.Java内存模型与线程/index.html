@@ -83,24 +83,24 @@
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="11.Java内存模型与线程">
-<meta property="og:url" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/index.html">
+<meta property="og:url" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/index.html">
 <meta property="og:site_name" content="小站 大梦">
 <meta property="og:description" content="概述　　多任务和高并发是衡量一台计算机处理器的能力重要指标之一。一般衡量一个服务器性能的高低好坏，使用每秒事务处理数（Transactions Per Second，TPS）这个指标比较能说明问题，它代表着一秒内服务器平均能响应的请求数，而TPS值与程序的并发能力有着非常密切的关系。在讨论Java内存模型和线程之前，先简单介绍一下硬件的效率与一致性。 硬件的效率与一致性　　由于计算机的存储设备与处">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/48b97589-3558-4b2f-a1c1-300af6a1a48c.jpg">
-<meta property="og:image" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/1b4a3175-cd58-43cc-8ffd-7208a72b01db.jpg">
-<meta property="og:image" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/f2ee49ed-0384-4566-889b-74a923385b80.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/7b5e6a79-61d5-4378-ba2f-4ebe10c86d2a.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/5b33ff6f-fb57-4ba1-897e-2f8cf2fce076.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/58f01be9-b5f8-41d5-b117-2e3f39a7e04c.png">
-<meta property="og:image" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/d8285364-48e9-47c4-909b-40887f6e2f0a.jpg">
-<meta property="og:image" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/d097bf0f-b077-46b9-97c9-2a508714555d.jpg">
-<meta property="og:image" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/d5da56da-1483-4252-bccf-37ea6f3c8686.jpg">
+<meta property="og:image" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/48b97589-3558-4b2f-a1c1-300af6a1a48c.jpg">
+<meta property="og:image" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/1b4a3175-cd58-43cc-8ffd-7208a72b01db.jpg">
+<meta property="og:image" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/f2ee49ed-0384-4566-889b-74a923385b80.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/7b5e6a79-61d5-4378-ba2f-4ebe10c86d2a.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/5b33ff6f-fb57-4ba1-897e-2f8cf2fce076.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/58f01be9-b5f8-41d5-b117-2e3f39a7e04c.png">
+<meta property="og:image" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/d8285364-48e9-47c4-909b-40887f6e2f0a.jpg">
+<meta property="og:image" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/d097bf0f-b077-46b9-97c9-2a508714555d.jpg">
+<meta property="og:image" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/d5da56da-1483-4252-bccf-37ea6f3c8686.jpg">
 <meta property="og:updated_time" content="2022-02-05T15:35:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="11.Java内存模型与线程">
 <meta name="twitter:description" content="概述　　多任务和高并发是衡量一台计算机处理器的能力重要指标之一。一般衡量一个服务器性能的高低好坏，使用每秒事务处理数（Transactions Per Second，TPS）这个指标比较能说明问题，它代表着一秒内服务器平均能响应的请求数，而TPS值与程序的并发能力有着非常密切的关系。在讨论Java内存模型和线程之前，先简单介绍一下硬件的效率与一致性。 硬件的效率与一致性　　由于计算机的存储设备与处">
-<meta name="twitter:image" content="http://minmax.site/2015/JVM/11.Java内存模型与线程/48b97589-3558-4b2f-a1c1-300af6a1a48c.jpg">
+<meta name="twitter:image" content="https://minmax.site/2015/JVM/11.Java内存模型与线程/48b97589-3558-4b2f-a1c1-300af6a1a48c.jpg">
 
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="http://minmax.site/2015/JVM/11.Java内存模型与线程/">
+  <link rel="canonical" href="https://minmax.site/2015/JVM/11.Java内存模型与线程/">
 
 
 
@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://minmax.site/2015/JVM/11.Java内存模型与线程/">
+    <link itemprop="mainEntityOfPage" href="https://minmax.site/2015/JVM/11.Java内存模型与线程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhang yongfei">

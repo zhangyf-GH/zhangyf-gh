@@ -83,26 +83,26 @@
 <meta name="keywords" content="Java 并发编程实践">
 <meta property="og:type" content="article">
 <meta property="og:title" content="15.JMM-Java内存模型">
-<meta property="og:url" content="http://minmax.site/2017/Java 并发编程实践/15.JMM-Java内存模型/index.html">
+<meta property="og:url" content="https://minmax.site/2017/Java 并发编程实践/15.JMM-Java内存模型/index.html">
 <meta property="og:site_name" content="小站 大梦">
 <meta property="og:description" content="​    JMM规定了JVM必须遵循一组最小保证，这组保证规定了对变量的写入操作在何时将对于其他线程可见。JMM在设计时就在可预测性和程序的易于开发性之间进行了权衡，从而在各种主流的处理器体系架构上能实现高性能的JVM。如果你不了解在现代处理器和编译器中使用的程序性能提升措施，那么在刚刚接触JMM的某些方面时会感到困惑。 ​    程序执行一种简单假设：想象在程序中只存在唯一的操作执行顺序，而不考">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/23430554.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/23452503.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25794640.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25805654.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25841940.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25863780.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25888085.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25927444.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25943839.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25972200.png">
-<meta property="og:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25983261.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/23430554.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/23452503.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25794640.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25805654.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25841940.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25863780.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25888085.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25927444.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25943839.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25972200.png">
+<meta property="og:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/25983261.png">
 <meta property="og:updated_time" content="2021-12-29T02:01:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="15.JMM-Java内存模型">
 <meta name="twitter:description" content="​    JMM规定了JVM必须遵循一组最小保证，这组保证规定了对变量的写入操作在何时将对于其他线程可见。JMM在设计时就在可预测性和程序的易于开发性之间进行了权衡，从而在各种主流的处理器体系架构上能实现高性能的JVM。如果你不了解在现代处理器和编译器中使用的程序性能提升措施，那么在刚刚接触JMM的某些方面时会感到困惑。 ​    程序执行一种简单假设：想象在程序中只存在唯一的操作执行顺序，而不考">
-<meta name="twitter:image" content="http://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/23430554.png">
+<meta name="twitter:image" content="https://minmax.site/2017/Java%20并发编程实践/15.JMM-Java内存模型/23430554.png">
 
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://minmax.site/2017/Java 并发编程实践/15.JMM-Java内存模型/">
+  <link rel="canonical" href="https://minmax.site/2017/Java 并发编程实践/15.JMM-Java内存模型/">
 
 
 
@@ -307,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://minmax.site/2017/Java 并发编程实践/15.JMM-Java内存模型/">
+    <link itemprop="mainEntityOfPage" href="https://minmax.site/2017/Java 并发编程实践/15.JMM-Java内存模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhang yongfei">

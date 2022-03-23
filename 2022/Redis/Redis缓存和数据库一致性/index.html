@@ -83,22 +83,22 @@
 <meta name="keywords" content="Redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis缓存和数据库一致性">
-<meta property="og:url" content="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/index.html">
+<meta property="og:url" content="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/index.html">
 <meta property="og:site_name" content="小站 大梦">
 <meta property="og:description" content="如何保证缓存和数据库一致性，这是一个老生常谈的话题了。 但很多人对这个问题，依旧有很多疑惑：  到底是更新缓存还是删缓存？ 到底选择先更新数据库，再删除缓存，还是先删除缓存，再更新数据库？ 为什么要引入消息队列保证一致性？ 延迟双删会有什么问题？到底要不要用？ …  这篇文章，我们就来把这些问题讲清楚。  引入缓存提高性能我们从最简单的场景开始讲起。 如果你的业务处于起步阶段，流量非常小，那无论是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/640.png">
-<meta property="og:image" content="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/641.jfif">
-<meta property="og:image" content="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/642.jfif">
-<meta property="og:image" content="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/643.jfif">
-<meta property="og:image" content="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/644.jfif">
-<meta property="og:image" content="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/645.jfif">
-<meta property="og:image" content="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/646.jfif">
+<meta property="og:image" content="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/640.png">
+<meta property="og:image" content="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/641.jfif">
+<meta property="og:image" content="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/642.jfif">
+<meta property="og:image" content="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/643.jfif">
+<meta property="og:image" content="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/644.jfif">
+<meta property="og:image" content="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/645.jfif">
+<meta property="og:image" content="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/646.jfif">
 <meta property="og:updated_time" content="2022-03-23T04:44:25.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis缓存和数据库一致性">
 <meta name="twitter:description" content="如何保证缓存和数据库一致性，这是一个老生常谈的话题了。 但很多人对这个问题，依旧有很多疑惑：  到底是更新缓存还是删缓存？ 到底选择先更新数据库，再删除缓存，还是先删除缓存，再更新数据库？ 为什么要引入消息队列保证一致性？ 延迟双删会有什么问题？到底要不要用？ …  这篇文章，我们就来把这些问题讲清楚。  引入缓存提高性能我们从最简单的场景开始讲起。 如果你的业务处于起步阶段，流量非常小，那无论是">
-<meta name="twitter:image" content="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/640.png">
+<meta name="twitter:image" content="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/640.png">
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/">
+  <link rel="canonical" href="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/">
 
 
 
@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://minmax.site/2022/Redis/Redis缓存和数据库一致性/">
+    <link itemprop="mainEntityOfPage" href="https://minmax.site/2022/Redis/Redis缓存和数据库一致性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhang yongfei">
