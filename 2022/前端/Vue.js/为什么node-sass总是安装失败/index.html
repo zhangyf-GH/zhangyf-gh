@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Vue.js,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一篇文章node-sass是我们开发中很常见的依赖包，也是安装时间冗长和最常见到报错的依赖。 安装node-sass失败原因有很多种，我们在说失败原因之前，先来分析一下node-sass的安装过程(以下node版本为v10.15.3)： 1234567891011121314151617181920212223242526272829PS D:\demo&amp;gt; npm i node-sass//">
+<meta name="keywords" content="Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么node-sass总是安装失败">
+<meta property="og:url" content="https://minmax.site/2022/前端/Vue.js/为什么node-sass总是安装失败/index.html">
+<meta property="og:site_name" content="小站 大梦">
+<meta property="og:description" content="一篇文章node-sass是我们开发中很常见的依赖包，也是安装时间冗长和最常见到报错的依赖。 安装node-sass失败原因有很多种，我们在说失败原因之前，先来分析一下node-sass的安装过程(以下node版本为v10.15.3)： 1234567891011121314151617181920212223242526272829PS D:\demo&amp;gt; npm i node-sass//">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2022-03-30T01:09:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为什么node-sass总是安装失败">
+<meta name="twitter:description" content="一篇文章node-sass是我们开发中很常见的依赖包，也是安装时间冗长和最常见到报错的依赖。 安装node-sass失败原因有很多种，我们在说失败原因之前，先来分析一下node-sass的安装过程(以下node版本为v10.15.3)： 1234567891011121314151617181920212223242526272829PS D:\demo&amp;gt; npm i node-sass//">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://minmax.site/2022/前端/Vue.js/为什么node-sass总是安装失败/">
+
+
+
+
+
+  <title>为什么node-sass总是安装失败 | 小站 大梦</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小站 大梦</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Write The Code Change The World</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://minmax.site/2022/前端/Vue.js/为什么node-sass总是安装失败/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhang yongfei">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/tx.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小站 大梦">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">为什么node-sass总是安装失败</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-30T09:36:41+08:00">
+                2022-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/Vue-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue.js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一篇文章"><a href="#一篇文章" class="headerlink" title="一篇文章"></a>一篇文章</h1><p>node-sass是我们开发中很常见的依赖包，也是安装时间冗长和最常见到报错的依赖。 安装node-sass失败原因有很多种，我们在说失败原因之前，先来分析一下node-sass的安装过程(以下node版本为v10.15.3)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">PS D:\demo&gt; npm i node-sass</span><br><span class="line"></span><br><span class="line">// 从npm源安装到node_modules</span><br><span class="line">&gt; node-sass@4.13.0 install D:\demo\node_modules\node-sass</span><br><span class="line">&gt; node scripts/install.js</span><br><span class="line"></span><br><span class="line">// 下载binding.node</span><br><span class="line">Downloading binary from https://github.com/sass/node-sass/releases/download/v4.13.0/win32-x64-64_binding.node</span><br><span class="line">Download complete .] - :</span><br><span class="line">Binary saved to D:\demo\node_modules\node-sass\vendor\win32-x64-64\binding.node</span><br><span class="line"></span><br><span class="line">// 缓存binding.node</span><br><span class="line">Caching binary to C:\Users\leepi\AppData\Roaming\npm-cache\node-sass\4.13.0\win32-x64-64_binding.node</span><br><span class="line"></span><br><span class="line">&gt; node-sass@4.13.0 postinstall D:\demo\node_modules\node-sass</span><br><span class="line">&gt; node scripts/build.js</span><br><span class="line"></span><br><span class="line">Binary found at D:\demo\node_modules\node-sass\vendor\win32-x64-64\binding.node</span><br><span class="line">Testing binary</span><br><span class="line">Binary is fine</span><br><span class="line"></span><br><span class="line">// 写package-lock.json</span><br><span class="line">npm notice created a lockfile as package-lock.json. You should commit this file.</span><br><span class="line">npm WARN demo@1.0.0 No description</span><br><span class="line">npm WARN demo@1.0.0 No repository field.</span><br><span class="line"></span><br><span class="line">+ node-sass@4.13.0</span><br><span class="line">added 174 packages from 138 contributors and audited 529 packages <span class="keyword">in</span> 24.379s</span><br><span class="line">found 0 vulnerabilities</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，安装node-sass有几个步骤：</p>
+<ol>
+<li>校验本地node_modules中是否已安装node-sass，版本是否一致;</li>
+<li>如未安装或版本不符，从npm源安装node-sass本体;</li>
+<li>检测全局缓存和本地中是否有<code>binding.node</code>,如有即跳过安装;</li>
+<li>没有<code>binding.node</code>则从github下载该二进制文件并将其缓存到全局;</li>
+<li>假如<code>binding.node</code>下载失败，则尝试本地编译出该文件;</li>
+<li>将版本信息写到<code>package-lock.json</code>;</li>
+</ol>
+<p>由此看到，实际上node-sass依赖了一个二进制文件<code>binding.node</code>，从npm源安装完本体后还会从github下载<code>binding.node</code>。</p>
+<p>因此安装node-sass相关的失败原因有以下几种：</p>
+<h2 id="原因一-npm源速度慢"><a href="#原因一-npm源速度慢" class="headerlink" title="原因一: npm源速度慢"></a>原因一: npm源速度慢</h2><p>由于众所周知的国内网络环境，从国内安装官方源的依赖包会很慢。可以将npm源设置成国内镜像源(如淘宝npm)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<p>或者通过<code>.npmrc</code>文件设置:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// .npmrc</span><br><span class="line">registry=https://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
+<h2 id="原因二-binding-node源无法访问或速度慢"><a href="#原因二-binding-node源无法访问或速度慢" class="headerlink" title="原因二: binding.node源无法访问或速度慢"></a>原因二: binding.node源无法访问或速度慢</h2><p>node-sass除了npm部分的代码，还会下载二进制文件<code>binding.node</code>，默认源是github，国内访问较慢,特殊时期甚至无法访问。我们也可以将其改成国内源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// linux、mac 下</span><br><span class="line">SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass</span><br><span class="line"></span><br><span class="line">// window 下</span><br><span class="line"><span class="built_in">set</span> SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ &amp;&amp; npm install node-sass</span><br></pre></td></tr></table></figure>
+<p>或者通过<code>.npmrc</code>文件设置:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// .npmrc</span><br><span class="line">sass_binary_site=https://npm.taobao.org/mirrors/node-sass/</span><br></pre></td></tr></table></figure>
+<p>有类似问题的还有<code>chromedriver</code>,<code>phantomjs</code>,<code>electron</code>等常见依赖包,我们可以一并写到<code>.npmrc</code>中:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// .npmrc</span><br><span class="line">sass_binary_site=https://npm.taobao.org/mirrors/node-sass</span><br><span class="line">chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver</span><br><span class="line">phantomjs_cdnurl=https://npm.taobao.org/mirrors/phantomjs</span><br><span class="line">electron_mirror=https://npm.taobao.org/mirrors/electron</span><br></pre></td></tr></table></figure>
+<h2 id="原因三-node版本与node-sass版本不兼容"><a href="#原因三-node版本与node-sass版本不兼容" class="headerlink" title="原因三: node版本与node-sass版本不兼容"></a>原因三: node版本与node-sass版本不兼容</h2><p>node-sass版本兼容性并不好，老项目中依赖的node-sass很可能已经不兼容新的node，对应版本兼容如下(或参考<a href="https://github.com/sass/node-sass" target="_blank" rel="noopener">官方仓库</a>)：</p>
+<table>
+<thead>
+<tr>
+<th>NodeJS</th>
+<th>Minimum node-sass version</th>
+<th>Node Module</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node 13</td>
+<td>4.13+</td>
+<td>79</td>
+</tr>
+<tr>
+<td>Node 12</td>
+<td>4.12+</td>
+<td>72</td>
+</tr>
+<tr>
+<td>Node 11</td>
+<td>4.10+</td>
+<td>67</td>
+</tr>
+<tr>
+<td>Node 10</td>
+<td>4.9+</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Node 8</td>
+<td>4.5.3+</td>
+<td>57</td>
+</tr>
+</tbody>
+</table>
+<p>本文开头的安装例子中，<code>binding.node</code>的版本是<code>v4.13.0/win32-x64-64_binding.node</code>,可以看到，里面包括node-sass版本号<code>v4.13.0</code>,平台<code>win32</code>,架构<code>x64</code>,以及<code>Node Module</code>的版本64。Node Module是node的一个模块，其版本号可以在进程<code>process.versions</code>中查到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">PS D:\demo&gt; node</span><br><span class="line">&gt; console.log(process.versions);</span><br><span class="line">&#123; http_parser: <span class="string">'2.8.0'</span>,</span><br><span class="line">  node: <span class="string">'10.15.3'</span>,</span><br><span class="line">  v8: <span class="string">'6.8.275.32-node.51'</span>,</span><br><span class="line">  uv: <span class="string">'1.23.2'</span>,</span><br><span class="line">  zlib: <span class="string">'1.2.11'</span>,</span><br><span class="line">  ares: <span class="string">'1.15.0'</span>,</span><br><span class="line">  modules: <span class="string">'64'</span>,</span><br><span class="line">  nghttp2: <span class="string">'1.34.0'</span>,</span><br><span class="line">  napi: <span class="string">'3'</span>,</span><br><span class="line">  openssl: <span class="string">'1.1.0j'</span>,</span><br><span class="line">  icu: <span class="string">'62.1'</span>,</span><br><span class="line">  unicode: <span class="string">'11.0'</span>,</span><br><span class="line">  cldr: <span class="string">'33.1'</span>,</span><br><span class="line">  tz: <span class="string">'2018e'</span> &#125;</span><br><span class="line">undefined</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>如上显示，node10.15.3对应的module版本为64。 假如node-sass与node的版本不兼容，就会找不到对应的<code>binding.node</code>而报错，例如你的node是10.15.3，装node-sass4.6.1，则会尝试安装<code>v4.6.1/win32-x64-64_binding.node</code>,但这个版本的<code>binding.node</code>是不存在的。 此时改node-sass或node的版本即可。</p>
+<h2 id="原因四-缓存中binding-node版本不一致"><a href="#原因四-缓存中binding-node版本不一致" class="headerlink" title="原因四: 缓存中binding.node版本不一致"></a>原因四: 缓存中binding.node版本不一致</h2><p>假如本地node版本改了，或在不同机器上运行，node版本不一致，会报类似错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Found bindings <span class="keyword">for</span> the following environments:</span><br><span class="line">  - Windows 64-bit with Node.js 6.x</span><br></pre></td></tr></table></figure>
+<p>这是因为原有<code>binding.node</code>缓存跟现node版本不一致。按提示<code>npm rebuild node-sass</code>或清除缓存重新安装即可。</p>
+<h2 id="原因五-安装失败后重新安装"><a href="#原因五-安装失败后重新安装" class="headerlink" title="原因五: 安装失败后重新安装"></a>原因五: 安装失败后重新安装</h2><p>安装失败后重新安装，有可能无权限删除已安装内容，此时<code>npm uninstall node-sass</code>或手动删掉原目录后再安装即可。</p>
+<h2 id="原因六-编译失败-提示没有安装python、build失败等"><a href="#原因六-编译失败-提示没有安装python、build失败等" class="headerlink" title="原因六: 编译失败,提示没有安装python、build失败等"></a>原因六: 编译失败,提示没有安装python、build失败等</h2><p>假如拉取<code>binding.node</code>失败，node-sass会尝试在本地编译<code>binding.node</code>，过程就需要python。假如你遇到前面几种情况解决了，实际上也不会出现在本地编译的情况了，我们就不谈这种失败中失败的情况吧 :-)</p>
+<p>转载于：<a href="https://www.lipinghai.com/archivers/why-node-sass-always-fail-to-install" target="_blank" rel="noopener">https://www.lipinghai.com/archivers/why-node-sass-always-fail-to-install</a></p>
+<hr>
+<h1 id="另一篇文章"><a href="#另一篇文章" class="headerlink" title="另一篇文章"></a>另一篇文章</h1><p>安装 <a href="https://github.com/sass/node-sass" target="_blank" rel="noopener">node-sass</a> 的时候总是会各种不成功，今天我琢磨了一会儿总算知道要怎么解决了。</p>
+<p>首先要知道的是，安装 <code>node-sass</code> 时在 <code>node scripts/install</code> 阶段会从 github.com 上下载一个 <code>.node</code> 文件，大部分安装不成功的原因都源自这里，因为 GitHub Releases 里的文件都托管在 <code>s3.amazonaws.com</code> 上面，而这个网址在国内总是<em>网络不稳定</em>，所以我们需要通过第三方服务器下载这个文件。（顺带一提，你可以看看<a href="https://github.com/sass/node-sass/commit/b8050efbe0effb68b0617d28276c72eef1fb15ef" target="_blank" rel="noopener">这个好玩的 commit</a>）</p>
+<h2 id="方法一：使用淘宝镜像"><a href="#方法一：使用淘宝镜像" class="headerlink" title="方法一：使用淘宝镜像"></a>方法一：使用淘宝镜像</h2><p>macOS 系统直接运行下面的命令即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass</span><br></pre></td></tr></table></figure>
+<p>我们一般更希望能跨平台、并且直接使用 <code>npm install</code> 安装所有依赖，所以我的做法是在项目内添加一个 <code>.npmrc</code> 文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sass_binary_site=https://npm.taobao.org/mirrors/node-sass/</span><br><span class="line">phantomjs_cdnurl=https://npm.taobao.org/mirrors/phantomjs/</span><br><span class="line">electron_mirror=https://npm.taobao.org/mirrors/electron/</span><br><span class="line">registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<p>这样使用 <code>npm install</code> 安装 <code>node-sass</code>、<code>electron</code> 和 <code>phantomjs</code> 时都能自动从淘宝源上下载，但是在使用 <code>npm publish</code> 的时候要把 <code>registry</code> 这一行给注释掉，否则就会发布到淘宝源上去了。</p>
+<h2 id="方法二：使用梯子"><a href="#方法二：使用梯子" class="headerlink" title="方法二：使用梯子"></a>方法二：使用梯子</h2><p>假设你的梯子在你本地机器上开启了一个第三方服务器 <code>127.0.0.1:1080</code>，那么只需按照下面的方法配置一下就能正常安装 <code>node-sass</code> 了（如果你开启的是 PAC 模式而不是全局模式，那还需要将 <code>s3.amazonaws.com</code> 加入 PAC 列表）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set proxy http://127.0.0.1:1080</span><br><span class="line">npm i node-sass</span><br><span class="line"></span><br><span class="line"># 下载完成后删除 http 代理</span><br><span class="line">npm config delete proxy</span><br></pre></td></tr></table></figure>
+<p>嗯，这样下来就能正常安装了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/Redis/Redis缓存和数据库一致性/" rel="next" title="Redis缓存和数据库一致性">
+                <i class="fa fa-chevron-left"></i> Redis缓存和数据库一致性
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/前端/Vue.js/dart-sass替换node-sass/" rel="prev" title="dart-sass替换node-sass">
+                dart-sass替换node-sass <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/tx.jpg" alt="zhang yongfei">
+            
+              <p class="site-author-name" itemprop="name">zhang yongfei</p>
+              <p class="site-description motion-element" itemprop="description">以梦为马，明日天涯。。。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zhangyfzone" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:zhangyfzone@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.baidu.com/" title="Baidu" target="_blank">Baidu</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一篇文章"><span class="nav-number">1.</span> <span class="nav-text">一篇文章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原因一-npm源速度慢"><span class="nav-number">1.1.</span> <span class="nav-text">原因一: npm源速度慢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因二-binding-node源无法访问或速度慢"><span class="nav-number">1.2.</span> <span class="nav-text">原因二: binding.node源无法访问或速度慢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因三-node版本与node-sass版本不兼容"><span class="nav-number">1.3.</span> <span class="nav-text">原因三: node版本与node-sass版本不兼容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因四-缓存中binding-node版本不一致"><span class="nav-number">1.4.</span> <span class="nav-text">原因四: 缓存中binding.node版本不一致</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因五-安装失败后重新安装"><span class="nav-number">1.5.</span> <span class="nav-text">原因五: 安装失败后重新安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因六-编译失败-提示没有安装python、build失败等"><span class="nav-number">1.6.</span> <span class="nav-text">原因六: 编译失败,提示没有安装python、build失败等</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#另一篇文章"><span class="nav-number">2.</span> <span class="nav-text">另一篇文章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一：使用淘宝镜像"><span class="nav-number">2.1.</span> <span class="nav-text">方法一：使用淘宝镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二：使用梯子"><span class="nav-number">2.2.</span> <span class="nav-text">方法二：使用梯子</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhang yongfei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
